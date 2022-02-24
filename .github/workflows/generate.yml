@@ -5,7 +5,7 @@ on:
 
 jobs:
   generate:
-    name: test generic client
+    name: build dart clients and create new release
     runs-on: ubuntu-latest
     steps:
 
@@ -193,7 +193,7 @@ jobs:
         run: |
           wget https://github.com/aldrin/git-changelog/releases/download/v0.3.1/git-changelog-v0.3.1-linux.tar.gz
           tar -xvzf git-changelog-v0.3.1-linux.tar.gz
-          note=$(git changelog -d)
+          note=$(git-changelog -d)
           echo "##[set-output name=note;]$(echo "$note")" 
         id: micro_release_note
 
