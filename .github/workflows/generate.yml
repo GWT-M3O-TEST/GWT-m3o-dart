@@ -188,11 +188,17 @@ jobs:
           echo "##[set-output name=curver;]$(echo "v$curver")"
         id: dart_cur_version
 
+      - name: Install minimal stable with clippy and rustfmt
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+
+      # https://github.com/aldrin/git-changelog
       - name: generate latest release note from micro repo
         working-directory: micro
         run: |
-          wget https://github.com/aldrin/git-changelog/releases/download/v0.3.1/git-changelog-v0.3.1-linux.tar.gz
-          tar -xvzf git-changelog-v0.3.1-linux.tar.gz
+          cargo install git-changelog
           note=$(git-changelog -d)
           echo "##[set-output name=note;]$(echo "$note")" 
         id: micro_release_note
