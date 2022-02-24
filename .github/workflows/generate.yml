@@ -188,7 +188,7 @@ jobs:
           echo "##[set-output name=curver;]$(echo "v$curver")"
         id: dart_cur_version
 
-      - name: Install minimal stable with clippy and rustfmt
+      - name: Install minimal stable
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
@@ -199,22 +199,30 @@ jobs:
         working-directory: micro
         run: |
           cargo install git-changelog
-          note=$(git-changelog -d)
+          note=$(git-changelog -- --since "1 day ago")
           echo "##[set-output name=note;]$(echo "$note")" 
         id: micro_release_note
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.API_TOKEN_GITHUB }} # This token is provided by Actions, you do not need to create your own token
+      # - name: Create Release
+      #   id: create_release
+      #   uses: actions/create-release@latest
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
+      #   with:
+      #     tag_name: ${{ steps.dart_cur_version.outputs.curver}}
+      #     release_name: ${{ steps.dart_cur_version.outputs.curver}}
+      #     body: |
+      #       ${{ steps.micro_release_note.outputs.note }}
+      #     draft: false
+      #     prerelease: false
+
+      - uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ steps.dart_cur_version.outputs.curver}}
-          release_name: ${{ steps.dart_cur_version.outputs.curver}}
+          tag: ${{ steps.dart_cur_version.outputs.curver}} 
+          commit: main
           body: |
             ${{ steps.micro_release_note.outputs.note }}
-          draft: false
-          prerelease: false
+          token: ${{ secrets.API_TOKEN_GITHUB }}
 
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
