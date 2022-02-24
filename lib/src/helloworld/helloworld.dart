@@ -1,7 +1,6 @@
 import 'dart:convert';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:m3o/m3o.dart';
+import '../client/client.dart';
 
 part 'helloworld.freezed.dart';
 part 'helloworld.g.dart';
@@ -14,6 +13,7 @@ class HelloworldService {
     _client = Client(opts);
   }
 
+  /// Call returns a personalised "Hello $name" response
   Future<CallResponse> call(CallRequest req) async {
     Request request = Request(
       service: 'helloworld',
@@ -32,6 +32,8 @@ class HelloworldService {
       throw Exception(e);
     }
   }
+
+  /// Stream returns a stream of "Hello $name" responses
 
   Stream<StreamResponse> stream(StreamRequest req) async* {
     Request request = Request(
@@ -58,37 +60,42 @@ class HelloworldService {
 
 @Freezed()
 class CallRequest with _$CallRequest {
-  const factory CallRequest({String? name}) = _CallRequest;
-
+  const factory CallRequest({
+    String? name,
+  }) = _CallRequest;
   factory CallRequest.fromJson(Map<String, dynamic> json) =>
       _$CallRequestFromJson(json);
 }
 
 @Freezed()
 class CallResponse with _$CallResponse {
-  const factory CallResponse({String? message}) = CallResponseData;
-
+  const factory CallResponse({
+    String? message,
+  }) = CallResponseData;
   const factory CallResponse.Merr({Map<String, dynamic>? body}) =
       CallResponseMerr;
-
   factory CallResponse.fromJson(Map<String, dynamic> json) =>
       _$CallResponseFromJson(json);
 }
 
 @Freezed()
 class StreamRequest with _$StreamRequest {
-  const factory StreamRequest({int? messages, String? name}) = _StreamRequest;
-
+  const factory StreamRequest({
+    /// the number of messages to send back
+    int? messages,
+    String? name,
+  }) = _StreamRequest;
   factory StreamRequest.fromJson(Map<String, dynamic> json) =>
       _$StreamRequestFromJson(json);
 }
 
 @Freezed()
 class StreamResponse with _$StreamResponse {
-  const factory StreamResponse({String? message}) = StreamResponseData;
+  const factory StreamResponse({
+    String? message,
+  }) = StreamResponseData;
   const factory StreamResponse.Merr({Map<String, dynamic>? body}) =
       StreamResponseMerr;
-
   factory StreamResponse.fromJson(Map<String, dynamic> json) =>
       _$StreamResponseFromJson(json);
 }

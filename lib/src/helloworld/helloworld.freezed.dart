@@ -581,6 +581,7 @@ const $StreamRequest = _$StreamRequestTearOff();
 
 /// @nodoc
 mixin _$StreamRequest {
+  /// the number of messages to send back
   int? get messages => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
 
@@ -673,6 +674,8 @@ class _$_StreamRequest implements _StreamRequest {
       _$$_StreamRequestFromJson(json);
 
   @override
+
+  /// the number of messages to send back
   final int? messages;
   @override
   final String? name;
@@ -716,6 +719,8 @@ abstract class _StreamRequest implements StreamRequest {
       _$_StreamRequest.fromJson;
 
   @override
+
+  /// the number of messages to send back
   int? get messages;
   @override
   String? get name;
