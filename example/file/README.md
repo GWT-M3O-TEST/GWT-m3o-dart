@@ -4,53 +4,6 @@ An [m3o.com](https://m3o.com) API. For example usage see [m3o.com/file/api](http
 
 Endpoints:
 
-## Save
-
-Save a file
-
-
-[https://m3o.com/file/api#Save](https://m3o.com/file/api#Save)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/file/file.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = FileService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{
-  "file": {
-    "content": "file content example",
-    "path": "/document/text-files/file.txt",
-    "project": "examples"
-  ,}
-};
-
-  SaveRequest req = SaveRequest.fromJson(payload);
-
-  
-  try {
-
-	SaveResponse res = await ser.save(req);
-
-    res.map((value) => print(value),
-	  Merr: (SaveResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e) {
-    print(e);
-  } finally {
-    exit(0);
-  }
-}
-```
 ## List
 
 List files by their project and optionally a path.
@@ -174,6 +127,53 @@ void main() async {
 
     res.map((value) => print(value),
 	  Merr: (DeleteResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
+## Save
+
+Save a file
+
+
+[https://m3o.com/file/api#Save](https://m3o.com/file/api#Save)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/client/client.dart';
+import 'package:m3o/src/file/file.dart';
+
+void main() async {
+  final token = Platform.environment['M3O_API_TOKEN']!;
+  final ser = FileService(
+    Options(
+      token: token,
+      address: liveAddress,
+    ),
+  );
+ 
+  final payload = <String, dynamic>{
+  "file": {
+    "content": "file content example",
+    "path": "/document/text-files/file.txt",
+    "project": "examples"
+  ,}
+};
+
+  SaveRequest req = SaveRequest.fromJson(payload);
+
+  
+  try {
+
+	SaveResponse res = await ser.save(req);
+
+    res.map((value) => print(value),
+	  Merr: (SaveResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
