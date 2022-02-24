@@ -110,20 +110,11 @@ class SearchResponse with _$SearchResponse {
 @Freezed()
 class SearchResult with _$SearchResult {
   const factory SearchResult({
-    /// the channel id
-    String? channel_id,
-
     /// the channel title
     String? channel_title,
 
-    /// the result description
-    String? description,
-
     /// id of the result
     String? id,
-
-    /// kind of result; "video", "channel", "playlist"
-    String? kind,
 
     /// the associated url
     String? url,
@@ -132,11 +123,20 @@ class SearchResult with _$SearchResult {
     /// none, upcoming, live, completed
     String? broadcasting,
 
+    /// the result description
+    String? description,
+
+    /// kind of result; "video", "channel", "playlist"
+    String? kind,
+
     /// published at time
     String? published_at,
 
     /// title of the result
     String? title,
+
+    /// the channel id
+    String? channel_id,
   }) = _SearchResult;
   factory SearchResult.fromJson(Map<String, dynamic> json) =>
       _$SearchResultFromJson(json);

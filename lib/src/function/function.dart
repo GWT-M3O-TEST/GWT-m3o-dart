@@ -309,23 +309,35 @@ class DescribeResponse with _$DescribeResponse {
 @Freezed()
 class Func with _$Func {
   const factory Func({
-    /// git repo address
-    String? repo,
+    /// time it was updated
+    String? updated,
+
+    /// time of creation
+    String? created,
+
+    /// name of handler in source code
+    String? entrypoint,
+
+    /// id of the function
+    String? id,
+
+    /// runtime/language of the function e.g php74,
+    /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
+    /// dotnet3, java11, ruby26, ruby27, go111, go113, go116,
+    /// python37, python38, python39
+    String? runtime,
+
+    /// subfolder path to entrypoint
+    String? subfolder,
 
     /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
     String? status,
-
-    /// time it was updated
-    String? updated,
 
     /// unique url of the function
     String? url,
 
     /// branch to deploy. defaults to master
     String? branch,
-
-    /// time of creation
-    String? created,
 
     /// associated env vars
     Map<String, String>? env_vars,
@@ -334,23 +346,11 @@ class Func with _$Func {
     /// limitation: must be unique across projects
     String? name,
 
-    /// subfolder path to entrypoint
-    String? subfolder,
-
-    /// name of handler in source code
-    String? entrypoint,
-
-    /// id of the function
-    String? id,
-
     /// region to deploy in. defaults to europe-west1
     String? region,
 
-    /// runtime/language of the function e.g php74,
-    /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
-    /// dotnet3, java11, ruby26, ruby27, go111, go113, go116,
-    /// python37, python38, python39
-    String? runtime,
+    /// git repo address
+    String? repo,
   }) = _Func;
   factory Func.fromJson(Map<String, dynamic> json) => _$FuncFromJson(json);
 }
