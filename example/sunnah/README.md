@@ -4,6 +4,48 @@ An [m3o.com](https://m3o.com) API. For example usage see [m3o.com/sunnah/api](ht
 
 Endpoints:
 
+## Collections
+
+Get a list of available collections. A collection is
+a compilation of hadiths collected and written by an author.
+
+
+[https://m3o.com/sunnah/api#Collections](https://m3o.com/sunnah/api#Collections)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/client/client.dart';
+import 'package:m3o/src/sunnah/sunnah.dart';
+
+void main() async {
+  final token = Platform.environment['M3O_API_TOKEN']!;
+  final ser = SunnahService(
+    Options(
+      token: token,
+      address: liveAddress,
+    ),
+  );
+ 
+  final payload = <String, dynamic>{};
+
+  CollectionsRequest req = CollectionsRequest.fromJson(payload);
+
+  
+  try {
+
+	CollectionsResponse res = await ser.collections(req);
+
+    res.map((value) => print(value),
+	  Merr: (CollectionsResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
 ## Books
 
 Get a list of books from within a collection. A book can contain many chapters
@@ -129,48 +171,6 @@ void main() async {
 
     res.map((value) => print(value),
 	  Merr: (HadithsResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e) {
-    print(e);
-  } finally {
-    exit(0);
-  }
-}
-```
-## Collections
-
-Get a list of available collections. A collection is
-a compilation of hadiths collected and written by an author.
-
-
-[https://m3o.com/sunnah/api#Collections](https://m3o.com/sunnah/api#Collections)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/sunnah/sunnah.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = SunnahService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{};
-
-  CollectionsRequest req = CollectionsRequest.fromJson(payload);
-
-  
-  try {
-
-	CollectionsResponse res = await ser.collections(req);
-
-    res.map((value) => print(value),
-	  Merr: (CollectionsResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
