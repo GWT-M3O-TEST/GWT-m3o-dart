@@ -8,20 +8,20 @@ part of 'image.dart';
 
 _$_ConvertRequest _$$_ConvertRequestFromJson(Map<String, dynamic> json) =>
     _$_ConvertRequest(
+      url: json['url'] as String?,
       base64: json['base64'] as String?,
       file: json['file'] as String?,
       name: json['name'] as String?,
       outputURL: json['outputURL'] as bool?,
-      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$$_ConvertRequestToJson(_$_ConvertRequest instance) =>
     <String, dynamic>{
+      'url': instance.url,
       'base64': instance.base64,
       'file': instance.file,
       'name': instance.name,
       'outputURL': instance.outputURL,
-      'url': instance.url,
     };
 
 _$ConvertResponseData _$$ConvertResponseDataFromJson(
@@ -56,16 +56,16 @@ Map<String, dynamic> _$$ConvertResponseMerrToJson(
 
 _$_CropOptions _$$_CropOptionsFromJson(Map<String, dynamic> json) =>
     _$_CropOptions(
+      anchor: json['anchor'] as String?,
       height: json['height'] as int?,
       width: json['width'] as int?,
-      anchor: json['anchor'] as String?,
     );
 
 Map<String, dynamic> _$$_CropOptionsToJson(_$_CropOptions instance) =>
     <String, dynamic>{
+      'anchor': instance.anchor,
       'height': instance.height,
       'width': instance.width,
-      'anchor': instance.anchor,
     };
 
 _$_DeleteRequest _$$_DeleteRequestFromJson(Map<String, dynamic> json) =>
@@ -103,32 +103,34 @@ Map<String, dynamic> _$$DeleteResponseMerrToJson(
     };
 
 _$_Point _$$_PointFromJson(Map<String, dynamic> json) => _$_Point(
-      x: json['x'] as int?,
       y: json['y'] as int?,
+      x: json['x'] as int?,
     );
 
 Map<String, dynamic> _$$_PointToJson(_$_Point instance) => <String, dynamic>{
-      'x': instance.x,
       'y': instance.y,
+      'x': instance.x,
     };
 
 _$_Rectangle _$$_RectangleFromJson(Map<String, dynamic> json) => _$_Rectangle(
-      min: json['min'] == null
-          ? null
-          : Point.fromJson(json['min'] as Map<String, dynamic>),
       max: json['max'] == null
           ? null
           : Point.fromJson(json['max'] as Map<String, dynamic>),
+      min: json['min'] == null
+          ? null
+          : Point.fromJson(json['min'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_RectangleToJson(_$_Rectangle instance) =>
     <String, dynamic>{
-      'min': instance.min,
       'max': instance.max,
+      'min': instance.min,
     };
 
 _$_ResizeRequest _$$_ResizeRequestFromJson(Map<String, dynamic> json) =>
     _$_ResizeRequest(
+      url: json['url'] as String?,
+      width: json['width'] as int?,
       base64: json['base64'] as String?,
       cropOptions: json['cropOptions'] == null
           ? null
@@ -137,34 +139,32 @@ _$_ResizeRequest _$$_ResizeRequestFromJson(Map<String, dynamic> json) =>
       height: json['height'] as int?,
       name: json['name'] as String?,
       outputURL: json['outputURL'] as bool?,
-      url: json['url'] as String?,
-      width: json['width'] as int?,
     );
 
 Map<String, dynamic> _$$_ResizeRequestToJson(_$_ResizeRequest instance) =>
     <String, dynamic>{
+      'url': instance.url,
+      'width': instance.width,
       'base64': instance.base64,
       'cropOptions': instance.cropOptions,
       'file': instance.file,
       'height': instance.height,
       'name': instance.name,
       'outputURL': instance.outputURL,
-      'url': instance.url,
-      'width': instance.width,
     };
 
 _$ResizeResponseData _$$ResizeResponseDataFromJson(Map<String, dynamic> json) =>
     _$ResizeResponseData(
-      url: json['url'] as String?,
       base64: json['base64'] as String?,
+      url: json['url'] as String?,
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$ResizeResponseDataToJson(
         _$ResizeResponseData instance) =>
     <String, dynamic>{
-      'url': instance.url,
       'base64': instance.base64,
+      'url': instance.url,
       'runtimeType': instance.$type,
     };
 

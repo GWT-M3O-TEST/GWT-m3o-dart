@@ -57,38 +57,17 @@ class WeatherService {
 @Freezed()
 class Forecast with _$Forecast {
   const factory Forecast({
-    /// the average temp in fahrenheit
-    double? avg_temp_f,
-
-    /// chance of rain (percentage)
-    int? chance_of_rain,
-
-    /// time of sunset
-    String? sunset,
-
     /// max wind speed kph
     double? max_wind_kph,
 
     /// time of sunrise
     String? sunrise,
 
-    /// date of the forecast
-    String? date,
-
-    /// the URL of forecast condition icon. Simply prefix with either http or https to use it
-    String? icon_url,
-
-    /// minimum temp in celsius
-    double? min_temp_c,
-
-    /// will it rain
-    bool? will_it_rain,
-
     /// the average temp in celsius
     double? avg_temp_c,
 
-    /// forecast condition
-    String? condition,
+    /// the URL of forecast condition icon. Simply prefix with either http or https to use it
+    String? icon_url,
 
     /// max temp in celsius
     double? max_temp_c,
@@ -96,11 +75,32 @@ class Forecast with _$Forecast {
     /// max temp in fahrenheit
     double? max_temp_f,
 
-    /// max wind speed mph
-    double? max_wind_mph,
+    /// chance of rain (percentage)
+    int? chance_of_rain,
+
+    /// minimum temp in celsius
+    double? min_temp_c,
 
     /// minimum temp in fahrenheit
     double? min_temp_f,
+
+    /// the average temp in fahrenheit
+    double? avg_temp_f,
+
+    /// date of the forecast
+    String? date,
+
+    /// time of sunset
+    String? sunset,
+
+    /// forecast condition
+    String? condition,
+
+    /// max wind speed mph
+    double? max_wind_mph,
+
+    /// will it rain
+    bool? will_it_rain,
   }) = _Forecast;
   factory Forecast.fromJson(Map<String, dynamic> json) =>
       _$ForecastFromJson(json);
@@ -122,6 +122,9 @@ class ForecastRequest with _$ForecastRequest {
 @Freezed()
 class ForecastResponse with _$ForecastResponse {
   const factory ForecastResponse({
+    /// forecast for the next number of days
+    List<Forecast>? forecast,
+
     /// e.g 37.55
     double? latitude,
 
@@ -142,9 +145,6 @@ class ForecastResponse with _$ForecastResponse {
 
     /// country of the request
     String? country,
-
-    /// forecast for the next number of days
-    List<Forecast>? forecast,
   }) = ForecastResponseData;
   const factory ForecastResponse.Merr({Map<String, dynamic>? body}) =
       ForecastResponseMerr;
@@ -165,59 +165,59 @@ class NowRequest with _$NowRequest {
 @Freezed()
 class NowResponse with _$NowResponse {
   const factory NowResponse({
-    /// country of the request
-    String? country,
-
-    /// the local time
-    String? local_time,
-
     /// location of the request
     String? location,
-
-    /// region related to the location
-    String? region,
-
-    /// temperature in celsius
-    double? temp_c,
-
-    /// wind direction
-    String? wind_direction,
-
-    /// the weather condition
-    String? condition,
-
-    /// whether its daytime
-    bool? daytime,
-
-    /// e.g 37.55
-    double? latitude,
-
-    /// wind in kph
-    double? wind_kph,
-
-    /// cloud cover percentage
-    int? cloud,
-
-    /// feels like in fahrenheit
-    double? feels_like_f,
-
-    /// the humidity percentage
-    int? humidity,
 
     /// the URL of the related icon. Simply prefix with either http or https to use it
     String? icon_url,
 
-    /// e.g -77.46
-    double? longitude,
+    /// the local time
+    String? local_time,
 
     /// wind degree
     int? wind_degree,
 
-    /// wind in mph
-    double? wind_mph,
+    /// wind direction
+    String? wind_direction,
+
+    /// cloud cover percentage
+    int? cloud,
+
+    /// whether its daytime
+    bool? daytime,
 
     /// feels like in celsius
     double? feels_like_c,
+
+    /// the humidity percentage
+    int? humidity,
+
+    /// wind in kph
+    double? wind_kph,
+
+    /// region related to the location
+    String? region,
+
+    /// the weather condition
+    String? condition,
+
+    /// country of the request
+    String? country,
+
+    /// e.g 37.55
+    double? latitude,
+
+    /// e.g -77.46
+    double? longitude,
+
+    /// wind in mph
+    double? wind_mph,
+
+    /// feels like in fahrenheit
+    double? feels_like_f,
+
+    /// temperature in celsius
+    double? temp_c,
 
     /// temperature in fahrenheit
     double? temp_f,
