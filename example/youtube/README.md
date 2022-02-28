@@ -4,49 +4,6 @@ An [m3o.com](https://m3o.com) API. For example usage see [m3o.com/youtube/api](h
 
 Endpoints:
 
-## Search
-
-Search for videos on YouTube
-
-
-[https://m3o.com/youtube/api#Search](https://m3o.com/youtube/api#Search)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/youtube/youtube.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = YoutubeService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{
-  "query": "donuts"
-,};
-
-  SearchRequest req = SearchRequest.fromJson(payload);
-
-  
-  try {
-
-	SearchResponse res = await ser.search(req);
-
-    res.map((value) => print(value),
-	  Merr: (SearchResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e) {
-    print(e);
-  } finally {
-    exit(0);
-  }
-}
-```
 ## Embed
 
 Embed a YouTube video
@@ -82,6 +39,49 @@ void main() async {
 
     res.map((value) => print(value),
 	  Merr: (EmbedResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
+## Search
+
+Search for videos on YouTube
+
+
+[https://m3o.com/youtube/api#Search](https://m3o.com/youtube/api#Search)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/client/client.dart';
+import 'package:m3o/src/youtube/youtube.dart';
+
+void main() async {
+  final token = Platform.environment['M3O_API_TOKEN']!;
+  final ser = YoutubeService(
+    Options(
+      token: token,
+      address: liveAddress,
+    ),
+  );
+ 
+  final payload = <String, dynamic>{
+  "query": "donuts"
+,};
+
+  SearchRequest req = SearchRequest.fromJson(payload);
+
+  
+  try {
+
+	SearchResponse res = await ser.search(req);
+
+    res.map((value) => print(value),
+	  Merr: (SearchResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
