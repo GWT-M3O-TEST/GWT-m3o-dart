@@ -7,30 +7,30 @@ part of 'twitter.dart';
 // **************************************************************************
 
 _$_Profile _$$_ProfileFromJson(Map<String, dynamic> json) => _$_Profile(
+      location: json['location'] as String?,
+      name: json['name'] as String?,
+      verified: json['verified'] as bool?,
       followers: json['followers'] as int?,
       id: json['id'] as int?,
       image_url: json['image_url'] as String?,
-      name: json['name'] as String?,
+      private: json['private'] as bool?,
       username: json['username'] as String?,
-      verified: json['verified'] as bool?,
       created_at: json['created_at'] as String?,
       description: json['description'] as String?,
-      location: json['location'] as String?,
-      private: json['private'] as bool?,
     );
 
 Map<String, dynamic> _$$_ProfileToJson(_$_Profile instance) =>
     <String, dynamic>{
+      'location': instance.location,
+      'name': instance.name,
+      'verified': instance.verified,
       'followers': instance.followers,
       'id': instance.id,
       'image_url': instance.image_url,
-      'name': instance.name,
+      'private': instance.private,
       'username': instance.username,
-      'verified': instance.verified,
       'created_at': instance.created_at,
       'description': instance.description,
-      'location': instance.location,
-      'private': instance.private,
     };
 
 _$_SearchRequest _$$_SearchRequestFromJson(Map<String, dynamic> json) =>
@@ -75,14 +75,14 @@ Map<String, dynamic> _$$SearchResponseMerrToJson(
 
 _$_TimelineRequest _$$_TimelineRequestFromJson(Map<String, dynamic> json) =>
     _$_TimelineRequest(
-      limit: json['limit'] as int?,
       username: json['username'] as String?,
+      limit: json['limit'] as int?,
     );
 
 Map<String, dynamic> _$$_TimelineRequestToJson(_$_TimelineRequest instance) =>
     <String, dynamic>{
-      'limit': instance.limit,
       'username': instance.username,
+      'limit': instance.limit,
     };
 
 _$TimelineResponseData _$$TimelineResponseDataFromJson(
@@ -162,21 +162,21 @@ Map<String, dynamic> _$$TrendsResponseMerrToJson(
     };
 
 _$_Tweet _$$_TweetFromJson(Map<String, dynamic> json) => _$_Tweet(
-      username: json['username'] as String?,
       created_at: json['created_at'] as String?,
       favourited_count: json['favourited_count'] as int?,
       id: json['id'] as int?,
       retweeted_count: json['retweeted_count'] as int?,
       text: json['text'] as String?,
+      username: json['username'] as String?,
     );
 
 Map<String, dynamic> _$$_TweetToJson(_$_Tweet instance) => <String, dynamic>{
-      'username': instance.username,
       'created_at': instance.created_at,
       'favourited_count': instance.favourited_count,
       'id': instance.id,
       'retweeted_count': instance.retweeted_count,
       'text': instance.text,
+      'username': instance.username,
     };
 
 _$_UserRequest _$$_UserRequestFromJson(Map<String, dynamic> json) =>

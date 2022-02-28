@@ -80,10 +80,10 @@ class Location with _$Location {
 @Freezed()
 class LookupRequest with _$LookupRequest {
   const factory LookupRequest({
-    String? country,
-    String? postcode,
     String? address,
     String? city,
+    String? country,
+    String? postcode,
   }) = _LookupRequest;
   factory LookupRequest.fromJson(Map<String, dynamic> json) =>
       _$LookupRequestFromJson(json);
@@ -92,8 +92,8 @@ class LookupRequest with _$LookupRequest {
 @Freezed()
 class LookupResponse with _$LookupResponse {
   const factory LookupResponse({
-    Address? address,
     Location? location,
+    Address? address,
   }) = LookupResponseData;
   const factory LookupResponse.Merr({Map<String, dynamic>? body}) =
       LookupResponseMerr;

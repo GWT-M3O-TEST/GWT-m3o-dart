@@ -77,6 +77,12 @@ class RoutingService {
 @Freezed()
 class Direction with _$Direction {
   const factory Direction({
+    /// human readable instruction
+    String? instruction,
+
+    /// intersections on route
+    List<Intersection>? intersections,
+
     /// maneuver to take
     Maneuver? maneuver,
 
@@ -91,12 +97,6 @@ class Direction with _$Direction {
 
     /// duration to travel in seconds
     double? duration,
-
-    /// human readable instruction
-    String? instruction,
-
-    /// intersections on route
-    List<Intersection>? intersections,
   }) = _Direction;
   factory Direction.fromJson(Map<String, dynamic> json) =>
       _$DirectionFromJson(json);
@@ -170,8 +170,8 @@ class EtaResponse with _$EtaResponse {
 @Freezed()
 class Intersection with _$Intersection {
   const factory Intersection({
-    Point? location,
     List<double>? bearings,
+    Point? location,
   }) = _Intersection;
   factory Intersection.fromJson(Map<String, dynamic> json) =>
       _$IntersectionFromJson(json);
@@ -180,11 +180,11 @@ class Intersection with _$Intersection {
 @Freezed()
 class Maneuver with _$Maneuver {
   const factory Maneuver({
+    double? bearing_after,
+    double? bearing_before,
     String? direction,
     Point? location,
     String? action,
-    double? bearing_after,
-    double? bearing_before,
   }) = _Maneuver;
   factory Maneuver.fromJson(Map<String, dynamic> json) =>
       _$ManeuverFromJson(json);
@@ -193,11 +193,11 @@ class Maneuver with _$Maneuver {
 @Freezed()
 class Point with _$Point {
   const factory Point({
-    /// Lat e.g 52.523219
-    double? latitude,
-
     /// Long e.g 13.428555
     double? longitude,
+
+    /// Lat e.g 52.523219
+    double? latitude,
   }) = _Point;
   factory Point.fromJson(Map<String, dynamic> json) => _$PointFromJson(json);
 }
