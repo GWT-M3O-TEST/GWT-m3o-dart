@@ -143,9 +143,6 @@ class ConvertRequest with _$ConvertRequest {
 @Freezed()
 class ConvertResponse with _$ConvertResponse {
   const factory ConvertResponse({
-    /// the target code e.g GBP
-    String? to,
-
     /// converted amount e.g 7.10
     double? amount,
 
@@ -154,6 +151,9 @@ class ConvertResponse with _$ConvertResponse {
 
     /// conversion rate e.g 0.71
     double? rate,
+
+    /// the target code e.g GBP
+    String? to,
   }) = ConvertResponseData;
   const factory ConvertResponse.Merr({Map<String, dynamic>? body}) =
       ConvertResponseMerr;
@@ -164,11 +164,11 @@ class ConvertResponse with _$ConvertResponse {
 @Freezed()
 class HistoryRequest with _$HistoryRequest {
   const factory HistoryRequest({
-    /// date formatted as YYYY-MM-DD
-    String? date,
-
     /// currency code e.g USD
     String? code,
+
+    /// date formatted as YYYY-MM-DD
+    String? date,
   }) = _HistoryRequest;
   factory HistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$HistoryRequestFromJson(json);
@@ -205,11 +205,11 @@ class RatesRequest with _$RatesRequest {
 @Freezed()
 class RatesResponse with _$RatesResponse {
   const factory RatesResponse({
-    /// The rates for the given code as key-value pairs code:rate
-    Map<String, double>? rates,
-
     /// The code requested e.g USD
     String? code,
+
+    /// The rates for the given code as key-value pairs code:rate
+    Map<String, double>? rates,
   }) = RatesResponseData;
   const factory RatesResponse.Merr({Map<String, dynamic>? body}) =
       RatesResponseMerr;

@@ -8,21 +8,21 @@ part of 'cache.dart';
 
 _$_DecrementRequest _$$_DecrementRequestFromJson(Map<String, dynamic> json) =>
     _$_DecrementRequest(
-      value: json['value'] as int?,
       key: json['key'] as String?,
+      value: int64FromString(json['value'] as String?),
     );
 
 Map<String, dynamic> _$$_DecrementRequestToJson(_$_DecrementRequest instance) =>
     <String, dynamic>{
-      'value': instance.value,
       'key': instance.key,
+      'value': int64ToString(instance.value),
     };
 
 _$DecrementResponseData _$$DecrementResponseDataFromJson(
         Map<String, dynamic> json) =>
     _$DecrementResponseData(
       key: json['key'] as String?,
-      value: json['value'] as int?,
+      value: int64FromString(json['value'] as String?),
       $type: json['runtimeType'] as String?,
     );
 
@@ -30,7 +30,7 @@ Map<String, dynamic> _$$DecrementResponseDataToJson(
         _$DecrementResponseData instance) =>
     <String, dynamic>{
       'key': instance.key,
-      'value': instance.value,
+      'value': int64ToString(instance.value),
       'runtimeType': instance.$type,
     };
 
@@ -96,17 +96,17 @@ Map<String, dynamic> _$$_GetRequestToJson(_$_GetRequest instance) =>
 
 _$GetResponseData _$$GetResponseDataFromJson(Map<String, dynamic> json) =>
     _$GetResponseData(
+      ttl: int64FromString(json['ttl'] as String?),
       value: json['value'] as String?,
       key: json['key'] as String?,
-      ttl: json['ttl'] as int?,
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$GetResponseDataToJson(_$GetResponseData instance) =>
     <String, dynamic>{
+      'ttl': int64ToString(instance.ttl),
       'value': instance.value,
       'key': instance.key,
-      'ttl': instance.ttl,
       'runtimeType': instance.$type,
     };
 
@@ -125,20 +125,20 @@ Map<String, dynamic> _$$GetResponseMerrToJson(_$GetResponseMerr instance) =>
 _$_IncrementRequest _$$_IncrementRequestFromJson(Map<String, dynamic> json) =>
     _$_IncrementRequest(
       key: json['key'] as String?,
-      value: json['value'] as int?,
+      value: int64FromString(json['value'] as String?),
     );
 
 Map<String, dynamic> _$$_IncrementRequestToJson(_$_IncrementRequest instance) =>
     <String, dynamic>{
       'key': instance.key,
-      'value': instance.value,
+      'value': int64ToString(instance.value),
     };
 
 _$IncrementResponseData _$$IncrementResponseDataFromJson(
         Map<String, dynamic> json) =>
     _$IncrementResponseData(
       key: json['key'] as String?,
-      value: json['value'] as int?,
+      value: int64FromString(json['value'] as String?),
       $type: json['runtimeType'] as String?,
     );
 
@@ -146,7 +146,7 @@ Map<String, dynamic> _$$IncrementResponseDataToJson(
         _$IncrementResponseData instance) =>
     <String, dynamic>{
       'key': instance.key,
-      'value': instance.value,
+      'value': int64ToString(instance.value),
       'runtimeType': instance.$type,
     };
 
@@ -200,16 +200,16 @@ Map<String, dynamic> _$$ListKeysResponseMerrToJson(
 
 _$_SetRequest _$$_SetRequestFromJson(Map<String, dynamic> json) =>
     _$_SetRequest(
-      ttl: json['ttl'] as int?,
-      value: json['value'] as String?,
       key: json['key'] as String?,
+      ttl: int64FromString(json['ttl'] as String?),
+      value: json['value'] as String?,
     );
 
 Map<String, dynamic> _$$_SetRequestToJson(_$_SetRequest instance) =>
     <String, dynamic>{
-      'ttl': instance.ttl,
-      'value': instance.value,
       'key': instance.key,
+      'ttl': int64ToString(instance.ttl),
+      'value': instance.value,
     };
 
 _$SetResponseData _$$SetResponseDataFromJson(Map<String, dynamic> json) =>
