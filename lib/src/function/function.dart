@@ -309,20 +309,12 @@ class DescribeResponse with _$DescribeResponse {
 @Freezed()
 class Func with _$Func {
   const factory Func({
-    /// subfolder path to entrypoint
-    String? subfolder,
+    /// time of creation
+    String? created,
 
-    /// branch to deploy. defaults to master
-    String? branch,
-
-    /// name of handler in source code
-    String? entrypoint,
-
-    /// id of the function
-    String? id,
-
-    /// region to deploy in. defaults to europe-west1
-    String? region,
+    /// function name
+    /// limitation: must be unique across projects
+    String? name,
 
     /// git repo address
     String? repo,
@@ -336,21 +328,29 @@ class Func with _$Func {
     /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
     String? status,
 
-    /// time of creation
-    String? created,
-
-    /// associated env vars
-    Map<String, String>? env_vars,
-
-    /// function name
-    /// limitation: must be unique across projects
-    String? name,
-
     /// time it was updated
     String? updated,
 
     /// unique url of the function
     String? url,
+
+    /// branch to deploy. defaults to master
+    String? branch,
+
+    /// associated env vars
+    Map<String, String>? env_vars,
+
+    /// id of the function
+    String? id,
+
+    /// region to deploy in. defaults to europe-west1
+    String? region,
+
+    /// subfolder path to entrypoint
+    String? subfolder,
+
+    /// name of handler in source code
+    String? entrypoint,
   }) = _Func;
   factory Func.fromJson(Map<String, dynamic> json) => _$FuncFromJson(json);
 }
@@ -417,6 +417,9 @@ class RegionsResponse with _$RegionsResponse {
 @Freezed()
 class Reservation with _$Reservation {
   const factory Reservation({
+    /// owner id
+    String? owner,
+
     /// associated token
     String? token,
 
@@ -428,9 +431,6 @@ class Reservation with _$Reservation {
 
     /// name of the app
     String? name,
-
-    /// owner id
-    String? owner,
   }) = _Reservation;
   factory Reservation.fromJson(Map<String, dynamic> json) =>
       _$ReservationFromJson(json);
