@@ -7,42 +7,42 @@ part of 'twitter.dart';
 // **************************************************************************
 
 _$_Profile _$$_ProfileFromJson(Map<String, dynamic> json) => _$_Profile(
-      created_at: json['created_at'] as String?,
+      location: json['location'] as String?,
+      private: json['private'] as bool?,
+      description: json['description'] as String?,
+      id: json['id'] as int?,
       image_url: json['image_url'] as String?,
       name: json['name'] as String?,
-      private: json['private'] as bool?,
       username: json['username'] as String?,
       verified: json['verified'] as bool?,
-      description: json['description'] as String?,
+      created_at: json['created_at'] as String?,
       followers: json['followers'] as int?,
-      id: json['id'] as int?,
-      location: json['location'] as String?,
     );
 
 Map<String, dynamic> _$$_ProfileToJson(_$_Profile instance) =>
     <String, dynamic>{
-      'created_at': instance.created_at,
+      'location': instance.location,
+      'private': instance.private,
+      'description': instance.description,
+      'id': instance.id,
       'image_url': instance.image_url,
       'name': instance.name,
-      'private': instance.private,
       'username': instance.username,
       'verified': instance.verified,
-      'description': instance.description,
+      'created_at': instance.created_at,
       'followers': instance.followers,
-      'id': instance.id,
-      'location': instance.location,
     };
 
 _$_SearchRequest _$$_SearchRequestFromJson(Map<String, dynamic> json) =>
     _$_SearchRequest(
-      limit: json['limit'] as int?,
       query: json['query'] as String?,
+      limit: json['limit'] as int?,
     );
 
 Map<String, dynamic> _$$_SearchRequestToJson(_$_SearchRequest instance) =>
     <String, dynamic>{
-      'limit': instance.limit,
       'query': instance.query,
+      'limit': instance.limit,
     };
 
 _$SearchResponseData _$$SearchResponseDataFromJson(Map<String, dynamic> json) =>
@@ -116,15 +116,15 @@ Map<String, dynamic> _$$TimelineResponseMerrToJson(
     };
 
 _$_Trend _$$_TrendFromJson(Map<String, dynamic> json) => _$_Trend(
+      url: json['url'] as String?,
       name: json['name'] as String?,
       tweet_volume: json['tweet_volume'] as int?,
-      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$$_TrendToJson(_$_Trend instance) => <String, dynamic>{
+      'url': instance.url,
       'name': instance.name,
       'tweet_volume': instance.tweet_volume,
-      'url': instance.url,
     };
 
 _$_TrendsRequest _$$_TrendsRequestFromJson(Map<String, dynamic> json) =>
@@ -162,21 +162,21 @@ Map<String, dynamic> _$$TrendsResponseMerrToJson(
     };
 
 _$_Tweet _$$_TweetFromJson(Map<String, dynamic> json) => _$_Tweet(
-      created_at: json['created_at'] as String?,
       favourited_count: json['favourited_count'] as int?,
       id: json['id'] as int?,
       retweeted_count: json['retweeted_count'] as int?,
       text: json['text'] as String?,
       username: json['username'] as String?,
+      created_at: json['created_at'] as String?,
     );
 
 Map<String, dynamic> _$$_TweetToJson(_$_Tweet instance) => <String, dynamic>{
-      'created_at': instance.created_at,
       'favourited_count': instance.favourited_count,
       'id': instance.id,
       'retweeted_count': instance.retweeted_count,
       'text': instance.text,
       'username': instance.username,
+      'created_at': instance.created_at,
     };
 
 _$_UserRequest _$$_UserRequestFromJson(Map<String, dynamic> json) =>

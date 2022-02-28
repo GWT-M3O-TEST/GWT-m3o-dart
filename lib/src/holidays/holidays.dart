@@ -113,11 +113,11 @@ class Holiday with _$Holiday {
 @Freezed()
 class ListRequest with _$ListRequest {
   const factory ListRequest({
-    /// The 2 letter country code (as defined in ISO 3166-1 alpha-2)
-    String? country_code,
-
     /// The year to list holidays for
     int? year,
+
+    /// The 2 letter country code (as defined in ISO 3166-1 alpha-2)
+    String? country_code,
   }) = _ListRequest;
   factory ListRequest.fromJson(Map<String, dynamic> json) =>
       _$ListRequestFromJson(json);
