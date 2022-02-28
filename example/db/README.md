@@ -47,12 +47,12 @@ void main() async {
   }
 }
 ```
-## Count
+## DropTable
 
-Count records in a table
+Drop a table in the DB
 
 
-[https://m3o.com/db/api#Count](https://m3o.com/db/api#Count)
+[https://m3o.com/db/api#DropTable](https://m3o.com/db/api#DropTable)
 
 ```dart
 import 'dart:io';
@@ -73,15 +73,15 @@ void main() async {
   "table": "example"
 ,};
 
-  CountRequest req = CountRequest.fromJson(payload);
+  DropTableRequest req = DropTableRequest.fromJson(payload);
 
   
   try {
 
-	CountResponse res = await ser.count(req);
+	DropTableResponse res = await ser.dropTable(req);
 
     res.map((value) => print(value),
-	  Merr: (CountResponseMerr err) => print(err.body!['body']));	
+	  Merr: (DropTableResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -90,12 +90,12 @@ void main() async {
   }
 }
 ```
-## ListTables
+## RenameTable
 
-List tables in the DB
+Rename a table
 
 
-[https://m3o.com/db/api#ListTables](https://m3o.com/db/api#ListTables)
+[https://m3o.com/db/api#RenameTable](https://m3o.com/db/api#RenameTable)
 
 ```dart
 import 'dart:io';
@@ -112,17 +112,20 @@ void main() async {
     ),
   );
  
-  final payload = <String, dynamic>{};
+  final payload = <String, dynamic>{
+  "from": "examples2",
+  "to": "examples3"
+,};
 
-  ListTablesRequest req = ListTablesRequest.fromJson(payload);
+  RenameTableRequest req = RenameTableRequest.fromJson(payload);
 
   
   try {
 
-	ListTablesResponse res = await ser.listTables(req);
+	RenameTableResponse res = await ser.renameTable(req);
 
     res.map((value) => print(value),
-	  Merr: (ListTablesResponseMerr err) => print(err.body!['body']));	
+	  Merr: (RenameTableResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -266,93 +269,6 @@ void main() async {
   }
 }
 ```
-## DropTable
-
-Drop a table in the DB
-
-
-[https://m3o.com/db/api#DropTable](https://m3o.com/db/api#DropTable)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/db/db.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = DbService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{
-  "table": "example"
-,};
-
-  DropTableRequest req = DropTableRequest.fromJson(payload);
-
-  
-  try {
-
-	DropTableResponse res = await ser.dropTable(req);
-
-    res.map((value) => print(value),
-	  Merr: (DropTableResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e) {
-    print(e);
-  } finally {
-    exit(0);
-  }
-}
-```
-## RenameTable
-
-Rename a table
-
-
-[https://m3o.com/db/api#RenameTable](https://m3o.com/db/api#RenameTable)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/db/db.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = DbService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{
-  "from": "examples2",
-  "to": "examples3"
-,};
-
-  RenameTableRequest req = RenameTableRequest.fromJson(payload);
-
-  
-  try {
-
-	RenameTableResponse res = await ser.renameTable(req);
-
-    res.map((value) => print(value),
-	  Merr: (RenameTableResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e) {
-    print(e);
-  } finally {
-    exit(0);
-  }
-}
-```
 ## Create
 
 Create a record in the database. Optionally include an "id" field otherwise it's set automatically.
@@ -394,6 +310,90 @@ void main() async {
 
     res.map((value) => print(value),
 	  Merr: (CreateResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
+## Count
+
+Count records in a table
+
+
+[https://m3o.com/db/api#Count](https://m3o.com/db/api#Count)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/client/client.dart';
+import 'package:m3o/src/db/db.dart';
+
+void main() async {
+  final token = Platform.environment['M3O_API_TOKEN']!;
+  final ser = DbService(
+    Options(
+      token: token,
+      address: liveAddress,
+    ),
+  );
+ 
+  final payload = <String, dynamic>{
+  "table": "example"
+,};
+
+  CountRequest req = CountRequest.fromJson(payload);
+
+  
+  try {
+
+	CountResponse res = await ser.count(req);
+
+    res.map((value) => print(value),
+	  Merr: (CountResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
+## ListTables
+
+List tables in the DB
+
+
+[https://m3o.com/db/api#ListTables](https://m3o.com/db/api#ListTables)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/client/client.dart';
+import 'package:m3o/src/db/db.dart';
+
+void main() async {
+  final token = Platform.environment['M3O_API_TOKEN']!;
+  final ser = DbService(
+    Options(
+      token: token,
+      address: liveAddress,
+    ),
+  );
+ 
+  final payload = <String, dynamic>{};
+
+  ListTablesRequest req = ListTablesRequest.fromJson(payload);
+
+  
+  try {
+
+	ListTablesResponse res = await ser.listTables(req);
+
+    res.map((value) => print(value),
+	  Merr: (ListTablesResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
