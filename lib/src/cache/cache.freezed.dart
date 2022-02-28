@@ -211,10 +211,10 @@ DecrementResponse _$DecrementResponseFromJson(Map<String, dynamic> json) {
 class _$DecrementResponseTearOff {
   const _$DecrementResponseTearOff();
 
-  DecrementResponseData call({int? value, String? key}) {
+  DecrementResponseData call({String? key, int? value}) {
     return DecrementResponseData(
-      value: value,
       key: key,
+      value: value,
     );
   }
 
@@ -236,19 +236,19 @@ const $DecrementResponse = _$DecrementResponseTearOff();
 mixin _$DecrementResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int? value, String? key) $default, {
+    TResult Function(String? key, int? value) $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(int? value, String? key)? $default, {
+    TResult Function(String? key, int? value)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int? value, String? key)? $default, {
+    TResult Function(String? key, int? value)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) =>
@@ -297,7 +297,7 @@ abstract class $DecrementResponseDataCopyWith<$Res> {
   factory $DecrementResponseDataCopyWith(DecrementResponseData value,
           $Res Function(DecrementResponseData) then) =
       _$DecrementResponseDataCopyWithImpl<$Res>;
-  $Res call({int? value, String? key});
+  $Res call({String? key, int? value});
 }
 
 /// @nodoc
@@ -313,18 +313,18 @@ class _$DecrementResponseDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? value = freezed,
     Object? key = freezed,
+    Object? value = freezed,
   }) {
     return _then(DecrementResponseData(
-      value: value == freezed
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as int?,
       key: key == freezed
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as String?,
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -332,7 +332,7 @@ class _$DecrementResponseDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DecrementResponseData implements DecrementResponseData {
-  const _$DecrementResponseData({this.value, this.key, String? $type})
+  const _$DecrementResponseData({this.key, this.value, String? $type})
       : $type = $type ?? 'default';
 
   factory _$DecrementResponseData.fromJson(Map<String, dynamic> json) =>
@@ -340,19 +340,19 @@ class _$DecrementResponseData implements DecrementResponseData {
 
   @override
 
-  /// The new value
-  final int? value;
-  @override
-
   /// The key decremented
   final String? key;
+  @override
+
+  /// The new value
+  final int? value;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'DecrementResponse(value: $value, key: $key)';
+    return 'DecrementResponse(key: $key, value: $value)';
   }
 
   @override
@@ -360,15 +360,15 @@ class _$DecrementResponseData implements DecrementResponseData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is DecrementResponseData &&
-            const DeepCollectionEquality().equals(other.value, value) &&
-            const DeepCollectionEquality().equals(other.key, key));
+            const DeepCollectionEquality().equals(other.key, key) &&
+            const DeepCollectionEquality().equals(other.value, value));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(value),
-      const DeepCollectionEquality().hash(key));
+      const DeepCollectionEquality().hash(key),
+      const DeepCollectionEquality().hash(value));
 
   @JsonKey(ignore: true)
   @override
@@ -379,30 +379,30 @@ class _$DecrementResponseData implements DecrementResponseData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int? value, String? key) $default, {
+    TResult Function(String? key, int? value) $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
-    return $default(value, key);
+    return $default(key, value);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(int? value, String? key)? $default, {
+    TResult Function(String? key, int? value)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
-    return $default?.call(value, key);
+    return $default?.call(key, value);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int? value, String? key)? $default, {
+    TResult Function(String? key, int? value)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(value, key);
+      return $default(key, value);
     }
     return orElse();
   }
@@ -445,17 +445,17 @@ class _$DecrementResponseData implements DecrementResponseData {
 }
 
 abstract class DecrementResponseData implements DecrementResponse {
-  const factory DecrementResponseData({int? value, String? key}) =
+  const factory DecrementResponseData({String? key, int? value}) =
       _$DecrementResponseData;
 
   factory DecrementResponseData.fromJson(Map<String, dynamic> json) =
       _$DecrementResponseData.fromJson;
 
-  /// The new value
-  int? get value;
-
   /// The key decremented
   String? get key;
+
+  /// The new value
+  int? get value;
   @JsonKey(ignore: true)
   $DecrementResponseDataCopyWith<DecrementResponseData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -534,7 +534,7 @@ class _$DecrementResponseMerr implements DecrementResponseMerr {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int? value, String? key) $default, {
+    TResult Function(String? key, int? value) $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
     return Merr(body);
@@ -543,7 +543,7 @@ class _$DecrementResponseMerr implements DecrementResponseMerr {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(int? value, String? key)? $default, {
+    TResult Function(String? key, int? value)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
     return Merr?.call(body);
@@ -552,7 +552,7 @@ class _$DecrementResponseMerr implements DecrementResponseMerr {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int? value, String? key)? $default, {
+    TResult Function(String? key, int? value)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) {
@@ -2846,11 +2846,11 @@ SetRequest _$SetRequestFromJson(Map<String, dynamic> json) {
 class _$SetRequestTearOff {
   const _$SetRequestTearOff();
 
-  _SetRequest call({String? value, String? key, int? ttl}) {
+  _SetRequest call({String? key, int? ttl, String? value}) {
     return _SetRequest(
-      value: value,
       key: key,
       ttl: ttl,
+      value: value,
     );
   }
 
@@ -2864,14 +2864,14 @@ const $SetRequest = _$SetRequestTearOff();
 
 /// @nodoc
 mixin _$SetRequest {
-  /// The value to set
-  String? get value => throw _privateConstructorUsedError;
-
   /// The key to update
   String? get key => throw _privateConstructorUsedError;
 
   /// Time to live in seconds
   int? get ttl => throw _privateConstructorUsedError;
+
+  /// The value to set
+  String? get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2884,7 +2884,7 @@ abstract class $SetRequestCopyWith<$Res> {
   factory $SetRequestCopyWith(
           SetRequest value, $Res Function(SetRequest) then) =
       _$SetRequestCopyWithImpl<$Res>;
-  $Res call({String? value, String? key, int? ttl});
+  $Res call({String? key, int? ttl, String? value});
 }
 
 /// @nodoc
@@ -2897,15 +2897,11 @@ class _$SetRequestCopyWithImpl<$Res> implements $SetRequestCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? value = freezed,
     Object? key = freezed,
     Object? ttl = freezed,
+    Object? value = freezed,
   }) {
     return _then(_value.copyWith(
-      value: value == freezed
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String?,
       key: key == freezed
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -2914,6 +2910,10 @@ class _$SetRequestCopyWithImpl<$Res> implements $SetRequestCopyWith<$Res> {
           ? _value.ttl
           : ttl // ignore: cast_nullable_to_non_nullable
               as int?,
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -2924,7 +2924,7 @@ abstract class _$SetRequestCopyWith<$Res> implements $SetRequestCopyWith<$Res> {
           _SetRequest value, $Res Function(_SetRequest) then) =
       __$SetRequestCopyWithImpl<$Res>;
   @override
-  $Res call({String? value, String? key, int? ttl});
+  $Res call({String? key, int? ttl, String? value});
 }
 
 /// @nodoc
@@ -2939,15 +2939,11 @@ class __$SetRequestCopyWithImpl<$Res> extends _$SetRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? value = freezed,
     Object? key = freezed,
     Object? ttl = freezed,
+    Object? value = freezed,
   }) {
     return _then(_SetRequest(
-      value: value == freezed
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String?,
       key: key == freezed
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -2956,6 +2952,10 @@ class __$SetRequestCopyWithImpl<$Res> extends _$SetRequestCopyWithImpl<$Res>
           ? _value.ttl
           : ttl // ignore: cast_nullable_to_non_nullable
               as int?,
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -2963,15 +2963,11 @@ class __$SetRequestCopyWithImpl<$Res> extends _$SetRequestCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SetRequest implements _SetRequest {
-  const _$_SetRequest({this.value, this.key, this.ttl});
+  const _$_SetRequest({this.key, this.ttl, this.value});
 
   factory _$_SetRequest.fromJson(Map<String, dynamic> json) =>
       _$$_SetRequestFromJson(json);
 
-  @override
-
-  /// The value to set
-  final String? value;
   @override
 
   /// The key to update
@@ -2980,10 +2976,14 @@ class _$_SetRequest implements _SetRequest {
 
   /// Time to live in seconds
   final int? ttl;
+  @override
+
+  /// The value to set
+  final String? value;
 
   @override
   String toString() {
-    return 'SetRequest(value: $value, key: $key, ttl: $ttl)';
+    return 'SetRequest(key: $key, ttl: $ttl, value: $value)';
   }
 
   @override
@@ -2991,17 +2991,17 @@ class _$_SetRequest implements _SetRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SetRequest &&
-            const DeepCollectionEquality().equals(other.value, value) &&
             const DeepCollectionEquality().equals(other.key, key) &&
-            const DeepCollectionEquality().equals(other.ttl, ttl));
+            const DeepCollectionEquality().equals(other.ttl, ttl) &&
+            const DeepCollectionEquality().equals(other.value, value));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(value),
       const DeepCollectionEquality().hash(key),
-      const DeepCollectionEquality().hash(ttl));
+      const DeepCollectionEquality().hash(ttl),
+      const DeepCollectionEquality().hash(value));
 
   @JsonKey(ignore: true)
   @override
@@ -3015,16 +3015,12 @@ class _$_SetRequest implements _SetRequest {
 }
 
 abstract class _SetRequest implements SetRequest {
-  const factory _SetRequest({String? value, String? key, int? ttl}) =
+  const factory _SetRequest({String? key, int? ttl, String? value}) =
       _$_SetRequest;
 
   factory _SetRequest.fromJson(Map<String, dynamic> json) =
       _$_SetRequest.fromJson;
 
-  @override
-
-  /// The value to set
-  String? get value;
   @override
 
   /// The key to update
@@ -3033,6 +3029,10 @@ abstract class _SetRequest implements SetRequest {
 
   /// Time to live in seconds
   int? get ttl;
+  @override
+
+  /// The value to set
+  String? get value;
   @override
   @JsonKey(ignore: true)
   _$SetRequestCopyWith<_SetRequest> get copyWith =>

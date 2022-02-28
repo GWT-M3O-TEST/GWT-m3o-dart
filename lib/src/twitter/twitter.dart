@@ -97,11 +97,11 @@ class TwitterService {
 @Freezed()
 class Profile with _$Profile {
   const factory Profile({
-    /// the follower count
-    int? followers,
+    /// the account creation date
+    String? created_at,
 
-    /// the user id
-    int? id,
+    /// The user's profile picture
+    String? image_url,
 
     /// display name of the user
     String? name,
@@ -115,14 +115,14 @@ class Profile with _$Profile {
     /// if the account is verified
     bool? verified,
 
-    /// the account creation date
-    String? created_at,
-
     /// the user description
     String? description,
 
-    /// The user's profile picture
-    String? image_url,
+    /// the follower count
+    int? followers,
+
+    /// the user id
+    int? id,
 
     /// the user's location
     String? location,
@@ -184,14 +184,14 @@ class TimelineResponse with _$TimelineResponse {
 @Freezed()
 class Trend with _$Trend {
   const factory Trend({
-    /// the twitter url
-    String? url,
-
     /// name of the trend
     String? name,
 
     /// the volume of tweets in last 24 hours
     int? tweet_volume,
+
+    /// the twitter url
+    String? url,
   }) = _Trend;
   factory Trend.fromJson(Map<String, dynamic> json) => _$TrendFromJson(json);
 }
@@ -218,9 +218,6 @@ class TrendsResponse with _$TrendsResponse {
 @Freezed()
 class Tweet with _$Tweet {
   const factory Tweet({
-    /// username of the person who tweeted
-    String? username,
-
     /// time of tweet
     String? created_at,
 
@@ -235,6 +232,9 @@ class Tweet with _$Tweet {
 
     /// text of the tweet
     String? text,
+
+    /// username of the person who tweeted
+    String? username,
   }) = _Tweet;
   factory Tweet.fromJson(Map<String, dynamic> json) => _$TweetFromJson(json);
 }

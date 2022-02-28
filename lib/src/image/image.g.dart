@@ -129,6 +129,7 @@ Map<String, dynamic> _$$_RectangleToJson(_$_Rectangle instance) =>
 
 _$_ResizeRequest _$$_ResizeRequestFromJson(Map<String, dynamic> json) =>
     _$_ResizeRequest(
+      outputURL: json['outputURL'] as bool?,
       url: json['url'] as String?,
       width: json['width'] as int?,
       base64: json['base64'] as String?,
@@ -138,11 +139,11 @@ _$_ResizeRequest _$$_ResizeRequestFromJson(Map<String, dynamic> json) =>
       file: json['file'] as String?,
       height: json['height'] as int?,
       name: json['name'] as String?,
-      outputURL: json['outputURL'] as bool?,
     );
 
 Map<String, dynamic> _$$_ResizeRequestToJson(_$_ResizeRequest instance) =>
     <String, dynamic>{
+      'outputURL': instance.outputURL,
       'url': instance.url,
       'width': instance.width,
       'base64': instance.base64,
@@ -150,7 +151,6 @@ Map<String, dynamic> _$$_ResizeRequestToJson(_$_ResizeRequest instance) =>
       'file': instance.file,
       'height': instance.height,
       'name': instance.name,
-      'outputURL': instance.outputURL,
     };
 
 _$ResizeResponseData _$$ResizeResponseDataFromJson(Map<String, dynamic> json) =>

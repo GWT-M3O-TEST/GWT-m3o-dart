@@ -233,6 +233,12 @@ class RegionsResponse with _$RegionsResponse {
 @Freezed()
 class Reservation with _$Reservation {
   const factory Reservation({
+    /// time of reservation
+    String? created,
+
+    /// time reservation expires
+    String? expires,
+
     /// name of the app
     String? name,
 
@@ -241,12 +247,6 @@ class Reservation with _$Reservation {
 
     /// associated token
     String? token,
-
-    /// time of reservation
-    String? created,
-
-    /// time reservation expires
-    String? expires,
   }) = _Reservation;
   factory Reservation.fromJson(Map<String, dynamic> json) =>
       _$ReservationFromJson(json);
@@ -299,6 +299,12 @@ class ResolveResponse with _$ResolveResponse {
 @Freezed()
 class RunRequest with _$RunRequest {
   const factory RunRequest({
+    /// name of the app
+    String? name,
+
+    /// port to run on
+    int? port,
+
     /// region to run in
     String? region,
 
@@ -310,12 +316,6 @@ class RunRequest with _$RunRequest {
 
     /// associated env vars to pass in
     Map<String, String>? env_vars,
-
-    /// name of the app
-    String? name,
-
-    /// port to run on
-    int? port,
   }) = _RunRequest;
   factory RunRequest.fromJson(Map<String, dynamic> json) =>
       _$RunRequestFromJson(json);
@@ -336,11 +336,11 @@ class RunResponse with _$RunResponse {
 @Freezed()
 class Service with _$Service {
   const factory Service({
-    /// associated env vars
-    Map<String, String>? env_vars,
-
     /// port running on
     int? port,
+
+    /// source repository
+    String? repo,
 
     /// status of the app
     String? status,
@@ -354,14 +354,14 @@ class Service with _$Service {
     /// custom domains
     String? custom_domains,
 
+    /// unique id
+    String? id,
+
     /// name of the app
     String? name,
 
     /// region running in
     String? region,
-
-    /// source repository
-    String? repo,
 
     /// app url
     String? url,
@@ -369,8 +369,8 @@ class Service with _$Service {
     /// time of creation
     String? created,
 
-    /// unique id
-    String? id,
+    /// associated env vars
+    Map<String, String>? env_vars,
   }) = _Service;
   factory Service.fromJson(Map<String, dynamic> json) =>
       _$ServiceFromJson(json);

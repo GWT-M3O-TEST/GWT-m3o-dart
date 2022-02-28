@@ -171,37 +171,37 @@ Map<String, dynamic> _$$DescribeResponseMerrToJson(
     };
 
 _$_Func _$$_FuncFromJson(Map<String, dynamic> json) => _$_Func(
-      updated: json['updated'] as String?,
       created: json['created'] as String?,
-      entrypoint: json['entrypoint'] as String?,
-      id: json['id'] as String?,
-      runtime: json['runtime'] as String?,
-      subfolder: json['subfolder'] as String?,
-      status: json['status'] as String?,
-      url: json['url'] as String?,
-      branch: json['branch'] as String?,
       env_vars: (json['env_vars'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
+      id: json['id'] as String?,
+      repo: json['repo'] as String?,
+      runtime: json['runtime'] as String?,
+      status: json['status'] as String?,
+      subfolder: json['subfolder'] as String?,
+      branch: json['branch'] as String?,
+      updated: json['updated'] as String?,
       name: json['name'] as String?,
       region: json['region'] as String?,
-      repo: json['repo'] as String?,
+      url: json['url'] as String?,
+      entrypoint: json['entrypoint'] as String?,
     );
 
 Map<String, dynamic> _$$_FuncToJson(_$_Func instance) => <String, dynamic>{
-      'updated': instance.updated,
       'created': instance.created,
-      'entrypoint': instance.entrypoint,
-      'id': instance.id,
-      'runtime': instance.runtime,
-      'subfolder': instance.subfolder,
-      'status': instance.status,
-      'url': instance.url,
-      'branch': instance.branch,
       'env_vars': instance.env_vars,
+      'id': instance.id,
+      'repo': instance.repo,
+      'runtime': instance.runtime,
+      'status': instance.status,
+      'subfolder': instance.subfolder,
+      'branch': instance.branch,
+      'updated': instance.updated,
       'name': instance.name,
       'region': instance.region,
-      'repo': instance.repo,
+      'url': instance.url,
+      'entrypoint': instance.entrypoint,
     };
 
 _$_ListRequest _$$_ListRequestFromJson(Map<String, dynamic> json) =>
