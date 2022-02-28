@@ -188,21 +188,31 @@ jobs:
           echo "##[set-output name=curver;]$(echo "v$curver")"
         id: dart_cur_version
 
-      - name: Install minimal stable
-        uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
+      # - name: Install minimal stable
+      #   uses: actions-rs/toolchain@v1
+      #   with:
+      #     profile: minimal
+      #     toolchain: stable
 
-      # https://github.com/aldrin/git-changelog
-      - name: generate latest release note from micro repo
-        working-directory: micro
+      # # https://github.com/aldrin/git-changelog
+      # - name: generate latest release note from micro repo
+      #   working-directory: micro
+      #   run: |
+      #     cargo install git-changelog
+      #     note=$(git-changelog -- --since "1 day ago")
+      #     echo "##[set-output name=note;]$(echo "$note")" 
+      #   id: micro_release_note
+
+      - name: generate latest release note from micro/services repo
+        working-directory: m3o
         run: |
-          cargo install git-changelog
-          note=$(git-changelog -- --since "1 day ago")
+          cd cmd/release-note
+          go install .
+          note=$(release-note .)
+          echo $note
           echo "##[set-output name=note;]$(echo "$note")" 
         id: micro_release_note
-
+        
       # - name: Create Release
       #   id: create_release
       #   uses: actions/create-release@latest
