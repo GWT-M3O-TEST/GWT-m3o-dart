@@ -21,15 +21,15 @@ Map<String, dynamic> _$$_EntityToJson(_$_Entity instance) => <String, dynamic>{
     };
 
 _$_Point _$$_PointFromJson(Map<String, dynamic> json) => _$_Point(
+      latitude: (json['latitude'] as num?)?.toDouble(),
       longitude: (json['longitude'] as num?)?.toDouble(),
       timestamp: json['timestamp'] as int?,
-      latitude: (json['latitude'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$_PointToJson(_$_Point instance) => <String, dynamic>{
+      'latitude': instance.latitude,
       'longitude': instance.longitude,
       'timestamp': instance.timestamp,
-      'latitude': instance.latitude,
     };
 
 _$_ReadRequest _$$_ReadRequestFromJson(Map<String, dynamic> json) =>
@@ -104,20 +104,20 @@ Map<String, dynamic> _$$SaveResponseMerrToJson(_$SaveResponseMerr instance) =>
 
 _$_SearchRequest _$$_SearchRequestFromJson(Map<String, dynamic> json) =>
     _$_SearchRequest(
+      type: json['type'] as String?,
       center: json['center'] == null
           ? null
           : Point.fromJson(json['center'] as Map<String, dynamic>),
       numEntities: json['numEntities'] as int?,
       radius: (json['radius'] as num?)?.toDouble(),
-      type: json['type'] as String?,
     );
 
 Map<String, dynamic> _$$_SearchRequestToJson(_$_SearchRequest instance) =>
     <String, dynamic>{
+      'type': instance.type,
       'center': instance.center,
       'numEntities': instance.numEntities,
       'radius': instance.radius,
-      'type': instance.type,
     };
 
 _$SearchResponseData _$$SearchResponseDataFromJson(Map<String, dynamic> json) =>
