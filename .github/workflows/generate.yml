@@ -233,16 +233,3 @@ jobs:
           body: |
             ${{ steps.micro_release_note.outputs.note }}
           token: ${{ secrets.API_TOKEN_GITHUB }}
-
-      - name: Update Changelog
-        uses: stefanzweifel/changelog-updater-action@v1
-        with:
-          latest-version: ${{ steps.dart_cur_version.outputs.curver}}
-          release-notes: ${{ steps.micro_release_note.outputs.note }}
-
-      - name: Commit updated CHANGELOG
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          branch: ${{ github.event.release.target_commitish }}
-          commit_message: Update CHANGELOG
-          file_pattern: CHANGELOG.md

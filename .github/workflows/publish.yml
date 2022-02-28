@@ -19,7 +19,20 @@ jobs:
         with:
           sdk:  stable
         id: dart
-        
+
+      - name: Update Changelog
+        uses: stefanzweifel/changelog-updater-action@v1
+        with:
+          latest-version: ${{ github.event.release.tag_name }}
+          release-notes: ${{ github.event.release.body }}
+
+      - name: Commit updated CHANGELOG
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: ${{ github.event.release.target_commitish }}
+          commit_message: Update CHANGELOG
+          file_pattern: CHANGELOG.md
+           
       - name: Run the test
         run:  M3O_API_TOKEN=$HW_TOKEN dart test .
         env:
