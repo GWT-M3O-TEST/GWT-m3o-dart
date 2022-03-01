@@ -1,3 +1,7 @@
+## v1.0.10 - 2022-03-01
+
+[e528fa33b](https://github.com/micro/services/commit/e528fa33b2f53f55fa61e5c7a9f2fa48114ccd3b) add vendor to gitignore
+
 ## v1.0.9 - 2022-02-28
 
 [3be782ebc](https://github.com/micro/services/commit/3be782ebce4f3d42b443972a039e204f72380a82) add crypto/symbols refdata endpoint (#392)
