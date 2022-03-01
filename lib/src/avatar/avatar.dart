@@ -59,11 +59,11 @@ class GenerateRequest with _$GenerateRequest {
 @Freezed()
 class GenerateResponse with _$GenerateResponse {
   const factory GenerateResponse({
-    /// base64encode string of the avatar image
-    String? base64,
-
     /// Micro's CDN url of the avatar image
     String? url,
+
+    /// base64encode string of the avatar image
+    String? base64,
   }) = GenerateResponseData;
   const factory GenerateResponse.Merr({Map<String, dynamic>? body}) =
       GenerateResponseMerr;

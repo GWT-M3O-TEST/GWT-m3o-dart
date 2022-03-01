@@ -140,9 +140,6 @@ class HistoryResponse with _$HistoryResponse {
 @Freezed()
 class Order with _$Order {
   const factory Order({
-    /// the asking price
-    double? ask_price,
-
     /// the ask size
     int? ask_size,
 
@@ -154,6 +151,9 @@ class Order with _$Order {
 
     /// the UTC timestamp of the quote
     String? timestamp,
+
+    /// the asking price
+    double? ask_price,
   }) = _Order;
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
 }
@@ -161,6 +161,12 @@ class Order with _$Order {
 @Freezed()
 class OrderBookRequest with _$OrderBookRequest {
   const factory OrderBookRequest({
+    /// optional RFC3339Nano start time e.g 2006-01-02T15:04:05.999999999Z07:00
+    String? start,
+
+    /// stock to retrieve e.g AAPL
+    String? stock,
+
     /// the date in format YYYY-MM-dd
     String? date,
 
@@ -169,12 +175,6 @@ class OrderBookRequest with _$OrderBookRequest {
 
     /// limit number of prices
     int? limit,
-
-    /// optional RFC3339Nano start time e.g 2006-01-02T15:04:05.999999999Z07:00
-    String? start,
-
-    /// stock to retrieve e.g AAPL
-    String? stock,
   }) = _OrderBookRequest;
   factory OrderBookRequest.fromJson(Map<String, dynamic> json) =>
       _$OrderBookRequestFromJson(json);
@@ -236,6 +236,9 @@ class QuoteRequest with _$QuoteRequest {
 @Freezed()
 class QuoteResponse with _$QuoteResponse {
   const factory QuoteResponse({
+    /// the UTC timestamp of the quote
+    String? timestamp,
+
     /// the asking price
     double? ask_price,
 
@@ -250,9 +253,6 @@ class QuoteResponse with _$QuoteResponse {
 
     /// the stock symbol
     String? symbol,
-
-    /// the UTC timestamp of the quote
-    String? timestamp,
   }) = QuoteResponseData;
   const factory QuoteResponse.Merr({Map<String, dynamic>? body}) =
       QuoteResponseMerr;
