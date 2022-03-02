@@ -1,3 +1,7 @@
+## v1.0.11 - 2022-03-02
+
+[fe76efde7](https://github.com/micro/services/commit/fe76efde750352c5a160970139f476ca6200c561) return not found when user is nil
+
 ## v1.0.10 - 2022-03-01
 
 [e528fa33b](https://github.com/micro/services/commit/e528fa33b2f53f55fa61e5c7a9f2fa48114ccd3b) add vendor to gitignore
