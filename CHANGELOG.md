@@ -1,3 +1,7 @@
+## v1.0.12 - 2022-03-03
+
+something
+
 ## v1.0.11 - 2022-03-02
 
 [fe76efde7](https://github.com/micro/services/commit/fe76efde750352c5a160970139f476ca6200c561) return not found when user is nil
