@@ -336,11 +336,11 @@ class RunResponse with _$RunResponse {
 @Freezed()
 class Service with _$Service {
   const factory Service({
-    /// app url
-    String? url,
+    /// associated env vars
+    Map<String, String>? env_vars,
 
-    /// custom domains
-    String? custom_domains,
+    /// unique id
+    String? id,
 
     /// port running on
     int? port,
@@ -354,20 +354,20 @@ class Service with _$Service {
     /// last updated
     String? updated,
 
-    /// source repository
-    String? repo,
-
     /// branch of code
     String? branch,
 
+    /// custom domains
+    String? custom_domains,
+
+    /// source repository
+    String? repo,
+
+    /// app url
+    String? url,
+
     /// time of creation
     String? created,
-
-    /// associated env vars
-    Map<String, String>? env_vars,
-
-    /// unique id
-    String? id,
 
     /// name of the app
     String? name,

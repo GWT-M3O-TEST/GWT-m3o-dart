@@ -97,6 +97,9 @@ class TwitterService {
 @Freezed()
 class Profile with _$Profile {
   const factory Profile({
+    /// the username
+    String? username,
+
     /// the account creation date
     String? created_at,
 
@@ -105,15 +108,6 @@ class Profile with _$Profile {
 
     /// the follower count
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? followers,
-
-    /// the user id
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? id,
-
-    /// the username
-    String? username,
-
-    /// if the account is verified
-    bool? verified,
 
     /// The user's profile picture
     String? image_url,
@@ -126,6 +120,12 @@ class Profile with _$Profile {
 
     /// if the account is private
     bool? private,
+
+    /// the user id
+    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? id,
+
+    /// if the account is verified
+    bool? verified,
   }) = _Profile;
   factory Profile.fromJson(Map<String, dynamic> json) =>
       _$ProfileFromJson(json);
@@ -134,11 +134,11 @@ class Profile with _$Profile {
 @Freezed()
 class SearchRequest with _$SearchRequest {
   const factory SearchRequest({
-    /// number of tweets to return. default: 20
-    int? limit,
-
     /// the query to search for
     String? query,
+
+    /// number of tweets to return. default: 20
+    int? limit,
   }) = _SearchRequest;
   factory SearchRequest.fromJson(Map<String, dynamic> json) =>
       _$SearchRequestFromJson(json);
@@ -219,9 +219,6 @@ class TrendsResponse with _$TrendsResponse {
 @Freezed()
 class Tweet with _$Tweet {
   const factory Tweet({
-    /// time of tweet
-    String? created_at,
-
     /// number of times favourited
     @JsonKey(fromJson: int64FromString, toJson: int64ToString)
         int? favourited_count,
@@ -238,6 +235,9 @@ class Tweet with _$Tweet {
 
     /// username of the person who tweeted
     String? username,
+
+    /// time of tweet
+    String? created_at,
   }) = _Tweet;
   factory Tweet.fromJson(Map<String, dynamic> json) => _$TweetFromJson(json);
 }
