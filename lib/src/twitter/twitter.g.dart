@@ -7,30 +7,30 @@ part of 'twitter.dart';
 // **************************************************************************
 
 _$_Profile _$$_ProfileFromJson(Map<String, dynamic> json) => _$_Profile(
-      name: json['name'] as String?,
-      private: json['private'] as bool?,
-      verified: json['verified'] as bool?,
-      location: json['location'] as String?,
       description: json['description'] as String?,
       followers: int64FromString(json['followers'] as String?),
       id: int64FromString(json['id'] as String?),
       image_url: json['image_url'] as String?,
+      private: json['private'] as bool?,
       username: json['username'] as String?,
       created_at: json['created_at'] as String?,
+      name: json['name'] as String?,
+      verified: json['verified'] as bool?,
+      location: json['location'] as String?,
     );
 
 Map<String, dynamic> _$$_ProfileToJson(_$_Profile instance) =>
     <String, dynamic>{
-      'name': instance.name,
-      'private': instance.private,
-      'verified': instance.verified,
-      'location': instance.location,
       'description': instance.description,
       'followers': int64ToString(instance.followers),
       'id': int64ToString(instance.id),
       'image_url': instance.image_url,
+      'private': instance.private,
       'username': instance.username,
       'created_at': instance.created_at,
+      'name': instance.name,
+      'verified': instance.verified,
+      'location': instance.location,
     };
 
 _$_SearchRequest _$$_SearchRequestFromJson(Map<String, dynamic> json) =>

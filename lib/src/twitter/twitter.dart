@@ -97,18 +97,6 @@ class TwitterService {
 @Freezed()
 class Profile with _$Profile {
   const factory Profile({
-    /// display name of the user
-    String? name,
-
-    /// if the account is private
-    bool? private,
-
-    /// if the account is verified
-    bool? verified,
-
-    /// the user's location
-    String? location,
-
     /// the user description
     String? description,
 
@@ -121,11 +109,23 @@ class Profile with _$Profile {
     /// The user's profile picture
     String? image_url,
 
+    /// if the account is private
+    bool? private,
+
     /// the username
     String? username,
 
     /// the account creation date
     String? created_at,
+
+    /// display name of the user
+    String? name,
+
+    /// if the account is verified
+    bool? verified,
+
+    /// the user's location
+    String? location,
   }) = _Profile;
   factory Profile.fromJson(Map<String, dynamic> json) =>
       _$ProfileFromJson(json);
