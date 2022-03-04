@@ -4,12 +4,12 @@ An [m3o.com](https://m3o.com) API. For example usage see [m3o.com/db/api](https:
 
 Endpoints:
 
-## Create
+## Count
 
-Create a record in the database. Optionally include an "id" field otherwise it's set automatically.
+Count records in a table
 
 
-[https://m3o.com/db/api#Create](https://m3o.com/db/api#Create)
+[https://m3o.com/db/api#Count](https://m3o.com/db/api#Count)
 
 ```dart
 import 'dart:io';
@@ -27,24 +27,18 @@ void main() async {
   );
  
   final payload = <String, dynamic>{
-  "record": {
-    "age": 42,
-    "id": "1",
-    "isActive": true,
-    "name": "Jane"
-  ,},
   "table": "example"
-};
+,};
 
-  CreateRequest req = CreateRequest.fromJson(payload);
+  CountRequest req = CountRequest.fromJson(payload);
 
   
   try {
 
-	CreateResponse res = await ser.create(req);
+	CountResponse res = await ser.count(req);
 
     res.map((value) => print(value),
-	  Merr: (CreateResponseMerr err) => print(err.body!['body']));	
+	  Merr: (CountResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -144,6 +138,50 @@ void main() async {
   }
 }
 ```
+## Delete
+
+Delete a record in the database by id.
+
+
+[https://m3o.com/db/api#Delete](https://m3o.com/db/api#Delete)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/client/client.dart';
+import 'package:m3o/src/db/db.dart';
+
+void main() async {
+  final token = Platform.environment['M3O_API_TOKEN']!;
+  final ser = DbService(
+    Options(
+      token: token,
+      address: liveAddress,
+    ),
+  );
+ 
+  final payload = <String, dynamic>{
+  "id": "1",
+  "table": "example"
+,};
+
+  DeleteRequest req = DeleteRequest.fromJson(payload);
+
+  
+  try {
+
+	DeleteResponse res = await ser.delete(req);
+
+    res.map((value) => print(value),
+	  Merr: (DeleteResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
 ## Truncate
 
 Truncate the records in a table
@@ -187,12 +225,12 @@ void main() async {
   }
 }
 ```
-## Count
+## DropTable
 
-Count records in a table
+Drop a table in the DB
 
 
-[https://m3o.com/db/api#Count](https://m3o.com/db/api#Count)
+[https://m3o.com/db/api#DropTable](https://m3o.com/db/api#DropTable)
 
 ```dart
 import 'dart:io';
@@ -213,15 +251,15 @@ void main() async {
   "table": "example"
 ,};
 
-  CountRequest req = CountRequest.fromJson(payload);
+  DropTableRequest req = DropTableRequest.fromJson(payload);
 
   
   try {
 
-	CountResponse res = await ser.count(req);
+	DropTableResponse res = await ser.dropTable(req);
 
     res.map((value) => print(value),
-	  Merr: (CountResponseMerr err) => print(err.body!['body']));	
+	  Merr: (DropTableResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -315,56 +353,12 @@ void main() async {
   }
 }
 ```
-## Delete
+## Create
 
-Delete a record in the database by id.
-
-
-[https://m3o.com/db/api#Delete](https://m3o.com/db/api#Delete)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/db/db.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = DbService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{
-  "id": "1",
-  "table": "example"
-,};
-
-  DeleteRequest req = DeleteRequest.fromJson(payload);
-
-  
-  try {
-
-	DeleteResponse res = await ser.delete(req);
-
-    res.map((value) => print(value),
-	  Merr: (DeleteResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e) {
-    print(e);
-  } finally {
-    exit(0);
-  }
-}
-```
-## DropTable
-
-Drop a table in the DB
+Create a record in the database. Optionally include an "id" field otherwise it's set automatically.
 
 
-[https://m3o.com/db/api#DropTable](https://m3o.com/db/api#DropTable)
+[https://m3o.com/db/api#Create](https://m3o.com/db/api#Create)
 
 ```dart
 import 'dart:io';
@@ -382,18 +376,24 @@ void main() async {
   );
  
   final payload = <String, dynamic>{
+  "record": {
+    "age": 42,
+    "id": "1",
+    "isActive": true,
+    "name": "Jane"
+  ,},
   "table": "example"
-,};
+};
 
-  DropTableRequest req = DropTableRequest.fromJson(payload);
+  CreateRequest req = CreateRequest.fromJson(payload);
 
   
   try {
 
-	DropTableResponse res = await ser.dropTable(req);
+	CreateResponse res = await ser.create(req);
 
     res.map((value) => print(value),
-	  Merr: (DropTableResponseMerr err) => print(err.body!['body']));	
+	  Merr: (CreateResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
