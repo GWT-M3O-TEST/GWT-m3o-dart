@@ -97,11 +97,11 @@ class FileService {
 @Freezed()
 class DeleteRequest with _$DeleteRequest {
   const factory DeleteRequest({
-    /// Path to the file
-    String? path,
-
     /// The project name
     String? project,
+
+    /// Path to the file
+    String? path,
   }) = _DeleteRequest;
   factory DeleteRequest.fromJson(Map<String, dynamic> json) =>
       _$DeleteRequestFromJson(json);
@@ -146,11 +146,11 @@ class ListResponse with _$ListResponse {
 @Freezed()
 class ReadRequest with _$ReadRequest {
   const factory ReadRequest({
-    /// Project name
-    String? project,
-
     /// Path to the file
     String? path,
+
+    /// Project name
+    String? project,
   }) = _ReadRequest;
   factory ReadRequest.fromJson(Map<String, dynamic> json) =>
       _$ReadRequestFromJson(json);
@@ -171,6 +171,9 @@ class ReadResponse with _$ReadResponse {
 @Freezed()
 class Record with _$Record {
   const factory Record({
+    /// File contents
+    String? content,
+
     /// Time the file was created e.g 2021-05-20T13:37:21Z
     String? created,
 
@@ -186,9 +189,6 @@ class Record with _$Record {
 
     /// Time the file was updated e.g 2021-05-20T13:37:21Z
     String? updated,
-
-    /// File contents
-    String? content,
   }) = _Record;
   factory Record.fromJson(Map<String, dynamic> json) => _$RecordFromJson(json);
 }
