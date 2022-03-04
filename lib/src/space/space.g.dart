@@ -264,36 +264,36 @@ Map<String, dynamic> _$$ReadResponseMerrToJson(_$ReadResponseMerr instance) =>
 
 _$_SpaceObject _$$_SpaceObjectFromJson(Map<String, dynamic> json) =>
     _$_SpaceObject(
+      visibility: json['visibility'] as String?,
       created: json['created'] as String?,
       data: json['data'] as String?,
       modified: json['modified'] as String?,
       name: json['name'] as String?,
       url: json['url'] as String?,
-      visibility: json['visibility'] as String?,
     );
 
 Map<String, dynamic> _$$_SpaceObjectToJson(_$_SpaceObject instance) =>
     <String, dynamic>{
+      'visibility': instance.visibility,
       'created': instance.created,
       'data': instance.data,
       'modified': instance.modified,
       'name': instance.name,
       'url': instance.url,
-      'visibility': instance.visibility,
     };
 
 _$_UpdateRequest _$$_UpdateRequestFromJson(Map<String, dynamic> json) =>
     _$_UpdateRequest(
-      object: json['object'] as String?,
       visibility: json['visibility'] as String?,
       name: json['name'] as String?,
+      object: json['object'] as String?,
     );
 
 Map<String, dynamic> _$$_UpdateRequestToJson(_$_UpdateRequest instance) =>
     <String, dynamic>{
-      'object': instance.object,
       'visibility': instance.visibility,
       'name': instance.name,
+      'object': instance.object,
     };
 
 _$UpdateResponseData _$$UpdateResponseDataFromJson(Map<String, dynamic> json) =>
@@ -324,14 +324,14 @@ Map<String, dynamic> _$$UpdateResponseMerrToJson(
 
 _$_UploadRequest _$$_UploadRequestFromJson(Map<String, dynamic> json) =>
     _$_UploadRequest(
-      name: json['name'] as String?,
       visibility: json['visibility'] as String?,
+      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$$_UploadRequestToJson(_$_UploadRequest instance) =>
     <String, dynamic>{
-      'name': instance.name,
       'visibility': instance.visibility,
+      'name': instance.name,
     };
 
 _$UploadResponseData _$$UploadResponseDataFromJson(Map<String, dynamic> json) =>
