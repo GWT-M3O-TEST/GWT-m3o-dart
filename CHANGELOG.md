@@ -1,3 +1,7 @@
+## v1.0.14 - 2022-03-04
+
+[210f704a1](https://github.com/micro/services/commit/210f704a18624368aeba060447994ad433935e4d) fix formatting
+
 ## v1.0.13 - 2022-03-04
 
 [210f704a1](https://github.com/micro/services/commit/210f704a18624368aeba060447994ad433935e4d) fix formatting
