@@ -37,11 +37,6 @@ class AvatarService {
 @Freezed()
 class GenerateRequest with _$GenerateRequest {
   const factory GenerateRequest({
-    /// avatar's username, unique username will generates the unique avatar;
-    /// if username == "", will generate a random avatar in every request
-    /// if upload == true, username will be used as CDN filename rather than a random uuid string
-    String? username,
-
     /// encode format of avatar image, `png` or `jpeg`, default is `jpeg`
     String? format,
 
@@ -51,6 +46,11 @@ class GenerateRequest with _$GenerateRequest {
     /// if upload to m3o CDN, default is `false`
     /// if update = true, then it'll return the CDN url
     bool? upload,
+
+    /// avatar's username, unique username will generates the unique avatar;
+    /// if username == "", will generate a random avatar in every request
+    /// if upload == true, username will be used as CDN filename rather than a random uuid string
+    String? username,
   }) = _GenerateRequest;
   factory GenerateRequest.fromJson(Map<String, dynamic> json) =>
       _$GenerateRequestFromJson(json);

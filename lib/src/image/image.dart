@@ -179,8 +179,8 @@ class DeleteResponse with _$DeleteResponse {
 @Freezed()
 class Point with _$Point {
   const factory Point({
-    int? x,
     int? y,
+    int? x,
   }) = _Point;
   factory Point.fromJson(Map<String, dynamic> json) => _$PointFromJson(json);
 }
@@ -188,8 +188,8 @@ class Point with _$Point {
 @Freezed()
 class Rectangle with _$Rectangle {
   const factory Rectangle({
-    Point? min,
     Point? max,
+    Point? min,
   }) = _Rectangle;
   factory Rectangle.fromJson(Map<String, dynamic> json) =>
       _$RectangleFromJson(json);
@@ -198,6 +198,13 @@ class Rectangle with _$Rectangle {
 @Freezed()
 class ResizeRequest with _$ResizeRequest {
   const factory ResizeRequest({
+    /// url of the image to resize
+    String? url,
+    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? width,
+
+    /// base64 encoded image to resize,
+    String? base64,
+
     /// optional crop options
     /// if provided, after resize, the image
     /// will be cropped
@@ -212,13 +219,6 @@ class ResizeRequest with _$ResizeRequest {
 
     /// make output a URL and not a base64 response
     bool? outputURL,
-
-    /// url of the image to resize
-    String? url,
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? width,
-
-    /// base64 encoded image to resize,
-    String? base64,
   }) = _ResizeRequest;
   factory ResizeRequest.fromJson(Map<String, dynamic> json) =>
       _$ResizeRequestFromJson(json);
@@ -239,6 +239,9 @@ class ResizeResponse with _$ResizeResponse {
 @Freezed()
 class UploadRequest with _$UploadRequest {
   const factory UploadRequest({
+    /// URL of the image to upload
+    String? url,
+
     /// Base64 encoded image to upload,
     String? base64,
 
@@ -247,9 +250,6 @@ class UploadRequest with _$UploadRequest {
 
     /// Output name of the image including extension, ie. "cat.png"
     String? name,
-
-    /// URL of the image to upload
-    String? url,
   }) = _UploadRequest;
   factory UploadRequest.fromJson(Map<String, dynamic> json) =>
       _$UploadRequestFromJson(json);
