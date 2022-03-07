@@ -636,19 +636,19 @@ class _$TimesResponseTearOff {
   const _$TimesResponseTearOff();
 
   TimesResponseData call(
-      {double? latitude,
+      {int? days,
+      double? latitude,
       String? location,
       double? longitude,
       List<PrayerTime>? times,
-      String? date,
-      int? days}) {
+      String? date}) {
     return TimesResponseData(
+      days: days,
       latitude: latitude,
       location: location,
       longitude: longitude,
       times: times,
       date: date,
-      days: days,
     );
   }
 
@@ -670,24 +670,24 @@ const $TimesResponse = _$TimesResponseTearOff();
 mixin _$TimesResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(double? latitude, String? location, double? longitude,
-            List<PrayerTime>? times, String? date, int? days)
+    TResult Function(int? days, double? latitude, String? location,
+            double? longitude, List<PrayerTime>? times, String? date)
         $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(double? latitude, String? location, double? longitude,
-            List<PrayerTime>? times, String? date, int? days)?
+    TResult Function(int? days, double? latitude, String? location,
+            double? longitude, List<PrayerTime>? times, String? date)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(double? latitude, String? location, double? longitude,
-            List<PrayerTime>? times, String? date, int? days)?
+    TResult Function(int? days, double? latitude, String? location,
+            double? longitude, List<PrayerTime>? times, String? date)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
@@ -738,12 +738,12 @@ abstract class $TimesResponseDataCopyWith<$Res> {
           TimesResponseData value, $Res Function(TimesResponseData) then) =
       _$TimesResponseDataCopyWithImpl<$Res>;
   $Res call(
-      {double? latitude,
+      {int? days,
+      double? latitude,
       String? location,
       double? longitude,
       List<PrayerTime>? times,
-      String? date,
-      int? days});
+      String? date});
 }
 
 /// @nodoc
@@ -759,14 +759,18 @@ class _$TimesResponseDataCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? days = freezed,
     Object? latitude = freezed,
     Object? location = freezed,
     Object? longitude = freezed,
     Object? times = freezed,
     Object? date = freezed,
-    Object? days = freezed,
   }) {
     return _then(TimesResponseData(
+      days: days == freezed
+          ? _value.days
+          : days // ignore: cast_nullable_to_non_nullable
+              as int?,
       latitude: latitude == freezed
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -787,10 +791,6 @@ class _$TimesResponseDataCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String?,
-      days: days == freezed
-          ? _value.days
-          : days // ignore: cast_nullable_to_non_nullable
-              as int?,
     ));
   }
 }
@@ -799,18 +799,22 @@ class _$TimesResponseDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TimesResponseData implements TimesResponseData {
   const _$TimesResponseData(
-      {this.latitude,
+      {this.days,
+      this.latitude,
       this.location,
       this.longitude,
       this.times,
       this.date,
-      this.days,
       String? $type})
       : $type = $type ?? 'default';
 
   factory _$TimesResponseData.fromJson(Map<String, dynamic> json) =>
       _$$TimesResponseDataFromJson(json);
 
+  @override
+
+  /// number of days
+  final int? days;
   @override
 
   /// latitude of location
@@ -831,17 +835,13 @@ class _$TimesResponseData implements TimesResponseData {
 
   /// date of request
   final String? date;
-  @override
-
-  /// number of days
-  final int? days;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'TimesResponse(latitude: $latitude, location: $location, longitude: $longitude, times: $times, date: $date, days: $days)';
+    return 'TimesResponse(days: $days, latitude: $latitude, location: $location, longitude: $longitude, times: $times, date: $date)';
   }
 
   @override
@@ -849,23 +849,23 @@ class _$TimesResponseData implements TimesResponseData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is TimesResponseData &&
+            const DeepCollectionEquality().equals(other.days, days) &&
             const DeepCollectionEquality().equals(other.latitude, latitude) &&
             const DeepCollectionEquality().equals(other.location, location) &&
             const DeepCollectionEquality().equals(other.longitude, longitude) &&
             const DeepCollectionEquality().equals(other.times, times) &&
-            const DeepCollectionEquality().equals(other.date, date) &&
-            const DeepCollectionEquality().equals(other.days, days));
+            const DeepCollectionEquality().equals(other.date, date));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(days),
       const DeepCollectionEquality().hash(latitude),
       const DeepCollectionEquality().hash(location),
       const DeepCollectionEquality().hash(longitude),
       const DeepCollectionEquality().hash(times),
-      const DeepCollectionEquality().hash(date),
-      const DeepCollectionEquality().hash(days));
+      const DeepCollectionEquality().hash(date));
 
   @JsonKey(ignore: true)
   @override
@@ -875,36 +875,36 @@ class _$TimesResponseData implements TimesResponseData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(double? latitude, String? location, double? longitude,
-            List<PrayerTime>? times, String? date, int? days)
+    TResult Function(int? days, double? latitude, String? location,
+            double? longitude, List<PrayerTime>? times, String? date)
         $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
-    return $default(latitude, location, longitude, times, date, days);
+    return $default(days, latitude, location, longitude, times, date);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(double? latitude, String? location, double? longitude,
-            List<PrayerTime>? times, String? date, int? days)?
+    TResult Function(int? days, double? latitude, String? location,
+            double? longitude, List<PrayerTime>? times, String? date)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
-    return $default?.call(latitude, location, longitude, times, date, days);
+    return $default?.call(days, latitude, location, longitude, times, date);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(double? latitude, String? location, double? longitude,
-            List<PrayerTime>? times, String? date, int? days)?
+    TResult Function(int? days, double? latitude, String? location,
+            double? longitude, List<PrayerTime>? times, String? date)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(latitude, location, longitude, times, date, days);
+      return $default(days, latitude, location, longitude, times, date);
     }
     return orElse();
   }
@@ -948,15 +948,18 @@ class _$TimesResponseData implements TimesResponseData {
 
 abstract class TimesResponseData implements TimesResponse {
   const factory TimesResponseData(
-      {double? latitude,
+      {int? days,
+      double? latitude,
       String? location,
       double? longitude,
       List<PrayerTime>? times,
-      String? date,
-      int? days}) = _$TimesResponseData;
+      String? date}) = _$TimesResponseData;
 
   factory TimesResponseData.fromJson(Map<String, dynamic> json) =
       _$TimesResponseData.fromJson;
+
+  /// number of days
+  int? get days;
 
   /// latitude of location
   double? get latitude;
@@ -972,9 +975,6 @@ abstract class TimesResponseData implements TimesResponse {
 
   /// date of request
   String? get date;
-
-  /// number of days
-  int? get days;
   @JsonKey(ignore: true)
   $TimesResponseDataCopyWith<TimesResponseData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1052,8 +1052,8 @@ class _$TimesResponseMerr implements TimesResponseMerr {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(double? latitude, String? location, double? longitude,
-            List<PrayerTime>? times, String? date, int? days)
+    TResult Function(int? days, double? latitude, String? location,
+            double? longitude, List<PrayerTime>? times, String? date)
         $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
@@ -1063,8 +1063,8 @@ class _$TimesResponseMerr implements TimesResponseMerr {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(double? latitude, String? location, double? longitude,
-            List<PrayerTime>? times, String? date, int? days)?
+    TResult Function(int? days, double? latitude, String? location,
+            double? longitude, List<PrayerTime>? times, String? date)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
@@ -1074,8 +1074,8 @@ class _$TimesResponseMerr implements TimesResponseMerr {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(double? latitude, String? location, double? longitude,
-            List<PrayerTime>? times, String? date, int? days)?
+    TResult Function(int? days, double? latitude, String? location,
+            double? longitude, List<PrayerTime>? times, String? date)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),

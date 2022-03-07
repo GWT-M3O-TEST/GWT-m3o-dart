@@ -109,32 +109,32 @@ class NearbyResponse with _$NearbyResponse {
 @Freezed()
 class Result with _$Result {
   const factory Result({
-    /// rating from 1.0 to 5.0
-    double? rating,
-
-    /// feature types
-    List<String>? types,
-
-    /// url of an icon
-    String? icon_url,
+    /// lat/lng of place
+    String? location,
 
     /// name of the place
     String? name,
 
-    /// open now
-    bool? open_now,
-
     /// opening hours
     String? opening_hours,
+
+    /// rating from 1.0 to 5.0
+    double? rating,
+
+    /// type of location
+    String? type,
+
+    /// feature types
+    List<String>? types,
 
     /// address of place
     String? address,
 
-    /// lat/lng of place
-    String? location,
+    /// url of an icon
+    String? icon_url,
 
-    /// type of location
-    String? type,
+    /// open now
+    bool? open_now,
 
     /// simplified address
     String? vicinity,
