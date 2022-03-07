@@ -1,3 +1,7 @@
+## v1.0.19 - 2022-03-07
+
+[f86a981a4](https://github.com/micro/services/commit/f86a981a404262ce4bd61dc4f8a03d5430028b45) Merge branch 'master' of ssh://github.com/micro/services
+
 ## v1.0.18 - 2022-03-07
 
 [2bb1fad16](https://github.com/micro/services/commit/2bb1fad16da677bcba07825431b33ac5524477a2) Update README.md
