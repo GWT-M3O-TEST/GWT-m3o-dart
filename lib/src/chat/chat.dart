@@ -202,6 +202,9 @@ class ChatService {
 @Freezed()
 class CreateRequest with _$CreateRequest {
   const factory CreateRequest({
+    /// chat description
+    String? description,
+
     /// name of the room
     String? name,
 
@@ -210,9 +213,6 @@ class CreateRequest with _$CreateRequest {
 
     /// optional list of user ids
     String? user_ids,
-
-    /// chat description
-    String? description,
   }) = _CreateRequest;
   factory CreateRequest.fromJson(Map<String, dynamic> json) =>
       _$CreateRequestFromJson(json);
@@ -324,11 +324,11 @@ class JoinResponse with _$JoinResponse {
 @Freezed()
 class KickRequest with _$KickRequest {
   const factory KickRequest({
-    /// the chat room id
-    String? room_id,
-
     /// the user id
     String? user_id,
+
+    /// the chat room id
+    String? room_id,
   }) = _KickRequest;
   factory KickRequest.fromJson(Map<String, dynamic> json) =>
       _$KickRequestFromJson(json);
@@ -421,6 +421,9 @@ class Message with _$Message {
 @Freezed()
 class Room with _$Room {
   const factory Room({
+    /// list of users
+    String? user_ids,
+
     /// time of creation
     String? created_at,
 
@@ -435,9 +438,6 @@ class Room with _$Room {
 
     /// whether its a private room
     bool? private,
-
-    /// list of users
-    String? user_ids,
   }) = _Room;
   factory Room.fromJson(Map<String, dynamic> json) => _$RoomFromJson(json);
 }

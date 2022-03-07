@@ -47,18 +47,6 @@ class PingRequest with _$PingRequest {
 @Freezed()
 class PingResponse with _$PingResponse {
   const factory PingResponse({
-    /// Max players ever
-    int? max_players,
-
-    /// Message of the day
-    String? motd,
-
-    /// Number of players online
-    int? players,
-
-    /// Protocol number of the server
-    int? protocol,
-
     /// List of connected players
     List<PlayerSample>? sample,
 
@@ -70,6 +58,18 @@ class PingResponse with _$PingResponse {
 
     /// Latency (ms) between us and the server (EU)
     int? latency,
+
+    /// Max players ever
+    int? max_players,
+
+    /// Message of the day
+    String? motd,
+
+    /// Number of players online
+    int? players,
+
+    /// Protocol number of the server
+    int? protocol,
   }) = PingResponseData;
   const factory PingResponse.Merr({Map<String, dynamic>? body}) =
       PingResponseMerr;
