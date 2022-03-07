@@ -702,11 +702,11 @@ Ev _$EvFromJson(Map<String, dynamic> json) {
 class _$EvTearOff {
   const _$EvTearOff();
 
-  _Ev call({Map<String, dynamic>? message, String? timestamp, String? id}) {
+  _Ev call({String? id, Map<String, dynamic>? message, String? timestamp}) {
     return _Ev(
+      id: id,
       message: message,
       timestamp: timestamp,
-      id: id,
     );
   }
 
@@ -720,14 +720,14 @@ const $Ev = _$EvTearOff();
 
 /// @nodoc
 mixin _$Ev {
+  /// event id
+  String? get id => throw _privateConstructorUsedError;
+
   /// event message
   Map<String, dynamic>? get message => throw _privateConstructorUsedError;
 
   /// event timestamp
   String? get timestamp => throw _privateConstructorUsedError;
-
-  /// event id
-  String? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -738,7 +738,7 @@ mixin _$Ev {
 abstract class $EvCopyWith<$Res> {
   factory $EvCopyWith(Ev value, $Res Function(Ev) then) =
       _$EvCopyWithImpl<$Res>;
-  $Res call({Map<String, dynamic>? message, String? timestamp, String? id});
+  $Res call({String? id, Map<String, dynamic>? message, String? timestamp});
 }
 
 /// @nodoc
@@ -751,11 +751,15 @@ class _$EvCopyWithImpl<$Res> implements $EvCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? message = freezed,
     Object? timestamp = freezed,
-    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -763,10 +767,6 @@ class _$EvCopyWithImpl<$Res> implements $EvCopyWith<$Res> {
       timestamp: timestamp == freezed
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
-              as String?,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -777,7 +777,7 @@ abstract class _$EvCopyWith<$Res> implements $EvCopyWith<$Res> {
   factory _$EvCopyWith(_Ev value, $Res Function(_Ev) then) =
       __$EvCopyWithImpl<$Res>;
   @override
-  $Res call({Map<String, dynamic>? message, String? timestamp, String? id});
+  $Res call({String? id, Map<String, dynamic>? message, String? timestamp});
 }
 
 /// @nodoc
@@ -791,11 +791,15 @@ class __$EvCopyWithImpl<$Res> extends _$EvCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? message = freezed,
     Object? timestamp = freezed,
-    Object? id = freezed,
   }) {
     return _then(_Ev(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -804,10 +808,6 @@ class __$EvCopyWithImpl<$Res> extends _$EvCopyWithImpl<$Res>
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -815,10 +815,14 @@ class __$EvCopyWithImpl<$Res> extends _$EvCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Ev implements _Ev {
-  const _$_Ev({this.message, this.timestamp, this.id});
+  const _$_Ev({this.id, this.message, this.timestamp});
 
   factory _$_Ev.fromJson(Map<String, dynamic> json) => _$$_EvFromJson(json);
 
+  @override
+
+  /// event id
+  final String? id;
   @override
 
   /// event message
@@ -827,14 +831,10 @@ class _$_Ev implements _Ev {
 
   /// event timestamp
   final String? timestamp;
-  @override
-
-  /// event id
-  final String? id;
 
   @override
   String toString() {
-    return 'Ev(message: $message, timestamp: $timestamp, id: $id)';
+    return 'Ev(id: $id, message: $message, timestamp: $timestamp)';
   }
 
   @override
@@ -842,17 +842,17 @@ class _$_Ev implements _Ev {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Ev &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.message, message) &&
-            const DeepCollectionEquality().equals(other.timestamp, timestamp) &&
-            const DeepCollectionEquality().equals(other.id, id));
+            const DeepCollectionEquality().equals(other.timestamp, timestamp));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(message),
-      const DeepCollectionEquality().hash(timestamp),
-      const DeepCollectionEquality().hash(id));
+      const DeepCollectionEquality().hash(timestamp));
 
   @JsonKey(ignore: true)
   @override
@@ -866,10 +866,14 @@ class _$_Ev implements _Ev {
 
 abstract class _Ev implements Ev {
   const factory _Ev(
-      {Map<String, dynamic>? message, String? timestamp, String? id}) = _$_Ev;
+      {String? id, Map<String, dynamic>? message, String? timestamp}) = _$_Ev;
 
   factory _Ev.fromJson(Map<String, dynamic> json) = _$_Ev.fromJson;
 
+  @override
+
+  /// event id
+  String? get id;
   @override
 
   /// event message
@@ -878,10 +882,6 @@ abstract class _Ev implements Ev {
 
   /// event timestamp
   String? get timestamp;
-  @override
-
-  /// event id
-  String? get id;
   @override
   @JsonKey(ignore: true)
   _$EvCopyWith<_Ev> get copyWith => throw _privateConstructorUsedError;
@@ -1439,11 +1439,11 @@ ReadRequest _$ReadRequestFromJson(Map<String, dynamic> json) {
 class _$ReadRequestTearOff {
   const _$ReadRequestTearOff();
 
-  _ReadRequest call({int? offset, String? topic, int? limit}) {
+  _ReadRequest call({int? limit, int? offset, String? topic}) {
     return _ReadRequest(
+      limit: limit,
       offset: offset,
       topic: topic,
-      limit: limit,
     );
   }
 
@@ -1457,14 +1457,14 @@ const $ReadRequest = _$ReadRequestTearOff();
 
 /// @nodoc
 mixin _$ReadRequest {
+  /// number of events to read; default 25
+  int? get limit => throw _privateConstructorUsedError;
+
   /// offset for the events; default 0
   int? get offset => throw _privateConstructorUsedError;
 
   /// topic to read from
   String? get topic => throw _privateConstructorUsedError;
-
-  /// number of events to read; default 25
-  int? get limit => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1477,7 +1477,7 @@ abstract class $ReadRequestCopyWith<$Res> {
   factory $ReadRequestCopyWith(
           ReadRequest value, $Res Function(ReadRequest) then) =
       _$ReadRequestCopyWithImpl<$Res>;
-  $Res call({int? offset, String? topic, int? limit});
+  $Res call({int? limit, int? offset, String? topic});
 }
 
 /// @nodoc
@@ -1490,11 +1490,15 @@ class _$ReadRequestCopyWithImpl<$Res> implements $ReadRequestCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? limit = freezed,
     Object? offset = freezed,
     Object? topic = freezed,
-    Object? limit = freezed,
   }) {
     return _then(_value.copyWith(
+      limit: limit == freezed
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int?,
       offset: offset == freezed
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
@@ -1503,10 +1507,6 @@ class _$ReadRequestCopyWithImpl<$Res> implements $ReadRequestCopyWith<$Res> {
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
               as String?,
-      limit: limit == freezed
-          ? _value.limit
-          : limit // ignore: cast_nullable_to_non_nullable
-              as int?,
     ));
   }
 }
@@ -1518,7 +1518,7 @@ abstract class _$ReadRequestCopyWith<$Res>
           _ReadRequest value, $Res Function(_ReadRequest) then) =
       __$ReadRequestCopyWithImpl<$Res>;
   @override
-  $Res call({int? offset, String? topic, int? limit});
+  $Res call({int? limit, int? offset, String? topic});
 }
 
 /// @nodoc
@@ -1533,11 +1533,15 @@ class __$ReadRequestCopyWithImpl<$Res> extends _$ReadRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? limit = freezed,
     Object? offset = freezed,
     Object? topic = freezed,
-    Object? limit = freezed,
   }) {
     return _then(_ReadRequest(
+      limit: limit == freezed
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int?,
       offset: offset == freezed
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
@@ -1546,10 +1550,6 @@ class __$ReadRequestCopyWithImpl<$Res> extends _$ReadRequestCopyWithImpl<$Res>
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
               as String?,
-      limit: limit == freezed
-          ? _value.limit
-          : limit // ignore: cast_nullable_to_non_nullable
-              as int?,
     ));
   }
 }
@@ -1557,11 +1557,15 @@ class __$ReadRequestCopyWithImpl<$Res> extends _$ReadRequestCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ReadRequest implements _ReadRequest {
-  const _$_ReadRequest({this.offset, this.topic, this.limit});
+  const _$_ReadRequest({this.limit, this.offset, this.topic});
 
   factory _$_ReadRequest.fromJson(Map<String, dynamic> json) =>
       _$$_ReadRequestFromJson(json);
 
+  @override
+
+  /// number of events to read; default 25
+  final int? limit;
   @override
 
   /// offset for the events; default 0
@@ -1570,14 +1574,10 @@ class _$_ReadRequest implements _ReadRequest {
 
   /// topic to read from
   final String? topic;
-  @override
-
-  /// number of events to read; default 25
-  final int? limit;
 
   @override
   String toString() {
-    return 'ReadRequest(offset: $offset, topic: $topic, limit: $limit)';
+    return 'ReadRequest(limit: $limit, offset: $offset, topic: $topic)';
   }
 
   @override
@@ -1585,17 +1585,17 @@ class _$_ReadRequest implements _ReadRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ReadRequest &&
+            const DeepCollectionEquality().equals(other.limit, limit) &&
             const DeepCollectionEquality().equals(other.offset, offset) &&
-            const DeepCollectionEquality().equals(other.topic, topic) &&
-            const DeepCollectionEquality().equals(other.limit, limit));
+            const DeepCollectionEquality().equals(other.topic, topic));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(limit),
       const DeepCollectionEquality().hash(offset),
-      const DeepCollectionEquality().hash(topic),
-      const DeepCollectionEquality().hash(limit));
+      const DeepCollectionEquality().hash(topic));
 
   @JsonKey(ignore: true)
   @override
@@ -1609,12 +1609,16 @@ class _$_ReadRequest implements _ReadRequest {
 }
 
 abstract class _ReadRequest implements ReadRequest {
-  const factory _ReadRequest({int? offset, String? topic, int? limit}) =
+  const factory _ReadRequest({int? limit, int? offset, String? topic}) =
       _$_ReadRequest;
 
   factory _ReadRequest.fromJson(Map<String, dynamic> json) =
       _$_ReadRequest.fromJson;
 
+  @override
+
+  /// number of events to read; default 25
+  int? get limit;
   @override
 
   /// offset for the events; default 0
@@ -1623,10 +1627,6 @@ abstract class _ReadRequest implements ReadRequest {
 
   /// topic to read from
   String? get topic;
-  @override
-
-  /// number of events to read; default 25
-  int? get limit;
   @override
   @JsonKey(ignore: true)
   _$ReadRequestCopyWith<_ReadRequest> get copyWith =>

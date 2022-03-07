@@ -164,11 +164,11 @@ class ConvertResponse with _$ConvertResponse {
 @Freezed()
 class HistoryRequest with _$HistoryRequest {
   const factory HistoryRequest({
-    /// currency code e.g USD
-    String? code,
-
     /// date formatted as YYYY-MM-DD
     String? date,
+
+    /// currency code e.g USD
+    String? code,
   }) = _HistoryRequest;
   factory HistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$HistoryRequestFromJson(json);

@@ -88,12 +88,6 @@ class TimesRequest with _$TimesRequest {
 @Freezed()
 class TimesResponse with _$TimesResponse {
   const factory TimesResponse({
-    /// location for the request
-    String? location,
-
-    /// longitude of location
-    double? longitude,
-
     /// prayer times for the given location
     List<PrayerTime>? times,
 
@@ -105,6 +99,12 @@ class TimesResponse with _$TimesResponse {
 
     /// latitude of location
     double? latitude,
+
+    /// location for the request
+    String? location,
+
+    /// longitude of location
+    double? longitude,
   }) = TimesResponseData;
   const factory TimesResponse.Merr({Map<String, dynamic>? body}) =
       TimesResponseMerr;
