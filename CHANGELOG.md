@@ -1,3 +1,7 @@
+## v1.0.16 - 2022-03-07
+
+[2bb1fad16](https://github.com/micro/services/commit/2bb1fad16da677bcba07825431b33ac5524477a2) Update README.md
+
 ## v1.0.15 - 2022-03-04
 
 [210f704a1](https://github.com/micro/services/commit/210f704a18624368aeba060447994ad433935e4d) fix formatting
