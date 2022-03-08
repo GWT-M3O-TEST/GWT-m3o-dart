@@ -1,3 +1,7 @@
+## v1.0.21 - 2022-03-08
+
+[f86a98](https://github.com/micro/services/commit/f86a981a404262ce4bd61dc4f8a03d5430028b45) Merge branch 'master' of ssh://github.com/micro/services
+
 ## v1.0.20 - 2022-03-07
 
 [f86a98](https://github.com/micro/services/commit/f86a981a404262ce4bd61dc4f8a03d5430028b45) Merge branch 'master' of ssh://github.com/micro/services
