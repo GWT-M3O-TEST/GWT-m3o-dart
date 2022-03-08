@@ -141,7 +141,7 @@ class DecrementRequest with _$DecrementRequest {
     String? key,
 
     /// The amount to decrement the value by
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
+    int? value,
   }) = _DecrementRequest;
   factory DecrementRequest.fromJson(Map<String, dynamic> json) =>
       _$DecrementRequestFromJson(json);
@@ -154,7 +154,7 @@ class DecrementResponse with _$DecrementResponse {
     String? key,
 
     /// The new value
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
+    int? value,
   }) = DecrementResponseData;
   const factory DecrementResponse.Merr({Map<String, dynamic>? body}) =
       DecrementResponseMerr;
@@ -201,7 +201,7 @@ class GetResponse with _$GetResponse {
     String? key,
 
     /// Time to live in seconds
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? ttl,
+    int? ttl,
 
     /// The value
     String? value,
@@ -219,7 +219,7 @@ class IncrementRequest with _$IncrementRequest {
     String? key,
 
     /// The amount to increment the value by
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
+    int? value,
   }) = _IncrementRequest;
   factory IncrementRequest.fromJson(Map<String, dynamic> json) =>
       _$IncrementRequestFromJson(json);
@@ -232,7 +232,7 @@ class IncrementResponse with _$IncrementResponse {
     String? key,
 
     /// The new value
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
+    int? value,
   }) = IncrementResponseData;
   const factory IncrementResponse.Merr({Map<String, dynamic>? body}) =
       IncrementResponseMerr;
@@ -265,7 +265,7 @@ class SetRequest with _$SetRequest {
     String? key,
 
     /// Time to live in seconds
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? ttl,
+    int? ttl,
 
     /// The value to set
     String? value,

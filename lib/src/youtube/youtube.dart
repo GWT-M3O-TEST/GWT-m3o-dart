@@ -110,13 +110,6 @@ class SearchResponse with _$SearchResponse {
 @Freezed()
 class SearchResult with _$SearchResult {
   const factory SearchResult({
-    /// if live broadcast then indicates activity.
-    /// none, upcoming, live, completed
-    String? broadcasting,
-
-    /// the result description
-    String? description,
-
     /// title of the result
     String? title,
 
@@ -129,8 +122,15 @@ class SearchResult with _$SearchResult {
     /// the channel title
     String? channel_title,
 
+    /// the result description
+    String? description,
+
     /// id of the result
     String? id,
+
+    /// if live broadcast then indicates activity.
+    /// none, upcoming, live, completed
+    String? broadcasting,
 
     /// kind of result; "video", "channel", "playlist"
     String? kind,

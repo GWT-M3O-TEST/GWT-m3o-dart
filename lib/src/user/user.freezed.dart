@@ -23,26 +23,23 @@ class _$AccountTearOff {
   const _$AccountTearOff();
 
   _Account call(
-      {@JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? updated,
-      String? username,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? verification_date,
-      bool? verified,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? created,
-      String? email,
+      {String? email,
       String? id,
-      Map<String, String>? profile}) {
+      Map<String, String>? profile,
+      int? updated,
+      String? username,
+      int? verification_date,
+      bool? verified,
+      int? created}) {
     return _Account(
+      email: email,
+      id: id,
+      profile: profile,
       updated: updated,
       username: username,
       verification_date: verification_date,
       verified: verified,
       created: created,
-      email: email,
-      id: id,
-      profile: profile,
     );
   }
 
@@ -56,24 +53,6 @@ const $Account = _$AccountTearOff();
 
 /// @nodoc
 mixin _$Account {
-  /// unix timestamp
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-  int? get updated => throw _privateConstructorUsedError;
-
-  /// alphanumeric username
-  String? get username => throw _privateConstructorUsedError;
-
-  /// date of verification
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-  int? get verification_date => throw _privateConstructorUsedError;
-
-  /// if the account is verified
-  bool? get verified => throw _privateConstructorUsedError;
-
-  /// unix timestamp
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-  int? get created => throw _privateConstructorUsedError;
-
   /// an email address
   String? get email => throw _privateConstructorUsedError;
 
@@ -82,6 +61,21 @@ mixin _$Account {
 
   /// Store any custom data you want about your users in this fields.
   Map<String, String>? get profile => throw _privateConstructorUsedError;
+
+  /// unix timestamp
+  int? get updated => throw _privateConstructorUsedError;
+
+  /// alphanumeric username
+  String? get username => throw _privateConstructorUsedError;
+
+  /// date of verification
+  int? get verification_date => throw _privateConstructorUsedError;
+
+  /// if the account is verified
+  bool? get verified => throw _privateConstructorUsedError;
+
+  /// unix timestamp
+  int? get created => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -93,17 +87,14 @@ abstract class $AccountCopyWith<$Res> {
   factory $AccountCopyWith(Account value, $Res Function(Account) then) =
       _$AccountCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? updated,
-      String? username,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? verification_date,
-      bool? verified,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? created,
-      String? email,
+      {String? email,
       String? id,
-      Map<String, String>? profile});
+      Map<String, String>? profile,
+      int? updated,
+      String? username,
+      int? verification_date,
+      bool? verified,
+      int? created});
 }
 
 /// @nodoc
@@ -116,16 +107,28 @@ class _$AccountCopyWithImpl<$Res> implements $AccountCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? email = freezed,
+    Object? id = freezed,
+    Object? profile = freezed,
     Object? updated = freezed,
     Object? username = freezed,
     Object? verification_date = freezed,
     Object? verified = freezed,
     Object? created = freezed,
-    Object? email = freezed,
-    Object? id = freezed,
-    Object? profile = freezed,
   }) {
     return _then(_value.copyWith(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      profile: profile == freezed
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
       updated: updated == freezed
           ? _value.updated
           : updated // ignore: cast_nullable_to_non_nullable
@@ -146,18 +149,6 @@ class _$AccountCopyWithImpl<$Res> implements $AccountCopyWith<$Res> {
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as int?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      profile: profile == freezed
-          ? _value.profile
-          : profile // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
     ));
   }
 }
@@ -168,17 +159,14 @@ abstract class _$AccountCopyWith<$Res> implements $AccountCopyWith<$Res> {
       __$AccountCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? updated,
-      String? username,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? verification_date,
-      bool? verified,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? created,
-      String? email,
+      {String? email,
       String? id,
-      Map<String, String>? profile});
+      Map<String, String>? profile,
+      int? updated,
+      String? username,
+      int? verification_date,
+      bool? verified,
+      int? created});
 }
 
 /// @nodoc
@@ -192,16 +180,28 @@ class __$AccountCopyWithImpl<$Res> extends _$AccountCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? email = freezed,
+    Object? id = freezed,
+    Object? profile = freezed,
     Object? updated = freezed,
     Object? username = freezed,
     Object? verification_date = freezed,
     Object? verified = freezed,
     Object? created = freezed,
-    Object? email = freezed,
-    Object? id = freezed,
-    Object? profile = freezed,
   }) {
     return _then(_Account(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      profile: profile == freezed
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
       updated: updated == freezed
           ? _value.updated
           : updated // ignore: cast_nullable_to_non_nullable
@@ -222,18 +222,6 @@ class __$AccountCopyWithImpl<$Res> extends _$AccountCopyWithImpl<$Res>
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as int?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      profile: profile == freezed
-          ? _value.profile
-          : profile // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
     ));
   }
 }
@@ -242,44 +230,18 @@ class __$AccountCopyWithImpl<$Res> extends _$AccountCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Account implements _Account {
   const _$_Account(
-      {@JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          this.updated,
-      this.username,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          this.verification_date,
-      this.verified,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          this.created,
-      this.email,
+      {this.email,
       this.id,
-      this.profile});
+      this.profile,
+      this.updated,
+      this.username,
+      this.verification_date,
+      this.verified,
+      this.created});
 
   factory _$_Account.fromJson(Map<String, dynamic> json) =>
       _$$_AccountFromJson(json);
 
-  @override
-
-  /// unix timestamp
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-  final int? updated;
-  @override
-
-  /// alphanumeric username
-  final String? username;
-  @override
-
-  /// date of verification
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-  final int? verification_date;
-  @override
-
-  /// if the account is verified
-  final bool? verified;
-  @override
-
-  /// unix timestamp
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-  final int? created;
   @override
 
   /// an email address
@@ -292,10 +254,30 @@ class _$_Account implements _Account {
 
   /// Store any custom data you want about your users in this fields.
   final Map<String, String>? profile;
+  @override
+
+  /// unix timestamp
+  final int? updated;
+  @override
+
+  /// alphanumeric username
+  final String? username;
+  @override
+
+  /// date of verification
+  final int? verification_date;
+  @override
+
+  /// if the account is verified
+  final bool? verified;
+  @override
+
+  /// unix timestamp
+  final int? created;
 
   @override
   String toString() {
-    return 'Account(updated: $updated, username: $username, verification_date: $verification_date, verified: $verified, created: $created, email: $email, id: $id, profile: $profile)';
+    return 'Account(email: $email, id: $id, profile: $profile, updated: $updated, username: $username, verification_date: $verification_date, verified: $verified, created: $created)';
   }
 
   @override
@@ -303,28 +285,28 @@ class _$_Account implements _Account {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Account &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.profile, profile) &&
             const DeepCollectionEquality().equals(other.updated, updated) &&
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality()
                 .equals(other.verification_date, verification_date) &&
             const DeepCollectionEquality().equals(other.verified, verified) &&
-            const DeepCollectionEquality().equals(other.created, created) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.profile, profile));
+            const DeepCollectionEquality().equals(other.created, created));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(profile),
       const DeepCollectionEquality().hash(updated),
       const DeepCollectionEquality().hash(username),
       const DeepCollectionEquality().hash(verification_date),
       const DeepCollectionEquality().hash(verified),
-      const DeepCollectionEquality().hash(created),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(profile));
+      const DeepCollectionEquality().hash(created));
 
   @JsonKey(ignore: true)
   @override
@@ -339,43 +321,17 @@ class _$_Account implements _Account {
 
 abstract class _Account implements Account {
   const factory _Account(
-      {@JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? updated,
-      String? username,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? verification_date,
-      bool? verified,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? created,
-      String? email,
+      {String? email,
       String? id,
-      Map<String, String>? profile}) = _$_Account;
+      Map<String, String>? profile,
+      int? updated,
+      String? username,
+      int? verification_date,
+      bool? verified,
+      int? created}) = _$_Account;
 
   factory _Account.fromJson(Map<String, dynamic> json) = _$_Account.fromJson;
 
-  @override
-
-  /// unix timestamp
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-  int? get updated;
-  @override
-
-  /// alphanumeric username
-  String? get username;
-  @override
-
-  /// date of verification
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-  int? get verification_date;
-  @override
-
-  /// if the account is verified
-  bool? get verified;
-  @override
-
-  /// unix timestamp
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-  int? get created;
   @override
 
   /// an email address
@@ -388,6 +344,26 @@ abstract class _Account implements Account {
 
   /// Store any custom data you want about your users in this fields.
   Map<String, String>? get profile;
+  @override
+
+  /// unix timestamp
+  int? get updated;
+  @override
+
+  /// alphanumeric username
+  String? get username;
+  @override
+
+  /// date of verification
+  int? get verification_date;
+  @override
+
+  /// if the account is verified
+  bool? get verified;
+  @override
+
+  /// unix timestamp
+  int? get created;
   @override
   @JsonKey(ignore: true)
   _$AccountCopyWith<_Account> get copyWith =>
@@ -403,17 +379,17 @@ class _$CreateRequestTearOff {
   const _$CreateRequestTearOff();
 
   _CreateRequest call(
-      {String? id,
+      {String? email,
+      String? id,
       String? password,
       Map<String, String>? profile,
-      String? username,
-      String? email}) {
+      String? username}) {
     return _CreateRequest(
+      email: email,
       id: id,
       password: password,
       profile: profile,
       username: username,
-      email: email,
     );
   }
 
@@ -427,6 +403,9 @@ const $CreateRequest = _$CreateRequestTearOff();
 
 /// @nodoc
 mixin _$CreateRequest {
+  /// the email address
+  String? get email => throw _privateConstructorUsedError;
+
   /// optional account id
   String? get id => throw _privateConstructorUsedError;
 
@@ -438,9 +417,6 @@ mixin _$CreateRequest {
 
   /// the username
   String? get username => throw _privateConstructorUsedError;
-
-  /// the email address
-  String? get email => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -454,11 +430,11 @@ abstract class $CreateRequestCopyWith<$Res> {
           CreateRequest value, $Res Function(CreateRequest) then) =
       _$CreateRequestCopyWithImpl<$Res>;
   $Res call(
-      {String? id,
+      {String? email,
+      String? id,
       String? password,
       Map<String, String>? profile,
-      String? username,
-      String? email});
+      String? username});
 }
 
 /// @nodoc
@@ -472,13 +448,17 @@ class _$CreateRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? email = freezed,
     Object? id = freezed,
     Object? password = freezed,
     Object? profile = freezed,
     Object? username = freezed,
-    Object? email = freezed,
   }) {
     return _then(_value.copyWith(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -495,10 +475,6 @@ class _$CreateRequestCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -511,11 +487,11 @@ abstract class _$CreateRequestCopyWith<$Res>
       __$CreateRequestCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? id,
+      {String? email,
+      String? id,
       String? password,
       Map<String, String>? profile,
-      String? username,
-      String? email});
+      String? username});
 }
 
 /// @nodoc
@@ -531,13 +507,17 @@ class __$CreateRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? email = freezed,
     Object? id = freezed,
     Object? password = freezed,
     Object? profile = freezed,
     Object? username = freezed,
-    Object? email = freezed,
   }) {
     return _then(_CreateRequest(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -554,10 +534,6 @@ class __$CreateRequestCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -566,11 +542,15 @@ class __$CreateRequestCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CreateRequest implements _CreateRequest {
   const _$_CreateRequest(
-      {this.id, this.password, this.profile, this.username, this.email});
+      {this.email, this.id, this.password, this.profile, this.username});
 
   factory _$_CreateRequest.fromJson(Map<String, dynamic> json) =>
       _$$_CreateRequestFromJson(json);
 
+  @override
+
+  /// the email address
+  final String? email;
   @override
 
   /// optional account id
@@ -587,14 +567,10 @@ class _$_CreateRequest implements _CreateRequest {
 
   /// the username
   final String? username;
-  @override
-
-  /// the email address
-  final String? email;
 
   @override
   String toString() {
-    return 'CreateRequest(id: $id, password: $password, profile: $profile, username: $username, email: $email)';
+    return 'CreateRequest(email: $email, id: $id, password: $password, profile: $profile, username: $username)';
   }
 
   @override
@@ -602,21 +578,21 @@ class _$_CreateRequest implements _CreateRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _CreateRequest &&
+            const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.password, password) &&
             const DeepCollectionEquality().equals(other.profile, profile) &&
-            const DeepCollectionEquality().equals(other.username, username) &&
-            const DeepCollectionEquality().equals(other.email, email));
+            const DeepCollectionEquality().equals(other.username, username));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(password),
       const DeepCollectionEquality().hash(profile),
-      const DeepCollectionEquality().hash(username),
-      const DeepCollectionEquality().hash(email));
+      const DeepCollectionEquality().hash(username));
 
   @JsonKey(ignore: true)
   @override
@@ -631,15 +607,19 @@ class _$_CreateRequest implements _CreateRequest {
 
 abstract class _CreateRequest implements CreateRequest {
   const factory _CreateRequest(
-      {String? id,
+      {String? email,
+      String? id,
       String? password,
       Map<String, String>? profile,
-      String? username,
-      String? email}) = _$_CreateRequest;
+      String? username}) = _$_CreateRequest;
 
   factory _CreateRequest.fromJson(Map<String, dynamic> json) =
       _$_CreateRequest.fromJson;
 
+  @override
+
+  /// the email address
+  String? get email;
   @override
 
   /// optional account id
@@ -656,10 +636,6 @@ abstract class _CreateRequest implements CreateRequest {
 
   /// the username
   String? get username;
-  @override
-
-  /// the email address
-  String? get email;
   @override
   @JsonKey(ignore: true)
   _$CreateRequestCopyWith<_CreateRequest> get copyWith =>
@@ -5105,19 +5081,19 @@ class _$SendMagicLinkRequestTearOff {
   const _$SendMagicLinkRequestTearOff();
 
   _SendMagicLinkRequest call(
-      {String? text_content,
-      String? address,
+      {String? address,
       String? email,
       String? endpoint,
       String? from_name,
-      String? subject}) {
+      String? subject,
+      String? text_content}) {
     return _SendMagicLinkRequest(
-      text_content: text_content,
       address: address,
       email: email,
       endpoint: endpoint,
       from_name: from_name,
       subject: subject,
+      text_content: text_content,
     );
   }
 
@@ -5131,10 +5107,6 @@ const $SendMagicLinkRequest = _$SendMagicLinkRequestTearOff();
 
 /// @nodoc
 mixin _$SendMagicLinkRequest {
-  /// Text content of the email. Don't forget to include the string '$micro_verification_link' which will be replaced by the real verification link
-  /// HTML emails are not available currently.
-  String? get text_content => throw _privateConstructorUsedError;
-
   /// Your web site address, example www.example.com or user.example.com
   String? get address => throw _privateConstructorUsedError;
 
@@ -5150,6 +5122,10 @@ mixin _$SendMagicLinkRequest {
   String? get from_name => throw _privateConstructorUsedError;
   String? get subject => throw _privateConstructorUsedError;
 
+  /// Text content of the email. Don't forget to include the string '$micro_verification_link' which will be replaced by the real verification link
+  /// HTML emails are not available currently.
+  String? get text_content => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SendMagicLinkRequestCopyWith<SendMagicLinkRequest> get copyWith =>
@@ -5162,12 +5138,12 @@ abstract class $SendMagicLinkRequestCopyWith<$Res> {
           $Res Function(SendMagicLinkRequest) then) =
       _$SendMagicLinkRequestCopyWithImpl<$Res>;
   $Res call(
-      {String? text_content,
-      String? address,
+      {String? address,
       String? email,
       String? endpoint,
       String? from_name,
-      String? subject});
+      String? subject,
+      String? text_content});
 }
 
 /// @nodoc
@@ -5181,18 +5157,14 @@ class _$SendMagicLinkRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? text_content = freezed,
     Object? address = freezed,
     Object? email = freezed,
     Object? endpoint = freezed,
     Object? from_name = freezed,
     Object? subject = freezed,
+    Object? text_content = freezed,
   }) {
     return _then(_value.copyWith(
-      text_content: text_content == freezed
-          ? _value.text_content
-          : text_content // ignore: cast_nullable_to_non_nullable
-              as String?,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -5213,6 +5185,10 @@ class _$SendMagicLinkRequestCopyWithImpl<$Res>
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
               as String?,
+      text_content: text_content == freezed
+          ? _value.text_content
+          : text_content // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -5225,12 +5201,12 @@ abstract class _$SendMagicLinkRequestCopyWith<$Res>
       __$SendMagicLinkRequestCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? text_content,
-      String? address,
+      {String? address,
       String? email,
       String? endpoint,
       String? from_name,
-      String? subject});
+      String? subject,
+      String? text_content});
 }
 
 /// @nodoc
@@ -5246,18 +5222,14 @@ class __$SendMagicLinkRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? text_content = freezed,
     Object? address = freezed,
     Object? email = freezed,
     Object? endpoint = freezed,
     Object? from_name = freezed,
     Object? subject = freezed,
+    Object? text_content = freezed,
   }) {
     return _then(_SendMagicLinkRequest(
-      text_content: text_content == freezed
-          ? _value.text_content
-          : text_content // ignore: cast_nullable_to_non_nullable
-              as String?,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -5278,6 +5250,10 @@ class __$SendMagicLinkRequestCopyWithImpl<$Res>
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
               as String?,
+      text_content: text_content == freezed
+          ? _value.text_content
+          : text_content // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -5286,21 +5262,16 @@ class __$SendMagicLinkRequestCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SendMagicLinkRequest implements _SendMagicLinkRequest {
   const _$_SendMagicLinkRequest(
-      {this.text_content,
-      this.address,
+      {this.address,
       this.email,
       this.endpoint,
       this.from_name,
-      this.subject});
+      this.subject,
+      this.text_content});
 
   factory _$_SendMagicLinkRequest.fromJson(Map<String, dynamic> json) =>
       _$$_SendMagicLinkRequestFromJson(json);
 
-  @override
-
-  /// Text content of the email. Don't forget to include the string '$micro_verification_link' which will be replaced by the real verification link
-  /// HTML emails are not available currently.
-  final String? text_content;
   @override
 
   /// Your web site address, example www.example.com or user.example.com
@@ -5321,10 +5292,15 @@ class _$_SendMagicLinkRequest implements _SendMagicLinkRequest {
   final String? from_name;
   @override
   final String? subject;
+  @override
+
+  /// Text content of the email. Don't forget to include the string '$micro_verification_link' which will be replaced by the real verification link
+  /// HTML emails are not available currently.
+  final String? text_content;
 
   @override
   String toString() {
-    return 'SendMagicLinkRequest(text_content: $text_content, address: $address, email: $email, endpoint: $endpoint, from_name: $from_name, subject: $subject)';
+    return 'SendMagicLinkRequest(address: $address, email: $email, endpoint: $endpoint, from_name: $from_name, subject: $subject, text_content: $text_content)';
   }
 
   @override
@@ -5332,24 +5308,24 @@ class _$_SendMagicLinkRequest implements _SendMagicLinkRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SendMagicLinkRequest &&
-            const DeepCollectionEquality()
-                .equals(other.text_content, text_content) &&
             const DeepCollectionEquality().equals(other.address, address) &&
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality().equals(other.endpoint, endpoint) &&
             const DeepCollectionEquality().equals(other.from_name, from_name) &&
-            const DeepCollectionEquality().equals(other.subject, subject));
+            const DeepCollectionEquality().equals(other.subject, subject) &&
+            const DeepCollectionEquality()
+                .equals(other.text_content, text_content));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(text_content),
       const DeepCollectionEquality().hash(address),
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(endpoint),
       const DeepCollectionEquality().hash(from_name),
-      const DeepCollectionEquality().hash(subject));
+      const DeepCollectionEquality().hash(subject),
+      const DeepCollectionEquality().hash(text_content));
 
   @JsonKey(ignore: true)
   @override
@@ -5365,21 +5341,16 @@ class _$_SendMagicLinkRequest implements _SendMagicLinkRequest {
 
 abstract class _SendMagicLinkRequest implements SendMagicLinkRequest {
   const factory _SendMagicLinkRequest(
-      {String? text_content,
-      String? address,
+      {String? address,
       String? email,
       String? endpoint,
       String? from_name,
-      String? subject}) = _$_SendMagicLinkRequest;
+      String? subject,
+      String? text_content}) = _$_SendMagicLinkRequest;
 
   factory _SendMagicLinkRequest.fromJson(Map<String, dynamic> json) =
       _$_SendMagicLinkRequest.fromJson;
 
-  @override
-
-  /// Text content of the email. Don't forget to include the string '$micro_verification_link' which will be replaced by the real verification link
-  /// HTML emails are not available currently.
-  String? get text_content;
   @override
 
   /// Your web site address, example www.example.com or user.example.com
@@ -5400,6 +5371,11 @@ abstract class _SendMagicLinkRequest implements SendMagicLinkRequest {
   String? get from_name;
   @override
   String? get subject;
+  @override
+
+  /// Text content of the email. Don't forget to include the string '$micro_verification_link' which will be replaced by the real verification link
+  /// HTML emails are not available currently.
+  String? get text_content;
   @override
   @JsonKey(ignore: true)
   _$SendMagicLinkRequestCopyWith<_SendMagicLinkRequest> get copyWith =>
@@ -5789,18 +5765,17 @@ class _$SendPasswordResetEmailRequestTearOff {
   const _$SendPasswordResetEmailRequestTearOff();
 
   _SendPasswordResetEmailRequest call(
-      {String? email,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? expiration,
+      {String? text_content,
+      String? email,
+      int? expiration,
       String? from_name,
-      String? subject,
-      String? text_content}) {
+      String? subject}) {
     return _SendPasswordResetEmailRequest(
+      text_content: text_content,
       email: email,
       expiration: expiration,
       from_name: from_name,
       subject: subject,
-      text_content: text_content,
     );
   }
 
@@ -5814,11 +5789,14 @@ const $SendPasswordResetEmailRequest = _$SendPasswordResetEmailRequestTearOff();
 
 /// @nodoc
 mixin _$SendPasswordResetEmailRequest {
+  /// Text content of the email. Don't forget to include the string '$code' which will be replaced by the real verification link
+  /// HTML emails are not available currently.
+  String? get text_content => throw _privateConstructorUsedError;
+
   /// email address to send reset for
   String? get email => throw _privateConstructorUsedError;
 
   /// Number of secs that the password reset email is valid for, defaults to 1800 secs (30 mins)
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
   int? get expiration => throw _privateConstructorUsedError;
 
   /// Display name of the sender for the email. Note: the email address will still be 'noreply@email.m3ocontent.com'
@@ -5826,10 +5804,6 @@ mixin _$SendPasswordResetEmailRequest {
 
   /// subject of the email
   String? get subject => throw _privateConstructorUsedError;
-
-  /// Text content of the email. Don't forget to include the string '$code' which will be replaced by the real verification link
-  /// HTML emails are not available currently.
-  String? get text_content => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -5844,12 +5818,11 @@ abstract class $SendPasswordResetEmailRequestCopyWith<$Res> {
           $Res Function(SendPasswordResetEmailRequest) then) =
       _$SendPasswordResetEmailRequestCopyWithImpl<$Res>;
   $Res call(
-      {String? email,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? expiration,
+      {String? text_content,
+      String? email,
+      int? expiration,
       String? from_name,
-      String? subject,
-      String? text_content});
+      String? subject});
 }
 
 /// @nodoc
@@ -5863,13 +5836,17 @@ class _$SendPasswordResetEmailRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? text_content = freezed,
     Object? email = freezed,
     Object? expiration = freezed,
     Object? from_name = freezed,
     Object? subject = freezed,
-    Object? text_content = freezed,
   }) {
     return _then(_value.copyWith(
+      text_content: text_content == freezed
+          ? _value.text_content
+          : text_content // ignore: cast_nullable_to_non_nullable
+              as String?,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -5886,10 +5863,6 @@ class _$SendPasswordResetEmailRequestCopyWithImpl<$Res>
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
               as String?,
-      text_content: text_content == freezed
-          ? _value.text_content
-          : text_content // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -5903,12 +5876,11 @@ abstract class _$SendPasswordResetEmailRequestCopyWith<$Res>
       __$SendPasswordResetEmailRequestCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? email,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? expiration,
+      {String? text_content,
+      String? email,
+      int? expiration,
       String? from_name,
-      String? subject,
-      String? text_content});
+      String? subject});
 }
 
 /// @nodoc
@@ -5926,13 +5898,17 @@ class __$SendPasswordResetEmailRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? text_content = freezed,
     Object? email = freezed,
     Object? expiration = freezed,
     Object? from_name = freezed,
     Object? subject = freezed,
-    Object? text_content = freezed,
   }) {
     return _then(_SendPasswordResetEmailRequest(
+      text_content: text_content == freezed
+          ? _value.text_content
+          : text_content // ignore: cast_nullable_to_non_nullable
+              as String?,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -5949,10 +5925,6 @@ class __$SendPasswordResetEmailRequestCopyWithImpl<$Res>
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
               as String?,
-      text_content: text_content == freezed
-          ? _value.text_content
-          : text_content // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -5962,12 +5934,11 @@ class __$SendPasswordResetEmailRequestCopyWithImpl<$Res>
 class _$_SendPasswordResetEmailRequest
     implements _SendPasswordResetEmailRequest {
   const _$_SendPasswordResetEmailRequest(
-      {this.email,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          this.expiration,
+      {this.text_content,
+      this.email,
+      this.expiration,
       this.from_name,
-      this.subject,
-      this.text_content});
+      this.subject});
 
   factory _$_SendPasswordResetEmailRequest.fromJson(
           Map<String, dynamic> json) =>
@@ -5975,12 +5946,16 @@ class _$_SendPasswordResetEmailRequest
 
   @override
 
+  /// Text content of the email. Don't forget to include the string '$code' which will be replaced by the real verification link
+  /// HTML emails are not available currently.
+  final String? text_content;
+  @override
+
   /// email address to send reset for
   final String? email;
   @override
 
   /// Number of secs that the password reset email is valid for, defaults to 1800 secs (30 mins)
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
   final int? expiration;
   @override
 
@@ -5990,15 +5965,10 @@ class _$_SendPasswordResetEmailRequest
 
   /// subject of the email
   final String? subject;
-  @override
-
-  /// Text content of the email. Don't forget to include the string '$code' which will be replaced by the real verification link
-  /// HTML emails are not available currently.
-  final String? text_content;
 
   @override
   String toString() {
-    return 'SendPasswordResetEmailRequest(email: $email, expiration: $expiration, from_name: $from_name, subject: $subject, text_content: $text_content)';
+    return 'SendPasswordResetEmailRequest(text_content: $text_content, email: $email, expiration: $expiration, from_name: $from_name, subject: $subject)';
   }
 
   @override
@@ -6006,23 +5976,23 @@ class _$_SendPasswordResetEmailRequest
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SendPasswordResetEmailRequest &&
+            const DeepCollectionEquality()
+                .equals(other.text_content, text_content) &&
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
                 .equals(other.expiration, expiration) &&
             const DeepCollectionEquality().equals(other.from_name, from_name) &&
-            const DeepCollectionEquality().equals(other.subject, subject) &&
-            const DeepCollectionEquality()
-                .equals(other.text_content, text_content));
+            const DeepCollectionEquality().equals(other.subject, subject));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(text_content),
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(expiration),
       const DeepCollectionEquality().hash(from_name),
-      const DeepCollectionEquality().hash(subject),
-      const DeepCollectionEquality().hash(text_content));
+      const DeepCollectionEquality().hash(subject));
 
   @JsonKey(ignore: true)
   @override
@@ -6039,16 +6009,20 @@ class _$_SendPasswordResetEmailRequest
 abstract class _SendPasswordResetEmailRequest
     implements SendPasswordResetEmailRequest {
   const factory _SendPasswordResetEmailRequest(
-      {String? email,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? expiration,
+      {String? text_content,
+      String? email,
+      int? expiration,
       String? from_name,
-      String? subject,
-      String? text_content}) = _$_SendPasswordResetEmailRequest;
+      String? subject}) = _$_SendPasswordResetEmailRequest;
 
   factory _SendPasswordResetEmailRequest.fromJson(Map<String, dynamic> json) =
       _$_SendPasswordResetEmailRequest.fromJson;
 
+  @override
+
+  /// Text content of the email. Don't forget to include the string '$code' which will be replaced by the real verification link
+  /// HTML emails are not available currently.
+  String? get text_content;
   @override
 
   /// email address to send reset for
@@ -6056,7 +6030,6 @@ abstract class _SendPasswordResetEmailRequest
   @override
 
   /// Number of secs that the password reset email is valid for, defaults to 1800 secs (30 mins)
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
   int? get expiration;
   @override
 
@@ -6066,11 +6039,6 @@ abstract class _SendPasswordResetEmailRequest
 
   /// subject of the email
   String? get subject;
-  @override
-
-  /// Text content of the email. Don't forget to include the string '$code' which will be replaced by the real verification link
-  /// HTML emails are not available currently.
-  String? get text_content;
   @override
   @JsonKey(ignore: true)
   _$SendPasswordResetEmailRequestCopyWith<_SendPasswordResetEmailRequest>
@@ -6477,19 +6445,19 @@ class _$SendVerificationEmailRequestTearOff {
   const _$SendVerificationEmailRequestTearOff();
 
   _SendVerificationEmailRequest call(
-      {String? subject,
+      {String? from_name,
+      String? redirect_url,
+      String? subject,
       String? text_content,
       String? email,
-      String? failure_redirect_url,
-      String? from_name,
-      String? redirect_url}) {
+      String? failure_redirect_url}) {
     return _SendVerificationEmailRequest(
+      from_name: from_name,
+      redirect_url: redirect_url,
       subject: subject,
       text_content: text_content,
       email: email,
       failure_redirect_url: failure_redirect_url,
-      from_name: from_name,
-      redirect_url: redirect_url,
     );
   }
 
@@ -6503,6 +6471,12 @@ const $SendVerificationEmailRequest = _$SendVerificationEmailRequestTearOff();
 
 /// @nodoc
 mixin _$SendVerificationEmailRequest {
+  /// Display name of the sender for the email. Note: the email address will still be 'noreply@email.m3ocontent.com'
+  String? get from_name => throw _privateConstructorUsedError;
+
+  /// The url to redirect to after successful verification
+  String? get redirect_url => throw _privateConstructorUsedError;
+
   /// subject of the email
   String? get subject => throw _privateConstructorUsedError;
 
@@ -6515,12 +6489,6 @@ mixin _$SendVerificationEmailRequest {
 
   /// The url to redirect to incase of failure
   String? get failure_redirect_url => throw _privateConstructorUsedError;
-
-  /// Display name of the sender for the email. Note: the email address will still be 'noreply@email.m3ocontent.com'
-  String? get from_name => throw _privateConstructorUsedError;
-
-  /// The url to redirect to after successful verification
-  String? get redirect_url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -6535,12 +6503,12 @@ abstract class $SendVerificationEmailRequestCopyWith<$Res> {
           $Res Function(SendVerificationEmailRequest) then) =
       _$SendVerificationEmailRequestCopyWithImpl<$Res>;
   $Res call(
-      {String? subject,
+      {String? from_name,
+      String? redirect_url,
+      String? subject,
       String? text_content,
       String? email,
-      String? failure_redirect_url,
-      String? from_name,
-      String? redirect_url});
+      String? failure_redirect_url});
 }
 
 /// @nodoc
@@ -6554,14 +6522,22 @@ class _$SendVerificationEmailRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? from_name = freezed,
+    Object? redirect_url = freezed,
     Object? subject = freezed,
     Object? text_content = freezed,
     Object? email = freezed,
     Object? failure_redirect_url = freezed,
-    Object? from_name = freezed,
-    Object? redirect_url = freezed,
   }) {
     return _then(_value.copyWith(
+      from_name: from_name == freezed
+          ? _value.from_name
+          : from_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      redirect_url: redirect_url == freezed
+          ? _value.redirect_url
+          : redirect_url // ignore: cast_nullable_to_non_nullable
+              as String?,
       subject: subject == freezed
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
@@ -6578,14 +6554,6 @@ class _$SendVerificationEmailRequestCopyWithImpl<$Res>
           ? _value.failure_redirect_url
           : failure_redirect_url // ignore: cast_nullable_to_non_nullable
               as String?,
-      from_name: from_name == freezed
-          ? _value.from_name
-          : from_name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      redirect_url: redirect_url == freezed
-          ? _value.redirect_url
-          : redirect_url // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -6599,12 +6567,12 @@ abstract class _$SendVerificationEmailRequestCopyWith<$Res>
       __$SendVerificationEmailRequestCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? subject,
+      {String? from_name,
+      String? redirect_url,
+      String? subject,
       String? text_content,
       String? email,
-      String? failure_redirect_url,
-      String? from_name,
-      String? redirect_url});
+      String? failure_redirect_url});
 }
 
 /// @nodoc
@@ -6622,14 +6590,22 @@ class __$SendVerificationEmailRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? from_name = freezed,
+    Object? redirect_url = freezed,
     Object? subject = freezed,
     Object? text_content = freezed,
     Object? email = freezed,
     Object? failure_redirect_url = freezed,
-    Object? from_name = freezed,
-    Object? redirect_url = freezed,
   }) {
     return _then(_SendVerificationEmailRequest(
+      from_name: from_name == freezed
+          ? _value.from_name
+          : from_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      redirect_url: redirect_url == freezed
+          ? _value.redirect_url
+          : redirect_url // ignore: cast_nullable_to_non_nullable
+              as String?,
       subject: subject == freezed
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
@@ -6646,14 +6622,6 @@ class __$SendVerificationEmailRequestCopyWithImpl<$Res>
           ? _value.failure_redirect_url
           : failure_redirect_url // ignore: cast_nullable_to_non_nullable
               as String?,
-      from_name: from_name == freezed
-          ? _value.from_name
-          : from_name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      redirect_url: redirect_url == freezed
-          ? _value.redirect_url
-          : redirect_url // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -6662,16 +6630,24 @@ class __$SendVerificationEmailRequestCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SendVerificationEmailRequest implements _SendVerificationEmailRequest {
   const _$_SendVerificationEmailRequest(
-      {this.subject,
+      {this.from_name,
+      this.redirect_url,
+      this.subject,
       this.text_content,
       this.email,
-      this.failure_redirect_url,
-      this.from_name,
-      this.redirect_url});
+      this.failure_redirect_url});
 
   factory _$_SendVerificationEmailRequest.fromJson(Map<String, dynamic> json) =>
       _$$_SendVerificationEmailRequestFromJson(json);
 
+  @override
+
+  /// Display name of the sender for the email. Note: the email address will still be 'noreply@email.m3ocontent.com'
+  final String? from_name;
+  @override
+
+  /// The url to redirect to after successful verification
+  final String? redirect_url;
   @override
 
   /// subject of the email
@@ -6689,18 +6665,10 @@ class _$_SendVerificationEmailRequest implements _SendVerificationEmailRequest {
 
   /// The url to redirect to incase of failure
   final String? failure_redirect_url;
-  @override
-
-  /// Display name of the sender for the email. Note: the email address will still be 'noreply@email.m3ocontent.com'
-  final String? from_name;
-  @override
-
-  /// The url to redirect to after successful verification
-  final String? redirect_url;
 
   @override
   String toString() {
-    return 'SendVerificationEmailRequest(subject: $subject, text_content: $text_content, email: $email, failure_redirect_url: $failure_redirect_url, from_name: $from_name, redirect_url: $redirect_url)';
+    return 'SendVerificationEmailRequest(from_name: $from_name, redirect_url: $redirect_url, subject: $subject, text_content: $text_content, email: $email, failure_redirect_url: $failure_redirect_url)';
   }
 
   @override
@@ -6708,26 +6676,26 @@ class _$_SendVerificationEmailRequest implements _SendVerificationEmailRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SendVerificationEmailRequest &&
+            const DeepCollectionEquality().equals(other.from_name, from_name) &&
+            const DeepCollectionEquality()
+                .equals(other.redirect_url, redirect_url) &&
             const DeepCollectionEquality().equals(other.subject, subject) &&
             const DeepCollectionEquality()
                 .equals(other.text_content, text_content) &&
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
-                .equals(other.failure_redirect_url, failure_redirect_url) &&
-            const DeepCollectionEquality().equals(other.from_name, from_name) &&
-            const DeepCollectionEquality()
-                .equals(other.redirect_url, redirect_url));
+                .equals(other.failure_redirect_url, failure_redirect_url));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(from_name),
+      const DeepCollectionEquality().hash(redirect_url),
       const DeepCollectionEquality().hash(subject),
       const DeepCollectionEquality().hash(text_content),
       const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(failure_redirect_url),
-      const DeepCollectionEquality().hash(from_name),
-      const DeepCollectionEquality().hash(redirect_url));
+      const DeepCollectionEquality().hash(failure_redirect_url));
 
   @JsonKey(ignore: true)
   @override
@@ -6744,16 +6712,24 @@ class _$_SendVerificationEmailRequest implements _SendVerificationEmailRequest {
 abstract class _SendVerificationEmailRequest
     implements SendVerificationEmailRequest {
   const factory _SendVerificationEmailRequest(
-      {String? subject,
+      {String? from_name,
+      String? redirect_url,
+      String? subject,
       String? text_content,
       String? email,
-      String? failure_redirect_url,
-      String? from_name,
-      String? redirect_url}) = _$_SendVerificationEmailRequest;
+      String? failure_redirect_url}) = _$_SendVerificationEmailRequest;
 
   factory _SendVerificationEmailRequest.fromJson(Map<String, dynamic> json) =
       _$_SendVerificationEmailRequest.fromJson;
 
+  @override
+
+  /// Display name of the sender for the email. Note: the email address will still be 'noreply@email.m3ocontent.com'
+  String? get from_name;
+  @override
+
+  /// The url to redirect to after successful verification
+  String? get redirect_url;
   @override
 
   /// subject of the email
@@ -6771,14 +6747,6 @@ abstract class _SendVerificationEmailRequest
 
   /// The url to redirect to incase of failure
   String? get failure_redirect_url;
-  @override
-
-  /// Display name of the sender for the email. Note: the email address will still be 'noreply@email.m3ocontent.com'
-  String? get from_name;
-  @override
-
-  /// The url to redirect to after successful verification
-  String? get redirect_url;
   @override
   @JsonKey(ignore: true)
   _$SendVerificationEmailRequestCopyWith<_SendVerificationEmailRequest>
@@ -7178,18 +7146,12 @@ Session _$SessionFromJson(Map<String, dynamic> json) {
 class _$SessionTearOff {
   const _$SessionTearOff();
 
-  _Session call(
-      {@JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? expires,
-      String? id,
-      String? userId,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? created}) {
+  _Session call({String? id, String? userId, int? created, int? expires}) {
     return _Session(
-      expires: expires,
       id: id,
       userId: userId,
       created: created,
+      expires: expires,
     );
   }
 
@@ -7203,10 +7165,6 @@ const $Session = _$SessionTearOff();
 
 /// @nodoc
 mixin _$Session {
-  /// unix timestamp
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-  int? get expires => throw _privateConstructorUsedError;
-
   /// the session id
   String? get id => throw _privateConstructorUsedError;
 
@@ -7214,8 +7172,10 @@ mixin _$Session {
   String? get userId => throw _privateConstructorUsedError;
 
   /// unix timestamp
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
   int? get created => throw _privateConstructorUsedError;
+
+  /// unix timestamp
+  int? get expires => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -7226,11 +7186,7 @@ mixin _$Session {
 abstract class $SessionCopyWith<$Res> {
   factory $SessionCopyWith(Session value, $Res Function(Session) then) =
       _$SessionCopyWithImpl<$Res>;
-  $Res call(
-      {@JsonKey(fromJson: int64FromString, toJson: int64ToString) int? expires,
-      String? id,
-      String? userId,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? created});
+  $Res call({String? id, String? userId, int? created, int? expires});
 }
 
 /// @nodoc
@@ -7243,16 +7199,12 @@ class _$SessionCopyWithImpl<$Res> implements $SessionCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? expires = freezed,
     Object? id = freezed,
     Object? userId = freezed,
     Object? created = freezed,
+    Object? expires = freezed,
   }) {
     return _then(_value.copyWith(
-      expires: expires == freezed
-          ? _value.expires
-          : expires // ignore: cast_nullable_to_non_nullable
-              as int?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -7265,6 +7217,10 @@ class _$SessionCopyWithImpl<$Res> implements $SessionCopyWith<$Res> {
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as int?,
+      expires: expires == freezed
+          ? _value.expires
+          : expires // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -7274,11 +7230,7 @@ abstract class _$SessionCopyWith<$Res> implements $SessionCopyWith<$Res> {
   factory _$SessionCopyWith(_Session value, $Res Function(_Session) then) =
       __$SessionCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {@JsonKey(fromJson: int64FromString, toJson: int64ToString) int? expires,
-      String? id,
-      String? userId,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? created});
+  $Res call({String? id, String? userId, int? created, int? expires});
 }
 
 /// @nodoc
@@ -7292,16 +7244,12 @@ class __$SessionCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? expires = freezed,
     Object? id = freezed,
     Object? userId = freezed,
     Object? created = freezed,
+    Object? expires = freezed,
   }) {
     return _then(_Session(
-      expires: expires == freezed
-          ? _value.expires
-          : expires // ignore: cast_nullable_to_non_nullable
-              as int?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -7314,6 +7262,10 @@ class __$SessionCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as int?,
+      expires: expires == freezed
+          ? _value.expires
+          : expires // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -7321,20 +7273,11 @@ class __$SessionCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Session implements _Session {
-  const _$_Session(
-      {@JsonKey(fromJson: int64FromString, toJson: int64ToString) this.expires,
-      this.id,
-      this.userId,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString) this.created});
+  const _$_Session({this.id, this.userId, this.created, this.expires});
 
   factory _$_Session.fromJson(Map<String, dynamic> json) =>
       _$$_SessionFromJson(json);
 
-  @override
-
-  /// unix timestamp
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-  final int? expires;
   @override
 
   /// the session id
@@ -7346,12 +7289,15 @@ class _$_Session implements _Session {
   @override
 
   /// unix timestamp
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
   final int? created;
+  @override
+
+  /// unix timestamp
+  final int? expires;
 
   @override
   String toString() {
-    return 'Session(expires: $expires, id: $id, userId: $userId, created: $created)';
+    return 'Session(id: $id, userId: $userId, created: $created, expires: $expires)';
   }
 
   @override
@@ -7359,19 +7305,19 @@ class _$_Session implements _Session {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Session &&
-            const DeepCollectionEquality().equals(other.expires, expires) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.userId, userId) &&
-            const DeepCollectionEquality().equals(other.created, created));
+            const DeepCollectionEquality().equals(other.created, created) &&
+            const DeepCollectionEquality().equals(other.expires, expires));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(expires),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(userId),
-      const DeepCollectionEquality().hash(created));
+      const DeepCollectionEquality().hash(created),
+      const DeepCollectionEquality().hash(expires));
 
   @JsonKey(ignore: true)
   @override
@@ -7386,20 +7332,10 @@ class _$_Session implements _Session {
 
 abstract class _Session implements Session {
   const factory _Session(
-      {@JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? expires,
-      String? id,
-      String? userId,
-      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-          int? created}) = _$_Session;
+      {String? id, String? userId, int? created, int? expires}) = _$_Session;
 
   factory _Session.fromJson(Map<String, dynamic> json) = _$_Session.fromJson;
 
-  @override
-
-  /// unix timestamp
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-  int? get expires;
   @override
 
   /// the session id
@@ -7411,8 +7347,11 @@ abstract class _Session implements Session {
   @override
 
   /// unix timestamp
-  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
   int? get created;
+  @override
+
+  /// unix timestamp
+  int? get expires;
   @override
   @JsonKey(ignore: true)
   _$SessionCopyWith<_Session> get copyWith =>
@@ -8054,15 +7993,15 @@ class _$UpdateRequestTearOff {
   const _$UpdateRequestTearOff();
 
   _UpdateRequest call(
-      {String? id,
+      {String? email,
+      String? id,
       Map<String, String>? profile,
-      String? username,
-      String? email}) {
+      String? username}) {
     return _UpdateRequest(
+      email: email,
       id: id,
       profile: profile,
       username: username,
-      email: email,
     );
   }
 
@@ -8076,6 +8015,9 @@ const $UpdateRequest = _$UpdateRequestTearOff();
 
 /// @nodoc
 mixin _$UpdateRequest {
+  /// the new email address
+  String? get email => throw _privateConstructorUsedError;
+
   /// the account id
   String? get id => throw _privateConstructorUsedError;
 
@@ -8084,9 +8026,6 @@ mixin _$UpdateRequest {
 
   /// the new username
   String? get username => throw _privateConstructorUsedError;
-
-  /// the new email address
-  String? get email => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -8100,10 +8039,10 @@ abstract class $UpdateRequestCopyWith<$Res> {
           UpdateRequest value, $Res Function(UpdateRequest) then) =
       _$UpdateRequestCopyWithImpl<$Res>;
   $Res call(
-      {String? id,
+      {String? email,
+      String? id,
       Map<String, String>? profile,
-      String? username,
-      String? email});
+      String? username});
 }
 
 /// @nodoc
@@ -8117,12 +8056,16 @@ class _$UpdateRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? email = freezed,
     Object? id = freezed,
     Object? profile = freezed,
     Object? username = freezed,
-    Object? email = freezed,
   }) {
     return _then(_value.copyWith(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -8134,10 +8077,6 @@ class _$UpdateRequestCopyWithImpl<$Res>
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -8151,10 +8090,10 @@ abstract class _$UpdateRequestCopyWith<$Res>
       __$UpdateRequestCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? id,
+      {String? email,
+      String? id,
       Map<String, String>? profile,
-      String? username,
-      String? email});
+      String? username});
 }
 
 /// @nodoc
@@ -8170,12 +8109,16 @@ class __$UpdateRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? email = freezed,
     Object? id = freezed,
     Object? profile = freezed,
     Object? username = freezed,
-    Object? email = freezed,
   }) {
     return _then(_UpdateRequest(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -8188,10 +8131,6 @@ class __$UpdateRequestCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -8199,11 +8138,15 @@ class __$UpdateRequestCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UpdateRequest implements _UpdateRequest {
-  const _$_UpdateRequest({this.id, this.profile, this.username, this.email});
+  const _$_UpdateRequest({this.email, this.id, this.profile, this.username});
 
   factory _$_UpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$$_UpdateRequestFromJson(json);
 
+  @override
+
+  /// the new email address
+  final String? email;
   @override
 
   /// the account id
@@ -8216,14 +8159,10 @@ class _$_UpdateRequest implements _UpdateRequest {
 
   /// the new username
   final String? username;
-  @override
-
-  /// the new email address
-  final String? email;
 
   @override
   String toString() {
-    return 'UpdateRequest(id: $id, profile: $profile, username: $username, email: $email)';
+    return 'UpdateRequest(email: $email, id: $id, profile: $profile, username: $username)';
   }
 
   @override
@@ -8231,19 +8170,19 @@ class _$_UpdateRequest implements _UpdateRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _UpdateRequest &&
+            const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.profile, profile) &&
-            const DeepCollectionEquality().equals(other.username, username) &&
-            const DeepCollectionEquality().equals(other.email, email));
+            const DeepCollectionEquality().equals(other.username, username));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(profile),
-      const DeepCollectionEquality().hash(username),
-      const DeepCollectionEquality().hash(email));
+      const DeepCollectionEquality().hash(username));
 
   @JsonKey(ignore: true)
   @override
@@ -8258,14 +8197,18 @@ class _$_UpdateRequest implements _UpdateRequest {
 
 abstract class _UpdateRequest implements UpdateRequest {
   const factory _UpdateRequest(
-      {String? id,
+      {String? email,
+      String? id,
       Map<String, String>? profile,
-      String? username,
-      String? email}) = _$_UpdateRequest;
+      String? username}) = _$_UpdateRequest;
 
   factory _UpdateRequest.fromJson(Map<String, dynamic> json) =
       _$_UpdateRequest.fromJson;
 
+  @override
+
+  /// the new email address
+  String? get email;
   @override
 
   /// the account id
@@ -8278,10 +8221,6 @@ abstract class _UpdateRequest implements UpdateRequest {
 
   /// the new username
   String? get username;
-  @override
-
-  /// the new email address
-  String? get email;
   @override
   @JsonKey(ignore: true)
   _$UpdateRequestCopyWith<_UpdateRequest> get copyWith =>

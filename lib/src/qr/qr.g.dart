@@ -8,13 +8,13 @@ part of 'qr.dart';
 
 _$_GenerateRequest _$$_GenerateRequestFromJson(Map<String, dynamic> json) =>
     _$_GenerateRequest(
-      size: int64FromString(json['size'] as String?),
+      size: json['size'] as int?,
       text: json['text'] as String?,
     );
 
 Map<String, dynamic> _$$_GenerateRequestToJson(_$_GenerateRequest instance) =>
     <String, dynamic>{
-      'size': int64ToString(instance.size),
+      'size': instance.size,
       'text': instance.text,
     };
 

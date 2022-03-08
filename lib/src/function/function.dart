@@ -241,6 +241,9 @@ class DeleteResponse with _$DeleteResponse {
 @Freezed()
 class DeployRequest with _$DeployRequest {
   const factory DeployRequest({
+    /// region to deploy in. defaults to europe-west1
+    String? region,
+
     /// github url to repo
     String? repo,
 
@@ -265,9 +268,6 @@ class DeployRequest with _$DeployRequest {
 
     /// function name
     String? name,
-
-    /// region to deploy in. defaults to europe-west1
-    String? region,
   }) = _DeployRequest;
   factory DeployRequest.fromJson(Map<String, dynamic> json) =>
       _$DeployRequestFromJson(json);
@@ -309,6 +309,12 @@ class DescribeResponse with _$DescribeResponse {
 @Freezed()
 class Func with _$Func {
   const factory Func({
+    /// time of creation
+    String? created,
+
+    /// associated env vars
+    Map<String, String>? env_vars,
+
     /// function name
     /// limitation: must be unique across projects
     String? name,
@@ -325,29 +331,23 @@ class Func with _$Func {
     /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
     String? status,
 
-    /// time of creation
-    String? created,
-
-    /// name of handler in source code
-    String? entrypoint,
-
-    /// associated env vars
-    Map<String, String>? env_vars,
-
-    /// id of the function
-    String? id,
-
-    /// subfolder path to entrypoint
-    String? subfolder,
-
     /// unique url of the function
     String? url,
 
     /// branch to deploy. defaults to master
     String? branch,
 
+    /// name of handler in source code
+    String? entrypoint,
+
+    /// id of the function
+    String? id,
+
     /// git repo address
     String? repo,
+
+    /// subfolder path to entrypoint
+    String? subfolder,
 
     /// time it was updated
     String? updated,
@@ -417,6 +417,12 @@ class RegionsResponse with _$RegionsResponse {
 @Freezed()
 class Reservation with _$Reservation {
   const factory Reservation({
+    /// time of reservation
+    String? created,
+
+    /// time reservation expires
+    String? expires,
+
     /// name of the app
     String? name,
 
@@ -425,12 +431,6 @@ class Reservation with _$Reservation {
 
     /// associated token
     String? token,
-
-    /// time of reservation
-    String? created,
-
-    /// time reservation expires
-    String? expires,
   }) = _Reservation;
   factory Reservation.fromJson(Map<String, dynamic> json) =>
       _$ReservationFromJson(json);
