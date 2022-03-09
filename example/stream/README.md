@@ -42,8 +42,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (CreateChannelResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }
@@ -86,8 +87,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (SendMessageResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }
@@ -129,8 +131,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (ListMessagesResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }
@@ -170,8 +173,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (ListChannelsResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }

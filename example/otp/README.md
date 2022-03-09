@@ -40,8 +40,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (GenerateResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }
@@ -84,8 +85,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (ValidateResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }

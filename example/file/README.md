@@ -44,8 +44,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (SaveResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }
@@ -87,8 +88,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (ListResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }
@@ -131,8 +133,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (ReadResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }
@@ -175,8 +178,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (DeleteResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }

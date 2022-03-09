@@ -24,8 +24,9 @@ void main() async {
       sr.map((value) => print(value),
           Merr: (SubscribeResponseMerr err) => print(err.body));
     }
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+    print(stack);
   } finally {
     exit(0);
   }

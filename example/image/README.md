@@ -48,8 +48,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (ResizeResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }
@@ -97,8 +98,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (ResizeResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }
@@ -150,8 +152,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (ResizeResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }
@@ -198,8 +201,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (ConvertResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }
@@ -245,8 +249,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (UploadResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }
@@ -292,8 +297,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (UploadResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }
@@ -335,8 +341,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (DeleteResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }

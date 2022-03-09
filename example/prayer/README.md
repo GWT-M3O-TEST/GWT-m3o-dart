@@ -40,8 +40,9 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (TimesResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e) {
+  } catch (e, stack) {
     print(e);
+	print(stack);
   } finally {
     exit(0);
   }
