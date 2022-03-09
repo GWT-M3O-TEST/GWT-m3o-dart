@@ -1,3 +1,7 @@
+## v1.0.22 - 2022-03-09
+
+[163c24](https://github.com/micro/services/commit/163c24dc17b3565ee20dd9c76f03f5a1b16768fa) Update publicapi.json
+
 ## v1.0.21 - 2022-03-08
 
 [f86a98](https://github.com/micro/services/commit/f86a981a404262ce4bd61dc4f8a03d5430028b45) Merge branch 'master' of ssh://github.com/micro/services
