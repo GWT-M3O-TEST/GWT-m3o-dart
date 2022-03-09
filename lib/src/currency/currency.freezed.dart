@@ -1535,11 +1535,11 @@ class _$HistoryResponseTearOff {
   const _$HistoryResponseTearOff();
 
   HistoryResponseData call(
-      {Map<String, double>? rates, String? code, String? date}) {
+      {String? date, Map<String, double>? rates, String? code}) {
     return HistoryResponseData(
+      date: date,
       rates: rates,
       code: code,
-      date: date,
     );
   }
 
@@ -1561,21 +1561,21 @@ const $HistoryResponse = _$HistoryResponseTearOff();
 mixin _$HistoryResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Map<String, double>? rates, String? code, String? date)
+    TResult Function(String? date, Map<String, double>? rates, String? code)
         $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(Map<String, double>? rates, String? code, String? date)?
+    TResult Function(String? date, Map<String, double>? rates, String? code)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Map<String, double>? rates, String? code, String? date)?
+    TResult Function(String? date, Map<String, double>? rates, String? code)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
@@ -1625,7 +1625,7 @@ abstract class $HistoryResponseDataCopyWith<$Res> {
   factory $HistoryResponseDataCopyWith(
           HistoryResponseData value, $Res Function(HistoryResponseData) then) =
       _$HistoryResponseDataCopyWithImpl<$Res>;
-  $Res call({Map<String, double>? rates, String? code, String? date});
+  $Res call({String? date, Map<String, double>? rates, String? code});
 }
 
 /// @nodoc
@@ -1641,11 +1641,15 @@ class _$HistoryResponseDataCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? date = freezed,
     Object? rates = freezed,
     Object? code = freezed,
-    Object? date = freezed,
   }) {
     return _then(HistoryResponseData(
+      date: date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
       rates: rates == freezed
           ? _value.rates
           : rates // ignore: cast_nullable_to_non_nullable
@@ -1654,10 +1658,6 @@ class _$HistoryResponseDataCopyWithImpl<$Res>
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String?,
-      date: date == freezed
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -1665,12 +1665,16 @@ class _$HistoryResponseDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$HistoryResponseData implements HistoryResponseData {
-  const _$HistoryResponseData({this.rates, this.code, this.date, String? $type})
+  const _$HistoryResponseData({this.date, this.rates, this.code, String? $type})
       : $type = $type ?? 'default';
 
   factory _$HistoryResponseData.fromJson(Map<String, dynamic> json) =>
       _$$HistoryResponseDataFromJson(json);
 
+  @override
+
+  /// The date requested
+  final String? date;
   @override
 
   /// The rate for the day as code:rate
@@ -1679,17 +1683,13 @@ class _$HistoryResponseData implements HistoryResponseData {
 
   /// The code of the request
   final String? code;
-  @override
-
-  /// The date requested
-  final String? date;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'HistoryResponse(rates: $rates, code: $code, date: $date)';
+    return 'HistoryResponse(date: $date, rates: $rates, code: $code)';
   }
 
   @override
@@ -1697,17 +1697,17 @@ class _$HistoryResponseData implements HistoryResponseData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is HistoryResponseData &&
+            const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality().equals(other.rates, rates) &&
-            const DeepCollectionEquality().equals(other.code, code) &&
-            const DeepCollectionEquality().equals(other.date, date));
+            const DeepCollectionEquality().equals(other.code, code));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(date),
       const DeepCollectionEquality().hash(rates),
-      const DeepCollectionEquality().hash(code),
-      const DeepCollectionEquality().hash(date));
+      const DeepCollectionEquality().hash(code));
 
   @JsonKey(ignore: true)
   @override
@@ -1717,33 +1717,33 @@ class _$HistoryResponseData implements HistoryResponseData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Map<String, double>? rates, String? code, String? date)
+    TResult Function(String? date, Map<String, double>? rates, String? code)
         $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
-    return $default(rates, code, date);
+    return $default(date, rates, code);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(Map<String, double>? rates, String? code, String? date)?
+    TResult Function(String? date, Map<String, double>? rates, String? code)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
-    return $default?.call(rates, code, date);
+    return $default?.call(date, rates, code);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Map<String, double>? rates, String? code, String? date)?
+    TResult Function(String? date, Map<String, double>? rates, String? code)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(rates, code, date);
+      return $default(date, rates, code);
     }
     return orElse();
   }
@@ -1787,21 +1787,21 @@ class _$HistoryResponseData implements HistoryResponseData {
 
 abstract class HistoryResponseData implements HistoryResponse {
   const factory HistoryResponseData(
-      {Map<String, double>? rates,
-      String? code,
-      String? date}) = _$HistoryResponseData;
+      {String? date,
+      Map<String, double>? rates,
+      String? code}) = _$HistoryResponseData;
 
   factory HistoryResponseData.fromJson(Map<String, dynamic> json) =
       _$HistoryResponseData.fromJson;
+
+  /// The date requested
+  String? get date;
 
   /// The rate for the day as code:rate
   Map<String, double>? get rates;
 
   /// The code of the request
   String? get code;
-
-  /// The date requested
-  String? get date;
   @JsonKey(ignore: true)
   $HistoryResponseDataCopyWith<HistoryResponseData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1879,7 +1879,7 @@ class _$HistoryResponseMerr implements HistoryResponseMerr {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Map<String, double>? rates, String? code, String? date)
+    TResult Function(String? date, Map<String, double>? rates, String? code)
         $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
@@ -1889,7 +1889,7 @@ class _$HistoryResponseMerr implements HistoryResponseMerr {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(Map<String, double>? rates, String? code, String? date)?
+    TResult Function(String? date, Map<String, double>? rates, String? code)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
@@ -1899,7 +1899,7 @@ class _$HistoryResponseMerr implements HistoryResponseMerr {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Map<String, double>? rates, String? code, String? date)?
+    TResult Function(String? date, Map<String, double>? rates, String? code)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),

@@ -116,23 +116,23 @@ class SearchResult with _$SearchResult {
     /// none, upcoming, live, completed
     String? broadcasting,
 
+    /// the channel id
+    String? channel_id,
+
     /// the result description
     String? description,
 
-    /// id of the result
-    String? id,
+    /// kind of result; "video", "channel", "playlist"
+    String? kind,
 
     /// the associated url
     String? url,
 
-    /// the channel id
-    String? channel_id,
-
     /// the channel title
     String? channel_title,
 
-    /// kind of result; "video", "channel", "playlist"
-    String? kind,
+    /// id of the result
+    String? id,
 
     /// published at time
     String? published_at,

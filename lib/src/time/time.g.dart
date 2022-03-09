@@ -20,7 +20,7 @@ _$NowResponseData _$$NowResponseDataFromJson(Map<String, dynamic> json) =>
     _$NowResponseData(
       timestamp: json['timestamp'] as String?,
       timezone: json['timezone'] as String?,
-      unix: json['unix'] as int?,
+      unix: int64FromString(json['unix'] as String?),
       localtime: json['localtime'] as String?,
       location: json['location'] as String?,
       $type: json['runtimeType'] as String?,
@@ -30,7 +30,7 @@ Map<String, dynamic> _$$NowResponseDataToJson(_$NowResponseData instance) =>
     <String, dynamic>{
       'timestamp': instance.timestamp,
       'timezone': instance.timezone,
-      'unix': instance.unix,
+      'unix': int64ToString(instance.unix),
       'localtime': instance.localtime,
       'location': instance.location,
       'runtimeType': instance.$type,
@@ -60,29 +60,29 @@ Map<String, dynamic> _$$_ZoneRequestToJson(_$_ZoneRequest instance) =>
 
 _$ZoneResponseData _$$ZoneResponseDataFromJson(Map<String, dynamic> json) =>
     _$ZoneResponseData(
+      abbreviation: json['abbreviation'] as String?,
+      dst: json['dst'] as bool?,
       localtime: json['localtime'] as String?,
+      timezone: json['timezone'] as String?,
+      country: json['country'] as String?,
+      latitude: (json['latitude'] as num?)?.toDouble(),
       location: json['location'] as String?,
       longitude: (json['longitude'] as num?)?.toDouble(),
       region: json['region'] as String?,
-      timezone: json['timezone'] as String?,
-      abbreviation: json['abbreviation'] as String?,
-      dst: json['dst'] as bool?,
-      country: json['country'] as String?,
-      latitude: (json['latitude'] as num?)?.toDouble(),
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$ZoneResponseDataToJson(_$ZoneResponseData instance) =>
     <String, dynamic>{
+      'abbreviation': instance.abbreviation,
+      'dst': instance.dst,
       'localtime': instance.localtime,
+      'timezone': instance.timezone,
+      'country': instance.country,
+      'latitude': instance.latitude,
       'location': instance.location,
       'longitude': instance.longitude,
       'region': instance.region,
-      'timezone': instance.timezone,
-      'abbreviation': instance.abbreviation,
-      'dst': instance.dst,
-      'country': instance.country,
-      'latitude': instance.latitude,
       'runtimeType': instance.$type,
     };
 
