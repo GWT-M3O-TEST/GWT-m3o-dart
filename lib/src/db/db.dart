@@ -28,7 +28,8 @@ class DbService {
         return CountResponse.Merr(body: err.b);
       }
       return CountResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -48,7 +49,8 @@ class DbService {
         return CreateResponse.Merr(body: err.b);
       }
       return CreateResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -68,7 +70,8 @@ class DbService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -88,7 +91,8 @@ class DbService {
         return DropTableResponse.Merr(body: err.b);
       }
       return DropTableResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -108,7 +112,8 @@ class DbService {
         return ListTablesResponse.Merr(body: err.b);
       }
       return ListTablesResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -128,7 +133,8 @@ class DbService {
         return ReadResponse.Merr(body: err.b);
       }
       return ReadResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -148,7 +154,8 @@ class DbService {
         return RenameTableResponse.Merr(body: err.b);
       }
       return RenameTableResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -168,7 +175,8 @@ class DbService {
         return TruncateResponse.Merr(body: err.b);
       }
       return TruncateResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -188,7 +196,8 @@ class DbService {
         return UpdateResponse.Merr(body: err.b);
       }
       return UpdateResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -306,6 +315,9 @@ class ListTablesResponse with _$ListTablesResponse {
 @Freezed()
 class ReadRequest with _$ReadRequest {
   const factory ReadRequest({
+    /// Read by id. Equivalent to 'id == "your-id"'
+    String? id,
+
     /// Maximum number of records to return. Default limit is 25.
     /// Maximum limit is 1000. Anything higher will return an error.
     int? limit,
@@ -326,9 +338,6 @@ class ReadRequest with _$ReadRequest {
 
     /// Optional table name. Defaults to 'default'
     String? table,
-
-    /// Read by id. Equivalent to 'id == "your-id"'
-    String? id,
   }) = _ReadRequest;
   factory ReadRequest.fromJson(Map<String, dynamic> json) =>
       _$ReadRequestFromJson(json);
@@ -389,14 +398,14 @@ class TruncateResponse with _$TruncateResponse {
 @Freezed()
 class UpdateRequest with _$UpdateRequest {
   const factory UpdateRequest({
+    /// Optional table name. Defaults to 'default'
+    String? table,
+
     /// The id of the record. If not specified it is inferred from the 'id' field of the record
     String? id,
 
     /// record, JSON object
     Map<String, dynamic>? record,
-
-    /// Optional table name. Defaults to 'default'
-    String? table,
   }) = _UpdateRequest;
   factory UpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$UpdateRequestFromJson(json);

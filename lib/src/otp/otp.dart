@@ -28,7 +28,8 @@ class OtpService {
         return GenerateResponse.Merr(body: err.b);
       }
       return GenerateResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -48,7 +49,8 @@ class OtpService {
         return ValidateResponse.Merr(body: err.b);
       }
       return ValidateResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -57,14 +59,14 @@ class OtpService {
 @Freezed()
 class GenerateRequest with _$GenerateRequest {
   const factory GenerateRequest({
+    /// unique id, email or user to generate an OTP for
+    String? id,
+
     /// number of characters (default: 6)
     int? size,
 
     /// expiration in seconds (default: 60)
     int? expiry,
-
-    /// unique id, email or user to generate an OTP for
-    String? id,
   }) = _GenerateRequest;
   factory GenerateRequest.fromJson(Map<String, dynamic> json) =>
       _$GenerateRequestFromJson(json);

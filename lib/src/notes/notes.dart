@@ -28,7 +28,8 @@ class NotesService {
         return CreateResponse.Merr(body: err.b);
       }
       return CreateResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -48,7 +49,8 @@ class NotesService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -72,7 +74,8 @@ class NotesService {
           yield EventsResponseData.fromJson(vo);
         }
       }
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -92,7 +95,8 @@ class NotesService {
         return ListResponse.Merr(body: err.b);
       }
       return ListResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -112,7 +116,8 @@ class NotesService {
         return ReadResponse.Merr(body: err.b);
       }
       return ReadResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -132,7 +137,8 @@ class NotesService {
         return UpdateResponse.Merr(body: err.b);
       }
       return UpdateResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }

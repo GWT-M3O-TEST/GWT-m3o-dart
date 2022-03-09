@@ -28,7 +28,8 @@ class HelloworldService {
         return CallResponse.Merr(body: err.b);
       }
       return CallResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -52,7 +53,8 @@ class HelloworldService {
           yield StreamResponseData.fromJson(vo);
         }
       }
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }

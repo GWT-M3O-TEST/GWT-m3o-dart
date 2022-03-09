@@ -28,7 +28,8 @@ class ListsService {
         return CreateResponse.Merr(body: err.b);
       }
       return CreateResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -48,7 +49,8 @@ class ListsService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -72,7 +74,8 @@ class ListsService {
           yield EventsResponseData.fromJson(vo);
         }
       }
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -92,7 +95,8 @@ class ListsService {
         return ListResponse.Merr(body: err.b);
       }
       return ListResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -112,7 +116,8 @@ class ListsService {
         return ReadResponse.Merr(body: err.b);
       }
       return ReadResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -132,7 +137,8 @@ class ListsService {
         return UpdateResponse.Merr(body: err.b);
       }
       return UpdateResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -212,6 +218,12 @@ class EventsResponse with _$EventsResponse {
 @Freezed()
 class List with _$List {
   const factory List({
+    /// time at which the list was created
+    String? created,
+
+    /// unique id for the list, generated if not specified
+    String? id,
+
     /// items within the list
     List<String>? items,
 
@@ -220,12 +232,6 @@ class List with _$List {
 
     /// time at which the list was updated
     String? updated,
-
-    /// time at which the list was created
-    String? created,
-
-    /// unique id for the list, generated if not specified
-    String? id,
   }) = _List;
   factory List.fromJson(Map<String, dynamic> json) => _$ListFromJson(json);
 }

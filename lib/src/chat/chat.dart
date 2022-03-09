@@ -28,7 +28,8 @@ class ChatService {
         return CreateResponse.Merr(body: err.b);
       }
       return CreateResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -48,7 +49,8 @@ class ChatService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -68,7 +70,8 @@ class ChatService {
         return HistoryResponse.Merr(body: err.b);
       }
       return HistoryResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -88,7 +91,8 @@ class ChatService {
         return InviteResponse.Merr(body: err.b);
       }
       return InviteResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -112,7 +116,8 @@ class ChatService {
           yield JoinResponseData.fromJson(vo);
         }
       }
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -132,7 +137,8 @@ class ChatService {
         return KickResponse.Merr(body: err.b);
       }
       return KickResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -152,7 +158,8 @@ class ChatService {
         return LeaveResponse.Merr(body: err.b);
       }
       return LeaveResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -172,7 +179,8 @@ class ChatService {
         return ListResponse.Merr(body: err.b);
       }
       return ListResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -193,7 +201,8 @@ class ChatService {
         return SendResponse.Merr(body: err.b);
       }
       return SendResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -421,6 +430,12 @@ class Message with _$Message {
 @Freezed()
 class Room with _$Room {
   const factory Room({
+    /// name of the chat
+    String? name,
+
+    /// whether its a private room
+    bool? private,
+
     /// list of users
     String? user_ids,
 
@@ -432,12 +447,6 @@ class Room with _$Room {
 
     /// unique room id
     String? id,
-
-    /// name of the chat
-    String? name,
-
-    /// whether its a private room
-    bool? private,
   }) = _Room;
   factory Room.fromJson(Map<String, dynamic> json) => _$RoomFromJson(json);
 }

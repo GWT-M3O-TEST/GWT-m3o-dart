@@ -28,7 +28,8 @@ class AnswerService {
         return QuestionResponse.Merr(body: err.b);
       }
       return QuestionResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -47,14 +48,14 @@ class QuestionRequest with _$QuestionRequest {
 @Freezed()
 class QuestionResponse with _$QuestionResponse {
   const factory QuestionResponse({
-    /// a related url
-    String? url,
-
     /// the answer to your question
     String? answer,
 
     /// any related image
     String? image,
+
+    /// a related url
+    String? url,
   }) = QuestionResponseData;
   const factory QuestionResponse.Merr({Map<String, dynamic>? body}) =
       QuestionResponseMerr;

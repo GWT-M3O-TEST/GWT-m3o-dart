@@ -29,7 +29,8 @@ class AddressService {
         return LookupPostcodeResponse.Merr(body: err.b);
       }
       return LookupPostcodeResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -59,23 +60,11 @@ class LookupPostcodeResponse with _$LookupPostcodeResponse {
 @Freezed()
 class Record with _$Record {
   const factory Record({
-    /// dependent locality
-    String? locality,
-
-    /// the premise
-    String? premise,
-
-    /// the complete address
-    String? summary,
-
-    /// building name
-    String? building_name,
-
-    /// line one of address
-    String? line_one,
-
     /// line two of address
     String? line_two,
+
+    /// dependent locality
+    String? locality,
 
     /// organisation if present
     String? organisation,
@@ -83,8 +72,20 @@ class Record with _$Record {
     /// the postcode
     String? postcode,
 
+    /// building name
+    String? building_name,
+
+    /// line one of address
+    String? line_one,
+
+    /// the premise
+    String? premise,
+
     /// street name
     String? street,
+
+    /// the complete address
+    String? summary,
 
     /// post town
     String? town,

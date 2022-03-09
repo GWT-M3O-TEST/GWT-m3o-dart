@@ -28,7 +28,8 @@ class FunctionService {
         return CallResponse.Merr(body: err.b);
       }
       return CallResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -48,7 +49,8 @@ class FunctionService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -68,7 +70,8 @@ class FunctionService {
         return DeployResponse.Merr(body: err.b);
       }
       return DeployResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -88,7 +91,8 @@ class FunctionService {
         return DescribeResponse.Merr(body: err.b);
       }
       return DescribeResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -108,7 +112,8 @@ class FunctionService {
         return ListResponse.Merr(body: err.b);
       }
       return ListResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -128,7 +133,8 @@ class FunctionService {
         return ProxyResponse.Merr(body: err.b);
       }
       return ProxyResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -148,7 +154,8 @@ class FunctionService {
         return RegionsResponse.Merr(body: err.b);
       }
       return RegionsResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -168,7 +175,8 @@ class FunctionService {
         return ReserveResponse.Merr(body: err.b);
       }
       return ReserveResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -188,7 +196,8 @@ class FunctionService {
         return UpdateResponse.Merr(body: err.b);
       }
       return UpdateResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -241,12 +250,6 @@ class DeleteResponse with _$DeleteResponse {
 @Freezed()
 class DeployRequest with _$DeployRequest {
   const factory DeployRequest({
-    /// region to deploy in. defaults to europe-west1
-    String? region,
-
-    /// github url to repo
-    String? repo,
-
     /// runtime/lanaguage of the function e.g php74,
     /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
     /// dotnet3, java11, ruby26, ruby27, go111, go113, go116,
@@ -268,6 +271,12 @@ class DeployRequest with _$DeployRequest {
 
     /// function name
     String? name,
+
+    /// region to deploy in. defaults to europe-west1
+    String? region,
+
+    /// github url to repo
+    String? repo,
   }) = _DeployRequest;
   factory DeployRequest.fromJson(Map<String, dynamic> json) =>
       _$DeployRequestFromJson(json);
@@ -309,8 +318,11 @@ class DescribeResponse with _$DescribeResponse {
 @Freezed()
 class Func with _$Func {
   const factory Func({
-    /// time of creation
-    String? created,
+    /// time it was updated
+    String? updated,
+
+    /// unique url of the function
+    String? url,
 
     /// associated env vars
     Map<String, String>? env_vars,
@@ -319,38 +331,35 @@ class Func with _$Func {
     /// limitation: must be unique across projects
     String? name,
 
-    /// region to deploy in. defaults to europe-west1
-    String? region,
-
     /// runtime/language of the function e.g php74,
     /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
     /// dotnet3, java11, ruby26, ruby27, go111, go113, go116,
     /// python37, python38, python39
     String? runtime,
 
-    /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
-    String? status,
-
-    /// unique url of the function
-    String? url,
-
-    /// branch to deploy. defaults to master
-    String? branch,
-
-    /// name of handler in source code
-    String? entrypoint,
-
     /// id of the function
     String? id,
+
+    /// region to deploy in. defaults to europe-west1
+    String? region,
 
     /// git repo address
     String? repo,
 
+    /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
+    String? status,
+
     /// subfolder path to entrypoint
     String? subfolder,
 
-    /// time it was updated
-    String? updated,
+    /// branch to deploy. defaults to master
+    String? branch,
+
+    /// time of creation
+    String? created,
+
+    /// name of handler in source code
+    String? entrypoint,
   }) = _Func;
   factory Func.fromJson(Map<String, dynamic> json) => _$FuncFromJson(json);
 }
@@ -417,6 +426,12 @@ class RegionsResponse with _$RegionsResponse {
 @Freezed()
 class Reservation with _$Reservation {
   const factory Reservation({
+    /// owner id
+    String? owner,
+
+    /// associated token
+    String? token,
+
     /// time of reservation
     String? created,
 
@@ -425,12 +440,6 @@ class Reservation with _$Reservation {
 
     /// name of the app
     String? name,
-
-    /// owner id
-    String? owner,
-
-    /// associated token
-    String? token,
   }) = _Reservation;
   factory Reservation.fromJson(Map<String, dynamic> json) =>
       _$ReservationFromJson(json);

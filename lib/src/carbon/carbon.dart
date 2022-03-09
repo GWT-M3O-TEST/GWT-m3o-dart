@@ -28,7 +28,8 @@ class CarbonService {
         return OffsetResponse.Merr(body: err.b);
       }
       return OffsetResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }

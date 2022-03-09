@@ -28,7 +28,8 @@ class SearchService {
         return CreateIndexResponse.Merr(body: err.b);
       }
       return CreateIndexResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -48,7 +49,8 @@ class SearchService {
         return DeleteIndexResponse.Merr(body: err.b);
       }
       return DeleteIndexResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -68,7 +70,8 @@ class SearchService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -88,7 +91,8 @@ class SearchService {
         return IndexResponse.Merr(body: err.b);
       }
       return IndexResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -108,7 +112,8 @@ class SearchService {
         return SearchResponse.Merr(body: err.b);
       }
       return SearchResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -155,11 +160,11 @@ class DeleteIndexResponse with _$DeleteIndexResponse {
 @Freezed()
 class DeleteRequest with _$DeleteRequest {
   const factory DeleteRequest({
-    /// The ID of the record to delete
-    String? id,
-
     /// The index the record belongs to
     String? index,
+
+    /// The ID of the record to delete
+    String? id,
   }) = _DeleteRequest;
   factory DeleteRequest.fromJson(Map<String, dynamic> json) =>
       _$DeleteRequestFromJson(json);
@@ -177,11 +182,11 @@ class DeleteResponse with _$DeleteResponse {
 @Freezed()
 class Field with _$Field {
   const factory Field({
-    /// The type of the field - string, number
-    String? type,
-
     /// The name of the field. Use a `.` separator to define nested fields e.g. foo.bar
     String? name,
+
+    /// The type of the field - string, number
+    String? type,
   }) = _Field;
   factory Field.fromJson(Map<String, dynamic> json) => _$FieldFromJson(json);
 }
@@ -189,14 +194,14 @@ class Field with _$Field {
 @Freezed()
 class IndexRequest with _$IndexRequest {
   const factory IndexRequest({
-    /// The index this record belongs to
-    String? index,
-
     /// The data to index
     Map<String, dynamic>? data,
 
     /// Optional ID for the record
     String? id,
+
+    /// The index this record belongs to
+    String? index,
   }) = _IndexRequest;
   factory IndexRequest.fromJson(Map<String, dynamic> json) =>
       _$IndexRequestFromJson(json);
@@ -217,11 +222,11 @@ class IndexResponse with _$IndexResponse {
 @Freezed()
 class Record with _$Record {
   const factory Record({
-    /// The JSON contents of the record
-    Map<String, dynamic>? data,
-
     /// The ID for this record. If blank, one will be generated
     String? id,
+
+    /// The JSON contents of the record
+    Map<String, dynamic>? data,
   }) = _Record;
   factory Record.fromJson(Map<String, dynamic> json) => _$RecordFromJson(json);
 }

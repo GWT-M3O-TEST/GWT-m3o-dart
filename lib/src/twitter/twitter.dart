@@ -28,7 +28,8 @@ class TwitterService {
         return SearchResponse.Merr(body: err.b);
       }
       return SearchResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -48,7 +49,8 @@ class TwitterService {
         return TimelineResponse.Merr(body: err.b);
       }
       return TimelineResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -68,7 +70,8 @@ class TwitterService {
         return TrendsResponse.Merr(body: err.b);
       }
       return TrendsResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -88,7 +91,8 @@ class TwitterService {
         return UserResponse.Merr(body: err.b);
       }
       return UserResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -97,26 +101,11 @@ class TwitterService {
 @Freezed()
 class Profile with _$Profile {
   const factory Profile({
-    /// display name of the user
-    String? name,
-
-    /// the username
-    String? username,
-
-    /// if the account is verified
-    bool? verified,
-
-    /// the account creation date
-    String? created_at,
-
     /// the user description
     String? description,
 
     /// the follower count
     int? followers,
-
-    /// the user's location
-    String? location,
 
     /// the user id
     int? id,
@@ -124,8 +113,23 @@ class Profile with _$Profile {
     /// The user's profile picture
     String? image_url,
 
+    /// the user's location
+    String? location,
+
+    /// the account creation date
+    String? created_at,
+
+    /// display name of the user
+    String? name,
+
     /// if the account is private
     bool? private,
+
+    /// the username
+    String? username,
+
+    /// if the account is verified
+    bool? verified,
   }) = _Profile;
   factory Profile.fromJson(Map<String, dynamic> json) =>
       _$ProfileFromJson(json);
@@ -159,11 +163,11 @@ class SearchResponse with _$SearchResponse {
 @Freezed()
 class TimelineRequest with _$TimelineRequest {
   const factory TimelineRequest({
-    /// number of tweets to return. default: 20
-    int? limit,
-
     /// the username to request the timeline for
     String? username,
+
+    /// number of tweets to return. default: 20
+    int? limit,
   }) = _TimelineRequest;
   factory TimelineRequest.fromJson(Map<String, dynamic> json) =>
       _$TimelineRequestFromJson(json);
@@ -184,14 +188,14 @@ class TimelineResponse with _$TimelineResponse {
 @Freezed()
 class Trend with _$Trend {
   const factory Trend({
-    /// the twitter url
-    String? url,
-
     /// name of the trend
     String? name,
 
     /// the volume of tweets in last 24 hours
     int? tweet_volume,
+
+    /// the twitter url
+    String? url,
   }) = _Trend;
   factory Trend.fromJson(Map<String, dynamic> json) => _$TrendFromJson(json);
 }

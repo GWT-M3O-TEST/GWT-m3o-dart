@@ -8,16 +8,16 @@ part of 'otp.dart';
 
 _$_GenerateRequest _$$_GenerateRequestFromJson(Map<String, dynamic> json) =>
     _$_GenerateRequest(
+      id: json['id'] as String?,
       size: json['size'] as int?,
       expiry: json['expiry'] as int?,
-      id: json['id'] as String?,
     );
 
 Map<String, dynamic> _$$_GenerateRequestToJson(_$_GenerateRequest instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'size': instance.size,
       'expiry': instance.expiry,
-      'id': instance.id,
     };
 
 _$GenerateResponseData _$$GenerateResponseDataFromJson(

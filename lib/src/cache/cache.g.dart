@@ -21,16 +21,16 @@ Map<String, dynamic> _$$_DecrementRequestToJson(_$_DecrementRequest instance) =>
 _$DecrementResponseData _$$DecrementResponseDataFromJson(
         Map<String, dynamic> json) =>
     _$DecrementResponseData(
-      key: json['key'] as String?,
       value: json['value'] as int?,
+      key: json['key'] as String?,
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$DecrementResponseDataToJson(
         _$DecrementResponseData instance) =>
     <String, dynamic>{
-      'key': instance.key,
       'value': instance.value,
+      'key': instance.key,
       'runtimeType': instance.$type,
     };
 
@@ -200,16 +200,16 @@ Map<String, dynamic> _$$ListKeysResponseMerrToJson(
 
 _$_SetRequest _$$_SetRequestFromJson(Map<String, dynamic> json) =>
     _$_SetRequest(
-      key: json['key'] as String?,
       ttl: json['ttl'] as int?,
       value: json['value'] as String?,
+      key: json['key'] as String?,
     );
 
 Map<String, dynamic> _$$_SetRequestToJson(_$_SetRequest instance) =>
     <String, dynamic>{
-      'key': instance.key,
       'ttl': instance.ttl,
       'value': instance.value,
+      'key': instance.key,
     };
 
 _$SetResponseData _$$SetResponseDataFromJson(Map<String, dynamic> json) =>

@@ -28,7 +28,8 @@ class CacheService {
         return DecrementResponse.Merr(body: err.b);
       }
       return DecrementResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -48,7 +49,8 @@ class CacheService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -68,7 +70,8 @@ class CacheService {
         return GetResponse.Merr(body: err.b);
       }
       return GetResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -88,7 +91,8 @@ class CacheService {
         return IncrementResponse.Merr(body: err.b);
       }
       return IncrementResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -108,7 +112,8 @@ class CacheService {
         return ListKeysResponse.Merr(body: err.b);
       }
       return ListKeysResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -128,7 +133,8 @@ class CacheService {
         return SetResponse.Merr(body: err.b);
       }
       return SetResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -150,11 +156,11 @@ class DecrementRequest with _$DecrementRequest {
 @Freezed()
 class DecrementResponse with _$DecrementResponse {
   const factory DecrementResponse({
-    /// The key decremented
-    String? key,
-
     /// The new value
     int? value,
+
+    /// The key decremented
+    String? key,
   }) = DecrementResponseData;
   const factory DecrementResponse.Merr({Map<String, dynamic>? body}) =
       DecrementResponseMerr;
@@ -261,14 +267,14 @@ class ListKeysResponse with _$ListKeysResponse {
 @Freezed()
 class SetRequest with _$SetRequest {
   const factory SetRequest({
-    /// The key to update
-    String? key,
-
     /// Time to live in seconds
     int? ttl,
 
     /// The value to set
     String? value,
+
+    /// The key to update
+    String? key,
   }) = _SetRequest;
   factory SetRequest.fromJson(Map<String, dynamic> json) =>
       _$SetRequestFromJson(json);

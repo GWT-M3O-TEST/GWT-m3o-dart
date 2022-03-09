@@ -28,7 +28,8 @@ class HolidaysService {
         return CountriesResponse.Merr(body: err.b);
       }
       return CountriesResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -48,7 +49,8 @@ class HolidaysService {
         return ListResponse.Merr(body: err.b);
       }
       return ListResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -88,12 +90,6 @@ class Country with _$Country {
 @Freezed()
 class Holiday with _$Holiday {
   const factory Holiday({
-    /// the local name of the holiday
-    String? local_name,
-
-    /// the name of the holiday in English
-    String? name,
-
     /// the regions within the country that observe this holiday (if not all of them)
     List<String>? regions,
 
@@ -105,6 +101,12 @@ class Holiday with _$Holiday {
 
     /// date of the holiday in yyyy-mm-dd format
     String? date,
+
+    /// the local name of the holiday
+    String? local_name,
+
+    /// the name of the holiday in English
+    String? name,
   }) = _Holiday;
   factory Holiday.fromJson(Map<String, dynamic> json) =>
       _$HolidayFromJson(json);

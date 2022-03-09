@@ -28,7 +28,8 @@ class SpamService {
         return ClassifyResponse.Merr(body: err.b);
       }
       return ClassifyResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }

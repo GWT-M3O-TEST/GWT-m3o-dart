@@ -28,7 +28,8 @@ class TimeService {
         return NowResponse.Merr(body: err.b);
       }
       return NowResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -48,7 +49,8 @@ class TimeService {
         return ZoneResponse.Merr(body: err.b);
       }
       return ZoneResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -67,12 +69,6 @@ class NowRequest with _$NowRequest {
 @Freezed()
 class NowResponse with _$NowResponse {
   const factory NowResponse({
-    /// the current time as HH:MM:SS
-    String? localtime,
-
-    /// the location as Europe/London
-    String? location,
-
     /// timestamp as 2006-01-02T15:04:05.999999999Z07:00
     String? timestamp,
 
@@ -81,6 +77,12 @@ class NowResponse with _$NowResponse {
 
     /// the unix timestamp
     int? unix,
+
+    /// the current time as HH:MM:SS
+    String? localtime,
+
+    /// the location as Europe/London
+    String? location,
   }) = NowResponseData;
   const factory NowResponse.Merr({Map<String, dynamic>? body}) =
       NowResponseMerr;
@@ -101,11 +103,11 @@ class ZoneRequest with _$ZoneRequest {
 @Freezed()
 class ZoneResponse with _$ZoneResponse {
   const factory ZoneResponse({
-    /// is daylight savings
-    bool? dst,
-
     /// the local time
     String? localtime,
+
+    /// location requested
+    String? location,
 
     /// e.g -0.37
     double? longitude,
@@ -113,20 +115,20 @@ class ZoneResponse with _$ZoneResponse {
     /// region of timezone
     String? region,
 
+    /// the timezone e.g Europe/London
+    String? timezone,
+
     /// the abbreviated code e.g BST
     String? abbreviation,
+
+    /// is daylight savings
+    bool? dst,
 
     /// country of the timezone
     String? country,
 
     /// e.g 51.42
     double? latitude,
-
-    /// location requested
-    String? location,
-
-    /// the timezone e.g Europe/London
-    String? timezone,
   }) = ZoneResponseData;
   const factory ZoneResponse.Merr({Map<String, dynamic>? body}) =
       ZoneResponseMerr;

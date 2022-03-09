@@ -28,7 +28,8 @@ class TranslateService {
         return TextResponse.Merr(body: err.b);
       }
       return TextResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }

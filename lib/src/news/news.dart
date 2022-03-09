@@ -28,7 +28,8 @@ class NewsService {
         return HeadlinesResponse.Merr(body: err.b);
       }
       return HeadlinesResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -39,27 +40,6 @@ class Article with _$Article {
   const factory Article({
     /// categories
     List<String>? categories,
-
-    /// time it was published
-    String? published_at,
-
-    /// first 60 characters of article body
-    String? snippet,
-
-    /// source of news
-    String? source,
-
-    /// the locale
-    String? locale,
-
-    /// article title
-    String? title,
-
-    /// url of the article
-    String? url,
-
-    /// article description
-    String? description,
 
     /// article id
     String? id,
@@ -72,6 +52,27 @@ class Article with _$Article {
 
     /// the article language
     String? language,
+
+    /// the locale
+    String? locale,
+
+    /// time it was published
+    String? published_at,
+
+    /// first 60 characters of article body
+    String? snippet,
+
+    /// source of news
+    String? source,
+
+    /// article title
+    String? title,
+
+    /// article description
+    String? description,
+
+    /// url of the article
+    String? url,
   }) = _Article;
   factory Article.fromJson(Map<String, dynamic> json) =>
       _$ArticleFromJson(json);

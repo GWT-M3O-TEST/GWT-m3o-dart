@@ -28,7 +28,8 @@ class YoutubeService {
         return EmbedResponse.Merr(body: err.b);
       }
       return EmbedResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -48,7 +49,8 @@ class YoutubeService {
         return SearchResponse.Merr(body: err.b);
       }
       return SearchResponseData.fromJson(res.body);
-    } catch (e) {
+    } catch (e, stack) {
+      print(stack);
       throw Exception(e);
     }
   }
@@ -110,8 +112,15 @@ class SearchResponse with _$SearchResponse {
 @Freezed()
 class SearchResult with _$SearchResult {
   const factory SearchResult({
-    /// title of the result
-    String? title,
+    /// if live broadcast then indicates activity.
+    /// none, upcoming, live, completed
+    String? broadcasting,
+
+    /// the result description
+    String? description,
+
+    /// id of the result
+    String? id,
 
     /// the associated url
     String? url,
@@ -122,21 +131,14 @@ class SearchResult with _$SearchResult {
     /// the channel title
     String? channel_title,
 
-    /// the result description
-    String? description,
-
-    /// id of the result
-    String? id,
-
-    /// if live broadcast then indicates activity.
-    /// none, upcoming, live, completed
-    String? broadcasting,
-
     /// kind of result; "video", "channel", "playlist"
     String? kind,
 
     /// published at time
     String? published_at,
+
+    /// title of the result
+    String? title,
   }) = _SearchResult;
   factory SearchResult.fromJson(Map<String, dynamic> json) =>
       _$SearchResultFromJson(json);
