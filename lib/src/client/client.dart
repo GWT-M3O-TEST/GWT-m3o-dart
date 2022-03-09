@@ -167,4 +167,4 @@ bool isError(Map<String, dynamic> body) {
 }
 
 int? int64FromString(String? value) => value == null ? null : int.parse(value);
-String? int64ToString(int? value) => value == null ? null : value as String;
+String? int64ToString(int? value) => value == null ? null : value.toString();
