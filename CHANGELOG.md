@@ -1,7 +1,3 @@
-## v1.0.28 - 2022-03-10
-
-[4f18bb](https://github.com/micro/services/commit/4f18bb88ee9db1b6c6ba0bbfb135074246b8b4af) Update README.md
-
 ## v1.0.27 - 2022-03-10
 
 [4f18bb](https://github.com/micro/services/commit/4f18bb88ee9db1b6c6ba0bbfb135074246b8b4af) Update README.md
