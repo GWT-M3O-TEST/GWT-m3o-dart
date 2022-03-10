@@ -45,6 +45,9 @@ class OffsetRequest with _$OffsetRequest {
 @Freezed()
 class OffsetResponse with _$OffsetResponse {
   const factory OffsetResponse({
+    /// projects it was allocated to
+    List<Project>? projects,
+
     /// number of tonnes
     double? tonnes,
 
@@ -53,9 +56,6 @@ class OffsetResponse with _$OffsetResponse {
 
     /// the metric used e.g KG or Tonnes
     String? metric,
-
-    /// projects it was allocated to
-    List<Project>? projects,
   }) = OffsetResponseData;
   const factory OffsetResponse.Merr({Map<String, dynamic>? body}) =
       OffsetResponseMerr;
