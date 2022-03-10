@@ -4,12 +4,12 @@ An [m3o.com](https://m3o.com) API. For example usage see [m3o.com/function/api](
 
 Endpoints:
 
-## Delete
+## Describe
 
-Delete a function by name
+Get the info for a deployed function
 
 
-[https://m3o.com/function/api#Delete](https://m3o.com/function/api#Delete)
+[https://m3o.com/function/api#Describe](https://m3o.com/function/api#Describe)
 
 ```dart
 import 'dart:io';
@@ -30,15 +30,15 @@ void main() async {
   "name": "helloworld"
 ,};
 
-  DeleteRequest req = DeleteRequest.fromJson(payload);
+  DescribeRequest req = DescribeRequest.fromJson(payload);
 
   
   try {
 
-	DeleteResponse res = await ser.delete(req);
+	DescribeResponse res = await ser.describe(req);
 
     res.map((value) => print(value),
-	  Merr: (DeleteResponseMerr err) => print(err.body!['body']));	
+	  Merr: (DescribeResponseMerr err) => print(err.body!['body']));	
   
   } catch (e, stack) {
     print(e);
@@ -186,53 +186,6 @@ void main() async {
   }
 }
 ```
-## Call
-
-Call a function by name
-
-
-[https://m3o.com/function/api#Call](https://m3o.com/function/api#Call)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/function/function.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = FunctionService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{
-  "name": "helloworld",
-  "request": {
-    "name": "Alice"
-  ,}
-};
-
-  CallRequest req = CallRequest.fromJson(payload);
-
-  
-  try {
-
-	CallResponse res = await ser.call(req);
-
-    res.map((value) => print(value),
-	  Merr: (CallResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e, stack) {
-    print(e);
-	print(stack);
-  } finally {
-    exit(0);
-  }
-}
-```
 ## List
 
 List all the deployed functions
@@ -275,12 +228,12 @@ void main() async {
   }
 }
 ```
-## Describe
+## Delete
 
-Get the info for a deployed function
+Delete a function by name
 
 
-[https://m3o.com/function/api#Describe](https://m3o.com/function/api#Describe)
+[https://m3o.com/function/api#Delete](https://m3o.com/function/api#Delete)
 
 ```dart
 import 'dart:io';
@@ -301,15 +254,62 @@ void main() async {
   "name": "helloworld"
 ,};
 
-  DescribeRequest req = DescribeRequest.fromJson(payload);
+  DeleteRequest req = DeleteRequest.fromJson(payload);
 
   
   try {
 
-	DescribeResponse res = await ser.describe(req);
+	DeleteResponse res = await ser.delete(req);
 
     res.map((value) => print(value),
-	  Merr: (DescribeResponseMerr err) => print(err.body!['body']));	
+	  Merr: (DeleteResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e, stack) {
+    print(e);
+	print(stack);
+  } finally {
+    exit(0);
+  }
+}
+```
+## Call
+
+Call a function by name
+
+
+[https://m3o.com/function/api#Call](https://m3o.com/function/api#Call)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/client/client.dart';
+import 'package:m3o/src/function/function.dart';
+
+void main() async {
+  final token = Platform.environment['M3O_API_TOKEN']!;
+  final ser = FunctionService(
+    Options(
+      token: token,
+      address: liveAddress,
+    ),
+  );
+ 
+  final payload = <String, dynamic>{
+  "name": "helloworld",
+  "request": {
+    "name": "Alice"
+  ,}
+};
+
+  CallRequest req = CallRequest.fromJson(payload);
+
+  
+  try {
+
+	CallResponse res = await ser.call(req);
+
+    res.map((value) => print(value),
+	  Merr: (CallResponseMerr err) => print(err.body!['body']));	
   
   } catch (e, stack) {
     print(e);
