@@ -344,8 +344,29 @@ class RunResponse with _$RunResponse {
 @Freezed()
 class Service with _$Service {
   const factory Service({
+    /// app url
+    String? url,
+
+    /// branch of code
+    String? branch,
+
     /// time of creation
     String? created,
+
+    /// associated env vars
+    Map<String, String>? env_vars,
+
+    /// name of the app
+    String? name,
+
+    /// region running in
+    String? region,
+
+    /// status of the app
+    String? status,
+
+    /// last updated
+    String? updated,
 
     /// custom domains
     String? custom_domains,
@@ -356,29 +377,8 @@ class Service with _$Service {
     /// port running on
     int? port,
 
-    /// region running in
-    String? region,
-
     /// source repository
     String? repo,
-
-    /// status of the app
-    String? status,
-
-    /// app url
-    String? url,
-
-    /// branch of code
-    String? branch,
-
-    /// associated env vars
-    Map<String, String>? env_vars,
-
-    /// name of the app
-    String? name,
-
-    /// last updated
-    String? updated,
   }) = _Service;
   factory Service.fromJson(Map<String, dynamic> json) =>
       _$ServiceFromJson(json);

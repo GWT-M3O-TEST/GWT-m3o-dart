@@ -101,17 +101,20 @@ class TwitterService {
 @Freezed()
 class Profile with _$Profile {
   const factory Profile({
-    /// The user's profile picture
-    String? image_url,
+    /// the account creation date
+    String? created_at,
+
+    /// the user's location
+    String? location,
+
+    /// display name of the user
+    String? name,
 
     /// if the account is private
     bool? private,
 
     /// if the account is verified
     bool? verified,
-
-    /// the account creation date
-    String? created_at,
 
     /// the user description
     String? description,
@@ -122,11 +125,8 @@ class Profile with _$Profile {
     /// the user id
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? id,
 
-    /// the user's location
-    String? location,
-
-    /// display name of the user
-    String? name,
+    /// The user's profile picture
+    String? image_url,
 
     /// the username
     String? username,
@@ -188,15 +188,15 @@ class TimelineResponse with _$TimelineResponse {
 @Freezed()
 class Trend with _$Trend {
   const factory Trend({
+    /// name of the trend
+    String? name,
+
     /// the volume of tweets in last 24 hours
     @JsonKey(fromJson: int64FromString, toJson: int64ToString)
         int? tweet_volume,
 
     /// the twitter url
     String? url,
-
-    /// name of the trend
-    String? name,
   }) = _Trend;
   factory Trend.fromJson(Map<String, dynamic> json) => _$TrendFromJson(json);
 }
@@ -223,16 +223,6 @@ class TrendsResponse with _$TrendsResponse {
 @Freezed()
 class Tweet with _$Tweet {
   const factory Tweet({
-    /// id of the tweet
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? id,
-
-    /// number of times retweeted
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString)
-        int? retweeted_count,
-
-    /// text of the tweet
-    String? text,
-
     /// username of the person who tweeted
     String? username,
 
@@ -242,6 +232,16 @@ class Tweet with _$Tweet {
     /// number of times favourited
     @JsonKey(fromJson: int64FromString, toJson: int64ToString)
         int? favourited_count,
+
+    /// id of the tweet
+    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? id,
+
+    /// number of times retweeted
+    @JsonKey(fromJson: int64FromString, toJson: int64ToString)
+        int? retweeted_count,
+
+    /// text of the tweet
+    String? text,
   }) = _Tweet;
   factory Tweet.fromJson(Map<String, dynamic> json) => _$TweetFromJson(json);
 }

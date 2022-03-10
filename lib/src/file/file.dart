@@ -123,14 +123,14 @@ class DeleteResponse with _$DeleteResponse {
 @Freezed()
 class ListRequest with _$ListRequest {
   const factory ListRequest({
+    /// Project, required for listing.
+    String? project,
+
     /// Defaults to '/', ie. lists all files in a project.
     /// Supply path to a folder if you want to list
     /// files inside that folder
     /// eg. '/docs'
     String? path,
-
-    /// Project, required for listing.
-    String? project,
   }) = _ListRequest;
   factory ListRequest.fromJson(Map<String, dynamic> json) =>
       _$ListRequestFromJson(json);
@@ -150,11 +150,11 @@ class ListResponse with _$ListResponse {
 @Freezed()
 class ReadRequest with _$ReadRequest {
   const factory ReadRequest({
-    /// Path to the file
-    String? path,
-
     /// Project name
     String? project,
+
+    /// Path to the file
+    String? path,
   }) = _ReadRequest;
   factory ReadRequest.fromJson(Map<String, dynamic> json) =>
       _$ReadRequestFromJson(json);
@@ -175,6 +175,9 @@ class ReadResponse with _$ReadResponse {
 @Freezed()
 class Record with _$Record {
   const factory Record({
+    /// Time the file was created e.g 2021-05-20T13:37:21Z
+    String? created,
+
     /// Any other associated metadata as a map of key-value pairs
     Map<String, String>? metadata,
 
@@ -190,9 +193,6 @@ class Record with _$Record {
 
     /// File contents
     String? content,
-
-    /// Time the file was created e.g 2021-05-20T13:37:21Z
-    String? created,
   }) = _Record;
   factory Record.fromJson(Map<String, dynamic> json) => _$RecordFromJson(json);
 }

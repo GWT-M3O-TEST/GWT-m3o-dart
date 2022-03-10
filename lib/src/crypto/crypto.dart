@@ -223,15 +223,6 @@ class QuoteRequest with _$QuoteRequest {
 @Freezed()
 class QuoteResponse with _$QuoteResponse {
   const factory QuoteResponse({
-    /// the bidding price
-    double? bid_price,
-
-    /// the bid size
-    double? bid_size,
-
-    /// the crypto symbol
-    String? symbol,
-
     /// the UTC timestamp of the quote
     String? timestamp,
 
@@ -240,6 +231,15 @@ class QuoteResponse with _$QuoteResponse {
 
     /// the ask size
     double? ask_size,
+
+    /// the bidding price
+    double? bid_price,
+
+    /// the bid size
+    double? bid_size,
+
+    /// the crypto symbol
+    String? symbol,
   }) = QuoteResponseData;
   const factory QuoteResponse.Merr({Map<String, dynamic>? body}) =
       QuoteResponseMerr;
