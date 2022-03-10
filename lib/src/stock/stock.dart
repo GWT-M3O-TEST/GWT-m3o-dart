@@ -101,11 +101,11 @@ class StockService {
 @Freezed()
 class HistoryRequest with _$HistoryRequest {
   const factory HistoryRequest({
-    /// date to retrieve as YYYY-MM-DD
-    String? date,
-
     /// the stock symbol e.g AAPL
     String? stock,
+
+    /// date to retrieve as YYYY-MM-DD
+    String? date,
   }) = _HistoryRequest;
   factory HistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$HistoryRequestFromJson(json);
@@ -144,6 +144,12 @@ class HistoryResponse with _$HistoryResponse {
 @Freezed()
 class Order with _$Order {
   const factory Order({
+    /// the bid size
+    int? bid_size,
+
+    /// the UTC timestamp of the quote
+    String? timestamp,
+
     /// the asking price
     double? ask_price,
 
@@ -152,12 +158,6 @@ class Order with _$Order {
 
     /// the bidding price
     double? bid_price,
-
-    /// the bid size
-    int? bid_size,
-
-    /// the UTC timestamp of the quote
-    String? timestamp,
   }) = _Order;
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
 }
@@ -165,6 +165,9 @@ class Order with _$Order {
 @Freezed()
 class OrderBookRequest with _$OrderBookRequest {
   const factory OrderBookRequest({
+    /// the date in format YYYY-MM-dd
+    String? date,
+
     /// optional RFC3339Nano end time e.g 2006-01-02T15:04:05.999999999Z07:00
     String? end,
 
@@ -176,9 +179,6 @@ class OrderBookRequest with _$OrderBookRequest {
 
     /// stock to retrieve e.g AAPL
     String? stock,
-
-    /// the date in format YYYY-MM-dd
-    String? date,
   }) = _OrderBookRequest;
   factory OrderBookRequest.fromJson(Map<String, dynamic> json) =>
       _$OrderBookRequestFromJson(json);

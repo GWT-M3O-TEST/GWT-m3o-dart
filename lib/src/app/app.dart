@@ -241,6 +241,9 @@ class RegionsResponse with _$RegionsResponse {
 @Freezed()
 class Reservation with _$Reservation {
   const factory Reservation({
+    /// time of reservation
+    String? created,
+
     /// time reservation expires
     String? expires,
 
@@ -252,9 +255,6 @@ class Reservation with _$Reservation {
 
     /// associated token
     String? token,
-
-    /// time of reservation
-    String? created,
   }) = _Reservation;
   factory Reservation.fromJson(Map<String, dynamic> json) =>
       _$ReservationFromJson(json);
@@ -344,9 +344,6 @@ class RunResponse with _$RunResponse {
 @Freezed()
 class Service with _$Service {
   const factory Service({
-    /// custom domains
-    String? custom_domains,
-
     /// unique id
     String? id,
 
@@ -356,21 +353,6 @@ class Service with _$Service {
     /// region running in
     String? region,
 
-    /// app url
-    String? url,
-
-    /// branch of code
-    String? branch,
-
-    /// time of creation
-    String? created,
-
-    /// associated env vars
-    Map<String, String>? env_vars,
-
-    /// name of the app
-    String? name,
-
     /// source repository
     String? repo,
 
@@ -379,6 +361,24 @@ class Service with _$Service {
 
     /// last updated
     String? updated,
+
+    /// branch of code
+    String? branch,
+
+    /// time of creation
+    String? created,
+
+    /// custom domains
+    String? custom_domains,
+
+    /// associated env vars
+    Map<String, String>? env_vars,
+
+    /// name of the app
+    String? name,
+
+    /// app url
+    String? url,
   }) = _Service;
   factory Service.fromJson(Map<String, dynamic> json) =>
       _$ServiceFromJson(json);
