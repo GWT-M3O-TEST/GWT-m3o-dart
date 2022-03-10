@@ -4,94 +4,6 @@ An [m3o.com](https://m3o.com) API. For example usage see [m3o.com/function/api](
 
 Endpoints:
 
-## Reserve
-
-Reserve function names and resources beyond free quota
-
-
-[https://m3o.com/function/api#Reserve](https://m3o.com/function/api#Reserve)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/function/function.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = FunctionService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{
-  "name": "helloworld"
-,};
-
-  ReserveRequest req = ReserveRequest.fromJson(payload);
-
-  
-  try {
-
-	ReserveResponse res = await ser.reserve(req);
-
-    res.map((value) => print(value),
-	  Merr: (ReserveResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e, stack) {
-    print(e);
-	print(stack);
-  } finally {
-    exit(0);
-  }
-}
-```
-## Proxy
-
-Return the backend url for proxying
-
-
-[https://m3o.com/function/api#Proxy](https://m3o.com/function/api#Proxy)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/function/function.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = FunctionService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{
-  "id": "helloworld"
-,};
-
-  ProxyRequest req = ProxyRequest.fromJson(payload);
-
-  
-  try {
-
-	ProxyResponse res = await ser.proxy(req);
-
-    res.map((value) => print(value),
-	  Merr: (ProxyResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e, stack) {
-    print(e);
-	print(stack);
-  } finally {
-    exit(0);
-  }
-}
-```
 ## Update
 
 Update a function. Downloads the source, builds and redeploys
@@ -225,12 +137,12 @@ void main() async {
   }
 }
 ```
-## Regions
+## Delete
 
-Return a list of supported regions
+Delete a function by name
 
 
-[https://m3o.com/function/api#Regions](https://m3o.com/function/api#Regions)
+[https://m3o.com/function/api#Delete](https://m3o.com/function/api#Delete)
 
 ```dart
 import 'dart:io';
@@ -247,17 +159,63 @@ void main() async {
     ),
   );
  
-  final payload = <String, dynamic>{};
+  final payload = <String, dynamic>{
+  "name": "helloworld"
+,};
 
-  RegionsRequest req = RegionsRequest.fromJson(payload);
+  DeleteRequest req = DeleteRequest.fromJson(payload);
 
   
   try {
 
-	RegionsResponse res = await ser.regions(req);
+	DeleteResponse res = await ser.delete(req);
 
     res.map((value) => print(value),
-	  Merr: (RegionsResponseMerr err) => print(err.body!['body']));	
+	  Merr: (DeleteResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e, stack) {
+    print(e);
+	print(stack);
+  } finally {
+    exit(0);
+  }
+}
+```
+## Reserve
+
+Reserve function names and resources beyond free quota
+
+
+[https://m3o.com/function/api#Reserve](https://m3o.com/function/api#Reserve)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/client/client.dart';
+import 'package:m3o/src/function/function.dart';
+
+void main() async {
+  final token = Platform.environment['M3O_API_TOKEN']!;
+  final ser = FunctionService(
+    Options(
+      token: token,
+      address: liveAddress,
+    ),
+  );
+ 
+  final payload = <String, dynamic>{
+  "name": "helloworld"
+,};
+
+  ReserveRequest req = ReserveRequest.fromJson(payload);
+
+  
+  try {
+
+	ReserveResponse res = await ser.reserve(req);
+
+    res.map((value) => print(value),
+	  Merr: (ReserveResponseMerr err) => print(err.body!['body']));	
   
   } catch (e, stack) {
     print(e);
@@ -317,12 +275,54 @@ void main() async {
   }
 }
 ```
-## Delete
+## Regions
 
-Delete a function by name
+Return a list of supported regions
 
 
-[https://m3o.com/function/api#Delete](https://m3o.com/function/api#Delete)
+[https://m3o.com/function/api#Regions](https://m3o.com/function/api#Regions)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/client/client.dart';
+import 'package:m3o/src/function/function.dart';
+
+void main() async {
+  final token = Platform.environment['M3O_API_TOKEN']!;
+  final ser = FunctionService(
+    Options(
+      token: token,
+      address: liveAddress,
+    ),
+  );
+ 
+  final payload = <String, dynamic>{};
+
+  RegionsRequest req = RegionsRequest.fromJson(payload);
+
+  
+  try {
+
+	RegionsResponse res = await ser.regions(req);
+
+    res.map((value) => print(value),
+	  Merr: (RegionsResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e, stack) {
+    print(e);
+	print(stack);
+  } finally {
+    exit(0);
+  }
+}
+```
+## Proxy
+
+Return the backend url for proxying
+
+
+[https://m3o.com/function/api#Proxy](https://m3o.com/function/api#Proxy)
 
 ```dart
 import 'dart:io';
@@ -340,18 +340,18 @@ void main() async {
   );
  
   final payload = <String, dynamic>{
-  "name": "helloworld"
+  "id": "helloworld"
 ,};
 
-  DeleteRequest req = DeleteRequest.fromJson(payload);
+  ProxyRequest req = ProxyRequest.fromJson(payload);
 
   
   try {
 
-	DeleteResponse res = await ser.delete(req);
+	ProxyResponse res = await ser.proxy(req);
 
     res.map((value) => print(value),
-	  Merr: (DeleteResponseMerr err) => print(err.body!['body']));	
+	  Merr: (ProxyResponseMerr err) => print(err.body!['body']));	
   
   } catch (e, stack) {
     print(e);
