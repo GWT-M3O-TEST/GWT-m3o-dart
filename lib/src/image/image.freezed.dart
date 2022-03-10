@@ -1432,10 +1432,10 @@ Point _$PointFromJson(Map<String, dynamic> json) {
 class _$PointTearOff {
   const _$PointTearOff();
 
-  _Point call({int? y, int? x}) {
+  _Point call({int? x, int? y}) {
     return _Point(
-      y: y,
       x: x,
+      y: y,
     );
   }
 
@@ -1449,8 +1449,8 @@ const $Point = _$PointTearOff();
 
 /// @nodoc
 mixin _$Point {
-  int? get y => throw _privateConstructorUsedError;
   int? get x => throw _privateConstructorUsedError;
+  int? get y => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1461,7 +1461,7 @@ mixin _$Point {
 abstract class $PointCopyWith<$Res> {
   factory $PointCopyWith(Point value, $Res Function(Point) then) =
       _$PointCopyWithImpl<$Res>;
-  $Res call({int? y, int? x});
+  $Res call({int? x, int? y});
 }
 
 /// @nodoc
@@ -1474,17 +1474,17 @@ class _$PointCopyWithImpl<$Res> implements $PointCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? y = freezed,
     Object? x = freezed,
+    Object? y = freezed,
   }) {
     return _then(_value.copyWith(
-      y: y == freezed
-          ? _value.y
-          : y // ignore: cast_nullable_to_non_nullable
-              as int?,
       x: x == freezed
           ? _value.x
           : x // ignore: cast_nullable_to_non_nullable
+              as int?,
+      y: y == freezed
+          ? _value.y
+          : y // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -1495,7 +1495,7 @@ abstract class _$PointCopyWith<$Res> implements $PointCopyWith<$Res> {
   factory _$PointCopyWith(_Point value, $Res Function(_Point) then) =
       __$PointCopyWithImpl<$Res>;
   @override
-  $Res call({int? y, int? x});
+  $Res call({int? x, int? y});
 }
 
 /// @nodoc
@@ -1509,17 +1509,17 @@ class __$PointCopyWithImpl<$Res> extends _$PointCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? y = freezed,
     Object? x = freezed,
+    Object? y = freezed,
   }) {
     return _then(_Point(
-      y: y == freezed
-          ? _value.y
-          : y // ignore: cast_nullable_to_non_nullable
-              as int?,
       x: x == freezed
           ? _value.x
           : x // ignore: cast_nullable_to_non_nullable
+              as int?,
+      y: y == freezed
+          ? _value.y
+          : y // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -1528,19 +1528,19 @@ class __$PointCopyWithImpl<$Res> extends _$PointCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Point implements _Point {
-  const _$_Point({this.y, this.x});
+  const _$_Point({this.x, this.y});
 
   factory _$_Point.fromJson(Map<String, dynamic> json) =>
       _$$_PointFromJson(json);
 
   @override
-  final int? y;
-  @override
   final int? x;
+  @override
+  final int? y;
 
   @override
   String toString() {
-    return 'Point(y: $y, x: $x)';
+    return 'Point(x: $x, y: $y)';
   }
 
   @override
@@ -1548,15 +1548,15 @@ class _$_Point implements _Point {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Point &&
-            const DeepCollectionEquality().equals(other.y, y) &&
-            const DeepCollectionEquality().equals(other.x, x));
+            const DeepCollectionEquality().equals(other.x, x) &&
+            const DeepCollectionEquality().equals(other.y, y));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(y),
-      const DeepCollectionEquality().hash(x));
+      const DeepCollectionEquality().hash(x),
+      const DeepCollectionEquality().hash(y));
 
   @JsonKey(ignore: true)
   @override
@@ -1570,14 +1570,14 @@ class _$_Point implements _Point {
 }
 
 abstract class _Point implements Point {
-  const factory _Point({int? y, int? x}) = _$_Point;
+  const factory _Point({int? x, int? y}) = _$_Point;
 
   factory _Point.fromJson(Map<String, dynamic> json) = _$_Point.fromJson;
 
   @override
-  int? get y;
-  @override
   int? get x;
+  @override
+  int? get y;
   @override
   @JsonKey(ignore: true)
   _$PointCopyWith<_Point> get copyWith => throw _privateConstructorUsedError;
@@ -2575,12 +2575,12 @@ class _$UploadRequestTearOff {
   const _$UploadRequestTearOff();
 
   _UploadRequest call(
-      {String? base64, String? file, String? name, String? url}) {
+      {String? file, String? name, String? url, String? base64}) {
     return _UploadRequest(
-      base64: base64,
       file: file,
       name: name,
       url: url,
+      base64: base64,
     );
   }
 
@@ -2594,9 +2594,6 @@ const $UploadRequest = _$UploadRequestTearOff();
 
 /// @nodoc
 mixin _$UploadRequest {
-  /// Base64 encoded image to upload,
-  String? get base64 => throw _privateConstructorUsedError;
-
   /// The image file to upload
   String? get file => throw _privateConstructorUsedError;
 
@@ -2605,6 +2602,9 @@ mixin _$UploadRequest {
 
   /// URL of the image to upload
   String? get url => throw _privateConstructorUsedError;
+
+  /// Base64 encoded image to upload,
+  String? get base64 => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2617,7 +2617,7 @@ abstract class $UploadRequestCopyWith<$Res> {
   factory $UploadRequestCopyWith(
           UploadRequest value, $Res Function(UploadRequest) then) =
       _$UploadRequestCopyWithImpl<$Res>;
-  $Res call({String? base64, String? file, String? name, String? url});
+  $Res call({String? file, String? name, String? url, String? base64});
 }
 
 /// @nodoc
@@ -2631,16 +2631,12 @@ class _$UploadRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? base64 = freezed,
     Object? file = freezed,
     Object? name = freezed,
     Object? url = freezed,
+    Object? base64 = freezed,
   }) {
     return _then(_value.copyWith(
-      base64: base64 == freezed
-          ? _value.base64
-          : base64 // ignore: cast_nullable_to_non_nullable
-              as String?,
       file: file == freezed
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
@@ -2653,6 +2649,10 @@ class _$UploadRequestCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
+      base64: base64 == freezed
+          ? _value.base64
+          : base64 // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -2664,7 +2664,7 @@ abstract class _$UploadRequestCopyWith<$Res>
           _UploadRequest value, $Res Function(_UploadRequest) then) =
       __$UploadRequestCopyWithImpl<$Res>;
   @override
-  $Res call({String? base64, String? file, String? name, String? url});
+  $Res call({String? file, String? name, String? url, String? base64});
 }
 
 /// @nodoc
@@ -2680,16 +2680,12 @@ class __$UploadRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? base64 = freezed,
     Object? file = freezed,
     Object? name = freezed,
     Object? url = freezed,
+    Object? base64 = freezed,
   }) {
     return _then(_UploadRequest(
-      base64: base64 == freezed
-          ? _value.base64
-          : base64 // ignore: cast_nullable_to_non_nullable
-              as String?,
       file: file == freezed
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
@@ -2702,6 +2698,10 @@ class __$UploadRequestCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
+      base64: base64 == freezed
+          ? _value.base64
+          : base64 // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -2709,15 +2709,11 @@ class __$UploadRequestCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UploadRequest implements _UploadRequest {
-  const _$_UploadRequest({this.base64, this.file, this.name, this.url});
+  const _$_UploadRequest({this.file, this.name, this.url, this.base64});
 
   factory _$_UploadRequest.fromJson(Map<String, dynamic> json) =>
       _$$_UploadRequestFromJson(json);
 
-  @override
-
-  /// Base64 encoded image to upload,
-  final String? base64;
   @override
 
   /// The image file to upload
@@ -2730,10 +2726,14 @@ class _$_UploadRequest implements _UploadRequest {
 
   /// URL of the image to upload
   final String? url;
+  @override
+
+  /// Base64 encoded image to upload,
+  final String? base64;
 
   @override
   String toString() {
-    return 'UploadRequest(base64: $base64, file: $file, name: $name, url: $url)';
+    return 'UploadRequest(file: $file, name: $name, url: $url, base64: $base64)';
   }
 
   @override
@@ -2741,19 +2741,19 @@ class _$_UploadRequest implements _UploadRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _UploadRequest &&
-            const DeepCollectionEquality().equals(other.base64, base64) &&
             const DeepCollectionEquality().equals(other.file, file) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.url, url));
+            const DeepCollectionEquality().equals(other.url, url) &&
+            const DeepCollectionEquality().equals(other.base64, base64));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(base64),
       const DeepCollectionEquality().hash(file),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(url));
+      const DeepCollectionEquality().hash(url),
+      const DeepCollectionEquality().hash(base64));
 
   @JsonKey(ignore: true)
   @override
@@ -2768,18 +2768,14 @@ class _$_UploadRequest implements _UploadRequest {
 
 abstract class _UploadRequest implements UploadRequest {
   const factory _UploadRequest(
-      {String? base64,
-      String? file,
+      {String? file,
       String? name,
-      String? url}) = _$_UploadRequest;
+      String? url,
+      String? base64}) = _$_UploadRequest;
 
   factory _UploadRequest.fromJson(Map<String, dynamic> json) =
       _$_UploadRequest.fromJson;
 
-  @override
-
-  /// Base64 encoded image to upload,
-  String? get base64;
   @override
 
   /// The image file to upload
@@ -2792,6 +2788,10 @@ abstract class _UploadRequest implements UploadRequest {
 
   /// URL of the image to upload
   String? get url;
+  @override
+
+  /// Base64 encoded image to upload,
+  String? get base64;
   @override
   @JsonKey(ignore: true)
   _$UploadRequestCopyWith<_UploadRequest> get copyWith =>

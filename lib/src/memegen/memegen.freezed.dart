@@ -1026,19 +1026,19 @@ class _$TemplateTearOff {
   const _$TemplateTearOff();
 
   _Template call(
-      {int? height,
-      String? id,
-      String? name,
+      {String? name,
       String? url,
       int? width,
-      int? box_count}) {
+      int? box_count,
+      int? height,
+      String? id}) {
     return _Template(
-      height: height,
-      id: id,
       name: name,
       url: url,
       width: width,
       box_count: box_count,
+      height: height,
+      id: id,
     );
   }
 
@@ -1052,12 +1052,6 @@ const $Template = _$TemplateTearOff();
 
 /// @nodoc
 mixin _$Template {
-  /// height in pixels
-  int? get height => throw _privateConstructorUsedError;
-
-  /// id of the memegen
-  String? get id => throw _privateConstructorUsedError;
-
   /// name of the memegen
   String? get name => throw _privateConstructorUsedError;
 
@@ -1070,6 +1064,12 @@ mixin _$Template {
   /// number of boxes used
   int? get box_count => throw _privateConstructorUsedError;
 
+  /// height in pixels
+  int? get height => throw _privateConstructorUsedError;
+
+  /// id of the memegen
+  String? get id => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $TemplateCopyWith<Template> get copyWith =>
@@ -1081,12 +1081,12 @@ abstract class $TemplateCopyWith<$Res> {
   factory $TemplateCopyWith(Template value, $Res Function(Template) then) =
       _$TemplateCopyWithImpl<$Res>;
   $Res call(
-      {int? height,
-      String? id,
-      String? name,
+      {String? name,
       String? url,
       int? width,
-      int? box_count});
+      int? box_count,
+      int? height,
+      String? id});
 }
 
 /// @nodoc
@@ -1099,22 +1099,14 @@ class _$TemplateCopyWithImpl<$Res> implements $TemplateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? height = freezed,
-    Object? id = freezed,
     Object? name = freezed,
     Object? url = freezed,
     Object? width = freezed,
     Object? box_count = freezed,
+    Object? height = freezed,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
-      height: height == freezed
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int?,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1131,6 +1123,14 @@ class _$TemplateCopyWithImpl<$Res> implements $TemplateCopyWith<$Res> {
           ? _value.box_count
           : box_count // ignore: cast_nullable_to_non_nullable
               as int?,
+      height: height == freezed
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int?,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -1141,12 +1141,12 @@ abstract class _$TemplateCopyWith<$Res> implements $TemplateCopyWith<$Res> {
       __$TemplateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int? height,
-      String? id,
-      String? name,
+      {String? name,
       String? url,
       int? width,
-      int? box_count});
+      int? box_count,
+      int? height,
+      String? id});
 }
 
 /// @nodoc
@@ -1160,22 +1160,14 @@ class __$TemplateCopyWithImpl<$Res> extends _$TemplateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? height = freezed,
-    Object? id = freezed,
     Object? name = freezed,
     Object? url = freezed,
     Object? width = freezed,
     Object? box_count = freezed,
+    Object? height = freezed,
+    Object? id = freezed,
   }) {
     return _then(_Template(
-      height: height == freezed
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int?,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1192,6 +1184,14 @@ class __$TemplateCopyWithImpl<$Res> extends _$TemplateCopyWithImpl<$Res>
           ? _value.box_count
           : box_count // ignore: cast_nullable_to_non_nullable
               as int?,
+      height: height == freezed
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int?,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -1200,19 +1200,11 @@ class __$TemplateCopyWithImpl<$Res> extends _$TemplateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Template implements _Template {
   const _$_Template(
-      {this.height, this.id, this.name, this.url, this.width, this.box_count});
+      {this.name, this.url, this.width, this.box_count, this.height, this.id});
 
   factory _$_Template.fromJson(Map<String, dynamic> json) =>
       _$$_TemplateFromJson(json);
 
-  @override
-
-  /// height in pixels
-  final int? height;
-  @override
-
-  /// id of the memegen
-  final String? id;
   @override
 
   /// name of the memegen
@@ -1229,10 +1221,18 @@ class _$_Template implements _Template {
 
   /// number of boxes used
   final int? box_count;
+  @override
+
+  /// height in pixels
+  final int? height;
+  @override
+
+  /// id of the memegen
+  final String? id;
 
   @override
   String toString() {
-    return 'Template(height: $height, id: $id, name: $name, url: $url, width: $width, box_count: $box_count)';
+    return 'Template(name: $name, url: $url, width: $width, box_count: $box_count, height: $height, id: $id)';
   }
 
   @override
@@ -1240,23 +1240,23 @@ class _$_Template implements _Template {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Template &&
-            const DeepCollectionEquality().equals(other.height, height) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.url, url) &&
             const DeepCollectionEquality().equals(other.width, width) &&
-            const DeepCollectionEquality().equals(other.box_count, box_count));
+            const DeepCollectionEquality().equals(other.box_count, box_count) &&
+            const DeepCollectionEquality().equals(other.height, height) &&
+            const DeepCollectionEquality().equals(other.id, id));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(height),
-      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(url),
       const DeepCollectionEquality().hash(width),
-      const DeepCollectionEquality().hash(box_count));
+      const DeepCollectionEquality().hash(box_count),
+      const DeepCollectionEquality().hash(height),
+      const DeepCollectionEquality().hash(id));
 
   @JsonKey(ignore: true)
   @override
@@ -1271,23 +1271,15 @@ class _$_Template implements _Template {
 
 abstract class _Template implements Template {
   const factory _Template(
-      {int? height,
-      String? id,
-      String? name,
+      {String? name,
       String? url,
       int? width,
-      int? box_count}) = _$_Template;
+      int? box_count,
+      int? height,
+      String? id}) = _$_Template;
 
   factory _Template.fromJson(Map<String, dynamic> json) = _$_Template.fromJson;
 
-  @override
-
-  /// height in pixels
-  int? get height;
-  @override
-
-  /// id of the memegen
-  String? get id;
   @override
 
   /// name of the memegen
@@ -1304,6 +1296,14 @@ abstract class _Template implements Template {
 
   /// number of boxes used
   int? get box_count;
+  @override
+
+  /// height in pixels
+  int? get height;
+  @override
+
+  /// id of the memegen
+  String? get id;
   @override
   @JsonKey(ignore: true)
   _$TemplateCopyWith<_Template> get copyWith =>

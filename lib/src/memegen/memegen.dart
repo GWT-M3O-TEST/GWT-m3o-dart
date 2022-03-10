@@ -120,12 +120,6 @@ class GenerateResponse with _$GenerateResponse {
 @Freezed()
 class Template with _$Template {
   const factory Template({
-    /// height in pixels
-    int? height,
-
-    /// id of the memegen
-    String? id,
-
     /// name of the memegen
     String? name,
 
@@ -137,6 +131,12 @@ class Template with _$Template {
 
     /// number of boxes used
     int? box_count,
+
+    /// height in pixels
+    int? height,
+
+    /// id of the memegen
+    String? id,
   }) = _Template;
   factory Template.fromJson(Map<String, dynamic> json) =>
       _$TemplateFromJson(json);

@@ -250,6 +250,9 @@ class DeleteResponse with _$DeleteResponse {
 @Freezed()
 class DeployRequest with _$DeployRequest {
   const factory DeployRequest({
+    /// github url to repo
+    String? repo,
+
     /// runtime/lanaguage of the function e.g php74,
     /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
     /// dotnet3, java11, ruby26, ruby27, go111, go113, go116,
@@ -274,9 +277,6 @@ class DeployRequest with _$DeployRequest {
 
     /// region to deploy in. defaults to europe-west1
     String? region,
-
-    /// github url to repo
-    String? repo,
   }) = _DeployRequest;
   factory DeployRequest.fromJson(Map<String, dynamic> json) =>
       _$DeployRequestFromJson(json);
@@ -318,23 +318,18 @@ class DescribeResponse with _$DescribeResponse {
 @Freezed()
 class Func with _$Func {
   const factory Func({
-    /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
-    String? status,
-
-    /// subfolder path to entrypoint
-    String? subfolder,
-
-    /// time it was updated
-    String? updated,
-
-    /// branch to deploy. defaults to master
-    String? branch,
-
     /// name of handler in source code
     String? entrypoint,
 
+    /// associated env vars
+    Map<String, String>? env_vars,
+
     /// id of the function
     String? id,
+
+    /// function name
+    /// limitation: must be unique across projects
+    String? name,
 
     /// git repo address
     String? repo,
@@ -345,21 +340,26 @@ class Func with _$Func {
     /// python37, python38, python39
     String? runtime,
 
+    /// branch to deploy. defaults to master
+    String? branch,
+
     /// time of creation
     String? created,
 
-    /// associated env vars
-    Map<String, String>? env_vars,
+    /// unique url of the function
+    String? url,
 
-    /// function name
-    /// limitation: must be unique across projects
-    String? name,
+    /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
+    String? status,
+
+    /// subfolder path to entrypoint
+    String? subfolder,
 
     /// region to deploy in. defaults to europe-west1
     String? region,
 
-    /// unique url of the function
-    String? url,
+    /// time it was updated
+    String? updated,
   }) = _Func;
   factory Func.fromJson(Map<String, dynamic> json) => _$FuncFromJson(json);
 }
