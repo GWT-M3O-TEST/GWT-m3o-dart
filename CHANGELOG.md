@@ -1,3 +1,7 @@
+## v1.0.26 - 2022-03-10
+
+[6a24a5](https://github.com/micro/services/commit/6a24a5019255bc627a347ab90dbce675564565a2) add new step to trigger M3O scheduler (#401)
+
 ## v1.0.25 - 2022-03-10
 
 [6a24a5](https://github.com/micro/services/commit/6a24a5019255bc627a347ab90dbce675564565a2) add new step to trigger M3O scheduler (#401)
