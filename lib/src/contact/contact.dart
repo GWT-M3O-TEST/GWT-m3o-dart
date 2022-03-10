@@ -135,9 +135,6 @@ class Address with _$Address {
 @Freezed()
 class ContactInfo with _$ContactInfo {
   const factory ContactInfo({
-    /// note of the contact
-    String? note,
-
     /// the social media username
     SocialMedia? social_medias,
 
@@ -150,11 +147,11 @@ class ContactInfo with _$ContactInfo {
     /// the emails
     List<Email>? emails,
 
+    /// contact id
+    String? id,
+
     /// the contact name
     String? name,
-
-    /// the contact links
-    List<Link>? links,
 
     /// the phone numbers
     List<Phone>? phones,
@@ -165,8 +162,11 @@ class ContactInfo with _$ContactInfo {
     /// the birthday
     String? birthday,
 
-    /// contact id
-    String? id,
+    /// the contact links
+    List<Link>? links,
+
+    /// note of the contact
+    String? note,
   }) = _ContactInfo;
   factory ContactInfo.fromJson(Map<String, dynamic> json) =>
       _$ContactInfoFromJson(json);
@@ -175,9 +175,6 @@ class ContactInfo with _$ContactInfo {
 @Freezed()
 class CreateRequest with _$CreateRequest {
   const factory CreateRequest({
-    /// optional, location
-    List<Address>? addresses,
-
     /// optional, birthday
     String? birthday,
 
@@ -198,6 +195,9 @@ class CreateRequest with _$CreateRequest {
 
     /// optional, social media
     SocialMedia? social_medias,
+
+    /// optional, location
+    List<Address>? addresses,
   }) = _CreateRequest;
   factory CreateRequest.fromJson(Map<String, dynamic> json) =>
       _$CreateRequestFromJson(json);
@@ -260,11 +260,11 @@ class Link with _$Link {
 @Freezed()
 class ListRequest with _$ListRequest {
   const factory ListRequest({
-    /// optional
-    int? offset,
-
     /// optional, default is 30
     int? limit,
+
+    /// optional
+    int? offset,
   }) = _ListRequest;
   factory ListRequest.fromJson(Map<String, dynamic> json) =>
       _$ListRequestFromJson(json);
@@ -329,11 +329,17 @@ class SocialMedia with _$SocialMedia {
 @Freezed()
 class UpdateRequest with _$UpdateRequest {
   const factory UpdateRequest({
-    /// optional, birthday
-    String? birthday,
+    /// optional, note
+    String? note,
 
     /// optional, phone number
     List<Phone>? phones,
+
+    /// optional, social media
+    SocialMedia? social_medias,
+
+    /// optional, birthday
+    String? birthday,
 
     /// required, the contact id
     String? id,
@@ -343,12 +349,6 @@ class UpdateRequest with _$UpdateRequest {
 
     /// required, the name
     String? name,
-
-    /// optional, note
-    String? note,
-
-    /// optional, social media
-    SocialMedia? social_medias,
 
     /// optional, addresses
     List<Address>? addresses,
