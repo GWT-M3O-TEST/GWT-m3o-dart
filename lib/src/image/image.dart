@@ -192,8 +192,8 @@ class Point with _$Point {
 @Freezed()
 class Rectangle with _$Rectangle {
   const factory Rectangle({
-    Point? min,
     Point? max,
+    Point? min,
   }) = _Rectangle;
   factory Rectangle.fromJson(Map<String, dynamic> json) =>
       _$RectangleFromJson(json);
@@ -209,7 +209,7 @@ class ResizeRequest with _$ResizeRequest {
 
     /// The image file to resize
     String? file,
-    int? height,
+    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? height,
 
     /// output name of the image including extension, ie. "cat.png"
     String? name,
@@ -219,7 +219,7 @@ class ResizeRequest with _$ResizeRequest {
 
     /// url of the image to resize
     String? url,
-    int? width,
+    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? width,
 
     /// base64 encoded image to resize,
     String? base64,
@@ -243,6 +243,9 @@ class ResizeResponse with _$ResizeResponse {
 @Freezed()
 class UploadRequest with _$UploadRequest {
   const factory UploadRequest({
+    /// Output name of the image including extension, ie. "cat.png"
+    String? name,
+
     /// URL of the image to upload
     String? url,
 
@@ -251,9 +254,6 @@ class UploadRequest with _$UploadRequest {
 
     /// The image file to upload
     String? file,
-
-    /// Output name of the image including extension, ie. "cat.png"
-    String? name,
   }) = _UploadRequest;
   factory UploadRequest.fromJson(Map<String, dynamic> json) =>
       _$UploadRequestFromJson(json);

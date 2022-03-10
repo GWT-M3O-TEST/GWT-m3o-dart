@@ -80,9 +80,9 @@ class LocationService {
 @Freezed()
 class Entity with _$Entity {
   const factory Entity({
+    Point? location,
     String? type,
     String? id,
-    Point? location,
   }) = _Entity;
   factory Entity.fromJson(Map<String, dynamic> json) => _$EntityFromJson(json);
 }
@@ -92,7 +92,7 @@ class Point with _$Point {
   const factory Point({
     double? latitude,
     double? longitude,
-    int? timestamp,
+    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? timestamp,
   }) = _Point;
   factory Point.fromJson(Map<String, dynamic> json) => _$PointFromJson(json);
 }
@@ -143,7 +143,7 @@ class SearchRequest with _$SearchRequest {
     Point? center,
 
     /// Maximum number of entities to return
-    int? numEntities,
+    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? numEntities,
 
     /// radius in meters
     double? radius,

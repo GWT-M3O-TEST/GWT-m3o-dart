@@ -78,16 +78,16 @@ Map<String, dynamic> _$$_FeedToJson(_$_Feed instance) => <String, dynamic>{
 
 _$_FeedRequest _$$_FeedRequestFromJson(Map<String, dynamic> json) =>
     _$_FeedRequest(
+      limit: int64FromString(json['limit'] as String?),
       name: json['name'] as String?,
-      offset: json['offset'] as int?,
-      limit: json['limit'] as int?,
+      offset: int64FromString(json['offset'] as String?),
     );
 
 Map<String, dynamic> _$$_FeedRequestToJson(_$_FeedRequest instance) =>
     <String, dynamic>{
+      'limit': int64ToString(instance.limit),
       'name': instance.name,
-      'offset': instance.offset,
-      'limit': instance.limit,
+      'offset': int64ToString(instance.offset),
     };
 
 _$FeedResponseData _$$FeedResponseDataFromJson(Map<String, dynamic> json) =>
