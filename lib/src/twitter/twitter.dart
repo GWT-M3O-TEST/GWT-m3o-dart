@@ -101,35 +101,35 @@ class TwitterService {
 @Freezed()
 class Profile with _$Profile {
   const factory Profile({
+    /// the account creation date
+    String? created_at,
+
+    /// the user description
+    String? description,
+
     /// The user's profile picture
     String? image_url,
 
+    /// the user's location
+    String? location,
+
     /// display name of the user
     String? name,
+
+    /// the follower count
+    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? followers,
+
+    /// the user id
+    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? id,
+
+    /// if the account is private
+    bool? private,
 
     /// the username
     String? username,
 
     /// if the account is verified
     bool? verified,
-
-    /// the follower count
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? followers,
-
-    /// the user description
-    String? description,
-
-    /// the user id
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? id,
-
-    /// the user's location
-    String? location,
-
-    /// if the account is private
-    bool? private,
-
-    /// the account creation date
-    String? created_at,
   }) = _Profile;
   factory Profile.fromJson(Map<String, dynamic> json) =>
       _$ProfileFromJson(json);
@@ -223,6 +223,9 @@ class TrendsResponse with _$TrendsResponse {
 @Freezed()
 class Tweet with _$Tweet {
   const factory Tweet({
+    /// id of the tweet
+    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? id,
+
     /// number of times retweeted
     @JsonKey(fromJson: int64FromString, toJson: int64ToString)
         int? retweeted_count,
@@ -239,9 +242,6 @@ class Tweet with _$Tweet {
     /// number of times favourited
     @JsonKey(fromJson: int64FromString, toJson: int64ToString)
         int? favourited_count,
-
-    /// id of the tweet
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? id,
   }) = _Tweet;
   factory Tweet.fromJson(Map<String, dynamic> json) => _$TweetFromJson(json);
 }
@@ -259,11 +259,11 @@ class UserRequest with _$UserRequest {
 @Freezed()
 class UserResponse with _$UserResponse {
   const factory UserResponse({
-    /// The requested user profile
-    Profile? profile,
-
     /// the current user status
     Tweet? status,
+
+    /// The requested user profile
+    Profile? profile,
   }) = UserResponseData;
   const factory UserResponse.Merr({Map<String, dynamic>? body}) =
       UserResponseMerr;

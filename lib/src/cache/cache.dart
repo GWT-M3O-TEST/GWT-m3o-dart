@@ -143,11 +143,11 @@ class CacheService {
 @Freezed()
 class DecrementRequest with _$DecrementRequest {
   const factory DecrementRequest({
-    /// The amount to decrement the value by
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
-
     /// The key to decrement
     String? key,
+
+    /// The amount to decrement the value by
+    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
   }) = _DecrementRequest;
   factory DecrementRequest.fromJson(Map<String, dynamic> json) =>
       _$DecrementRequestFromJson(json);
@@ -156,11 +156,11 @@ class DecrementRequest with _$DecrementRequest {
 @Freezed()
 class DecrementResponse with _$DecrementResponse {
   const factory DecrementResponse({
-    /// The new value
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
-
     /// The key decremented
     String? key,
+
+    /// The new value
+    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
   }) = DecrementResponseData;
   const factory DecrementResponse.Merr({Map<String, dynamic>? body}) =
       DecrementResponseMerr;
@@ -234,11 +234,11 @@ class IncrementRequest with _$IncrementRequest {
 @Freezed()
 class IncrementResponse with _$IncrementResponse {
   const factory IncrementResponse({
-    /// The new value
-    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
-
     /// The key incremented
     String? key,
+
+    /// The new value
+    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
   }) = IncrementResponseData;
   const factory IncrementResponse.Merr({Map<String, dynamic>? body}) =
       IncrementResponseMerr;
@@ -267,14 +267,14 @@ class ListKeysResponse with _$ListKeysResponse {
 @Freezed()
 class SetRequest with _$SetRequest {
   const factory SetRequest({
-    /// The key to update
-    String? key,
-
     /// Time to live in seconds
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? ttl,
 
     /// The value to set
     String? value,
+
+    /// The key to update
+    String? key,
   }) = _SetRequest;
   factory SetRequest.fromJson(Map<String, dynamic> json) =>
       _$SetRequestFromJson(json);

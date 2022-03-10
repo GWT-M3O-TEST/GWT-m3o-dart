@@ -23,17 +23,17 @@ class _$ArticleTearOff {
   const _$ArticleTearOff();
 
   _Article call(
-      {String? title,
-      String? url,
-      String? date,
+      {String? date,
       String? description,
-      String? source}) {
+      String? source,
+      String? title,
+      String? url}) {
     return _Article(
-      title: title,
-      url: url,
       date: date,
       description: description,
       source: source,
+      title: title,
+      url: url,
     );
   }
 
@@ -47,12 +47,6 @@ const $Article = _$ArticleTearOff();
 
 /// @nodoc
 mixin _$Article {
-  /// title of the article
-  String? get title => throw _privateConstructorUsedError;
-
-  /// the source url
-  String? get url => throw _privateConstructorUsedError;
-
   /// the date published
   String? get date => throw _privateConstructorUsedError;
 
@@ -61,6 +55,12 @@ mixin _$Article {
 
   /// the source
   String? get source => throw _privateConstructorUsedError;
+
+  /// title of the article
+  String? get title => throw _privateConstructorUsedError;
+
+  /// the source url
+  String? get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -72,11 +72,11 @@ abstract class $ArticleCopyWith<$Res> {
   factory $ArticleCopyWith(Article value, $Res Function(Article) then) =
       _$ArticleCopyWithImpl<$Res>;
   $Res call(
-      {String? title,
-      String? url,
-      String? date,
+      {String? date,
       String? description,
-      String? source});
+      String? source,
+      String? title,
+      String? url});
 }
 
 /// @nodoc
@@ -89,21 +89,13 @@ class _$ArticleCopyWithImpl<$Res> implements $ArticleCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? title = freezed,
-    Object? url = freezed,
     Object? date = freezed,
     Object? description = freezed,
     Object? source = freezed,
+    Object? title = freezed,
+    Object? url = freezed,
   }) {
     return _then(_value.copyWith(
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -116,6 +108,14 @@ class _$ArticleCopyWithImpl<$Res> implements $ArticleCopyWith<$Res> {
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
               as String?,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -126,11 +126,11 @@ abstract class _$ArticleCopyWith<$Res> implements $ArticleCopyWith<$Res> {
       __$ArticleCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? title,
-      String? url,
-      String? date,
+      {String? date,
       String? description,
-      String? source});
+      String? source,
+      String? title,
+      String? url});
 }
 
 /// @nodoc
@@ -144,21 +144,13 @@ class __$ArticleCopyWithImpl<$Res> extends _$ArticleCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? title = freezed,
-    Object? url = freezed,
     Object? date = freezed,
     Object? description = freezed,
     Object? source = freezed,
+    Object? title = freezed,
+    Object? url = freezed,
   }) {
     return _then(_Article(
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -171,6 +163,14 @@ class __$ArticleCopyWithImpl<$Res> extends _$ArticleCopyWithImpl<$Res>
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
               as String?,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -179,19 +179,11 @@ class __$ArticleCopyWithImpl<$Res> extends _$ArticleCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Article implements _Article {
   const _$_Article(
-      {this.title, this.url, this.date, this.description, this.source});
+      {this.date, this.description, this.source, this.title, this.url});
 
   factory _$_Article.fromJson(Map<String, dynamic> json) =>
       _$$_ArticleFromJson(json);
 
-  @override
-
-  /// title of the article
-  final String? title;
-  @override
-
-  /// the source url
-  final String? url;
   @override
 
   /// the date published
@@ -204,10 +196,18 @@ class _$_Article implements _Article {
 
   /// the source
   final String? source;
+  @override
+
+  /// title of the article
+  final String? title;
+  @override
+
+  /// the source url
+  final String? url;
 
   @override
   String toString() {
-    return 'Article(title: $title, url: $url, date: $date, description: $description, source: $source)';
+    return 'Article(date: $date, description: $description, source: $source, title: $title, url: $url)';
   }
 
   @override
@@ -215,22 +215,22 @@ class _$_Article implements _Article {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Article &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.url, url) &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.source, source));
+            const DeepCollectionEquality().equals(other.source, source) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality().equals(other.url, url));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(url),
       const DeepCollectionEquality().hash(date),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(source));
+      const DeepCollectionEquality().hash(source),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(url));
 
   @JsonKey(ignore: true)
   @override
@@ -245,22 +245,14 @@ class _$_Article implements _Article {
 
 abstract class _Article implements Article {
   const factory _Article(
-      {String? title,
-      String? url,
-      String? date,
+      {String? date,
       String? description,
-      String? source}) = _$_Article;
+      String? source,
+      String? title,
+      String? url}) = _$_Article;
 
   factory _Article.fromJson(Map<String, dynamic> json) = _$_Article.fromJson;
 
-  @override
-
-  /// title of the article
-  String? get title;
-  @override
-
-  /// the source url
-  String? get url;
   @override
 
   /// the date published
@@ -273,6 +265,14 @@ abstract class _Article implements Article {
 
   /// the source
   String? get source;
+  @override
+
+  /// title of the article
+  String? get title;
+  @override
+
+  /// the source url
+  String? get url;
   @override
   @JsonKey(ignore: true)
   _$ArticleCopyWith<_Article> get copyWith =>
@@ -451,21 +451,21 @@ class _$HistoryResponseTearOff {
   const _$HistoryResponseTearOff();
 
   HistoryResponseData call(
-      {double? low,
-      double? open,
-      String? symbol,
+      {String? symbol,
       double? volume,
       double? close,
       String? date,
-      double? high}) {
+      double? high,
+      double? low,
+      double? open}) {
     return HistoryResponseData(
-      low: low,
-      open: open,
       symbol: symbol,
       volume: volume,
       close: close,
       date: date,
       high: high,
+      low: low,
+      open: open,
     );
   }
 
@@ -487,24 +487,24 @@ const $HistoryResponse = _$HistoryResponseTearOff();
 mixin _$HistoryResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(double? low, double? open, String? symbol, double? volume,
-            double? close, String? date, double? high)
+    TResult Function(String? symbol, double? volume, double? close,
+            String? date, double? high, double? low, double? open)
         $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(double? low, double? open, String? symbol, double? volume,
-            double? close, String? date, double? high)?
+    TResult Function(String? symbol, double? volume, double? close,
+            String? date, double? high, double? low, double? open)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(double? low, double? open, String? symbol, double? volume,
-            double? close, String? date, double? high)?
+    TResult Function(String? symbol, double? volume, double? close,
+            String? date, double? high, double? low, double? open)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
@@ -555,13 +555,13 @@ abstract class $HistoryResponseDataCopyWith<$Res> {
           HistoryResponseData value, $Res Function(HistoryResponseData) then) =
       _$HistoryResponseDataCopyWithImpl<$Res>;
   $Res call(
-      {double? low,
-      double? open,
-      String? symbol,
+      {String? symbol,
       double? volume,
       double? close,
       String? date,
-      double? high});
+      double? high,
+      double? low,
+      double? open});
 }
 
 /// @nodoc
@@ -577,23 +577,15 @@ class _$HistoryResponseDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? low = freezed,
-    Object? open = freezed,
     Object? symbol = freezed,
     Object? volume = freezed,
     Object? close = freezed,
     Object? date = freezed,
     Object? high = freezed,
+    Object? low = freezed,
+    Object? open = freezed,
   }) {
     return _then(HistoryResponseData(
-      low: low == freezed
-          ? _value.low
-          : low // ignore: cast_nullable_to_non_nullable
-              as double?,
-      open: open == freezed
-          ? _value.open
-          : open // ignore: cast_nullable_to_non_nullable
-              as double?,
       symbol: symbol == freezed
           ? _value.symbol
           : symbol // ignore: cast_nullable_to_non_nullable
@@ -614,6 +606,14 @@ class _$HistoryResponseDataCopyWithImpl<$Res>
           ? _value.high
           : high // ignore: cast_nullable_to_non_nullable
               as double?,
+      low: low == freezed
+          ? _value.low
+          : low // ignore: cast_nullable_to_non_nullable
+              as double?,
+      open: open == freezed
+          ? _value.open
+          : open // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -622,27 +622,19 @@ class _$HistoryResponseDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$HistoryResponseData implements HistoryResponseData {
   const _$HistoryResponseData(
-      {this.low,
-      this.open,
-      this.symbol,
+      {this.symbol,
       this.volume,
       this.close,
       this.date,
       this.high,
+      this.low,
+      this.open,
       String? $type})
       : $type = $type ?? 'default';
 
   factory _$HistoryResponseData.fromJson(Map<String, dynamic> json) =>
       _$$HistoryResponseDataFromJson(json);
 
-  @override
-
-  /// the low price
-  final double? low;
-  @override
-
-  /// the open price
-  final double? open;
   @override
 
   /// the crypto symbol
@@ -663,13 +655,21 @@ class _$HistoryResponseData implements HistoryResponseData {
 
   /// the peak price
   final double? high;
+  @override
+
+  /// the low price
+  final double? low;
+  @override
+
+  /// the open price
+  final double? open;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'HistoryResponse(low: $low, open: $open, symbol: $symbol, volume: $volume, close: $close, date: $date, high: $high)';
+    return 'HistoryResponse(symbol: $symbol, volume: $volume, close: $close, date: $date, high: $high, low: $low, open: $open)';
   }
 
   @override
@@ -677,25 +677,25 @@ class _$HistoryResponseData implements HistoryResponseData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is HistoryResponseData &&
-            const DeepCollectionEquality().equals(other.low, low) &&
-            const DeepCollectionEquality().equals(other.open, open) &&
             const DeepCollectionEquality().equals(other.symbol, symbol) &&
             const DeepCollectionEquality().equals(other.volume, volume) &&
             const DeepCollectionEquality().equals(other.close, close) &&
             const DeepCollectionEquality().equals(other.date, date) &&
-            const DeepCollectionEquality().equals(other.high, high));
+            const DeepCollectionEquality().equals(other.high, high) &&
+            const DeepCollectionEquality().equals(other.low, low) &&
+            const DeepCollectionEquality().equals(other.open, open));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(low),
-      const DeepCollectionEquality().hash(open),
       const DeepCollectionEquality().hash(symbol),
       const DeepCollectionEquality().hash(volume),
       const DeepCollectionEquality().hash(close),
       const DeepCollectionEquality().hash(date),
-      const DeepCollectionEquality().hash(high));
+      const DeepCollectionEquality().hash(high),
+      const DeepCollectionEquality().hash(low),
+      const DeepCollectionEquality().hash(open));
 
   @JsonKey(ignore: true)
   @override
@@ -705,36 +705,36 @@ class _$HistoryResponseData implements HistoryResponseData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(double? low, double? open, String? symbol, double? volume,
-            double? close, String? date, double? high)
+    TResult Function(String? symbol, double? volume, double? close,
+            String? date, double? high, double? low, double? open)
         $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
-    return $default(low, open, symbol, volume, close, date, high);
+    return $default(symbol, volume, close, date, high, low, open);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(double? low, double? open, String? symbol, double? volume,
-            double? close, String? date, double? high)?
+    TResult Function(String? symbol, double? volume, double? close,
+            String? date, double? high, double? low, double? open)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
-    return $default?.call(low, open, symbol, volume, close, date, high);
+    return $default?.call(symbol, volume, close, date, high, low, open);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(double? low, double? open, String? symbol, double? volume,
-            double? close, String? date, double? high)?
+    TResult Function(String? symbol, double? volume, double? close,
+            String? date, double? high, double? low, double? open)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(low, open, symbol, volume, close, date, high);
+      return $default(symbol, volume, close, date, high, low, open);
     }
     return orElse();
   }
@@ -778,22 +778,16 @@ class _$HistoryResponseData implements HistoryResponseData {
 
 abstract class HistoryResponseData implements HistoryResponse {
   const factory HistoryResponseData(
-      {double? low,
-      double? open,
-      String? symbol,
+      {String? symbol,
       double? volume,
       double? close,
       String? date,
-      double? high}) = _$HistoryResponseData;
+      double? high,
+      double? low,
+      double? open}) = _$HistoryResponseData;
 
   factory HistoryResponseData.fromJson(Map<String, dynamic> json) =
       _$HistoryResponseData.fromJson;
-
-  /// the low price
-  double? get low;
-
-  /// the open price
-  double? get open;
 
   /// the crypto symbol
   String? get symbol;
@@ -809,6 +803,12 @@ abstract class HistoryResponseData implements HistoryResponse {
 
   /// the peak price
   double? get high;
+
+  /// the low price
+  double? get low;
+
+  /// the open price
+  double? get open;
   @JsonKey(ignore: true)
   $HistoryResponseDataCopyWith<HistoryResponseData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -886,8 +886,8 @@ class _$HistoryResponseMerr implements HistoryResponseMerr {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(double? low, double? open, String? symbol, double? volume,
-            double? close, String? date, double? high)
+    TResult Function(String? symbol, double? volume, double? close,
+            String? date, double? high, double? low, double? open)
         $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
@@ -897,8 +897,8 @@ class _$HistoryResponseMerr implements HistoryResponseMerr {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(double? low, double? open, String? symbol, double? volume,
-            double? close, String? date, double? high)?
+    TResult Function(String? symbol, double? volume, double? close,
+            String? date, double? high, double? low, double? open)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
@@ -908,8 +908,8 @@ class _$HistoryResponseMerr implements HistoryResponseMerr {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(double? low, double? open, String? symbol, double? volume,
-            double? close, String? date, double? high)?
+    TResult Function(String? symbol, double? volume, double? close,
+            String? date, double? high, double? low, double? open)?
         $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),

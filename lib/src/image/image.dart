@@ -111,9 +111,6 @@ class ImageService {
 @Freezed()
 class ConvertRequest with _$ConvertRequest {
   const factory ConvertRequest({
-    /// base64 encoded image to resize,
-    String? base64,
-
     /// The image file to convert
     String? file,
 
@@ -125,6 +122,9 @@ class ConvertRequest with _$ConvertRequest {
 
     /// url of the image to resize
     String? url,
+
+    /// base64 encoded image to resize,
+    String? base64,
   }) = _ConvertRequest;
   factory ConvertRequest.fromJson(Map<String, dynamic> json) =>
       _$ConvertRequestFromJson(json);
@@ -145,17 +145,17 @@ class ConvertResponse with _$ConvertResponse {
 @Freezed()
 class CropOptions with _$CropOptions {
   const factory CropOptions({
-    /// height to crop to
-    int? height,
-
-    /// width to crop to
-    int? width,
-
     /// Crop anchor point: "top", "top left", "top right",
     /// "left", "center", "right"
     /// "bottom left", "bottom", "bottom right".
     /// Optional. Defaults to center.
     String? anchor,
+
+    /// height to crop to
+    int? height,
+
+    /// width to crop to
+    int? width,
   }) = _CropOptions;
   factory CropOptions.fromJson(Map<String, dynamic> json) =>
       _$CropOptionsFromJson(json);
