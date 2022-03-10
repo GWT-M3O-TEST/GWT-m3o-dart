@@ -75,9 +75,6 @@ class AutocompleteResponse with _$AutocompleteResponse {
 @Freezed()
 class NearbyRequest with _$NearbyRequest {
   const factory NearbyRequest({
-    /// Keyword to include in the search
-    String? keyword,
-
     /// specify the location by lat,lng e.g -33.8670522,-151.1957362
     String? location,
 
@@ -92,6 +89,9 @@ class NearbyRequest with _$NearbyRequest {
 
     /// Type of place. https://developers.google.com/maps/documentation/places/web-service/supported_types
     String? type,
+
+    /// Keyword to include in the search
+    String? keyword,
   }) = _NearbyRequest;
   factory NearbyRequest.fromJson(Map<String, dynamic> json) =>
       _$NearbyRequestFromJson(json);
@@ -111,14 +111,11 @@ class NearbyResponse with _$NearbyResponse {
 @Freezed()
 class Result with _$Result {
   const factory Result({
-    /// open now
-    bool? open_now,
+    /// address of place
+    String? address,
 
-    /// opening hours
-    String? opening_hours,
-
-    /// rating from 1.0 to 5.0
-    double? rating,
+    /// url of an icon
+    String? icon_url,
 
     /// type of location
     String? type,
@@ -129,17 +126,20 @@ class Result with _$Result {
     /// simplified address
     String? vicinity,
 
-    /// address of place
-    String? address,
-
     /// lat/lng of place
     String? location,
 
     /// name of the place
     String? name,
 
-    /// url of an icon
-    String? icon_url,
+    /// open now
+    bool? open_now,
+
+    /// opening hours
+    String? opening_hours,
+
+    /// rating from 1.0 to 5.0
+    double? rating,
   }) = _Result;
   factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
 }
