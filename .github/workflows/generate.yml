@@ -145,8 +145,7 @@ jobs:
           destination_branch: ${{ steps.extract_branch.outputs.branch }}
           destination_folder: 'lib/'
           git_server: 'github.com'
-          user_email:  'danieljoudat@gmail.com'
-          user_name: 'lambdaR'
+          user_name: $API_TOKEN_GITHUB
           use_rsync: true
           commit_message: 'Commit from GWT-M3O-TEST/GWT-m3o action'
 
@@ -161,8 +160,7 @@ jobs:
           destination_branch: ${{ steps.extract_branch.outputs.branch }}
           destination_folder: 'example/'
           git_server: 'github.com'
-          user_email:  'danieljoudat@gmail.com'
-          user_name: 'lambdaR'
+          user_name: $API_TOKEN_GITHUB
           use_rsync: true
           commit_message: 'Commit from GWT-M3O-TEST/GWT-m3o action'
 
@@ -176,8 +174,7 @@ jobs:
           destination_repo: 'GWT-M3O-TEST/GWT-m3o-dart'
           destination_branch: ${{ steps.extract_branch.outputs.branch }}
           git_server: 'github.com'
-          user_email:  'danieljoudat@gmail.com'
-          user_name: 'lambdaR'
+          user_name: $API_TOKEN_GITHUB
           use_rsync: true
           commit_message: 'Commit from GWT-M3O-TEST/GWT-m3o action'
 
