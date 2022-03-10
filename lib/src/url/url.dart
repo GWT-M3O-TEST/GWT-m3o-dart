@@ -145,14 +145,14 @@ class ShortenResponse with _$ShortenResponse {
 @Freezed()
 class URLPair with _$URLPair {
   const factory URLPair({
-    /// time of creation
-    String? created,
-
     /// destination url
     String? destinationURL,
 
     /// shortened url
     String? shortURL,
+
+    /// time of creation
+    String? created,
   }) = _URLPair;
   factory URLPair.fromJson(Map<String, dynamic> json) =>
       _$URLPairFromJson(json);

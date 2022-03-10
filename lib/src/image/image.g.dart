@@ -155,16 +155,16 @@ Map<String, dynamic> _$$_ResizeRequestToJson(_$_ResizeRequest instance) =>
 
 _$ResizeResponseData _$$ResizeResponseDataFromJson(Map<String, dynamic> json) =>
     _$ResizeResponseData(
-      url: json['url'] as String?,
       base64: json['base64'] as String?,
+      url: json['url'] as String?,
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$ResizeResponseDataToJson(
         _$ResizeResponseData instance) =>
     <String, dynamic>{
-      'url': instance.url,
       'base64': instance.base64,
+      'url': instance.url,
       'runtimeType': instance.$type,
     };
 
