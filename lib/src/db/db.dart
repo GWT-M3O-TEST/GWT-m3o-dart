@@ -315,16 +315,6 @@ class ListTablesResponse with _$ListTablesResponse {
 @Freezed()
 class ReadRequest with _$ReadRequest {
   const factory ReadRequest({
-    /// field name to order by
-    String? orderBy,
-
-    /// Examples: 'age >= 18', 'age >= 18 and verified == true'
-    /// Comparison operators: '==', '!=', '<', '>', '<=', '>='
-    /// Logical operator: 'and'
-    /// Dot access is supported, eg: 'user.age == 11'
-    /// Accessing list elements is not supported yet.
-    String? query,
-
     /// Optional table name. Defaults to 'default'
     String? table,
 
@@ -338,6 +328,16 @@ class ReadRequest with _$ReadRequest {
 
     /// 'asc' (default), 'desc'
     String? order,
+
+    /// field name to order by
+    String? orderBy,
+
+    /// Examples: 'age >= 18', 'age >= 18 and verified == true'
+    /// Comparison operators: '==', '!=', '<', '>', '<=', '>='
+    /// Logical operator: 'and'
+    /// Dot access is supported, eg: 'user.age == 11'
+    /// Accessing list elements is not supported yet.
+    String? query,
   }) = _ReadRequest;
   factory ReadRequest.fromJson(Map<String, dynamic> json) =>
       _$ReadRequestFromJson(json);
@@ -358,11 +358,11 @@ class ReadResponse with _$ReadResponse {
 @Freezed()
 class RenameTableRequest with _$RenameTableRequest {
   const factory RenameTableRequest({
-    /// current table name
-    String? from,
-
     /// new table name
     String? to,
+
+    /// current table name
+    String? from,
   }) = _RenameTableRequest;
   factory RenameTableRequest.fromJson(Map<String, dynamic> json) =>
       _$RenameTableRequestFromJson(json);

@@ -122,11 +122,11 @@ class ContactService {
 @Freezed()
 class Address with _$Address {
   const factory Address({
-    /// the label of the address
-    String? label,
-
     /// the address location
     String? location,
+
+    /// the label of the address
+    String? label,
   }) = _Address;
   factory Address.fromJson(Map<String, dynamic> json) =>
       _$AddressFromJson(json);
@@ -138,14 +138,20 @@ class ContactInfo with _$ContactInfo {
     /// the address
     List<Address>? addresses,
 
-    /// the birthday
-    String? birthday,
-
     /// create date string in RFC3339
     String? created_at,
 
     /// the emails
     List<Email>? emails,
+
+    /// note of the contact
+    String? note,
+
+    /// the social media username
+    SocialMedia? social_medias,
+
+    /// the birthday
+    String? birthday,
 
     /// contact id
     String? id,
@@ -156,14 +162,8 @@ class ContactInfo with _$ContactInfo {
     /// the contact name
     String? name,
 
-    /// note of the contact
-    String? note,
-
     /// the phone numbers
     List<Phone>? phones,
-
-    /// the social media username
-    SocialMedia? social_medias,
 
     /// update date string in RFC3339
     String? updated_at,
@@ -175,9 +175,6 @@ class ContactInfo with _$ContactInfo {
 @Freezed()
 class CreateRequest with _$CreateRequest {
   const factory CreateRequest({
-    /// optional, social media
-    SocialMedia? social_medias,
-
     /// optional, location
     List<Address>? addresses,
 
@@ -198,6 +195,9 @@ class CreateRequest with _$CreateRequest {
 
     /// optional, phone numbers
     List<Phone>? phones,
+
+    /// optional, social media
+    SocialMedia? social_medias,
   }) = _CreateRequest;
   factory CreateRequest.fromJson(Map<String, dynamic> json) =>
       _$CreateRequestFromJson(json);
@@ -260,11 +260,11 @@ class Link with _$Link {
 @Freezed()
 class ListRequest with _$ListRequest {
   const factory ListRequest({
-    /// optional, default is 30
-    int? limit,
-
     /// optional
     int? offset,
+
+    /// optional, default is 30
+    int? limit,
   }) = _ListRequest;
   factory ListRequest.fromJson(Map<String, dynamic> json) =>
       _$ListRequestFromJson(json);
@@ -329,14 +329,14 @@ class SocialMedia with _$SocialMedia {
 @Freezed()
 class UpdateRequest with _$UpdateRequest {
   const factory UpdateRequest({
-    /// optional, links
-    List<Link>? links,
-
-    /// optional, note
-    String? note,
+    /// optional, social media
+    SocialMedia? social_medias,
 
     /// optional, addresses
     List<Address>? addresses,
+
+    /// optional, birthday
+    String? birthday,
 
     /// optional, emails
     List<Email>? emails,
@@ -344,17 +344,17 @@ class UpdateRequest with _$UpdateRequest {
     /// required, the name
     String? name,
 
+    /// optional, note
+    String? note,
+
     /// optional, phone number
     List<Phone>? phones,
 
-    /// optional, social media
-    SocialMedia? social_medias,
-
-    /// optional, birthday
-    String? birthday,
-
     /// required, the contact id
     String? id,
+
+    /// optional, links
+    List<Link>? links,
   }) = _UpdateRequest;
   factory UpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$UpdateRequestFromJson(json);

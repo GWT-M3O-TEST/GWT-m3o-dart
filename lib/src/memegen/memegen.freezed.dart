@@ -23,21 +23,21 @@ class _$BoxTearOff {
   const _$BoxTearOff();
 
   _Box call(
-      {int? width,
-      int? x,
-      int? y,
+      {int? y,
       String? color,
       int? height,
       String? outline,
-      String? text}) {
+      String? text,
+      int? width,
+      int? x}) {
     return _Box(
-      width: width,
-      x: x,
       y: y,
       color: color,
       height: height,
       outline: outline,
       text: text,
+      width: width,
+      x: x,
     );
   }
 
@@ -51,12 +51,6 @@ const $Box = _$BoxTearOff();
 
 /// @nodoc
 mixin _$Box {
-  /// width in pixels
-  int? get width => throw _privateConstructorUsedError;
-
-  /// x axis position
-  int? get x => throw _privateConstructorUsedError;
-
   /// y axis position
   int? get y => throw _privateConstructorUsedError;
 
@@ -72,6 +66,12 @@ mixin _$Box {
   /// text to display
   String? get text => throw _privateConstructorUsedError;
 
+  /// width in pixels
+  int? get width => throw _privateConstructorUsedError;
+
+  /// x axis position
+  int? get x => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $BoxCopyWith<Box> get copyWith => throw _privateConstructorUsedError;
@@ -82,13 +82,13 @@ abstract class $BoxCopyWith<$Res> {
   factory $BoxCopyWith(Box value, $Res Function(Box) then) =
       _$BoxCopyWithImpl<$Res>;
   $Res call(
-      {int? width,
-      int? x,
-      int? y,
+      {int? y,
       String? color,
       int? height,
       String? outline,
-      String? text});
+      String? text,
+      int? width,
+      int? x});
 }
 
 /// @nodoc
@@ -101,23 +101,15 @@ class _$BoxCopyWithImpl<$Res> implements $BoxCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? width = freezed,
-    Object? x = freezed,
     Object? y = freezed,
     Object? color = freezed,
     Object? height = freezed,
     Object? outline = freezed,
     Object? text = freezed,
+    Object? width = freezed,
+    Object? x = freezed,
   }) {
     return _then(_value.copyWith(
-      width: width == freezed
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int?,
-      x: x == freezed
-          ? _value.x
-          : x // ignore: cast_nullable_to_non_nullable
-              as int?,
       y: y == freezed
           ? _value.y
           : y // ignore: cast_nullable_to_non_nullable
@@ -138,6 +130,14 @@ class _$BoxCopyWithImpl<$Res> implements $BoxCopyWith<$Res> {
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
+      width: width == freezed
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as int?,
+      x: x == freezed
+          ? _value.x
+          : x // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -148,13 +148,13 @@ abstract class _$BoxCopyWith<$Res> implements $BoxCopyWith<$Res> {
       __$BoxCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int? width,
-      int? x,
-      int? y,
+      {int? y,
       String? color,
       int? height,
       String? outline,
-      String? text});
+      String? text,
+      int? width,
+      int? x});
 }
 
 /// @nodoc
@@ -168,23 +168,15 @@ class __$BoxCopyWithImpl<$Res> extends _$BoxCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? width = freezed,
-    Object? x = freezed,
     Object? y = freezed,
     Object? color = freezed,
     Object? height = freezed,
     Object? outline = freezed,
     Object? text = freezed,
+    Object? width = freezed,
+    Object? x = freezed,
   }) {
     return _then(_Box(
-      width: width == freezed
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int?,
-      x: x == freezed
-          ? _value.x
-          : x // ignore: cast_nullable_to_non_nullable
-              as int?,
       y: y == freezed
           ? _value.y
           : y // ignore: cast_nullable_to_non_nullable
@@ -205,6 +197,14 @@ class __$BoxCopyWithImpl<$Res> extends _$BoxCopyWithImpl<$Res>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
+      width: width == freezed
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as int?,
+      x: x == freezed
+          ? _value.x
+          : x // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -213,24 +213,16 @@ class __$BoxCopyWithImpl<$Res> extends _$BoxCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Box implements _Box {
   const _$_Box(
-      {this.width,
-      this.x,
-      this.y,
+      {this.y,
       this.color,
       this.height,
       this.outline,
-      this.text});
+      this.text,
+      this.width,
+      this.x});
 
   factory _$_Box.fromJson(Map<String, dynamic> json) => _$$_BoxFromJson(json);
 
-  @override
-
-  /// width in pixels
-  final int? width;
-  @override
-
-  /// x axis position
-  final int? x;
   @override
 
   /// y axis position
@@ -251,10 +243,18 @@ class _$_Box implements _Box {
 
   /// text to display
   final String? text;
+  @override
+
+  /// width in pixels
+  final int? width;
+  @override
+
+  /// x axis position
+  final int? x;
 
   @override
   String toString() {
-    return 'Box(width: $width, x: $x, y: $y, color: $color, height: $height, outline: $outline, text: $text)';
+    return 'Box(y: $y, color: $color, height: $height, outline: $outline, text: $text, width: $width, x: $x)';
   }
 
   @override
@@ -262,25 +262,25 @@ class _$_Box implements _Box {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Box &&
-            const DeepCollectionEquality().equals(other.width, width) &&
-            const DeepCollectionEquality().equals(other.x, x) &&
             const DeepCollectionEquality().equals(other.y, y) &&
             const DeepCollectionEquality().equals(other.color, color) &&
             const DeepCollectionEquality().equals(other.height, height) &&
             const DeepCollectionEquality().equals(other.outline, outline) &&
-            const DeepCollectionEquality().equals(other.text, text));
+            const DeepCollectionEquality().equals(other.text, text) &&
+            const DeepCollectionEquality().equals(other.width, width) &&
+            const DeepCollectionEquality().equals(other.x, x));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(width),
-      const DeepCollectionEquality().hash(x),
       const DeepCollectionEquality().hash(y),
       const DeepCollectionEquality().hash(color),
       const DeepCollectionEquality().hash(height),
       const DeepCollectionEquality().hash(outline),
-      const DeepCollectionEquality().hash(text));
+      const DeepCollectionEquality().hash(text),
+      const DeepCollectionEquality().hash(width),
+      const DeepCollectionEquality().hash(x));
 
   @JsonKey(ignore: true)
   @override
@@ -295,24 +295,16 @@ class _$_Box implements _Box {
 
 abstract class _Box implements Box {
   const factory _Box(
-      {int? width,
-      int? x,
-      int? y,
+      {int? y,
       String? color,
       int? height,
       String? outline,
-      String? text}) = _$_Box;
+      String? text,
+      int? width,
+      int? x}) = _$_Box;
 
   factory _Box.fromJson(Map<String, dynamic> json) = _$_Box.fromJson;
 
-  @override
-
-  /// width in pixels
-  int? get width;
-  @override
-
-  /// x axis position
-  int? get x;
   @override
 
   /// y axis position
@@ -333,6 +325,14 @@ abstract class _Box implements Box {
 
   /// text to display
   String? get text;
+  @override
+
+  /// width in pixels
+  int? get width;
+  @override
+
+  /// x axis position
+  int? get x;
   @override
   @JsonKey(ignore: true)
   _$BoxCopyWith<_Box> get copyWith => throw _privateConstructorUsedError;
