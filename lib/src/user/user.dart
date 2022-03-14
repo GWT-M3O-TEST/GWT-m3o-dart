@@ -346,6 +346,9 @@ class UserService {
 @Freezed()
 class Account with _$Account {
   const factory Account({
+    /// if the account is verified
+    bool? verified,
+
     /// unix timestamp
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? created,
 
@@ -367,9 +370,6 @@ class Account with _$Account {
     /// date of verification
     @JsonKey(fromJson: int64FromString, toJson: int64ToString)
         int? verification_date,
-
-    /// if the account is verified
-    bool? verified,
   }) = _Account;
   factory Account.fromJson(Map<String, dynamic> json) =>
       _$AccountFromJson(json);
@@ -378,6 +378,12 @@ class Account with _$Account {
 @Freezed()
 class CreateRequest with _$CreateRequest {
   const factory CreateRequest({
+    /// optional user profile as map<string,string>
+    Map<String, String>? profile,
+
+    /// the username
+    String? username,
+
     /// the email address
     String? email,
 
@@ -386,12 +392,6 @@ class CreateRequest with _$CreateRequest {
 
     /// the user password
     String? password,
-
-    /// optional user profile as map<string,string>
-    Map<String, String>? profile,
-
-    /// the username
-    String? username,
   }) = _CreateRequest;
   factory CreateRequest.fromJson(Map<String, dynamic> json) =>
       _$CreateRequestFromJson(json);
@@ -577,6 +577,11 @@ class ResetPasswordResponse with _$ResetPasswordResponse {
 @Freezed()
 class SendMagicLinkRequest with _$SendMagicLinkRequest {
   const factory SendMagicLinkRequest({
+    /// Endpoint name where your http request handler handles MagicLink by
+    /// calling M3O VerifyToken endpoint. You can return as a result a success,
+    /// failed or redirect to another page.
+    String? endpoint,
+
     /// Display name of the sender for the email. Note: the email address will still be 'support@m3o.com'
     String? from_name,
     String? subject,
@@ -590,11 +595,6 @@ class SendMagicLinkRequest with _$SendMagicLinkRequest {
 
     /// the email address of the user
     String? email,
-
-    /// Endpoint name where your http request handler handles MagicLink by
-    /// calling M3O VerifyToken endpoint. You can return as a result a success,
-    /// failed or redirect to another page.
-    String? endpoint,
   }) = _SendMagicLinkRequest;
   factory SendMagicLinkRequest.fromJson(Map<String, dynamic> json) =>
       _$SendMagicLinkRequestFromJson(json);
@@ -645,6 +645,12 @@ class SendPasswordResetEmailResponse with _$SendPasswordResetEmailResponse {
 @Freezed()
 class SendVerificationEmailRequest with _$SendVerificationEmailRequest {
   const factory SendVerificationEmailRequest({
+    /// The url to redirect to incase of failure
+    String? failure_redirect_url,
+
+    /// Display name of the sender for the email. Note: the email address will still be 'noreply@email.m3ocontent.com'
+    String? from_name,
+
     /// The url to redirect to after successful verification
     String? redirect_url,
 
@@ -657,12 +663,6 @@ class SendVerificationEmailRequest with _$SendVerificationEmailRequest {
 
     /// email address to send the verification code
     String? email,
-
-    /// The url to redirect to incase of failure
-    String? failure_redirect_url,
-
-    /// Display name of the sender for the email. Note: the email address will still be 'noreply@email.m3ocontent.com'
-    String? from_name,
   }) = _SendVerificationEmailRequest;
   factory SendVerificationEmailRequest.fromJson(Map<String, dynamic> json) =>
       _$SendVerificationEmailRequestFromJson(json);
@@ -700,9 +700,6 @@ class Session with _$Session {
 @Freezed()
 class UpdatePasswordRequest with _$UpdatePasswordRequest {
   const factory UpdatePasswordRequest({
-    /// the new password
-    String? new_password,
-
     /// the old password
     String? old_password,
 
@@ -711,6 +708,9 @@ class UpdatePasswordRequest with _$UpdatePasswordRequest {
 
     /// confirm new password
     String? confirm_password,
+
+    /// the new password
+    String? new_password,
   }) = _UpdatePasswordRequest;
   factory UpdatePasswordRequest.fromJson(Map<String, dynamic> json) =>
       _$UpdatePasswordRequestFromJson(json);
