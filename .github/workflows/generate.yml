@@ -31,10 +31,10 @@ jobs:
           path: m3o
           ref: ${{ github.ref }}
 
-      - name: Check GWT-services repo
+      - name: Check micro/services repo
         uses: actions/checkout@v2
         with:
-          repository: 'GWT-M3O-TEST/GWT-services'
+          repository: 'micro/services'
           path: services
 
       - name: Check micro repo
