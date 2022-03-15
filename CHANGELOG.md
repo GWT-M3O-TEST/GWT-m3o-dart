@@ -1,3 +1,9 @@
+## v1.0.34 - 2022-03-15
+
+[bf7377](https://github.com/micro/services/commit/bf737772072bbbae7c6494d7d60e038126b697a5) remove newlines
+
+**Full Changelog**: https://github.com/GWT-M3O-TEST/GWT-m3o-dart/compare/v1.0.33...v1.0.34
+
 ## v1.0.33 - 2022-03-14
 
 [4f9c73](https://github.com/micro/services/commit/4f9c731b6cd16b504d6dc6aa2d5ff304e431633a) update readme
