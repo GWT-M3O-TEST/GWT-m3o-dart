@@ -140,7 +140,7 @@ void main() async {
 ```
 ## Asset
 
-
+Get a single asset by the contract
 
 
 [https://m3o.com/nft/api#Asset](https://m3o.com/nft/api#Asset)
@@ -185,7 +185,7 @@ void main() async {
 ```
 ## Collection
 
-
+Get a collection by its slug
 
 
 [https://m3o.com/nft/api#Collection](https://m3o.com/nft/api#Collection)
