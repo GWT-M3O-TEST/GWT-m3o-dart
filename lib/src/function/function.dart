@@ -181,6 +181,27 @@ class FunctionService {
     }
   }
 
+  /// Return a list of supported runtimes
+  Future<RuntimesResponse> runtimes(RuntimesRequest req) async {
+    Request request = Request(
+      service: 'function',
+      endpoint: 'Runtimes',
+      body: req.toJson(),
+    );
+
+    try {
+      Response res = await _client.call(request);
+      if (isError(res.body)) {
+        final err = Merr(res.toJson());
+        return RuntimesResponse.Merr(body: err.b);
+      }
+      return RuntimesResponseData.fromJson(res.body);
+    } catch (e, stack) {
+      print(stack);
+      throw Exception(e);
+    }
+  }
+
   /// Update a function. Downloads the source, builds and redeploys
   Future<UpdateResponse> update(UpdateRequest req) async {
     Request request = Request(
@@ -250,21 +271,11 @@ class DeleteResponse with _$DeleteResponse {
 @Freezed()
 class DeployRequest with _$DeployRequest {
   const factory DeployRequest({
-    /// entry point, ie. handler name in the source code
-    /// if not provided, defaults to the name parameter
-    String? entrypoint,
-
-    /// environment variables to pass in at runtime
-    Map<String, String>? env_vars,
-
-    /// function name
-    String? name,
+    /// branch to deploy. defaults to master
+    String? branch,
 
     /// region to deploy in. defaults to europe-west1
     String? region,
-
-    /// github url to repo
-    String? repo,
 
     /// runtime/lanaguage of the function e.g php74,
     /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
@@ -275,8 +286,21 @@ class DeployRequest with _$DeployRequest {
     /// optional subfolder path
     String? subfolder,
 
-    /// branch to deploy. defaults to master
-    String? branch,
+    /// entry point, ie. handler name in the source code
+    /// if not provided, defaults to the name parameter
+    String? entrypoint,
+
+    /// environment variables to pass in at runtime
+    Map<String, String>? env_vars,
+
+    /// function name
+    String? name,
+
+    /// github url for a repo
+    String? repo,
+
+    /// inline source code
+    String? source,
   }) = _DeployRequest;
   factory DeployRequest.fromJson(Map<String, dynamic> json) =>
       _$DeployRequestFromJson(json);
@@ -318,23 +342,27 @@ class DescribeResponse with _$DescribeResponse {
 @Freezed()
 class Func with _$Func {
   const factory Func({
-    /// subfolder path to entrypoint
-    String? subfolder,
+    /// associated env vars
+    Map<String, String>? env_vars,
 
-    /// time it was updated
-    String? updated,
+    /// git repo address
+    String? repo,
 
     /// branch to deploy. defaults to master
     String? branch,
 
-    /// id of the function
-    String? id,
+    /// function name
+    /// limitation: must be unique across projects
+    String? name,
 
-    /// region to deploy in. defaults to europe-west1
-    String? region,
+    /// the source code
+    String? source,
 
-    /// git repo address
-    String? repo,
+    /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
+    String? status,
+
+    /// subfolder path to entrypoint
+    String? subfolder,
 
     /// runtime/language of the function e.g php74,
     /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
@@ -342,8 +370,8 @@ class Func with _$Func {
     /// python37, python38, python39
     String? runtime,
 
-    /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
-    String? status,
+    /// unique url of the function
+    String? url,
 
     /// time of creation
     String? created,
@@ -351,15 +379,14 @@ class Func with _$Func {
     /// name of handler in source code
     String? entrypoint,
 
-    /// associated env vars
-    Map<String, String>? env_vars,
+    /// id of the function
+    String? id,
 
-    /// function name
-    /// limitation: must be unique across projects
-    String? name,
+    /// region to deploy in. defaults to europe-west1
+    String? region,
 
-    /// unique url of the function
-    String? url,
+    /// time it was updated
+    String? updated,
   }) = _Func;
   factory Func.fromJson(Map<String, dynamic> json) => _$FuncFromJson(json);
 }
@@ -426,9 +453,6 @@ class RegionsResponse with _$RegionsResponse {
 @Freezed()
 class Reservation with _$Reservation {
   const factory Reservation({
-    /// time of reservation
-    String? created,
-
     /// time reservation expires
     String? expires,
 
@@ -440,6 +464,9 @@ class Reservation with _$Reservation {
 
     /// associated token
     String? token,
+
+    /// time of reservation
+    String? created,
   }) = _Reservation;
   factory Reservation.fromJson(Map<String, dynamic> json) =>
       _$ReservationFromJson(json);
@@ -468,10 +495,31 @@ class ReserveResponse with _$ReserveResponse {
 }
 
 @Freezed()
+class RuntimesRequest with _$RuntimesRequest {
+  const factory RuntimesRequest() = _RuntimesRequest;
+  factory RuntimesRequest.fromJson(Map<String, dynamic> json) =>
+      _$RuntimesRequestFromJson(json);
+}
+
+@Freezed()
+class RuntimesResponse with _$RuntimesResponse {
+  const factory RuntimesResponse({
+    List<String>? runtimes,
+  }) = RuntimesResponseData;
+  const factory RuntimesResponse.Merr({Map<String, dynamic>? body}) =
+      RuntimesResponseMerr;
+  factory RuntimesResponse.fromJson(Map<String, dynamic> json) =>
+      _$RuntimesResponseFromJson(json);
+}
+
+@Freezed()
 class UpdateRequest with _$UpdateRequest {
   const factory UpdateRequest({
     /// function name
     String? name,
+
+    /// inline source code
+    String? source,
   }) = _UpdateRequest;
   factory UpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$UpdateRequestFromJson(json);

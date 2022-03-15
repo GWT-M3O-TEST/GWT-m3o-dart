@@ -98,6 +98,27 @@ class UserService {
     }
   }
 
+  /// Logout of all user's sessions
+  Future<LogoutAllResponse> logoutAll(LogoutAllRequest req) async {
+    Request request = Request(
+      service: 'user',
+      endpoint: 'LogoutAll',
+      body: req.toJson(),
+    );
+
+    try {
+      Response res = await _client.call(request);
+      if (isError(res.body)) {
+        final err = Merr(res.toJson());
+        return LogoutAllResponse.Merr(body: err.b);
+      }
+      return LogoutAllResponseData.fromJson(res.body);
+    } catch (e, stack) {
+      print(stack);
+      throw Exception(e);
+    }
+  }
+
   /// Logout a user account
   Future<LogoutResponse> logout(LogoutRequest req) async {
     Request request = Request(
@@ -346,9 +367,6 @@ class UserService {
 @Freezed()
 class Account with _$Account {
   const factory Account({
-    /// if the account is verified
-    bool? verified,
-
     /// unix timestamp
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? created,
 
@@ -370,6 +388,9 @@ class Account with _$Account {
     /// date of verification
     @JsonKey(fromJson: int64FromString, toJson: int64ToString)
         int? verification_date,
+
+    /// if the account is verified
+    bool? verified,
   }) = _Account;
   factory Account.fromJson(Map<String, dynamic> json) =>
       _$AccountFromJson(json);
@@ -378,12 +399,6 @@ class Account with _$Account {
 @Freezed()
 class CreateRequest with _$CreateRequest {
   const factory CreateRequest({
-    /// optional user profile as map<string,string>
-    Map<String, String>? profile,
-
-    /// the username
-    String? username,
-
     /// the email address
     String? email,
 
@@ -392,6 +407,12 @@ class CreateRequest with _$CreateRequest {
 
     /// the user password
     String? password,
+
+    /// optional user profile as map<string,string>
+    Map<String, String>? profile,
+
+    /// the username
+    String? username,
   }) = _CreateRequest;
   factory CreateRequest.fromJson(Map<String, dynamic> json) =>
       _$CreateRequestFromJson(json);
@@ -453,14 +474,14 @@ class ListResponse with _$ListResponse {
 @Freezed()
 class LoginRequest with _$LoginRequest {
   const factory LoginRequest({
-    /// The email address of the user
-    String? email,
-
     /// The password of the user
     String? password,
 
     /// The username of the user
     String? username,
+
+    /// The email address of the user
+    String? email,
   }) = _LoginRequest;
   factory LoginRequest.fromJson(Map<String, dynamic> json) =>
       _$LoginRequestFromJson(json);
@@ -476,6 +497,25 @@ class LoginResponse with _$LoginResponse {
       LoginResponseMerr;
   factory LoginResponse.fromJson(Map<String, dynamic> json) =>
       _$LoginResponseFromJson(json);
+}
+
+@Freezed()
+class LogoutAllRequest with _$LogoutAllRequest {
+  const factory LogoutAllRequest({
+    /// the user to logout
+    String? user_id,
+  }) = _LogoutAllRequest;
+  factory LogoutAllRequest.fromJson(Map<String, dynamic> json) =>
+      _$LogoutAllRequestFromJson(json);
+}
+
+@Freezed()
+class LogoutAllResponse with _$LogoutAllResponse {
+  const factory LogoutAllResponse() = LogoutAllResponseData;
+  const factory LogoutAllResponse.Merr({Map<String, dynamic>? body}) =
+      LogoutAllResponseMerr;
+  factory LogoutAllResponse.fromJson(Map<String, dynamic> json) =>
+      _$LogoutAllResponseFromJson(json);
 }
 
 @Freezed()
@@ -500,14 +540,14 @@ class LogoutResponse with _$LogoutResponse {
 @Freezed()
 class ReadRequest with _$ReadRequest {
   const factory ReadRequest({
+    /// the account email
+    String? email,
+
     /// the account id
     String? id,
 
     /// the account username
     String? username,
-
-    /// the account email
-    String? email,
   }) = _ReadRequest;
   factory ReadRequest.fromJson(Map<String, dynamic> json) =>
       _$ReadRequestFromJson(json);
@@ -549,6 +589,9 @@ class ReadSessionResponse with _$ReadSessionResponse {
 @Freezed()
 class ResetPasswordRequest with _$ResetPasswordRequest {
   const factory ResetPasswordRequest({
+    /// The code from the verification email
+    String? code,
+
     /// confirm new password
     String? confirm_password,
 
@@ -557,9 +600,6 @@ class ResetPasswordRequest with _$ResetPasswordRequest {
 
     /// the new password
     String? new_password,
-
-    /// The code from the verification email
-    String? code,
   }) = _ResetPasswordRequest;
   factory ResetPasswordRequest.fromJson(Map<String, dynamic> json) =>
       _$ResetPasswordRequestFromJson(json);
@@ -577,6 +617,12 @@ class ResetPasswordResponse with _$ResetPasswordResponse {
 @Freezed()
 class SendMagicLinkRequest with _$SendMagicLinkRequest {
   const factory SendMagicLinkRequest({
+    /// Your web site address, example www.example.com or user.example.com
+    String? address,
+
+    /// the email address of the user
+    String? email,
+
     /// Endpoint name where your http request handler handles MagicLink by
     /// calling M3O VerifyToken endpoint. You can return as a result a success,
     /// failed or redirect to another page.
@@ -589,12 +635,6 @@ class SendMagicLinkRequest with _$SendMagicLinkRequest {
     /// Text content of the email. Don't forget to include the string '$micro_verification_link' which will be replaced by the real verification link
     /// HTML emails are not available currently.
     String? text_content,
-
-    /// Your web site address, example www.example.com or user.example.com
-    String? address,
-
-    /// the email address of the user
-    String? email,
   }) = _SendMagicLinkRequest;
   factory SendMagicLinkRequest.fromJson(Map<String, dynamic> json) =>
       _$SendMagicLinkRequestFromJson(json);
@@ -645,6 +685,13 @@ class SendPasswordResetEmailResponse with _$SendPasswordResetEmailResponse {
 @Freezed()
 class SendVerificationEmailRequest with _$SendVerificationEmailRequest {
   const factory SendVerificationEmailRequest({
+    /// Text content of the email. Don't forget to include the string '$micro_verification_link' which will be replaced by the real verification link
+    /// HTML emails are not available currently.
+    String? text_content,
+
+    /// email address to send the verification code
+    String? email,
+
     /// The url to redirect to incase of failure
     String? failure_redirect_url,
 
@@ -656,13 +703,6 @@ class SendVerificationEmailRequest with _$SendVerificationEmailRequest {
 
     /// subject of the email
     String? subject,
-
-    /// Text content of the email. Don't forget to include the string '$micro_verification_link' which will be replaced by the real verification link
-    /// HTML emails are not available currently.
-    String? text_content,
-
-    /// email address to send the verification code
-    String? email,
   }) = _SendVerificationEmailRequest;
   factory SendVerificationEmailRequest.fromJson(Map<String, dynamic> json) =>
       _$SendVerificationEmailRequestFromJson(json);
@@ -700,6 +740,9 @@ class Session with _$Session {
 @Freezed()
 class UpdatePasswordRequest with _$UpdatePasswordRequest {
   const factory UpdatePasswordRequest({
+    /// the new password
+    String? new_password,
+
     /// the old password
     String? old_password,
 
@@ -708,9 +751,6 @@ class UpdatePasswordRequest with _$UpdatePasswordRequest {
 
     /// confirm new password
     String? confirm_password,
-
-    /// the new password
-    String? new_password,
   }) = _UpdatePasswordRequest;
   factory UpdatePasswordRequest.fromJson(Map<String, dynamic> json) =>
       _$UpdatePasswordRequestFromJson(json);
@@ -728,9 +768,6 @@ class UpdatePasswordResponse with _$UpdatePasswordResponse {
 @Freezed()
 class UpdateRequest with _$UpdateRequest {
   const factory UpdateRequest({
-    /// the new email address
-    String? email,
-
     /// the account id
     String? id,
 
@@ -739,6 +776,9 @@ class UpdateRequest with _$UpdateRequest {
 
     /// the new username
     String? username,
+
+    /// the new email address
+    String? email,
   }) = _UpdateRequest;
   factory UpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$UpdateRequestFromJson(json);

@@ -59,7 +59,7 @@ class YoutubeService {
 @Freezed()
 class EmbedRequest with _$EmbedRequest {
   const factory EmbedRequest({
-    /// provide the youtube url e.g https://www.youtube.com/watch?v=GWRWZu7XsJ0
+    /// provide the youtube url
     String? url,
   }) = _EmbedRequest;
   factory EmbedRequest.fromJson(Map<String, dynamic> json) =>
@@ -69,17 +69,17 @@ class EmbedRequest with _$EmbedRequest {
 @Freezed()
 class EmbedResponse with _$EmbedResponse {
   const factory EmbedResponse({
-    /// the full url
-    String? long_url,
-
     /// the short url
     String? short_url,
 
-    /// the embeddable link e.g https://www.youtube.com/watch?v=GWRWZu7XsJ0
+    /// the embeddable link
     String? embed_url,
 
     /// the script code
     String? html_script,
+
+    /// the full url
+    String? long_url,
   }) = EmbedResponseData;
   const factory EmbedResponse.Merr({Map<String, dynamic>? body}) =
       EmbedResponseMerr;
@@ -112,18 +112,8 @@ class SearchResponse with _$SearchResponse {
 @Freezed()
 class SearchResult with _$SearchResult {
   const factory SearchResult({
-    /// if live broadcast then indicates activity.
-    /// none, upcoming, live, completed
-    String? broadcasting,
-
-    /// id of the result
-    String? id,
-
-    /// kind of result; "video", "channel", "playlist"
-    String? kind,
-
-    /// title of the result
-    String? title,
+    /// published at time
+    String? published_at,
 
     /// the channel id
     String? channel_id,
@@ -134,8 +124,18 @@ class SearchResult with _$SearchResult {
     /// the result description
     String? description,
 
-    /// published at time
-    String? published_at,
+    /// kind of result: "video", "channel", "playlist"
+    String? kind,
+
+    /// if live broadcast then indicates activity:
+    /// none, upcoming, live, completed
+    String? broadcasting,
+
+    /// id of the result
+    String? id,
+
+    /// title of the result
+    String? title,
 
     /// the associated url
     String? url,
