@@ -154,6 +154,9 @@ class HistoryRequest with _$HistoryRequest {
 @Freezed()
 class HistoryResponse with _$HistoryResponse {
   const factory HistoryResponse({
+    /// the low price
+    double? low,
+
     /// the open price
     double? open,
 
@@ -171,9 +174,6 @@ class HistoryResponse with _$HistoryResponse {
 
     /// the peak price
     double? high,
-
-    /// the low price
-    double? low,
   }) = HistoryResponseData;
   const factory HistoryResponse.Merr({Map<String, dynamic>? body}) =
       HistoryResponseMerr;
@@ -194,11 +194,11 @@ class NewsRequest with _$NewsRequest {
 @Freezed()
 class NewsResponse with _$NewsResponse {
   const factory NewsResponse({
-    /// list of articles
-    List<Article>? articles,
-
     /// symbol requested for
     String? symbol,
+
+    /// list of articles
+    List<Article>? articles,
   }) = NewsResponseData;
   const factory NewsResponse.Merr({Map<String, dynamic>? body}) =
       NewsResponseMerr;
@@ -244,6 +244,9 @@ class QuoteRequest with _$QuoteRequest {
 @Freezed()
 class QuoteResponse with _$QuoteResponse {
   const factory QuoteResponse({
+    /// the bid size
+    double? bid_size,
+
     /// the crypto symbol
     String? symbol,
 
@@ -258,9 +261,6 @@ class QuoteResponse with _$QuoteResponse {
 
     /// the bidding price
     double? bid_price,
-
-    /// the bid size
-    double? bid_size,
   }) = QuoteResponseData;
   const factory QuoteResponse.Merr({Map<String, dynamic>? body}) =
       QuoteResponseMerr;
@@ -271,8 +271,8 @@ class QuoteResponse with _$QuoteResponse {
 @Freezed()
 class Symbol with _$Symbol {
   const factory Symbol({
-    String? name,
     String? symbol,
+    String? name,
   }) = _Symbol;
   factory Symbol.fromJson(Map<String, dynamic> json) => _$SymbolFromJson(json);
 }

@@ -101,20 +101,11 @@ class TwitterService {
 @Freezed()
 class Profile with _$Profile {
   const factory Profile({
-    /// the account creation date
-    String? created_at,
-
     /// the follower count
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? followers,
 
     /// the user id
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? id,
-
-    /// The user's profile picture
-    String? image_url,
-
-    /// the user's location
-    String? location,
 
     /// if the account is private
     bool? private,
@@ -125,8 +116,17 @@ class Profile with _$Profile {
     /// if the account is verified
     bool? verified,
 
+    /// the account creation date
+    String? created_at,
+
     /// the user description
     String? description,
+
+    /// The user's profile picture
+    String? image_url,
+
+    /// the user's location
+    String? location,
 
     /// display name of the user
     String? name,
@@ -259,11 +259,11 @@ class UserRequest with _$UserRequest {
 @Freezed()
 class UserResponse with _$UserResponse {
   const factory UserResponse({
-    /// the current user status
-    Tweet? status,
-
     /// The requested user profile
     Profile? profile,
+
+    /// the current user status
+    Tweet? status,
   }) = UserResponseData;
   const factory UserResponse.Merr({Map<String, dynamic>? body}) =
       UserResponseMerr;
