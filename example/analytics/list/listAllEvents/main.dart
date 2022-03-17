@@ -1,28 +1,26 @@
 import 'dart:io';
 
 import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/emoji/emoji.dart';
+import 'package:m3o/src/analytics/analytics.dart';
 
 void main() async {
   final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = EmojiService(
+  final ser = AnalyticsService(
     Options(
       token: token,
       address: liveAddress,
     ),
   );
 
-  final payload = <String, dynamic>{
-    "code": "GB",
-  };
+  final payload = <String, dynamic>{};
 
-  FlagRequest req = FlagRequest.fromJson(payload);
+  ListRequest req = ListRequest.fromJson(payload);
 
   try {
-    FlagResponse res = await ser.flag(req);
+    ListResponse res = await ser.list(req);
 
     res.map((value) => print(value),
-        Merr: (FlagResponseMerr err) => print(err.body!['body']));
+        Merr: (ListResponseMerr err) => print(err.body!['body']));
   } catch (e, stack) {
     print(e);
     print(stack);

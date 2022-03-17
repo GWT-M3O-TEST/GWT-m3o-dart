@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/emoji/emoji.dart';
+import 'package:m3o/src/app/app.dart';
 
 void main() async {
   final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = EmojiService(
+  final ser = AppService(
     Options(
       token: token,
       address: liveAddress,
@@ -13,16 +13,17 @@ void main() async {
   );
 
   final payload = <String, dynamic>{
-    "code": "GB",
+    "logs_type": "build",
+    "name": "helloworld",
   };
 
-  FlagRequest req = FlagRequest.fromJson(payload);
+  LogsRequest req = LogsRequest.fromJson(payload);
 
   try {
-    FlagResponse res = await ser.flag(req);
+    LogsResponse res = await ser.logs(req);
 
     res.map((value) => print(value),
-        Merr: (FlagResponseMerr err) => print(err.body!['body']));
+        Merr: (LogsResponseMerr err) => print(err.body!['body']));
   } catch (e, stack) {
     print(e);
     print(stack);

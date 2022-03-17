@@ -134,92 +134,6 @@ void main() async {
   }
 }
 ```
-## Runtimes
-
-Return a list of supported runtimes
-
-
-[https://m3o.com/function/api#Runtimes](https://m3o.com/function/api#Runtimes)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/function/function.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = FunctionService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{};
-
-  RuntimesRequest req = RuntimesRequest.fromJson(payload);
-
-  
-  try {
-
-	RuntimesResponse res = await ser.runtimes(req);
-
-    res.map((value) => print(value),
-	  Merr: (RuntimesResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e, stack) {
-    print(e);
-	print(stack);
-  } finally {
-    exit(0);
-  }
-}
-```
-## Proxy
-
-Return the backend url for proxying
-
-
-[https://m3o.com/function/api#Proxy](https://m3o.com/function/api#Proxy)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/function/function.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = FunctionService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{
-  "id": "helloworld"
-,};
-
-  ProxyRequest req = ProxyRequest.fromJson(payload);
-
-  
-  try {
-
-	ProxyResponse res = await ser.proxy(req);
-
-    res.map((value) => print(value),
-	  Merr: (ProxyResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e, stack) {
-    print(e);
-	print(stack);
-  } finally {
-    exit(0);
-  }
-}
-```
 ## Deploy
 
 Deploy a group of functions
@@ -270,6 +184,50 @@ void main() async {
   }
 }
 ```
+## Update
+
+Update a function. Downloads the source, builds and redeploys
+
+
+[https://m3o.com/function/api#Update](https://m3o.com/function/api#Update)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/client/client.dart';
+import 'package:m3o/src/function/function.dart';
+
+void main() async {
+  final token = Platform.environment['M3O_API_TOKEN']!;
+  final ser = FunctionService(
+    Options(
+      token: token,
+      address: liveAddress,
+    ),
+  );
+ 
+  final payload = <String, dynamic>{
+  "name": "helloworld"
+,};
+
+  UpdateRequest req = UpdateRequest.fromJson(payload);
+
+  
+  try {
+
+	UpdateResponse res = await ser.update(req);
+
+    res.map((value) => print(value),
+	  Merr: (UpdateResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e, stack) {
+    print(e);
+	print(stack);
+  } finally {
+    exit(0);
+  }
+}
+```
 ## Call
 
 Call a function by name
@@ -308,6 +266,50 @@ void main() async {
 
     res.map((value) => print(value),
 	  Merr: (CallResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e, stack) {
+    print(e);
+	print(stack);
+  } finally {
+    exit(0);
+  }
+}
+```
+## Proxy
+
+Return the backend url for proxying
+
+
+[https://m3o.com/function/api#Proxy](https://m3o.com/function/api#Proxy)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/client/client.dart';
+import 'package:m3o/src/function/function.dart';
+
+void main() async {
+  final token = Platform.environment['M3O_API_TOKEN']!;
+  final ser = FunctionService(
+    Options(
+      token: token,
+      address: liveAddress,
+    ),
+  );
+ 
+  final payload = <String, dynamic>{
+  "id": "helloworld"
+,};
+
+  ProxyRequest req = ProxyRequest.fromJson(payload);
+
+  
+  try {
+
+	ProxyResponse res = await ser.proxy(req);
+
+    res.map((value) => print(value),
+	  Merr: (ProxyResponseMerr err) => print(err.body!['body']));	
   
   } catch (e, stack) {
     print(e);
@@ -403,12 +405,12 @@ void main() async {
   }
 }
 ```
-## Update
+## Runtimes
 
-Update a function. Downloads the source, builds and redeploys
+Return a list of supported runtimes
 
 
-[https://m3o.com/function/api#Update](https://m3o.com/function/api#Update)
+[https://m3o.com/function/api#Runtimes](https://m3o.com/function/api#Runtimes)
 
 ```dart
 import 'dart:io';
@@ -425,19 +427,17 @@ void main() async {
     ),
   );
  
-  final payload = <String, dynamic>{
-  "name": "helloworld"
-,};
+  final payload = <String, dynamic>{};
 
-  UpdateRequest req = UpdateRequest.fromJson(payload);
+  RuntimesRequest req = RuntimesRequest.fromJson(payload);
 
   
   try {
 
-	UpdateResponse res = await ser.update(req);
+	RuntimesResponse res = await ser.runtimes(req);
 
     res.map((value) => print(value),
-	  Merr: (UpdateResponseMerr err) => print(err.body!['body']));	
+	  Merr: (RuntimesResponseMerr err) => print(err.body!['body']));	
   
   } catch (e, stack) {
     print(e);

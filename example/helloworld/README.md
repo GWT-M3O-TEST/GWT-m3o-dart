@@ -6,7 +6,7 @@ Endpoints:
 
 ## Call
 
-Call returns a personalised "Hello $name" response
+Return a personalised Hello message
 
 
 [https://m3o.com/helloworld/api#Call](https://m3o.com/helloworld/api#Call)
@@ -50,7 +50,7 @@ void main() async {
 ```
 ## Stream
 
-Stream returns a stream of "Hello $name" responses
+Stream a personalised Hello message
 
 
 [https://m3o.com/helloworld/api#Stream](https://m3o.com/helloworld/api#Stream)
