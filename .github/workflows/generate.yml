@@ -8,6 +8,7 @@ jobs:
     uses: GWT-M3O-TEST/GWT-m3o/.github/workflows/reusable1.yml@main
 
   generate:
+    needs: [reuse]
     name: build dart clients and create new release
     runs-on: ubuntu-latest
     steps:
