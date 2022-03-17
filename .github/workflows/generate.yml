@@ -4,70 +4,24 @@ on:
     types: [build_publish_dart]
 
 jobs:
+  reuse:
+    uses: GWT-M3O-TEST/GWT-m3o/.github/workflows/reusable1.yml@main
+
   generate:
     name: build dart clients and create new release
     runs-on: ubuntu-latest
     steps:
-
-      - name: Set up Go 1.13
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.13
-        id: go
-
       - name: Set up dart latest
         uses: dart-lang/setup-dart@v1.3
         with:
           sdk:  stable
         id: dart
       
-      - name: Install Protoc
-        uses: arduino/setup-protoc@master
-      
-      - name: Check GWT-m3o repo
-        uses: actions/checkout@v2
-        with:
-          repository: 'GWT-M3O-TEST/GWT-m3o'
-          path: m3o
-          ref: ${{ github.ref }}
-
-      - name: Check micro/services repo
-        uses: actions/checkout@v2
-        with:
-          repository: 'micro/services'
-          path: services
-
-      - name: Check micro repo
-        uses: actions/checkout@v2
-        with:
-          repository: 'micro/micro'
-          path: 'micro'
-          ref: 'master'
-      
       - name: Check GWT-m3o-dart repo
         uses: actions/checkout@v2
         with:
           repository: 'GWT-M3O-TEST/GWT-m3o-dart'
           path: m3o-dart
-      
-      - name: Enable caching
-        uses: actions/cache@v2
-        with:
-          path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
-
-      - name: Install protoc gen micro plugin
-        working-directory: micro/cmd/protoc-gen-micro
-        run: |
-          go get -u github.com/golang/protobuf/protoc-gen-go
-          go install
-      
-      - name: Install openapi plugin
-        working-directory: m3o/cmd/protoc-gen-openapi
-        run: |
-          go install
 
       - name: Install generator
         working-directory: m3o
