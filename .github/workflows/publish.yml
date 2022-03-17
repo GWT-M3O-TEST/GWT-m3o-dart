@@ -33,10 +33,10 @@ jobs:
           commit_message: Update CHANGELOG
           file_pattern: CHANGELOG.md
            
-      - name: Run the test
-        run:  M3O_API_TOKEN=$HW_TOKEN dart test .
-        env:
-          HW_TOKEN: ${{ secrets.HW_TOKEN }}
+      # - name: Run the test
+      #   run:  M3O_API_TOKEN=$HW_TOKEN dart test .
+      #   env:
+      #     HW_TOKEN: ${{ secrets.HW_TOKEN }}
           
       - name: dry run dart publish
         run: |
