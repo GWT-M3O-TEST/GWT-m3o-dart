@@ -1,3 +1,9 @@
+## v1.0.37 - 2022-03-17
+
+[3f11ab](https://github.com/micro/services/commit/3f11ab2e0e27a152a41ba3291e8f218bbcbf49ac) Build logs for functions (#406)
+
+**Full Changelog**: https://github.com/GWT-M3O-TEST/m3o-dart/compare/v1.0.36...v1.0.37
+
 ## v1.0.36 - 2022-03-17
 
 [d3ff82](https://github.com/micro/services/commit/d3ff82fb93dab986df07722d00f52e2c763fccf4) fix example
