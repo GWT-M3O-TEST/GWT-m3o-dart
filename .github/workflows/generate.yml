@@ -130,7 +130,7 @@ jobs:
       - name: house cleaning remove unnecessary files/folders
         working-directory: m3o-dart
         run: |
-          rm -rf .dart_tool .git .gitignore .packages pubspec.lock
+          rm -rf .dart_tool .gitignore .packages pubspec.lock
       
       - name: Add & Commit
         uses: EndBug/add-and-commit@v9.0.0
