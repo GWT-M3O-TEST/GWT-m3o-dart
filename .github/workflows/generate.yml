@@ -4,14 +4,62 @@ on:
     types: [build_publish_dart]
 
 jobs:
-  reuse:
-    uses: GWT-M3O-TEST/m3o/.github/workflows/reusable1.yml@main
+  # reuse:
+  #   uses: GWT-M3O-TEST/m3o/.github/workflows/reusable1.yml@main
 
+  # generate:
+  #   needs: [reuse]
   generate:
-    needs: [reuse]
     name: build dart clients and create new release
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Go 1.17
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+        id: go
+      
+      - name: Enable caching
+        uses: actions/cache@v2
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+            
+      - name: Install Protoc
+        uses: arduino/setup-protoc@master
+      
+      - name: Check m3o repo
+        uses: actions/checkout@v2
+        with:
+          repository: 'GWT-M3O-TEST/m3o'
+          path: m3o
+
+      - name: Check micro/services repo
+        uses: actions/checkout@v2
+        with:
+          repository: 'micro/services'
+          path: services
+
+      - name: Check micro repo
+        uses: actions/checkout@v2
+        with:
+          repository: 'micro/micro'
+          path: 'micro'
+          ref: 'master'
+
+      - name: Install protoc gen micro plugin
+        working-directory: micro/cmd/protoc-gen-micro
+        run: |
+          go get -u github.com/golang/protobuf/protoc-gen-go
+          go install
+      
+      - name: Install openapi plugin
+        working-directory: m3o/cmd/protoc-gen-openapi
+        run: |
+          go install
+
       - name: Set up dart latest
         uses: dart-lang/setup-dart@v1.3
         with:
@@ -28,14 +76,14 @@ jobs:
         working-directory: m3o
         run: |
           # build the client generator
-          pwd
-          cd cmd/client-gen;
+          # pwd
+          cd cmd/client-gen/
           go install
-          cd ../../
+          # cd ../../
           # delete existing cmd directory
-          rm -rf ../services/cmd
+          # rm -rf ../services/cmd
           # copy our command directory in
-          cp -r cmd ../services/
+          # cp -r cmd ../services/
       
       - name: Generate Dart Clients
         working-directory: services
@@ -84,55 +132,62 @@ jobs:
         run: |
           rm -rf .dart_tool .git .gitignore .packages pubspec.lock
       
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v9.0.0
+        with:
+          cwd: m3o-dart
+          message: Push to M3O-Dart repo
+          pathspec_error_handling: exitImmediately
+
       # https://stackoverflow.com/questions/58033366/how-to-get-current-branch-within-github-actions
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
+      # - name: Extract branch name
+      #   shell: bash
+      #   run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      #   id: extract_branch
       
-      - name: Push Dart clients
-        uses: dmnemec/copy_file_to_another_repo_action@main
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source_file: 'm3o-dart/lib/'
-          destination_repo: 'GWT-M3O-TEST/m3o-dart'
-          destination_branch: ${{ steps.extract_branch.outputs.branch }}
-          destination_folder: 'lib/'
-          git_server: 'github.com'
-          user_name: $API_TOKEN_GITHUB
-          use_rsync: true
-          commit_message: 'Push Dart clients'
+      # - name: Push Dart clients
+      #   uses: dmnemec/copy_file_to_another_repo_action@main
+      #   if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
+      #   env:
+      #     API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      #   with:
+      #     source_file: 'm3o-dart/lib/'
+      #     destination_repo: 'GWT-M3O-TEST/m3o-dart'
+      #     destination_branch: ${{ steps.extract_branch.outputs.branch }}
+      #     destination_folder: 'lib/'
+      #     git_server: 'github.com'
+      #     user_name: $API_TOKEN_GITHUB
+      #     use_rsync: true
+      #     commit_message: 'Push Dart clients'
 
-      - name: Push Dart examples
-        uses: dmnemec/copy_file_to_another_repo_action@main
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source_file: 'm3o-dart/example/'
-          destination_repo: 'GWT-M3O-TEST/m3o-dart'
-          destination_branch: ${{ steps.extract_branch.outputs.branch }}
-          destination_folder: 'example/'
-          git_server: 'github.com'
-          user_name: $API_TOKEN_GITHUB
-          use_rsync: true
-          commit_message: 'Push Dart examples'
+      # - name: Push Dart examples
+      #   uses: dmnemec/copy_file_to_another_repo_action@main
+      #   if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
+      #   env:
+      #     API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      #   with:
+      #     source_file: 'm3o-dart/example/'
+      #     destination_repo: 'GWT-M3O-TEST/m3o-dart'
+      #     destination_branch: ${{ steps.extract_branch.outputs.branch }}
+      #     destination_folder: 'example/'
+      #     git_server: 'github.com'
+      #     user_name: $API_TOKEN_GITHUB
+      #     use_rsync: true
+      #     commit_message: 'Push Dart examples'
 
-      - name: Push Dart pubspec and changelog
-        uses: dmnemec/copy_file_to_another_repo_action@main
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source_file: 'm3o-dart/'
-          destination_repo: 'GWT-M3O-TEST/m3o-dart'
-          destination_branch: ${{ steps.extract_branch.outputs.branch }}
-          git_server: 'github.com'
-          user_name: $API_TOKEN_GITHUB
-          use_rsync: true
-          commit_message: 'Push Dart pubspec and changelog'
+      # - name: Push Dart pubspec and changelog
+      #   uses: dmnemec/copy_file_to_another_repo_action@main
+      #   if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
+      #   env:
+      #     API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      #   with:
+      #     source_file: 'm3o-dart/'
+      #     destination_repo: 'GWT-M3O-TEST/m3o-dart'
+      #     destination_branch: ${{ steps.extract_branch.outputs.branch }}
+      #     git_server: 'github.com'
+      #     user_name: $API_TOKEN_GITHUB
+      #     use_rsync: true
+      #     commit_message: 'Push Dart pubspec and changelog'
 
       # - name: extract current version
       #   working-directory: m3o-dart
