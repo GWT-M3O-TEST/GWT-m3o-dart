@@ -5,7 +5,7 @@ on:
 
 jobs:
   reuse:
-    uses: GWT-M3O-TEST/GWT-m3o/.github/workflows/reusable1.yml@main
+    uses: GWT-M3O-TEST/m3o/.github/workflows/reusable1.yml@main
 
   generate:
     needs: [reuse]
@@ -18,10 +18,10 @@ jobs:
           sdk:  stable
         id: dart
       
-      - name: Check GWT-m3o-dart repo
+      - name: Check m3o-dart repo
         uses: actions/checkout@v2
         with:
-          repository: 'GWT-M3O-TEST/GWT-m3o-dart'
+          repository: 'GWT-M3O-TEST/m3o-dart'
           path: m3o-dart
 
       - name: Install generator
@@ -97,13 +97,13 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source_file: 'm3o-dart/lib/'
-          destination_repo: 'GWT-M3O-TEST/GWT-m3o-dart'
+          destination_repo: 'GWT-M3O-TEST/m3o-dart'
           destination_branch: ${{ steps.extract_branch.outputs.branch }}
           destination_folder: 'lib/'
           git_server: 'github.com'
           user_name: $API_TOKEN_GITHUB
           use_rsync: true
-          commit_message: 'Commit from GWT-M3O-TEST/GWT-m3o action'
+          commit_message: 'Push Dart clients'
 
       - name: Push Dart examples
         uses: dmnemec/copy_file_to_another_repo_action@main
@@ -112,13 +112,13 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source_file: 'm3o-dart/example/'
-          destination_repo: 'GWT-M3O-TEST/GWT-m3o-dart'
+          destination_repo: 'GWT-M3O-TEST/m3o-dart'
           destination_branch: ${{ steps.extract_branch.outputs.branch }}
           destination_folder: 'example/'
           git_server: 'github.com'
           user_name: $API_TOKEN_GITHUB
           use_rsync: true
-          commit_message: 'Commit from GWT-M3O-TEST/GWT-m3o action'
+          commit_message: 'Push Dart examples'
 
       - name: Push Dart pubspec and changelog
         uses: dmnemec/copy_file_to_another_repo_action@main
@@ -127,12 +127,12 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source_file: 'm3o-dart/'
-          destination_repo: 'GWT-M3O-TEST/GWT-m3o-dart'
+          destination_repo: 'GWT-M3O-TEST/m3o-dart'
           destination_branch: ${{ steps.extract_branch.outputs.branch }}
           git_server: 'github.com'
           user_name: $API_TOKEN_GITHUB
           use_rsync: true
-          commit_message: 'Commit from GWT-M3O-TEST/GWT-m3o action'
+          commit_message: 'Push Dart pubspec and changelog'
 
       # - name: extract current version
       #   working-directory: m3o-dart
