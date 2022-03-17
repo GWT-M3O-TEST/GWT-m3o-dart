@@ -4,12 +4,107 @@ An [m3o.com](https://m3o.com) API. For example usage see [m3o.com/db/api](https:
 
 Endpoints:
 
-## Count
+## Create
 
-Count records in a table
+Create a record in the database. Optionally include an "id" field otherwise it's set automatically.
 
 
-[https://m3o.com/db/api#Count](https://m3o.com/db/api#Count)
+[https://m3o.com/db/api#Create](https://m3o.com/db/api#Create)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/client/client.dart';
+import 'package:m3o/src/db/db.dart';
+
+void main() async {
+  final token = Platform.environment['M3O_API_TOKEN']!;
+  final ser = DbService(
+    Options(
+      token: token,
+      address: liveAddress,
+    ),
+  );
+ 
+  final payload = <String, dynamic>{
+  "record": {
+    "age": 42,
+    "id": "1",
+    "isActive": true,
+    "name": "Jane"
+  ,},
+  "table": "example"
+};
+
+  CreateRequest req = CreateRequest.fromJson(payload);
+
+  
+  try {
+
+	CreateResponse res = await ser.create(req);
+
+    res.map((value) => print(value),
+	  Merr: (CreateResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e, stack) {
+    print(e);
+	print(stack);
+  } finally {
+    exit(0);
+  }
+}
+```
+## Read
+
+Read data from a table. Lookup can be by ID or via querying any field in the record.
+
+
+[https://m3o.com/db/api#Read](https://m3o.com/db/api#Read)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/client/client.dart';
+import 'package:m3o/src/db/db.dart';
+
+void main() async {
+  final token = Platform.environment['M3O_API_TOKEN']!;
+  final ser = DbService(
+    Options(
+      token: token,
+      address: liveAddress,
+    ),
+  );
+ 
+  final payload = <String, dynamic>{
+  "query": "age == 43",
+  "table": "example"
+,};
+
+  ReadRequest req = ReadRequest.fromJson(payload);
+
+  
+  try {
+
+	ReadResponse res = await ser.read(req);
+
+    res.map((value) => print(value),
+	  Merr: (ReadResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e, stack) {
+    print(e);
+	print(stack);
+  } finally {
+    exit(0);
+  }
+}
+```
+## Truncate
+
+Truncate the records in a table
+
+
+[https://m3o.com/db/api#Truncate](https://m3o.com/db/api#Truncate)
 
 ```dart
 import 'dart:io';
@@ -30,102 +125,15 @@ void main() async {
   "table": "example"
 ,};
 
-  CountRequest req = CountRequest.fromJson(payload);
+  TruncateRequest req = TruncateRequest.fromJson(payload);
 
   
   try {
 
-	CountResponse res = await ser.count(req);
+	TruncateResponse res = await ser.truncate(req);
 
     res.map((value) => print(value),
-	  Merr: (CountResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e, stack) {
-    print(e);
-	print(stack);
-  } finally {
-    exit(0);
-  }
-}
-```
-## ListTables
-
-List tables in the DB
-
-
-[https://m3o.com/db/api#ListTables](https://m3o.com/db/api#ListTables)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/db/db.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = DbService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{};
-
-  ListTablesRequest req = ListTablesRequest.fromJson(payload);
-
-  
-  try {
-
-	ListTablesResponse res = await ser.listTables(req);
-
-    res.map((value) => print(value),
-	  Merr: (ListTablesResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e, stack) {
-    print(e);
-	print(stack);
-  } finally {
-    exit(0);
-  }
-}
-```
-## RenameTable
-
-Rename a table
-
-
-[https://m3o.com/db/api#RenameTable](https://m3o.com/db/api#RenameTable)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/db/db.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = DbService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{
-  "from": "examples2",
-  "to": "examples3"
-,};
-
-  RenameTableRequest req = RenameTableRequest.fromJson(payload);
-
-  
-  try {
-
-	RenameTableResponse res = await ser.renameTable(req);
-
-    res.map((value) => print(value),
-	  Merr: (RenameTableResponseMerr err) => print(err.body!['body']));	
+	  Merr: (TruncateResponseMerr err) => print(err.body!['body']));	
   
   } catch (e, stack) {
     print(e);
@@ -170,6 +178,48 @@ void main() async {
 
     res.map((value) => print(value),
 	  Merr: (DropTableResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e, stack) {
+    print(e);
+	print(stack);
+  } finally {
+    exit(0);
+  }
+}
+```
+## ListTables
+
+List tables in the DB
+
+
+[https://m3o.com/db/api#ListTables](https://m3o.com/db/api#ListTables)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/client/client.dart';
+import 'package:m3o/src/db/db.dart';
+
+void main() async {
+  final token = Platform.environment['M3O_API_TOKEN']!;
+  final ser = DbService(
+    Options(
+      token: token,
+      address: liveAddress,
+    ),
+  );
+ 
+  final payload = <String, dynamic>{};
+
+  ListTablesRequest req = ListTablesRequest.fromJson(payload);
+
+  
+  try {
+
+	ListTablesResponse res = await ser.listTables(req);
+
+    res.map((value) => print(value),
+	  Merr: (ListTablesResponseMerr err) => print(err.body!['body']));	
   
   } catch (e, stack) {
     print(e);
@@ -227,51 +277,6 @@ void main() async {
   }
 }
 ```
-## Read
-
-Read data from a table. Lookup can be by ID or via querying any field in the record.
-
-
-[https://m3o.com/db/api#Read](https://m3o.com/db/api#Read)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/db/db.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = DbService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{
-  "query": "age == 43",
-  "table": "example"
-,};
-
-  ReadRequest req = ReadRequest.fromJson(payload);
-
-  
-  try {
-
-	ReadResponse res = await ser.read(req);
-
-    res.map((value) => print(value),
-	  Merr: (ReadResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e, stack) {
-    print(e);
-	print(stack);
-  } finally {
-    exit(0);
-  }
-}
-```
 ## Delete
 
 Delete a record in the database by id.
@@ -317,12 +322,12 @@ void main() async {
   }
 }
 ```
-## Truncate
+## Count
 
-Truncate the records in a table
+Count records in a table
 
 
-[https://m3o.com/db/api#Truncate](https://m3o.com/db/api#Truncate)
+[https://m3o.com/db/api#Count](https://m3o.com/db/api#Count)
 
 ```dart
 import 'dart:io';
@@ -343,15 +348,15 @@ void main() async {
   "table": "example"
 ,};
 
-  TruncateRequest req = TruncateRequest.fromJson(payload);
+  CountRequest req = CountRequest.fromJson(payload);
 
   
   try {
 
-	TruncateResponse res = await ser.truncate(req);
+	CountResponse res = await ser.count(req);
 
     res.map((value) => print(value),
-	  Merr: (TruncateResponseMerr err) => print(err.body!['body']));	
+	  Merr: (CountResponseMerr err) => print(err.body!['body']));	
   
   } catch (e, stack) {
     print(e);
@@ -361,12 +366,12 @@ void main() async {
   }
 }
 ```
-## Create
+## RenameTable
 
-Create a record in the database. Optionally include an "id" field otherwise it's set automatically.
+Rename a table
 
 
-[https://m3o.com/db/api#Create](https://m3o.com/db/api#Create)
+[https://m3o.com/db/api#RenameTable](https://m3o.com/db/api#RenameTable)
 
 ```dart
 import 'dart:io';
@@ -384,24 +389,19 @@ void main() async {
   );
  
   final payload = <String, dynamic>{
-  "record": {
-    "age": 42,
-    "id": "1",
-    "isActive": true,
-    "name": "Jane"
-  ,},
-  "table": "example"
-};
+  "from": "examples2",
+  "to": "examples3"
+,};
 
-  CreateRequest req = CreateRequest.fromJson(payload);
+  RenameTableRequest req = RenameTableRequest.fromJson(payload);
 
   
   try {
 
-	CreateResponse res = await ser.create(req);
+	RenameTableResponse res = await ser.renameTable(req);
 
     res.map((value) => print(value),
-	  Merr: (CreateResponseMerr err) => print(err.body!['body']));	
+	  Merr: (RenameTableResponseMerr err) => print(err.body!['body']));	
   
   } catch (e, stack) {
     print(e);

@@ -38,20 +38,20 @@ class MovieService {
 @Freezed()
 class MovieInfo with _$MovieInfo {
   const factory MovieInfo({
+    String? backdrop_path,
+    String? original_title,
+    bool? video,
+    int? vote_count,
+    int? genre_ids,
+    String? overview,
+    double? popularity,
+    String? release_date,
+    int? id,
     double? vote_average,
     bool? adult,
     String? original_language,
-    String? title,
     String? poster_path,
-    String? release_date,
-    int? id,
-    String? original_title,
-    String? overview,
-    String? backdrop_path,
-    int? genre_ids,
-    bool? video,
-    double? popularity,
-    int? vote_count,
+    String? title,
   }) = _MovieInfo;
   factory MovieInfo.fromJson(Map<String, dynamic> json) =>
       _$MovieInfoFromJson(json);
@@ -60,15 +60,6 @@ class MovieInfo with _$MovieInfo {
 @Freezed()
 class SearchRequest with _$SearchRequest {
   const factory SearchRequest({
-    /// page to query
-    int? page,
-
-    /// year of release
-    int? primary_release_year,
-
-    /// a text query to search
-    String? query,
-
     /// a ISO 3166-1 code to filter release dates.
     String? region,
 
@@ -77,6 +68,15 @@ class SearchRequest with _$SearchRequest {
 
     /// a ISO 639-1 value to display translated data
     String? language,
+
+    /// page to query
+    int? page,
+
+    /// year of release
+    int? primary_release_year,
+
+    /// a text query to search
+    String? query,
   }) = _SearchRequest;
   factory SearchRequest.fromJson(Map<String, dynamic> json) =>
       _$SearchRequestFromJson(json);
@@ -85,10 +85,10 @@ class SearchRequest with _$SearchRequest {
 @Freezed()
 class SearchResponse with _$SearchResponse {
   const factory SearchResponse({
+    List<MovieInfo>? results,
     int? total_pages,
     int? total_results,
     int? page,
-    List<MovieInfo>? results,
   }) = SearchResponseData;
   const factory SearchResponse.Merr({Map<String, dynamic>? body}) =
       SearchResponseMerr;
