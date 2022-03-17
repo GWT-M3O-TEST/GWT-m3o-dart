@@ -178,12 +178,12 @@ jobs:
           use_rsync: true
           commit_message: 'Commit from GWT-M3O-TEST/GWT-m3o action'
 
-      - name: extract current version
-        working-directory: m3o-dart
-        run: |
-          curver=$(cat pubspec.yaml | grep version | head -1 | awk -F: '{ print$2}' | sed 's/^ *//g')
-          echo "##[set-output name=curver;]$(echo "v$curver")"
-        id: dart_cur_version
+      # - name: extract current version
+      #   working-directory: m3o-dart
+      #   run: |
+      #     curver=$(cat pubspec.yaml | grep version | head -1 | awk -F: '{ print$2}' | sed 's/^ *//g')
+      #     echo "##[set-output name=curver;]$(echo "v$curver")"
+      #   id: dart_cur_version
 
       # - name: Install minimal stable
       #   uses: actions-rs/toolchain@v1
@@ -225,7 +225,7 @@ jobs:
 
       - uses: ncipollo/release-action@v1.9.0
         with:
-          tag: ${{ steps.dart_cur_version.outputs.curver}} 
+          tag: v${{ steps.dart_new_version.outputs.newver}} 
           commit: main
           generateReleaseNotes: true
           body: |
