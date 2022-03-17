@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'file.dart';
+part of 'analytics.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -8,24 +8,26 @@ part of 'file.dart';
 
 _$_DeleteRequest _$$_DeleteRequestFromJson(Map<String, dynamic> json) =>
     _$_DeleteRequest(
-      path: json['path'] as String?,
-      project: json['project'] as String?,
+      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$$_DeleteRequestToJson(_$_DeleteRequest instance) =>
     <String, dynamic>{
-      'path': instance.path,
-      'project': instance.project,
+      'name': instance.name,
     };
 
 _$DeleteResponseData _$$DeleteResponseDataFromJson(Map<String, dynamic> json) =>
     _$DeleteResponseData(
+      event: json['event'] == null
+          ? null
+          : Event.fromJson(json['event'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$DeleteResponseDataToJson(
         _$DeleteResponseData instance) =>
     <String, dynamic>{
+      'event': instance.event,
       'runtimeType': instance.$type,
     };
 
@@ -42,29 +44,35 @@ Map<String, dynamic> _$$DeleteResponseMerrToJson(
       'runtimeType': instance.$type,
     };
 
-_$_ListRequest _$$_ListRequestFromJson(Map<String, dynamic> json) =>
-    _$_ListRequest(
-      project: json['project'] as String?,
-      path: json['path'] as String?,
+_$_Event _$$_EventFromJson(Map<String, dynamic> json) => _$_Event(
+      created: json['created'] as String?,
+      name: json['name'] as String?,
+      value: int64FromString(json['value'] as String?),
     );
 
-Map<String, dynamic> _$$_ListRequestToJson(_$_ListRequest instance) =>
-    <String, dynamic>{
-      'project': instance.project,
-      'path': instance.path,
+Map<String, dynamic> _$$_EventToJson(_$_Event instance) => <String, dynamic>{
+      'created': instance.created,
+      'name': instance.name,
+      'value': int64ToString(instance.value),
     };
+
+_$_ListRequest _$$_ListRequestFromJson(Map<String, dynamic> json) =>
+    _$_ListRequest();
+
+Map<String, dynamic> _$$_ListRequestToJson(_$_ListRequest instance) =>
+    <String, dynamic>{};
 
 _$ListResponseData _$$ListResponseDataFromJson(Map<String, dynamic> json) =>
     _$ListResponseData(
-      files: (json['files'] as List<dynamic>?)
-          ?.map((e) => Record.fromJson(e as Map<String, dynamic>))
+      events: (json['events'] as List<dynamic>?)
+          ?.map((e) => Event.fromJson(e as Map<String, dynamic>))
           .toList(),
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$ListResponseDataToJson(_$ListResponseData instance) =>
     <String, dynamic>{
-      'files': instance.files,
+      'events': instance.events,
       'runtimeType': instance.$type,
     };
 
@@ -82,27 +90,25 @@ Map<String, dynamic> _$$ListResponseMerrToJson(_$ListResponseMerr instance) =>
 
 _$_ReadRequest _$$_ReadRequestFromJson(Map<String, dynamic> json) =>
     _$_ReadRequest(
-      project: json['project'] as String?,
-      path: json['path'] as String?,
+      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$$_ReadRequestToJson(_$_ReadRequest instance) =>
     <String, dynamic>{
-      'project': instance.project,
-      'path': instance.path,
+      'name': instance.name,
     };
 
 _$ReadResponseData _$$ReadResponseDataFromJson(Map<String, dynamic> json) =>
     _$ReadResponseData(
-      file: json['file'] == null
+      event: json['event'] == null
           ? null
-          : Record.fromJson(json['file'] as Map<String, dynamic>),
+          : Event.fromJson(json['event'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$ReadResponseDataToJson(_$ReadResponseData instance) =>
     <String, dynamic>{
-      'file': instance.file,
+      'event': instance.event,
       'runtimeType': instance.$type,
     };
 
@@ -118,59 +124,33 @@ Map<String, dynamic> _$$ReadResponseMerrToJson(_$ReadResponseMerr instance) =>
       'runtimeType': instance.$type,
     };
 
-_$_Record _$$_RecordFromJson(Map<String, dynamic> json) => _$_Record(
-      path: json['path'] as String?,
-      project: json['project'] as String?,
-      updated: json['updated'] as String?,
-      content: json['content'] as String?,
-      created: json['created'] as String?,
-      metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, e as String),
-      ),
+_$_TrackRequest _$$_TrackRequestFromJson(Map<String, dynamic> json) =>
+    _$_TrackRequest(
+      name: json['name'] as String?,
     );
 
-Map<String, dynamic> _$$_RecordToJson(_$_Record instance) => <String, dynamic>{
-      'path': instance.path,
-      'project': instance.project,
-      'updated': instance.updated,
-      'content': instance.content,
-      'created': instance.created,
-      'metadata': instance.metadata,
-    };
-
-_$_SaveRequest _$$_SaveRequestFromJson(Map<String, dynamic> json) =>
-    _$_SaveRequest(
-      public: json['public'] as bool?,
-      file: json['file'] == null
-          ? null
-          : Record.fromJson(json['file'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$$_SaveRequestToJson(_$_SaveRequest instance) =>
+Map<String, dynamic> _$$_TrackRequestToJson(_$_TrackRequest instance) =>
     <String, dynamic>{
-      'public': instance.public,
-      'file': instance.file,
+      'name': instance.name,
     };
 
-_$SaveResponseData _$$SaveResponseDataFromJson(Map<String, dynamic> json) =>
-    _$SaveResponseData(
-      url: json['url'] as String?,
+_$TrackResponseData _$$TrackResponseDataFromJson(Map<String, dynamic> json) =>
+    _$TrackResponseData(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$SaveResponseDataToJson(_$SaveResponseData instance) =>
+Map<String, dynamic> _$$TrackResponseDataToJson(_$TrackResponseData instance) =>
     <String, dynamic>{
-      'url': instance.url,
       'runtimeType': instance.$type,
     };
 
-_$SaveResponseMerr _$$SaveResponseMerrFromJson(Map<String, dynamic> json) =>
-    _$SaveResponseMerr(
+_$TrackResponseMerr _$$TrackResponseMerrFromJson(Map<String, dynamic> json) =>
+    _$TrackResponseMerr(
       body: json['body'] as Map<String, dynamic>?,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$SaveResponseMerrToJson(_$SaveResponseMerr instance) =>
+Map<String, dynamic> _$$TrackResponseMerrToJson(_$TrackResponseMerr instance) =>
     <String, dynamic>{
       'body': instance.body,
       'runtimeType': instance.$type,

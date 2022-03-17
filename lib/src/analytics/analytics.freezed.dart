@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'file.dart';
+part of 'analytics.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -22,10 +22,9 @@ DeleteRequest _$DeleteRequestFromJson(Map<String, dynamic> json) {
 class _$DeleteRequestTearOff {
   const _$DeleteRequestTearOff();
 
-  _DeleteRequest call({String? path, String? project}) {
+  _DeleteRequest call({String? name}) {
     return _DeleteRequest(
-      path: path,
-      project: project,
+      name: name,
     );
   }
 
@@ -39,11 +38,7 @@ const $DeleteRequest = _$DeleteRequestTearOff();
 
 /// @nodoc
 mixin _$DeleteRequest {
-  /// Path to the file
-  String? get path => throw _privateConstructorUsedError;
-
-  /// The project name
-  String? get project => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +51,7 @@ abstract class $DeleteRequestCopyWith<$Res> {
   factory $DeleteRequestCopyWith(
           DeleteRequest value, $Res Function(DeleteRequest) then) =
       _$DeleteRequestCopyWithImpl<$Res>;
-  $Res call({String? path, String? project});
+  $Res call({String? name});
 }
 
 /// @nodoc
@@ -70,17 +65,12 @@ class _$DeleteRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? path = freezed,
-    Object? project = freezed,
+    Object? name = freezed,
   }) {
     return _then(_value.copyWith(
-      path: path == freezed
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
-              as String?,
-      project: project == freezed
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -93,7 +83,7 @@ abstract class _$DeleteRequestCopyWith<$Res>
           _DeleteRequest value, $Res Function(_DeleteRequest) then) =
       __$DeleteRequestCopyWithImpl<$Res>;
   @override
-  $Res call({String? path, String? project});
+  $Res call({String? name});
 }
 
 /// @nodoc
@@ -109,17 +99,12 @@ class __$DeleteRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? path = freezed,
-    Object? project = freezed,
+    Object? name = freezed,
   }) {
     return _then(_DeleteRequest(
-      path: path == freezed
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
-              as String?,
-      project: project == freezed
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -128,23 +113,17 @@ class __$DeleteRequestCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_DeleteRequest implements _DeleteRequest {
-  const _$_DeleteRequest({this.path, this.project});
+  const _$_DeleteRequest({this.name});
 
   factory _$_DeleteRequest.fromJson(Map<String, dynamic> json) =>
       _$$_DeleteRequestFromJson(json);
 
   @override
-
-  /// Path to the file
-  final String? path;
-  @override
-
-  /// The project name
-  final String? project;
+  final String? name;
 
   @override
   String toString() {
-    return 'DeleteRequest(path: $path, project: $project)';
+    return 'DeleteRequest(name: $name)';
   }
 
   @override
@@ -152,15 +131,12 @@ class _$_DeleteRequest implements _DeleteRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DeleteRequest &&
-            const DeepCollectionEquality().equals(other.path, path) &&
-            const DeepCollectionEquality().equals(other.project, project));
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(path),
-      const DeepCollectionEquality().hash(project));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override
@@ -174,20 +150,13 @@ class _$_DeleteRequest implements _DeleteRequest {
 }
 
 abstract class _DeleteRequest implements DeleteRequest {
-  const factory _DeleteRequest({String? path, String? project}) =
-      _$_DeleteRequest;
+  const factory _DeleteRequest({String? name}) = _$_DeleteRequest;
 
   factory _DeleteRequest.fromJson(Map<String, dynamic> json) =
       _$_DeleteRequest.fromJson;
 
   @override
-
-  /// Path to the file
-  String? get path;
-  @override
-
-  /// The project name
-  String? get project;
+  String? get name;
   @override
   @JsonKey(ignore: true)
   _$DeleteRequestCopyWith<_DeleteRequest> get copyWith =>
@@ -211,8 +180,10 @@ DeleteResponse _$DeleteResponseFromJson(Map<String, dynamic> json) {
 class _$DeleteResponseTearOff {
   const _$DeleteResponseTearOff();
 
-  DeleteResponseData call() {
-    return const DeleteResponseData();
+  DeleteResponseData call({Event? event}) {
+    return DeleteResponseData(
+      event: event,
+    );
   }
 
   DeleteResponseMerr Merr({Map<String, dynamic>? body}) {
@@ -233,19 +204,19 @@ const $DeleteResponse = _$DeleteResponseTearOff();
 mixin _$DeleteResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function() $default, {
+    TResult Function(Event? event) $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function()? $default, {
+    TResult Function(Event? event)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
+    TResult Function(Event? event)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) =>
@@ -294,6 +265,9 @@ abstract class $DeleteResponseDataCopyWith<$Res> {
   factory $DeleteResponseDataCopyWith(
           DeleteResponseData value, $Res Function(DeleteResponseData) then) =
       _$DeleteResponseDataCopyWithImpl<$Res>;
+  $Res call({Event? event});
+
+  $EventCopyWith<$Res>? get event;
 }
 
 /// @nodoc
@@ -306,60 +280,95 @@ class _$DeleteResponseDataCopyWithImpl<$Res>
 
   @override
   DeleteResponseData get _value => super._value as DeleteResponseData;
+
+  @override
+  $Res call({
+    Object? event = freezed,
+  }) {
+    return _then(DeleteResponseData(
+      event: event == freezed
+          ? _value.event
+          : event // ignore: cast_nullable_to_non_nullable
+              as Event?,
+    ));
+  }
+
+  @override
+  $EventCopyWith<$Res>? get event {
+    if (_value.event == null) {
+      return null;
+    }
+
+    return $EventCopyWith<$Res>(_value.event!, (value) {
+      return _then(_value.copyWith(event: value));
+    });
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$DeleteResponseData implements DeleteResponseData {
-  const _$DeleteResponseData({String? $type}) : $type = $type ?? 'default';
+  const _$DeleteResponseData({this.event, String? $type})
+      : $type = $type ?? 'default';
 
   factory _$DeleteResponseData.fromJson(Map<String, dynamic> json) =>
       _$$DeleteResponseDataFromJson(json);
+
+  @override
+  final Event? event;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'DeleteResponse()';
+    return 'DeleteResponse(event: $event)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is DeleteResponseData);
+        (other.runtimeType == runtimeType &&
+            other is DeleteResponseData &&
+            const DeepCollectionEquality().equals(other.event, event));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(event));
+
+  @JsonKey(ignore: true)
+  @override
+  $DeleteResponseDataCopyWith<DeleteResponseData> get copyWith =>
+      _$DeleteResponseDataCopyWithImpl<DeleteResponseData>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function() $default, {
+    TResult Function(Event? event) $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
-    return $default();
+    return $default(event);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function()? $default, {
+    TResult Function(Event? event)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
-    return $default?.call();
+    return $default?.call(event);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
+    TResult Function(Event? event)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default();
+      return $default(event);
     }
     return orElse();
   }
@@ -402,10 +411,15 @@ class _$DeleteResponseData implements DeleteResponseData {
 }
 
 abstract class DeleteResponseData implements DeleteResponse {
-  const factory DeleteResponseData() = _$DeleteResponseData;
+  const factory DeleteResponseData({Event? event}) = _$DeleteResponseData;
 
   factory DeleteResponseData.fromJson(Map<String, dynamic> json) =
       _$DeleteResponseData.fromJson;
+
+  Event? get event;
+  @JsonKey(ignore: true)
+  $DeleteResponseDataCopyWith<DeleteResponseData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -480,7 +494,7 @@ class _$DeleteResponseMerr implements DeleteResponseMerr {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function() $default, {
+    TResult Function(Event? event) $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
     return Merr(body);
@@ -489,7 +503,7 @@ class _$DeleteResponseMerr implements DeleteResponseMerr {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function()? $default, {
+    TResult Function(Event? event)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
     return Merr?.call(body);
@@ -498,7 +512,7 @@ class _$DeleteResponseMerr implements DeleteResponseMerr {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
+    TResult Function(Event? event)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) {
@@ -558,6 +572,219 @@ abstract class DeleteResponseMerr implements DeleteResponse {
       throw _privateConstructorUsedError;
 }
 
+Event _$EventFromJson(Map<String, dynamic> json) {
+  return _Event.fromJson(json);
+}
+
+/// @nodoc
+class _$EventTearOff {
+  const _$EventTearOff();
+
+  _Event call(
+      {String? created,
+      String? name,
+      @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value}) {
+    return _Event(
+      created: created,
+      name: name,
+      value: value,
+    );
+  }
+
+  Event fromJson(Map<String, Object?> json) {
+    return Event.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $Event = _$EventTearOff();
+
+/// @nodoc
+mixin _$Event {
+  /// time at which the event was created
+  String? get created => throw _privateConstructorUsedError;
+
+  /// event name
+  String? get name => throw _privateConstructorUsedError;
+
+  /// the amount of times the event was triggered
+  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
+  int? get value => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $EventCopyWith<Event> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EventCopyWith<$Res> {
+  factory $EventCopyWith(Event value, $Res Function(Event) then) =
+      _$EventCopyWithImpl<$Res>;
+  $Res call(
+      {String? created,
+      String? name,
+      @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value});
+}
+
+/// @nodoc
+class _$EventCopyWithImpl<$Res> implements $EventCopyWith<$Res> {
+  _$EventCopyWithImpl(this._value, this._then);
+
+  final Event _value;
+  // ignore: unused_field
+  final $Res Function(Event) _then;
+
+  @override
+  $Res call({
+    Object? created = freezed,
+    Object? name = freezed,
+    Object? value = freezed,
+  }) {
+    return _then(_value.copyWith(
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$EventCopyWith<$Res> implements $EventCopyWith<$Res> {
+  factory _$EventCopyWith(_Event value, $Res Function(_Event) then) =
+      __$EventCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String? created,
+      String? name,
+      @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value});
+}
+
+/// @nodoc
+class __$EventCopyWithImpl<$Res> extends _$EventCopyWithImpl<$Res>
+    implements _$EventCopyWith<$Res> {
+  __$EventCopyWithImpl(_Event _value, $Res Function(_Event) _then)
+      : super(_value, (v) => _then(v as _Event));
+
+  @override
+  _Event get _value => super._value as _Event;
+
+  @override
+  $Res call({
+    Object? created = freezed,
+    Object? name = freezed,
+    Object? value = freezed,
+  }) {
+    return _then(_Event(
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Event implements _Event {
+  const _$_Event(
+      {this.created,
+      this.name,
+      @JsonKey(fromJson: int64FromString, toJson: int64ToString) this.value});
+
+  factory _$_Event.fromJson(Map<String, dynamic> json) =>
+      _$$_EventFromJson(json);
+
+  @override
+
+  /// time at which the event was created
+  final String? created;
+  @override
+
+  /// event name
+  final String? name;
+  @override
+
+  /// the amount of times the event was triggered
+  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
+  final int? value;
+
+  @override
+  String toString() {
+    return 'Event(created: $created, name: $name, value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Event &&
+            const DeepCollectionEquality().equals(other.created, created) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.value, value));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(created),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(value));
+
+  @JsonKey(ignore: true)
+  @override
+  _$EventCopyWith<_Event> get copyWith =>
+      __$EventCopyWithImpl<_Event>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_EventToJson(this);
+  }
+}
+
+abstract class _Event implements Event {
+  const factory _Event(
+      {String? created,
+      String? name,
+      @JsonKey(fromJson: int64FromString, toJson: int64ToString)
+          int? value}) = _$_Event;
+
+  factory _Event.fromJson(Map<String, dynamic> json) = _$_Event.fromJson;
+
+  @override
+
+  /// time at which the event was created
+  String? get created;
+  @override
+
+  /// event name
+  String? get name;
+  @override
+
+  /// the amount of times the event was triggered
+  @JsonKey(fromJson: int64FromString, toJson: int64ToString)
+  int? get value;
+  @override
+  @JsonKey(ignore: true)
+  _$EventCopyWith<_Event> get copyWith => throw _privateConstructorUsedError;
+}
+
 ListRequest _$ListRequestFromJson(Map<String, dynamic> json) {
   return _ListRequest.fromJson(json);
 }
@@ -566,11 +793,8 @@ ListRequest _$ListRequestFromJson(Map<String, dynamic> json) {
 class _$ListRequestTearOff {
   const _$ListRequestTearOff();
 
-  _ListRequest call({String? project, String? path}) {
-    return _ListRequest(
-      project: project,
-      path: path,
-    );
+  _ListRequest call() {
+    return const _ListRequest();
   }
 
   ListRequest fromJson(Map<String, Object?> json) {
@@ -583,19 +807,7 @@ const $ListRequest = _$ListRequestTearOff();
 
 /// @nodoc
 mixin _$ListRequest {
-  /// Project, required for listing.
-  String? get project => throw _privateConstructorUsedError;
-
-  /// Defaults to '/', ie. lists all files in a project.
-  /// Supply path to a folder if you want to list
-  /// files inside that folder
-  /// eg. '/docs'
-  String? get path => throw _privateConstructorUsedError;
-
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ListRequestCopyWith<ListRequest> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -603,7 +815,6 @@ abstract class $ListRequestCopyWith<$Res> {
   factory $ListRequestCopyWith(
           ListRequest value, $Res Function(ListRequest) then) =
       _$ListRequestCopyWithImpl<$Res>;
-  $Res call({String? project, String? path});
 }
 
 /// @nodoc
@@ -613,33 +824,13 @@ class _$ListRequestCopyWithImpl<$Res> implements $ListRequestCopyWith<$Res> {
   final ListRequest _value;
   // ignore: unused_field
   final $Res Function(ListRequest) _then;
-
-  @override
-  $Res call({
-    Object? project = freezed,
-    Object? path = freezed,
-  }) {
-    return _then(_value.copyWith(
-      project: project == freezed
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
-              as String?,
-      path: path == freezed
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$ListRequestCopyWith<$Res>
-    implements $ListRequestCopyWith<$Res> {
+abstract class _$ListRequestCopyWith<$Res> {
   factory _$ListRequestCopyWith(
           _ListRequest value, $Res Function(_ListRequest) then) =
       __$ListRequestCopyWithImpl<$Res>;
-  @override
-  $Res call({String? project, String? path});
 }
 
 /// @nodoc
@@ -651,69 +842,29 @@ class __$ListRequestCopyWithImpl<$Res> extends _$ListRequestCopyWithImpl<$Res>
 
   @override
   _ListRequest get _value => super._value as _ListRequest;
-
-  @override
-  $Res call({
-    Object? project = freezed,
-    Object? path = freezed,
-  }) {
-    return _then(_ListRequest(
-      project: project == freezed
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
-              as String?,
-      path: path == freezed
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$_ListRequest implements _ListRequest {
-  const _$_ListRequest({this.project, this.path});
+  const _$_ListRequest();
 
   factory _$_ListRequest.fromJson(Map<String, dynamic> json) =>
       _$$_ListRequestFromJson(json);
 
   @override
-
-  /// Project, required for listing.
-  final String? project;
-  @override
-
-  /// Defaults to '/', ie. lists all files in a project.
-  /// Supply path to a folder if you want to list
-  /// files inside that folder
-  /// eg. '/docs'
-  final String? path;
-
-  @override
   String toString() {
-    return 'ListRequest(project: $project, path: $path)';
+    return 'ListRequest()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _ListRequest &&
-            const DeepCollectionEquality().equals(other.project, project) &&
-            const DeepCollectionEquality().equals(other.path, path));
+        (other.runtimeType == runtimeType && other is _ListRequest);
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(project),
-      const DeepCollectionEquality().hash(path));
-
-  @JsonKey(ignore: true)
-  @override
-  _$ListRequestCopyWith<_ListRequest> get copyWith =>
-      __$ListRequestCopyWithImpl<_ListRequest>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   Map<String, dynamic> toJson() {
@@ -722,26 +873,10 @@ class _$_ListRequest implements _ListRequest {
 }
 
 abstract class _ListRequest implements ListRequest {
-  const factory _ListRequest({String? project, String? path}) = _$_ListRequest;
+  const factory _ListRequest() = _$_ListRequest;
 
   factory _ListRequest.fromJson(Map<String, dynamic> json) =
       _$_ListRequest.fromJson;
-
-  @override
-
-  /// Project, required for listing.
-  String? get project;
-  @override
-
-  /// Defaults to '/', ie. lists all files in a project.
-  /// Supply path to a folder if you want to list
-  /// files inside that folder
-  /// eg. '/docs'
-  String? get path;
-  @override
-  @JsonKey(ignore: true)
-  _$ListRequestCopyWith<_ListRequest> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 ListResponse _$ListResponseFromJson(Map<String, dynamic> json) {
@@ -761,9 +896,9 @@ ListResponse _$ListResponseFromJson(Map<String, dynamic> json) {
 class _$ListResponseTearOff {
   const _$ListResponseTearOff();
 
-  ListResponseData call({List<Record>? files}) {
+  ListResponseData call({List<Event>? events}) {
     return ListResponseData(
-      files: files,
+      events: events,
     );
   }
 
@@ -785,19 +920,19 @@ const $ListResponse = _$ListResponseTearOff();
 mixin _$ListResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Record>? files) $default, {
+    TResult Function(List<Event>? events) $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(List<Record>? files)? $default, {
+    TResult Function(List<Event>? events)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Record>? files)? $default, {
+    TResult Function(List<Event>? events)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) =>
@@ -845,7 +980,7 @@ abstract class $ListResponseDataCopyWith<$Res> {
   factory $ListResponseDataCopyWith(
           ListResponseData value, $Res Function(ListResponseData) then) =
       _$ListResponseDataCopyWithImpl<$Res>;
-  $Res call({List<Record>? files});
+  $Res call({List<Event>? events});
 }
 
 /// @nodoc
@@ -861,13 +996,13 @@ class _$ListResponseDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? files = freezed,
+    Object? events = freezed,
   }) {
     return _then(ListResponseData(
-      files: files == freezed
-          ? _value.files
-          : files // ignore: cast_nullable_to_non_nullable
-              as List<Record>?,
+      events: events == freezed
+          ? _value.events
+          : events // ignore: cast_nullable_to_non_nullable
+              as List<Event>?,
     ));
   }
 }
@@ -875,21 +1010,21 @@ class _$ListResponseDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ListResponseData implements ListResponseData {
-  const _$ListResponseData({this.files, String? $type})
+  const _$ListResponseData({this.events, String? $type})
       : $type = $type ?? 'default';
 
   factory _$ListResponseData.fromJson(Map<String, dynamic> json) =>
       _$$ListResponseDataFromJson(json);
 
   @override
-  final List<Record>? files;
+  final List<Event>? events;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'ListResponse(files: $files)';
+    return 'ListResponse(events: $events)';
   }
 
   @override
@@ -897,12 +1032,12 @@ class _$ListResponseData implements ListResponseData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ListResponseData &&
-            const DeepCollectionEquality().equals(other.files, files));
+            const DeepCollectionEquality().equals(other.events, events));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(files));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(events));
 
   @JsonKey(ignore: true)
   @override
@@ -912,30 +1047,30 @@ class _$ListResponseData implements ListResponseData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Record>? files) $default, {
+    TResult Function(List<Event>? events) $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
-    return $default(files);
+    return $default(events);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(List<Record>? files)? $default, {
+    TResult Function(List<Event>? events)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
-    return $default?.call(files);
+    return $default?.call(events);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Record>? files)? $default, {
+    TResult Function(List<Event>? events)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(files);
+      return $default(events);
     }
     return orElse();
   }
@@ -978,12 +1113,12 @@ class _$ListResponseData implements ListResponseData {
 }
 
 abstract class ListResponseData implements ListResponse {
-  const factory ListResponseData({List<Record>? files}) = _$ListResponseData;
+  const factory ListResponseData({List<Event>? events}) = _$ListResponseData;
 
   factory ListResponseData.fromJson(Map<String, dynamic> json) =
       _$ListResponseData.fromJson;
 
-  List<Record>? get files;
+  List<Event>? get events;
   @JsonKey(ignore: true)
   $ListResponseDataCopyWith<ListResponseData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1061,7 +1196,7 @@ class _$ListResponseMerr implements ListResponseMerr {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Record>? files) $default, {
+    TResult Function(List<Event>? events) $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
     return Merr(body);
@@ -1070,7 +1205,7 @@ class _$ListResponseMerr implements ListResponseMerr {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(List<Record>? files)? $default, {
+    TResult Function(List<Event>? events)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
     return Merr?.call(body);
@@ -1079,7 +1214,7 @@ class _$ListResponseMerr implements ListResponseMerr {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Record>? files)? $default, {
+    TResult Function(List<Event>? events)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) {
@@ -1147,10 +1282,9 @@ ReadRequest _$ReadRequestFromJson(Map<String, dynamic> json) {
 class _$ReadRequestTearOff {
   const _$ReadRequestTearOff();
 
-  _ReadRequest call({String? project, String? path}) {
+  _ReadRequest call({String? name}) {
     return _ReadRequest(
-      project: project,
-      path: path,
+      name: name,
     );
   }
 
@@ -1164,11 +1298,7 @@ const $ReadRequest = _$ReadRequestTearOff();
 
 /// @nodoc
 mixin _$ReadRequest {
-  /// Project name
-  String? get project => throw _privateConstructorUsedError;
-
-  /// Path to the file
-  String? get path => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1181,7 +1311,7 @@ abstract class $ReadRequestCopyWith<$Res> {
   factory $ReadRequestCopyWith(
           ReadRequest value, $Res Function(ReadRequest) then) =
       _$ReadRequestCopyWithImpl<$Res>;
-  $Res call({String? project, String? path});
+  $Res call({String? name});
 }
 
 /// @nodoc
@@ -1194,17 +1324,12 @@ class _$ReadRequestCopyWithImpl<$Res> implements $ReadRequestCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? project = freezed,
-    Object? path = freezed,
+    Object? name = freezed,
   }) {
     return _then(_value.copyWith(
-      project: project == freezed
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
-              as String?,
-      path: path == freezed
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -1217,7 +1342,7 @@ abstract class _$ReadRequestCopyWith<$Res>
           _ReadRequest value, $Res Function(_ReadRequest) then) =
       __$ReadRequestCopyWithImpl<$Res>;
   @override
-  $Res call({String? project, String? path});
+  $Res call({String? name});
 }
 
 /// @nodoc
@@ -1232,17 +1357,12 @@ class __$ReadRequestCopyWithImpl<$Res> extends _$ReadRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? project = freezed,
-    Object? path = freezed,
+    Object? name = freezed,
   }) {
     return _then(_ReadRequest(
-      project: project == freezed
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
-              as String?,
-      path: path == freezed
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -1251,23 +1371,17 @@ class __$ReadRequestCopyWithImpl<$Res> extends _$ReadRequestCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ReadRequest implements _ReadRequest {
-  const _$_ReadRequest({this.project, this.path});
+  const _$_ReadRequest({this.name});
 
   factory _$_ReadRequest.fromJson(Map<String, dynamic> json) =>
       _$$_ReadRequestFromJson(json);
 
   @override
-
-  /// Project name
-  final String? project;
-  @override
-
-  /// Path to the file
-  final String? path;
+  final String? name;
 
   @override
   String toString() {
-    return 'ReadRequest(project: $project, path: $path)';
+    return 'ReadRequest(name: $name)';
   }
 
   @override
@@ -1275,15 +1389,12 @@ class _$_ReadRequest implements _ReadRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ReadRequest &&
-            const DeepCollectionEquality().equals(other.project, project) &&
-            const DeepCollectionEquality().equals(other.path, path));
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(project),
-      const DeepCollectionEquality().hash(path));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override
@@ -1297,19 +1408,13 @@ class _$_ReadRequest implements _ReadRequest {
 }
 
 abstract class _ReadRequest implements ReadRequest {
-  const factory _ReadRequest({String? project, String? path}) = _$_ReadRequest;
+  const factory _ReadRequest({String? name}) = _$_ReadRequest;
 
   factory _ReadRequest.fromJson(Map<String, dynamic> json) =
       _$_ReadRequest.fromJson;
 
   @override
-
-  /// Project name
-  String? get project;
-  @override
-
-  /// Path to the file
-  String? get path;
+  String? get name;
   @override
   @JsonKey(ignore: true)
   _$ReadRequestCopyWith<_ReadRequest> get copyWith =>
@@ -1333,9 +1438,9 @@ ReadResponse _$ReadResponseFromJson(Map<String, dynamic> json) {
 class _$ReadResponseTearOff {
   const _$ReadResponseTearOff();
 
-  ReadResponseData call({Record? file}) {
+  ReadResponseData call({Event? event}) {
     return ReadResponseData(
-      file: file,
+      event: event,
     );
   }
 
@@ -1357,19 +1462,19 @@ const $ReadResponse = _$ReadResponseTearOff();
 mixin _$ReadResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Record? file) $default, {
+    TResult Function(Event? event) $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(Record? file)? $default, {
+    TResult Function(Event? event)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Record? file)? $default, {
+    TResult Function(Event? event)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) =>
@@ -1417,9 +1522,9 @@ abstract class $ReadResponseDataCopyWith<$Res> {
   factory $ReadResponseDataCopyWith(
           ReadResponseData value, $Res Function(ReadResponseData) then) =
       _$ReadResponseDataCopyWithImpl<$Res>;
-  $Res call({Record? file});
+  $Res call({Event? event});
 
-  $RecordCopyWith<$Res>? get file;
+  $EventCopyWith<$Res>? get event;
 }
 
 /// @nodoc
@@ -1435,24 +1540,24 @@ class _$ReadResponseDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? file = freezed,
+    Object? event = freezed,
   }) {
     return _then(ReadResponseData(
-      file: file == freezed
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as Record?,
+      event: event == freezed
+          ? _value.event
+          : event // ignore: cast_nullable_to_non_nullable
+              as Event?,
     ));
   }
 
   @override
-  $RecordCopyWith<$Res>? get file {
-    if (_value.file == null) {
+  $EventCopyWith<$Res>? get event {
+    if (_value.event == null) {
       return null;
     }
 
-    return $RecordCopyWith<$Res>(_value.file!, (value) {
-      return _then(_value.copyWith(file: value));
+    return $EventCopyWith<$Res>(_value.event!, (value) {
+      return _then(_value.copyWith(event: value));
     });
   }
 }
@@ -1460,23 +1565,21 @@ class _$ReadResponseDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ReadResponseData implements ReadResponseData {
-  const _$ReadResponseData({this.file, String? $type})
+  const _$ReadResponseData({this.event, String? $type})
       : $type = $type ?? 'default';
 
   factory _$ReadResponseData.fromJson(Map<String, dynamic> json) =>
       _$$ReadResponseDataFromJson(json);
 
   @override
-
-  /// Returns the file
-  final Record? file;
+  final Event? event;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'ReadResponse(file: $file)';
+    return 'ReadResponse(event: $event)';
   }
 
   @override
@@ -1484,12 +1587,12 @@ class _$ReadResponseData implements ReadResponseData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ReadResponseData &&
-            const DeepCollectionEquality().equals(other.file, file));
+            const DeepCollectionEquality().equals(other.event, event));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(file));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(event));
 
   @JsonKey(ignore: true)
   @override
@@ -1499,30 +1602,30 @@ class _$ReadResponseData implements ReadResponseData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Record? file) $default, {
+    TResult Function(Event? event) $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
-    return $default(file);
+    return $default(event);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(Record? file)? $default, {
+    TResult Function(Event? event)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
-    return $default?.call(file);
+    return $default?.call(event);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Record? file)? $default, {
+    TResult Function(Event? event)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(file);
+      return $default(event);
     }
     return orElse();
   }
@@ -1565,13 +1668,12 @@ class _$ReadResponseData implements ReadResponseData {
 }
 
 abstract class ReadResponseData implements ReadResponse {
-  const factory ReadResponseData({Record? file}) = _$ReadResponseData;
+  const factory ReadResponseData({Event? event}) = _$ReadResponseData;
 
   factory ReadResponseData.fromJson(Map<String, dynamic> json) =
       _$ReadResponseData.fromJson;
 
-  /// Returns the file
-  Record? get file;
+  Event? get event;
   @JsonKey(ignore: true)
   $ReadResponseDataCopyWith<ReadResponseData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1649,7 +1751,7 @@ class _$ReadResponseMerr implements ReadResponseMerr {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Record? file) $default, {
+    TResult Function(Event? event) $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
     return Merr(body);
@@ -1658,7 +1760,7 @@ class _$ReadResponseMerr implements ReadResponseMerr {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(Record? file)? $default, {
+    TResult Function(Event? event)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
     return Merr?.call(body);
@@ -1667,7 +1769,7 @@ class _$ReadResponseMerr implements ReadResponseMerr {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Record? file)? $default, {
+    TResult Function(Event? event)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) {
@@ -1727,572 +1829,230 @@ abstract class ReadResponseMerr implements ReadResponse {
       throw _privateConstructorUsedError;
 }
 
-Record _$RecordFromJson(Map<String, dynamic> json) {
-  return _Record.fromJson(json);
+TrackRequest _$TrackRequestFromJson(Map<String, dynamic> json) {
+  return _TrackRequest.fromJson(json);
 }
 
 /// @nodoc
-class _$RecordTearOff {
-  const _$RecordTearOff();
+class _$TrackRequestTearOff {
+  const _$TrackRequestTearOff();
 
-  _Record call(
-      {String? path,
-      String? project,
-      String? updated,
-      String? content,
-      String? created,
-      Map<String, String>? metadata}) {
-    return _Record(
-      path: path,
-      project: project,
-      updated: updated,
-      content: content,
-      created: created,
-      metadata: metadata,
+  _TrackRequest call({String? name}) {
+    return _TrackRequest(
+      name: name,
     );
   }
 
-  Record fromJson(Map<String, Object?> json) {
-    return Record.fromJson(json);
+  TrackRequest fromJson(Map<String, Object?> json) {
+    return TrackRequest.fromJson(json);
   }
 }
 
 /// @nodoc
-const $Record = _$RecordTearOff();
+const $TrackRequest = _$TrackRequestTearOff();
 
 /// @nodoc
-mixin _$Record {
-  /// Path to file or folder eg. '/documents/text-files/file.txt'.
-  String? get path => throw _privateConstructorUsedError;
-
-  /// A custom project to group files
-  /// eg. file-of-mywebsite.com
-  String? get project => throw _privateConstructorUsedError;
-
-  /// Time the file was updated e.g 2021-05-20T13:37:21Z
-  String? get updated => throw _privateConstructorUsedError;
-
-  /// File contents
-  String? get content => throw _privateConstructorUsedError;
-
-  /// Time the file was created e.g 2021-05-20T13:37:21Z
-  String? get created => throw _privateConstructorUsedError;
-
-  /// Any other associated metadata as a map of key-value pairs
-  Map<String, String>? get metadata => throw _privateConstructorUsedError;
+mixin _$TrackRequest {
+  /// event name
+  String? get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RecordCopyWith<Record> get copyWith => throw _privateConstructorUsedError;
+  $TrackRequestCopyWith<TrackRequest> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RecordCopyWith<$Res> {
-  factory $RecordCopyWith(Record value, $Res Function(Record) then) =
-      _$RecordCopyWithImpl<$Res>;
-  $Res call(
-      {String? path,
-      String? project,
-      String? updated,
-      String? content,
-      String? created,
-      Map<String, String>? metadata});
+abstract class $TrackRequestCopyWith<$Res> {
+  factory $TrackRequestCopyWith(
+          TrackRequest value, $Res Function(TrackRequest) then) =
+      _$TrackRequestCopyWithImpl<$Res>;
+  $Res call({String? name});
 }
 
 /// @nodoc
-class _$RecordCopyWithImpl<$Res> implements $RecordCopyWith<$Res> {
-  _$RecordCopyWithImpl(this._value, this._then);
+class _$TrackRequestCopyWithImpl<$Res> implements $TrackRequestCopyWith<$Res> {
+  _$TrackRequestCopyWithImpl(this._value, this._then);
 
-  final Record _value;
+  final TrackRequest _value;
   // ignore: unused_field
-  final $Res Function(Record) _then;
+  final $Res Function(TrackRequest) _then;
 
   @override
   $Res call({
-    Object? path = freezed,
-    Object? project = freezed,
-    Object? updated = freezed,
-    Object? content = freezed,
-    Object? created = freezed,
-    Object? metadata = freezed,
+    Object? name = freezed,
   }) {
     return _then(_value.copyWith(
-      path: path == freezed
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      project: project == freezed
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updated: updated == freezed
-          ? _value.updated
-          : updated // ignore: cast_nullable_to_non_nullable
-              as String?,
-      content: content == freezed
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-      created: created == freezed
-          ? _value.created
-          : created // ignore: cast_nullable_to_non_nullable
-              as String?,
-      metadata: metadata == freezed
-          ? _value.metadata
-          : metadata // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$RecordCopyWith<$Res> implements $RecordCopyWith<$Res> {
-  factory _$RecordCopyWith(_Record value, $Res Function(_Record) then) =
-      __$RecordCopyWithImpl<$Res>;
+abstract class _$TrackRequestCopyWith<$Res>
+    implements $TrackRequestCopyWith<$Res> {
+  factory _$TrackRequestCopyWith(
+          _TrackRequest value, $Res Function(_TrackRequest) then) =
+      __$TrackRequestCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String? path,
-      String? project,
-      String? updated,
-      String? content,
-      String? created,
-      Map<String, String>? metadata});
+  $Res call({String? name});
 }
 
 /// @nodoc
-class __$RecordCopyWithImpl<$Res> extends _$RecordCopyWithImpl<$Res>
-    implements _$RecordCopyWith<$Res> {
-  __$RecordCopyWithImpl(_Record _value, $Res Function(_Record) _then)
-      : super(_value, (v) => _then(v as _Record));
+class __$TrackRequestCopyWithImpl<$Res> extends _$TrackRequestCopyWithImpl<$Res>
+    implements _$TrackRequestCopyWith<$Res> {
+  __$TrackRequestCopyWithImpl(
+      _TrackRequest _value, $Res Function(_TrackRequest) _then)
+      : super(_value, (v) => _then(v as _TrackRequest));
 
   @override
-  _Record get _value => super._value as _Record;
+  _TrackRequest get _value => super._value as _TrackRequest;
 
   @override
   $Res call({
-    Object? path = freezed,
-    Object? project = freezed,
-    Object? updated = freezed,
-    Object? content = freezed,
-    Object? created = freezed,
-    Object? metadata = freezed,
+    Object? name = freezed,
   }) {
-    return _then(_Record(
-      path: path == freezed
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
+    return _then(_TrackRequest(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      project: project == freezed
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updated: updated == freezed
-          ? _value.updated
-          : updated // ignore: cast_nullable_to_non_nullable
-              as String?,
-      content: content == freezed
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-      created: created == freezed
-          ? _value.created
-          : created // ignore: cast_nullable_to_non_nullable
-              as String?,
-      metadata: metadata == freezed
-          ? _value.metadata
-          : metadata // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Record implements _Record {
-  const _$_Record(
-      {this.path,
-      this.project,
-      this.updated,
-      this.content,
-      this.created,
-      this.metadata});
+class _$_TrackRequest implements _TrackRequest {
+  const _$_TrackRequest({this.name});
 
-  factory _$_Record.fromJson(Map<String, dynamic> json) =>
-      _$$_RecordFromJson(json);
+  factory _$_TrackRequest.fromJson(Map<String, dynamic> json) =>
+      _$$_TrackRequestFromJson(json);
 
   @override
 
-  /// Path to file or folder eg. '/documents/text-files/file.txt'.
-  final String? path;
-  @override
-
-  /// A custom project to group files
-  /// eg. file-of-mywebsite.com
-  final String? project;
-  @override
-
-  /// Time the file was updated e.g 2021-05-20T13:37:21Z
-  final String? updated;
-  @override
-
-  /// File contents
-  final String? content;
-  @override
-
-  /// Time the file was created e.g 2021-05-20T13:37:21Z
-  final String? created;
-  @override
-
-  /// Any other associated metadata as a map of key-value pairs
-  final Map<String, String>? metadata;
+  /// event name
+  final String? name;
 
   @override
   String toString() {
-    return 'Record(path: $path, project: $project, updated: $updated, content: $content, created: $created, metadata: $metadata)';
+    return 'TrackRequest(name: $name)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Record &&
-            const DeepCollectionEquality().equals(other.path, path) &&
-            const DeepCollectionEquality().equals(other.project, project) &&
-            const DeepCollectionEquality().equals(other.updated, updated) &&
-            const DeepCollectionEquality().equals(other.content, content) &&
-            const DeepCollectionEquality().equals(other.created, created) &&
-            const DeepCollectionEquality().equals(other.metadata, metadata));
+            other is _TrackRequest &&
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(path),
-      const DeepCollectionEquality().hash(project),
-      const DeepCollectionEquality().hash(updated),
-      const DeepCollectionEquality().hash(content),
-      const DeepCollectionEquality().hash(created),
-      const DeepCollectionEquality().hash(metadata));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override
-  _$RecordCopyWith<_Record> get copyWith =>
-      __$RecordCopyWithImpl<_Record>(this, _$identity);
+  _$TrackRequestCopyWith<_TrackRequest> get copyWith =>
+      __$TrackRequestCopyWithImpl<_TrackRequest>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_RecordToJson(this);
+    return _$$_TrackRequestToJson(this);
   }
 }
 
-abstract class _Record implements Record {
-  const factory _Record(
-      {String? path,
-      String? project,
-      String? updated,
-      String? content,
-      String? created,
-      Map<String, String>? metadata}) = _$_Record;
+abstract class _TrackRequest implements TrackRequest {
+  const factory _TrackRequest({String? name}) = _$_TrackRequest;
 
-  factory _Record.fromJson(Map<String, dynamic> json) = _$_Record.fromJson;
+  factory _TrackRequest.fromJson(Map<String, dynamic> json) =
+      _$_TrackRequest.fromJson;
 
   @override
 
-  /// Path to file or folder eg. '/documents/text-files/file.txt'.
-  String? get path;
-  @override
-
-  /// A custom project to group files
-  /// eg. file-of-mywebsite.com
-  String? get project;
-  @override
-
-  /// Time the file was updated e.g 2021-05-20T13:37:21Z
-  String? get updated;
-  @override
-
-  /// File contents
-  String? get content;
-  @override
-
-  /// Time the file was created e.g 2021-05-20T13:37:21Z
-  String? get created;
-  @override
-
-  /// Any other associated metadata as a map of key-value pairs
-  Map<String, String>? get metadata;
+  /// event name
+  String? get name;
   @override
   @JsonKey(ignore: true)
-  _$RecordCopyWith<_Record> get copyWith => throw _privateConstructorUsedError;
-}
-
-SaveRequest _$SaveRequestFromJson(Map<String, dynamic> json) {
-  return _SaveRequest.fromJson(json);
-}
-
-/// @nodoc
-class _$SaveRequestTearOff {
-  const _$SaveRequestTearOff();
-
-  _SaveRequest call({bool? public, Record? file}) {
-    return _SaveRequest(
-      public: public,
-      file: file,
-    );
-  }
-
-  SaveRequest fromJson(Map<String, Object?> json) {
-    return SaveRequest.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SaveRequest = _$SaveRequestTearOff();
-
-/// @nodoc
-mixin _$SaveRequest {
-  /// Make the file public: true or false
-  bool? get public => throw _privateConstructorUsedError;
-
-  /// The file to save
-  Record? get file => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $SaveRequestCopyWith<SaveRequest> get copyWith =>
+  _$TrackRequestCopyWith<_TrackRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-/// @nodoc
-abstract class $SaveRequestCopyWith<$Res> {
-  factory $SaveRequestCopyWith(
-          SaveRequest value, $Res Function(SaveRequest) then) =
-      _$SaveRequestCopyWithImpl<$Res>;
-  $Res call({bool? public, Record? file});
-
-  $RecordCopyWith<$Res>? get file;
-}
-
-/// @nodoc
-class _$SaveRequestCopyWithImpl<$Res> implements $SaveRequestCopyWith<$Res> {
-  _$SaveRequestCopyWithImpl(this._value, this._then);
-
-  final SaveRequest _value;
-  // ignore: unused_field
-  final $Res Function(SaveRequest) _then;
-
-  @override
-  $Res call({
-    Object? public = freezed,
-    Object? file = freezed,
-  }) {
-    return _then(_value.copyWith(
-      public: public == freezed
-          ? _value.public
-          : public // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      file: file == freezed
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as Record?,
-    ));
-  }
-
-  @override
-  $RecordCopyWith<$Res>? get file {
-    if (_value.file == null) {
-      return null;
-    }
-
-    return $RecordCopyWith<$Res>(_value.file!, (value) {
-      return _then(_value.copyWith(file: value));
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$SaveRequestCopyWith<$Res>
-    implements $SaveRequestCopyWith<$Res> {
-  factory _$SaveRequestCopyWith(
-          _SaveRequest value, $Res Function(_SaveRequest) then) =
-      __$SaveRequestCopyWithImpl<$Res>;
-  @override
-  $Res call({bool? public, Record? file});
-
-  @override
-  $RecordCopyWith<$Res>? get file;
-}
-
-/// @nodoc
-class __$SaveRequestCopyWithImpl<$Res> extends _$SaveRequestCopyWithImpl<$Res>
-    implements _$SaveRequestCopyWith<$Res> {
-  __$SaveRequestCopyWithImpl(
-      _SaveRequest _value, $Res Function(_SaveRequest) _then)
-      : super(_value, (v) => _then(v as _SaveRequest));
-
-  @override
-  _SaveRequest get _value => super._value as _SaveRequest;
-
-  @override
-  $Res call({
-    Object? public = freezed,
-    Object? file = freezed,
-  }) {
-    return _then(_SaveRequest(
-      public: public == freezed
-          ? _value.public
-          : public // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      file: file == freezed
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as Record?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_SaveRequest implements _SaveRequest {
-  const _$_SaveRequest({this.public, this.file});
-
-  factory _$_SaveRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_SaveRequestFromJson(json);
-
-  @override
-
-  /// Make the file public: true or false
-  final bool? public;
-  @override
-
-  /// The file to save
-  final Record? file;
-
-  @override
-  String toString() {
-    return 'SaveRequest(public: $public, file: $file)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SaveRequest &&
-            const DeepCollectionEquality().equals(other.public, public) &&
-            const DeepCollectionEquality().equals(other.file, file));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(public),
-      const DeepCollectionEquality().hash(file));
-
-  @JsonKey(ignore: true)
-  @override
-  _$SaveRequestCopyWith<_SaveRequest> get copyWith =>
-      __$SaveRequestCopyWithImpl<_SaveRequest>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_SaveRequestToJson(this);
-  }
-}
-
-abstract class _SaveRequest implements SaveRequest {
-  const factory _SaveRequest({bool? public, Record? file}) = _$_SaveRequest;
-
-  factory _SaveRequest.fromJson(Map<String, dynamic> json) =
-      _$_SaveRequest.fromJson;
-
-  @override
-
-  /// Make the file public: true or false
-  bool? get public;
-  @override
-
-  /// The file to save
-  Record? get file;
-  @override
-  @JsonKey(ignore: true)
-  _$SaveRequestCopyWith<_SaveRequest> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-SaveResponse _$SaveResponseFromJson(Map<String, dynamic> json) {
+TrackResponse _$TrackResponseFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'default':
-      return SaveResponseData.fromJson(json);
+      return TrackResponseData.fromJson(json);
     case 'Merr':
-      return SaveResponseMerr.fromJson(json);
+      return TrackResponseMerr.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'SaveResponse',
+      throw CheckedFromJsonException(json, 'runtimeType', 'TrackResponse',
           'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
 /// @nodoc
-class _$SaveResponseTearOff {
-  const _$SaveResponseTearOff();
+class _$TrackResponseTearOff {
+  const _$TrackResponseTearOff();
 
-  SaveResponseData call({String? url}) {
-    return SaveResponseData(
-      url: url,
-    );
+  TrackResponseData call() {
+    return const TrackResponseData();
   }
 
-  SaveResponseMerr Merr({Map<String, dynamic>? body}) {
-    return SaveResponseMerr(
+  TrackResponseMerr Merr({Map<String, dynamic>? body}) {
+    return TrackResponseMerr(
       body: body,
     );
   }
 
-  SaveResponse fromJson(Map<String, Object?> json) {
-    return SaveResponse.fromJson(json);
+  TrackResponse fromJson(Map<String, Object?> json) {
+    return TrackResponse.fromJson(json);
   }
 }
 
 /// @nodoc
-const $SaveResponse = _$SaveResponseTearOff();
+const $TrackResponse = _$TrackResponseTearOff();
 
 /// @nodoc
-mixin _$SaveResponse {
+mixin _$TrackResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String? url) $default, {
+    TResult Function() $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(String? url)? $default, {
+    TResult Function()? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String? url)? $default, {
+    TResult Function()? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(SaveResponseData value) $default, {
-    required TResult Function(SaveResponseMerr value) Merr,
+    TResult Function(TrackResponseData value) $default, {
+    required TResult Function(TrackResponseMerr value) Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(SaveResponseData value)? $default, {
-    TResult Function(SaveResponseMerr value)? Merr,
+    TResult Function(TrackResponseData value)? $default, {
+    TResult Function(TrackResponseMerr value)? Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(SaveResponseData value)? $default, {
-    TResult Function(SaveResponseMerr value)? Merr,
+    TResult Function(TrackResponseData value)? $default, {
+    TResult Function(TrackResponseMerr value)? Merr,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -2300,119 +2060,93 @@ mixin _$SaveResponse {
 }
 
 /// @nodoc
-abstract class $SaveResponseCopyWith<$Res> {
-  factory $SaveResponseCopyWith(
-          SaveResponse value, $Res Function(SaveResponse) then) =
-      _$SaveResponseCopyWithImpl<$Res>;
+abstract class $TrackResponseCopyWith<$Res> {
+  factory $TrackResponseCopyWith(
+          TrackResponse value, $Res Function(TrackResponse) then) =
+      _$TrackResponseCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SaveResponseCopyWithImpl<$Res> implements $SaveResponseCopyWith<$Res> {
-  _$SaveResponseCopyWithImpl(this._value, this._then);
+class _$TrackResponseCopyWithImpl<$Res>
+    implements $TrackResponseCopyWith<$Res> {
+  _$TrackResponseCopyWithImpl(this._value, this._then);
 
-  final SaveResponse _value;
+  final TrackResponse _value;
   // ignore: unused_field
-  final $Res Function(SaveResponse) _then;
+  final $Res Function(TrackResponse) _then;
 }
 
 /// @nodoc
-abstract class $SaveResponseDataCopyWith<$Res> {
-  factory $SaveResponseDataCopyWith(
-          SaveResponseData value, $Res Function(SaveResponseData) then) =
-      _$SaveResponseDataCopyWithImpl<$Res>;
-  $Res call({String? url});
+abstract class $TrackResponseDataCopyWith<$Res> {
+  factory $TrackResponseDataCopyWith(
+          TrackResponseData value, $Res Function(TrackResponseData) then) =
+      _$TrackResponseDataCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SaveResponseDataCopyWithImpl<$Res>
-    extends _$SaveResponseCopyWithImpl<$Res>
-    implements $SaveResponseDataCopyWith<$Res> {
-  _$SaveResponseDataCopyWithImpl(
-      SaveResponseData _value, $Res Function(SaveResponseData) _then)
-      : super(_value, (v) => _then(v as SaveResponseData));
+class _$TrackResponseDataCopyWithImpl<$Res>
+    extends _$TrackResponseCopyWithImpl<$Res>
+    implements $TrackResponseDataCopyWith<$Res> {
+  _$TrackResponseDataCopyWithImpl(
+      TrackResponseData _value, $Res Function(TrackResponseData) _then)
+      : super(_value, (v) => _then(v as TrackResponseData));
 
   @override
-  SaveResponseData get _value => super._value as SaveResponseData;
-
-  @override
-  $Res call({
-    Object? url = freezed,
-  }) {
-    return _then(SaveResponseData(
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+  TrackResponseData get _value => super._value as TrackResponseData;
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SaveResponseData implements SaveResponseData {
-  const _$SaveResponseData({this.url, String? $type})
-      : $type = $type ?? 'default';
+class _$TrackResponseData implements TrackResponseData {
+  const _$TrackResponseData({String? $type}) : $type = $type ?? 'default';
 
-  factory _$SaveResponseData.fromJson(Map<String, dynamic> json) =>
-      _$$SaveResponseDataFromJson(json);
-
-  @override
-
-  /// The permalink for the file if made public
-  final String? url;
+  factory _$TrackResponseData.fromJson(Map<String, dynamic> json) =>
+      _$$TrackResponseDataFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'SaveResponse(url: $url)';
+    return 'TrackResponse()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is SaveResponseData &&
-            const DeepCollectionEquality().equals(other.url, url));
+        (other.runtimeType == runtimeType && other is TrackResponseData);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(url));
-
-  @JsonKey(ignore: true)
-  @override
-  $SaveResponseDataCopyWith<SaveResponseData> get copyWith =>
-      _$SaveResponseDataCopyWithImpl<SaveResponseData>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String? url) $default, {
+    TResult Function() $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
-    return $default(url);
+    return $default();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(String? url)? $default, {
+    TResult Function()? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
-    return $default?.call(url);
+    return $default?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String? url)? $default, {
+    TResult Function()? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(url);
+      return $default();
     }
     return orElse();
   }
@@ -2420,8 +2154,8 @@ class _$SaveResponseData implements SaveResponseData {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(SaveResponseData value) $default, {
-    required TResult Function(SaveResponseMerr value) Merr,
+    TResult Function(TrackResponseData value) $default, {
+    required TResult Function(TrackResponseMerr value) Merr,
   }) {
     return $default(this);
   }
@@ -2429,8 +2163,8 @@ class _$SaveResponseData implements SaveResponseData {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(SaveResponseData value)? $default, {
-    TResult Function(SaveResponseMerr value)? Merr,
+    TResult Function(TrackResponseData value)? $default, {
+    TResult Function(TrackResponseMerr value)? Merr,
   }) {
     return $default?.call(this);
   }
@@ -2438,8 +2172,8 @@ class _$SaveResponseData implements SaveResponseData {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(SaveResponseData value)? $default, {
-    TResult Function(SaveResponseMerr value)? Merr,
+    TResult Function(TrackResponseData value)? $default, {
+    TResult Function(TrackResponseMerr value)? Merr,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -2450,47 +2184,41 @@ class _$SaveResponseData implements SaveResponseData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SaveResponseDataToJson(this);
+    return _$$TrackResponseDataToJson(this);
   }
 }
 
-abstract class SaveResponseData implements SaveResponse {
-  const factory SaveResponseData({String? url}) = _$SaveResponseData;
+abstract class TrackResponseData implements TrackResponse {
+  const factory TrackResponseData() = _$TrackResponseData;
 
-  factory SaveResponseData.fromJson(Map<String, dynamic> json) =
-      _$SaveResponseData.fromJson;
-
-  /// The permalink for the file if made public
-  String? get url;
-  @JsonKey(ignore: true)
-  $SaveResponseDataCopyWith<SaveResponseData> get copyWith =>
-      throw _privateConstructorUsedError;
+  factory TrackResponseData.fromJson(Map<String, dynamic> json) =
+      _$TrackResponseData.fromJson;
 }
 
 /// @nodoc
-abstract class $SaveResponseMerrCopyWith<$Res> {
-  factory $SaveResponseMerrCopyWith(
-          SaveResponseMerr value, $Res Function(SaveResponseMerr) then) =
-      _$SaveResponseMerrCopyWithImpl<$Res>;
+abstract class $TrackResponseMerrCopyWith<$Res> {
+  factory $TrackResponseMerrCopyWith(
+          TrackResponseMerr value, $Res Function(TrackResponseMerr) then) =
+      _$TrackResponseMerrCopyWithImpl<$Res>;
   $Res call({Map<String, dynamic>? body});
 }
 
 /// @nodoc
-class _$SaveResponseMerrCopyWithImpl<$Res>
-    extends _$SaveResponseCopyWithImpl<$Res>
-    implements $SaveResponseMerrCopyWith<$Res> {
-  _$SaveResponseMerrCopyWithImpl(
-      SaveResponseMerr _value, $Res Function(SaveResponseMerr) _then)
-      : super(_value, (v) => _then(v as SaveResponseMerr));
+class _$TrackResponseMerrCopyWithImpl<$Res>
+    extends _$TrackResponseCopyWithImpl<$Res>
+    implements $TrackResponseMerrCopyWith<$Res> {
+  _$TrackResponseMerrCopyWithImpl(
+      TrackResponseMerr _value, $Res Function(TrackResponseMerr) _then)
+      : super(_value, (v) => _then(v as TrackResponseMerr));
 
   @override
-  SaveResponseMerr get _value => super._value as SaveResponseMerr;
+  TrackResponseMerr get _value => super._value as TrackResponseMerr;
 
   @override
   $Res call({
     Object? body = freezed,
   }) {
-    return _then(SaveResponseMerr(
+    return _then(TrackResponseMerr(
       body: body == freezed
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
@@ -2501,12 +2229,12 @@ class _$SaveResponseMerrCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SaveResponseMerr implements SaveResponseMerr {
-  const _$SaveResponseMerr({this.body, String? $type})
+class _$TrackResponseMerr implements TrackResponseMerr {
+  const _$TrackResponseMerr({this.body, String? $type})
       : $type = $type ?? 'Merr';
 
-  factory _$SaveResponseMerr.fromJson(Map<String, dynamic> json) =>
-      _$$SaveResponseMerrFromJson(json);
+  factory _$TrackResponseMerr.fromJson(Map<String, dynamic> json) =>
+      _$$TrackResponseMerrFromJson(json);
 
   @override
   final Map<String, dynamic>? body;
@@ -2516,14 +2244,14 @@ class _$SaveResponseMerr implements SaveResponseMerr {
 
   @override
   String toString() {
-    return 'SaveResponse.Merr(body: $body)';
+    return 'TrackResponse.Merr(body: $body)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SaveResponseMerr &&
+            other is TrackResponseMerr &&
             const DeepCollectionEquality().equals(other.body, body));
   }
 
@@ -2533,13 +2261,13 @@ class _$SaveResponseMerr implements SaveResponseMerr {
 
   @JsonKey(ignore: true)
   @override
-  $SaveResponseMerrCopyWith<SaveResponseMerr> get copyWith =>
-      _$SaveResponseMerrCopyWithImpl<SaveResponseMerr>(this, _$identity);
+  $TrackResponseMerrCopyWith<TrackResponseMerr> get copyWith =>
+      _$TrackResponseMerrCopyWithImpl<TrackResponseMerr>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String? url) $default, {
+    TResult Function() $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
     return Merr(body);
@@ -2548,7 +2276,7 @@ class _$SaveResponseMerr implements SaveResponseMerr {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(String? url)? $default, {
+    TResult Function()? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
     return Merr?.call(body);
@@ -2557,7 +2285,7 @@ class _$SaveResponseMerr implements SaveResponseMerr {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String? url)? $default, {
+    TResult Function()? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) {
@@ -2570,8 +2298,8 @@ class _$SaveResponseMerr implements SaveResponseMerr {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(SaveResponseData value) $default, {
-    required TResult Function(SaveResponseMerr value) Merr,
+    TResult Function(TrackResponseData value) $default, {
+    required TResult Function(TrackResponseMerr value) Merr,
   }) {
     return Merr(this);
   }
@@ -2579,8 +2307,8 @@ class _$SaveResponseMerr implements SaveResponseMerr {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(SaveResponseData value)? $default, {
-    TResult Function(SaveResponseMerr value)? Merr,
+    TResult Function(TrackResponseData value)? $default, {
+    TResult Function(TrackResponseMerr value)? Merr,
   }) {
     return Merr?.call(this);
   }
@@ -2588,8 +2316,8 @@ class _$SaveResponseMerr implements SaveResponseMerr {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(SaveResponseData value)? $default, {
-    TResult Function(SaveResponseMerr value)? Merr,
+    TResult Function(TrackResponseData value)? $default, {
+    TResult Function(TrackResponseMerr value)? Merr,
     required TResult orElse(),
   }) {
     if (Merr != null) {
@@ -2600,19 +2328,19 @@ class _$SaveResponseMerr implements SaveResponseMerr {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SaveResponseMerrToJson(this);
+    return _$$TrackResponseMerrToJson(this);
   }
 }
 
-abstract class SaveResponseMerr implements SaveResponse {
-  const factory SaveResponseMerr({Map<String, dynamic>? body}) =
-      _$SaveResponseMerr;
+abstract class TrackResponseMerr implements TrackResponse {
+  const factory TrackResponseMerr({Map<String, dynamic>? body}) =
+      _$TrackResponseMerr;
 
-  factory SaveResponseMerr.fromJson(Map<String, dynamic> json) =
-      _$SaveResponseMerr.fromJson;
+  factory TrackResponseMerr.fromJson(Map<String, dynamic> json) =
+      _$TrackResponseMerr.fromJson;
 
   Map<String, dynamic>? get body;
   @JsonKey(ignore: true)
-  $SaveResponseMerrCopyWith<SaveResponseMerr> get copyWith =>
+  $TrackResponseMerrCopyWith<TrackResponseMerr> get copyWith =>
       throw _privateConstructorUsedError;
 }

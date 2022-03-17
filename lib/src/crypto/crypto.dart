@@ -194,11 +194,11 @@ class NewsRequest with _$NewsRequest {
 @Freezed()
 class NewsResponse with _$NewsResponse {
   const factory NewsResponse({
-    /// symbol requested for
-    String? symbol,
-
     /// list of articles
     List<Article>? articles,
+
+    /// symbol requested for
+    String? symbol,
   }) = NewsResponseData;
   const factory NewsResponse.Merr({Map<String, dynamic>? body}) =
       NewsResponseMerr;
@@ -244,6 +244,9 @@ class QuoteRequest with _$QuoteRequest {
 @Freezed()
 class QuoteResponse with _$QuoteResponse {
   const factory QuoteResponse({
+    /// the crypto symbol
+    String? symbol,
+
     /// the UTC timestamp of the quote
     String? timestamp,
 
@@ -258,9 +261,6 @@ class QuoteResponse with _$QuoteResponse {
 
     /// the bid size
     double? bid_size,
-
-    /// the crypto symbol
-    String? symbol,
   }) = QuoteResponseData;
   const factory QuoteResponse.Merr({Map<String, dynamic>? body}) =
       QuoteResponseMerr;

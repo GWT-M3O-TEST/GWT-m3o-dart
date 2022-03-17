@@ -78,30 +78,30 @@ Map<String, dynamic> _$$DeleteResponseMerrToJson(
 
 _$_DeployRequest _$$_DeployRequestFromJson(Map<String, dynamic> json) =>
     _$_DeployRequest(
-      branch: json['branch'] as String?,
-      region: json['region'] as String?,
-      runtime: json['runtime'] as String?,
       subfolder: json['subfolder'] as String?,
+      branch: json['branch'] as String?,
       entrypoint: json['entrypoint'] as String?,
       env_vars: (json['env_vars'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
+      region: json['region'] as String?,
+      source: json['source'] as String?,
       name: json['name'] as String?,
       repo: json['repo'] as String?,
-      source: json['source'] as String?,
+      runtime: json['runtime'] as String?,
     );
 
 Map<String, dynamic> _$$_DeployRequestToJson(_$_DeployRequest instance) =>
     <String, dynamic>{
-      'branch': instance.branch,
-      'region': instance.region,
-      'runtime': instance.runtime,
       'subfolder': instance.subfolder,
+      'branch': instance.branch,
       'entrypoint': instance.entrypoint,
       'env_vars': instance.env_vars,
+      'region': instance.region,
+      'source': instance.source,
       'name': instance.name,
       'repo': instance.repo,
-      'source': instance.source,
+      'runtime': instance.runtime,
     };
 
 _$DeployResponseData _$$DeployResponseDataFromJson(Map<String, dynamic> json) =>
@@ -176,35 +176,35 @@ _$_Func _$$_FuncFromJson(Map<String, dynamic> json) => _$_Func(
       env_vars: (json['env_vars'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
-      repo: json['repo'] as String?,
-      branch: json['branch'] as String?,
-      name: json['name'] as String?,
+      id: json['id'] as String?,
       source: json['source'] as String?,
-      status: json['status'] as String?,
-      subfolder: json['subfolder'] as String?,
+      entrypoint: json['entrypoint'] as String?,
       runtime: json['runtime'] as String?,
       url: json['url'] as String?,
       created: json['created'] as String?,
-      entrypoint: json['entrypoint'] as String?,
-      id: json['id'] as String?,
+      name: json['name'] as String?,
+      repo: json['repo'] as String?,
+      status: json['status'] as String?,
+      branch: json['branch'] as String?,
       region: json['region'] as String?,
+      subfolder: json['subfolder'] as String?,
       updated: json['updated'] as String?,
     );
 
 Map<String, dynamic> _$$_FuncToJson(_$_Func instance) => <String, dynamic>{
       'env_vars': instance.env_vars,
-      'repo': instance.repo,
-      'branch': instance.branch,
-      'name': instance.name,
+      'id': instance.id,
       'source': instance.source,
-      'status': instance.status,
-      'subfolder': instance.subfolder,
+      'entrypoint': instance.entrypoint,
       'runtime': instance.runtime,
       'url': instance.url,
       'created': instance.created,
-      'entrypoint': instance.entrypoint,
-      'id': instance.id,
+      'name': instance.name,
+      'repo': instance.repo,
+      'status': instance.status,
+      'branch': instance.branch,
       'region': instance.region,
+      'subfolder': instance.subfolder,
       'updated': instance.updated,
     };
 
@@ -311,20 +311,20 @@ Map<String, dynamic> _$$RegionsResponseMerrToJson(
 
 _$_Reservation _$$_ReservationFromJson(Map<String, dynamic> json) =>
     _$_Reservation(
+      created: json['created'] as String?,
       expires: json['expires'] as String?,
       name: json['name'] as String?,
       owner: json['owner'] as String?,
       token: json['token'] as String?,
-      created: json['created'] as String?,
     );
 
 Map<String, dynamic> _$$_ReservationToJson(_$_Reservation instance) =>
     <String, dynamic>{
+      'created': instance.created,
       'expires': instance.expires,
       'name': instance.name,
       'owner': instance.owner,
       'token': instance.token,
-      'created': instance.created,
     };
 
 _$_ReserveRequest _$$_ReserveRequestFromJson(Map<String, dynamic> json) =>

@@ -2,21 +2,21 @@ import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
-part 'file.freezed.dart';
-part 'file.g.dart';
+part 'analytics.freezed.dart';
+part 'analytics.g.dart';
 
-class FileService {
+class AnalyticsService {
   final Options opts;
   var _client;
 
-  FileService(this.opts) {
+  AnalyticsService(this.opts) {
     _client = Client(opts);
   }
 
-  /// Delete a file by project name/path
+  /// Delete an event
   Future<DeleteResponse> delete(DeleteRequest req) async {
     Request request = Request(
-      service: 'file',
+      service: 'analytics',
       endpoint: 'Delete',
       body: req.toJson(),
     );
@@ -34,10 +34,10 @@ class FileService {
     }
   }
 
-  /// List files by their project and optionally a path.
+  /// List all events
   Future<ListResponse> list(ListRequest req) async {
     Request request = Request(
-      service: 'file',
+      service: 'analytics',
       endpoint: 'List',
       body: req.toJson(),
     );
@@ -55,10 +55,10 @@ class FileService {
     }
   }
 
-  /// Read a file by path
+  /// Get a single event
   Future<ReadResponse> read(ReadRequest req) async {
     Request request = Request(
-      service: 'file',
+      service: 'analytics',
       endpoint: 'Read',
       body: req.toJson(),
     );
@@ -76,11 +76,11 @@ class FileService {
     }
   }
 
-  /// Save a file
-  Future<SaveResponse> save(SaveRequest req) async {
+  /// Track an event, it will be created if it doesn't exist
+  Future<TrackResponse> track(TrackRequest req) async {
     Request request = Request(
-      service: 'file',
-      endpoint: 'Save',
+      service: 'analytics',
+      endpoint: 'Track',
       body: req.toJson(),
     );
 
@@ -88,9 +88,9 @@ class FileService {
       Response res = await _client.call(request);
       if (isError(res.body)) {
         final err = Merr(res.toJson());
-        return SaveResponse.Merr(body: err.b);
+        return TrackResponse.Merr(body: err.b);
       }
-      return SaveResponseData.fromJson(res.body);
+      return TrackResponseData.fromJson(res.body);
     } catch (e, stack) {
       print(stack);
       throw Exception(e);
@@ -101,11 +101,7 @@ class FileService {
 @Freezed()
 class DeleteRequest with _$DeleteRequest {
   const factory DeleteRequest({
-    /// Path to the file
-    String? path,
-
-    /// The project name
-    String? project,
+    String? name,
   }) = _DeleteRequest;
   factory DeleteRequest.fromJson(Map<String, dynamic> json) =>
       _$DeleteRequestFromJson(json);
@@ -113,7 +109,9 @@ class DeleteRequest with _$DeleteRequest {
 
 @Freezed()
 class DeleteResponse with _$DeleteResponse {
-  const factory DeleteResponse() = DeleteResponseData;
+  const factory DeleteResponse({
+    Event? event,
+  }) = DeleteResponseData;
   const factory DeleteResponse.Merr({Map<String, dynamic>? body}) =
       DeleteResponseMerr;
   factory DeleteResponse.fromJson(Map<String, dynamic> json) =>
@@ -121,17 +119,23 @@ class DeleteResponse with _$DeleteResponse {
 }
 
 @Freezed()
-class ListRequest with _$ListRequest {
-  const factory ListRequest({
-    /// Project, required for listing.
-    String? project,
+class Event with _$Event {
+  const factory Event({
+    /// time at which the event was created
+    String? created,
 
-    /// Defaults to '/', ie. lists all files in a project.
-    /// Supply path to a folder if you want to list
-    /// files inside that folder
-    /// eg. '/docs'
-    String? path,
-  }) = _ListRequest;
+    /// event name
+    String? name,
+
+    /// the amount of times the event was triggered
+    @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
+  }) = _Event;
+  factory Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);
+}
+
+@Freezed()
+class ListRequest with _$ListRequest {
+  const factory ListRequest() = _ListRequest;
   factory ListRequest.fromJson(Map<String, dynamic> json) =>
       _$ListRequestFromJson(json);
 }
@@ -139,7 +143,7 @@ class ListRequest with _$ListRequest {
 @Freezed()
 class ListResponse with _$ListResponse {
   const factory ListResponse({
-    List<Record>? files,
+    List<Event>? events,
   }) = ListResponseData;
   const factory ListResponse.Merr({Map<String, dynamic>? body}) =
       ListResponseMerr;
@@ -150,11 +154,7 @@ class ListResponse with _$ListResponse {
 @Freezed()
 class ReadRequest with _$ReadRequest {
   const factory ReadRequest({
-    /// Project name
-    String? project,
-
-    /// Path to the file
-    String? path,
+    String? name,
   }) = _ReadRequest;
   factory ReadRequest.fromJson(Map<String, dynamic> json) =>
       _$ReadRequestFromJson(json);
@@ -163,8 +163,7 @@ class ReadRequest with _$ReadRequest {
 @Freezed()
 class ReadResponse with _$ReadResponse {
   const factory ReadResponse({
-    /// Returns the file
-    Record? file,
+    Event? event,
   }) = ReadResponseData;
   const factory ReadResponse.Merr({Map<String, dynamic>? body}) =
       ReadResponseMerr;
@@ -173,51 +172,20 @@ class ReadResponse with _$ReadResponse {
 }
 
 @Freezed()
-class Record with _$Record {
-  const factory Record({
-    /// Path to file or folder eg. '/documents/text-files/file.txt'.
-    String? path,
-
-    /// A custom project to group files
-    /// eg. file-of-mywebsite.com
-    String? project,
-
-    /// Time the file was updated e.g 2021-05-20T13:37:21Z
-    String? updated,
-
-    /// File contents
-    String? content,
-
-    /// Time the file was created e.g 2021-05-20T13:37:21Z
-    String? created,
-
-    /// Any other associated metadata as a map of key-value pairs
-    Map<String, String>? metadata,
-  }) = _Record;
-  factory Record.fromJson(Map<String, dynamic> json) => _$RecordFromJson(json);
+class TrackRequest with _$TrackRequest {
+  const factory TrackRequest({
+    /// event name
+    String? name,
+  }) = _TrackRequest;
+  factory TrackRequest.fromJson(Map<String, dynamic> json) =>
+      _$TrackRequestFromJson(json);
 }
 
 @Freezed()
-class SaveRequest with _$SaveRequest {
-  const factory SaveRequest({
-    /// Make the file public: true or false
-    bool? public,
-
-    /// The file to save
-    Record? file,
-  }) = _SaveRequest;
-  factory SaveRequest.fromJson(Map<String, dynamic> json) =>
-      _$SaveRequestFromJson(json);
-}
-
-@Freezed()
-class SaveResponse with _$SaveResponse {
-  const factory SaveResponse({
-    /// The permalink for the file if made public
-    String? url,
-  }) = SaveResponseData;
-  const factory SaveResponse.Merr({Map<String, dynamic>? body}) =
-      SaveResponseMerr;
-  factory SaveResponse.fromJson(Map<String, dynamic> json) =>
-      _$SaveResponseFromJson(json);
+class TrackResponse with _$TrackResponse {
+  const factory TrackResponse() = TrackResponseData;
+  const factory TrackResponse.Merr({Map<String, dynamic>? body}) =
+      TrackResponseMerr;
+  factory TrackResponse.fromJson(Map<String, dynamic> json) =>
+      _$TrackResponseFromJson(json);
 }
