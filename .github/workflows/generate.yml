@@ -120,7 +120,8 @@ jobs:
           seg2=$(echo $oldver | awk -F. '{ print $2}') 
           newver="$seg1.$seg2.$newpatch" 
           sed -i "s/$oldver/$newver/" pubspec.yaml
-          echo "##[set-output name=newver;]$(echo $newver)"
+          upver=$(cat pubspec.yaml | grep version | head -1 | awk -F: '{ print$2}' | sed 's/^ *//g')
+          echo "##[set-output name=upver;]$(echo "v$upver")"
         id: dart_new_version
       
       - name: house cleaning remove unnecessary files/folders
@@ -225,7 +226,7 @@ jobs:
 
       - uses: ncipollo/release-action@v1.9.0
         with:
-          tag: v${{ steps.dart_new_version.outputs.newver}} 
+          tag: ${{ steps.dart_new_version.outputs.upver}} 
           commit: main
           generateReleaseNotes: true
           body: |
