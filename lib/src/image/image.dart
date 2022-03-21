@@ -111,12 +111,6 @@ class ImageService {
 @Freezed()
 class ConvertRequest with _$ConvertRequest {
   const factory ConvertRequest({
-    /// The image file to convert
-    String? file,
-
-    /// output name of the image including extension, ie. "cat.png"
-    String? name,
-
     /// make output a URL and not a base64 response
     bool? outputURL,
 
@@ -125,6 +119,12 @@ class ConvertRequest with _$ConvertRequest {
 
     /// base64 encoded image to resize,
     String? base64,
+
+    /// The image file to convert
+    String? file,
+
+    /// output name of the image including extension, ie. "cat.png"
+    String? name,
   }) = _ConvertRequest;
   factory ConvertRequest.fromJson(Map<String, dynamic> json) =>
       _$ConvertRequestFromJson(json);
@@ -133,8 +133,8 @@ class ConvertRequest with _$ConvertRequest {
 @Freezed()
 class ConvertResponse with _$ConvertResponse {
   const factory ConvertResponse({
-    String? base64,
     String? url,
+    String? base64,
   }) = ConvertResponseData;
   const factory ConvertResponse.Merr({Map<String, dynamic>? body}) =
       ConvertResponseMerr;
@@ -243,17 +243,17 @@ class ResizeResponse with _$ResizeResponse {
 @Freezed()
 class UploadRequest with _$UploadRequest {
   const factory UploadRequest({
-    /// Base64 encoded image to upload,
-    String? base64,
-
-    /// The image file to upload
-    String? file,
-
     /// Output name of the image including extension, ie. "cat.png"
     String? name,
 
     /// URL of the image to upload
     String? url,
+
+    /// Base64 encoded image to upload,
+    String? base64,
+
+    /// The image file to upload
+    String? file,
   }) = _UploadRequest;
   factory UploadRequest.fromJson(Map<String, dynamic> json) =>
       _$UploadRequestFromJson(json);

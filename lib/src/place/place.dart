@@ -75,6 +75,9 @@ class AutocompleteResponse with _$AutocompleteResponse {
 @Freezed()
 class NearbyRequest with _$NearbyRequest {
   const factory NearbyRequest({
+    /// Keyword to include in the search
+    String? keyword,
+
     /// specify the location by lat,lng e.g -33.8670522,-151.1957362
     String? location,
 
@@ -89,9 +92,6 @@ class NearbyRequest with _$NearbyRequest {
 
     /// Type of place. https://developers.google.com/maps/documentation/places/web-service/supported_types
     String? type,
-
-    /// Keyword to include in the search
-    String? keyword,
   }) = _NearbyRequest;
   factory NearbyRequest.fromJson(Map<String, dynamic> json) =>
       _$NearbyRequestFromJson(json);
@@ -111,17 +111,20 @@ class NearbyResponse with _$NearbyResponse {
 @Freezed()
 class Result with _$Result {
   const factory Result({
-    /// url of an icon
-    String? icon_url,
-
     /// opening hours
     String? opening_hours,
 
-    /// name of the place
-    String? name,
-
     /// open now
     bool? open_now,
+
+    /// url of an icon
+    String? icon_url,
+
+    /// lat/lng of place
+    String? location,
+
+    /// name of the place
+    String? name,
 
     /// rating from 1.0 to 5.0
     double? rating,
@@ -137,9 +140,6 @@ class Result with _$Result {
 
     /// address of place
     String? address,
-
-    /// lat/lng of place
-    String? location,
   }) = _Result;
   factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
 }
@@ -147,9 +147,6 @@ class Result with _$Result {
 @Freezed()
 class SearchRequest with _$SearchRequest {
   const factory SearchRequest({
-    /// the location by lat,lng e.g -33.8670522,-151.1957362
-    String? location,
-
     /// Whether the place is open now
     bool? open_now,
 
@@ -161,6 +158,9 @@ class SearchRequest with _$SearchRequest {
 
     /// Type of place. https://developers.google.com/maps/documentation/places/web-service/supported_types
     String? type,
+
+    /// the location by lat,lng e.g -33.8670522,-151.1957362
+    String? location,
   }) = _SearchRequest;
   factory SearchRequest.fromJson(Map<String, dynamic> json) =>
       _$SearchRequestFromJson(json);
