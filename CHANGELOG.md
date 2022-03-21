@@ -1,3 +1,9 @@
+## v1.0.38 - 2022-03-21
+
+[3a6328](https://github.com/micro/services/commit/3a6328319fdd1a21104754464e3558ca1e5e33bd) fix tunnel
+
+**Full Changelog**: https://github.com/GWT-M3O-TEST/m3o-dart/compare/v1.0.37...v1.0.38
+
 ## v1.0.37 - 2022-03-17
 
 [3f11ab](https://github.com/micro/services/commit/3f11ab2e0e27a152a41ba3291e8f218bbcbf49ac) Build logs for functions (#406)
