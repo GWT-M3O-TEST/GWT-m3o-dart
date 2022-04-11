@@ -4,12 +4,12 @@ An [m3o.com](https://m3o.com) API. For example usage see [m3o.com/db/api](https:
 
 Endpoints:
 
-## Read
+## Truncate
 
-Read data from a table. Lookup can be by ID or via querying any field in the record.
+Truncate the records in a table
 
 
-[https://m3o.com/db/api#Read](https://m3o.com/db/api#Read)
+[https://m3o.com/db/api#Truncate](https://m3o.com/db/api#Truncate)
 
 ```dart
 import 'dart:io';
@@ -20,19 +20,54 @@ void main() async {
   final ser = DbService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
-  "query": "age == 43",
   "table": "example"
 ,};
 
-  ReadRequest req = ReadRequest.fromJson(payload);
+  TruncateRequest req = TruncateRequest.fromJson(payload);
 
   
   try {
 
-	ReadResponse res = await ser.read(req);
+	TruncateResponse res = await ser.truncate(req);
 
     res.map((value) => print(value),
-	  Merr: (ReadResponseMerr err) => print(err.body!['body']));	
+	  Merr: (TruncateResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
+## Count
+
+Count records in a table
+
+
+[https://m3o.com/db/api#Count](https://m3o.com/db/api#Count)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/db/db.dart';
+
+void main() async {
+  final ser = DbService(Platform.environment['M3O_API_TOKEN']!);
+ 
+  final payload = <String, dynamic>{
+  "table": "example"
+,};
+
+  CountRequest req = CountRequest.fromJson(payload);
+
+  
+  try {
+
+	CountResponse res = await ser.count(req);
+
+    res.map((value) => print(value),
+	  Merr: (CountResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -67,6 +102,43 @@ void main() async {
 
     res.map((value) => print(value),
 	  Merr: (ListTablesResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
+## RenameTable
+
+Rename a table
+
+
+[https://m3o.com/db/api#RenameTable](https://m3o.com/db/api#RenameTable)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/db/db.dart';
+
+void main() async {
+  final ser = DbService(Platform.environment['M3O_API_TOKEN']!);
+ 
+  final payload = <String, dynamic>{
+  "from": "examples2",
+  "to": "examples3"
+,};
+
+  RenameTableRequest req = RenameTableRequest.fromJson(payload);
+
+  
+  try {
+
+	RenameTableResponse res = await ser.renameTable(req);
+
+    res.map((value) => print(value),
+	  Merr: (RenameTableResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -194,12 +266,12 @@ void main() async {
   }
 }
 ```
-## Truncate
+## Read
 
-Truncate the records in a table
+Read data from a table. Lookup can be by ID or via querying any field in the record.
 
 
-[https://m3o.com/db/api#Truncate](https://m3o.com/db/api#Truncate)
+[https://m3o.com/db/api#Read](https://m3o.com/db/api#Read)
 
 ```dart
 import 'dart:io';
@@ -210,18 +282,19 @@ void main() async {
   final ser = DbService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
+  "query": "age == 43",
   "table": "example"
 ,};
 
-  TruncateRequest req = TruncateRequest.fromJson(payload);
+  ReadRequest req = ReadRequest.fromJson(payload);
 
   
   try {
 
-	TruncateResponse res = await ser.truncate(req);
+	ReadResponse res = await ser.read(req);
 
     res.map((value) => print(value),
-	  Merr: (TruncateResponseMerr err) => print(err.body!['body']));	
+	  Merr: (ReadResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -258,79 +331,6 @@ void main() async {
 
     res.map((value) => print(value),
 	  Merr: (DropTableResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e) {
-    print(e);
-  } finally {
-    exit(0);
-  }
-}
-```
-## Count
-
-Count records in a table
-
-
-[https://m3o.com/db/api#Count](https://m3o.com/db/api#Count)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/db/db.dart';
-
-void main() async {
-  final ser = DbService(Platform.environment['M3O_API_TOKEN']!);
- 
-  final payload = <String, dynamic>{
-  "table": "example"
-,};
-
-  CountRequest req = CountRequest.fromJson(payload);
-
-  
-  try {
-
-	CountResponse res = await ser.count(req);
-
-    res.map((value) => print(value),
-	  Merr: (CountResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e) {
-    print(e);
-  } finally {
-    exit(0);
-  }
-}
-```
-## RenameTable
-
-Rename a table
-
-
-[https://m3o.com/db/api#RenameTable](https://m3o.com/db/api#RenameTable)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/db/db.dart';
-
-void main() async {
-  final ser = DbService(Platform.environment['M3O_API_TOKEN']!);
- 
-  final payload = <String, dynamic>{
-  "from": "examples2",
-  "to": "examples3"
-,};
-
-  RenameTableRequest req = RenameTableRequest.fromJson(payload);
-
-  
-  try {
-
-	RenameTableResponse res = await ser.renameTable(req);
-
-    res.map((value) => print(value),
-	  Merr: (RenameTableResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
