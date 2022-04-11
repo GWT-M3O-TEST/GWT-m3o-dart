@@ -6,11 +6,11 @@ part 'notes.freezed.dart';
 part 'notes.g.dart';
 
 class NotesService {
-  final Options opts;
   var _client;
+  final String token;
 
-  NotesService(this.opts) {
-    _client = Client(opts);
+  NotesService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Create a new note
@@ -28,8 +28,7 @@ class NotesService {
         return CreateResponse.Merr(body: err.b);
       }
       return CreateResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +48,7 @@ class NotesService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -74,8 +72,7 @@ class NotesService {
           yield EventsResponseData.fromJson(vo);
         }
       }
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -95,8 +92,7 @@ class NotesService {
         return ListResponse.Merr(body: err.b);
       }
       return ListResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -116,8 +112,7 @@ class NotesService {
         return ReadResponse.Merr(body: err.b);
       }
       return ReadResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -137,8 +132,7 @@ class NotesService {
         return UpdateResponse.Merr(body: err.b);
       }
       return UpdateResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }

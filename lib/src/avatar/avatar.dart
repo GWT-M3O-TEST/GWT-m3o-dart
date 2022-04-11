@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'avatar.freezed.dart';
 part 'avatar.g.dart';
 
 class AvatarService {
-  final Options opts;
   var _client;
+  final String token;
 
-  AvatarService(this.opts) {
-    _client = Client(opts);
+  AvatarService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Generate an unique avatar
@@ -28,8 +27,7 @@ class AvatarService {
         return GenerateResponse.Merr(body: err.b);
       }
       return GenerateResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -38,9 +36,6 @@ class AvatarService {
 @Freezed()
 class GenerateRequest with _$GenerateRequest {
   const factory GenerateRequest({
-    /// encode format of avatar image: `png` or `jpeg`; default is `jpeg`
-    String? format,
-
     /// avatar's gender: `male` or `female`; default is `male`
     String? gender,
 
@@ -51,6 +46,9 @@ class GenerateRequest with _$GenerateRequest {
     /// if empty, every request generates a random avatar;
     /// if upload == true, username will be the CDN filename rather than a random uuid string
     String? username,
+
+    /// encode format of avatar image: `png` or `jpeg`; default is `jpeg`
+    String? format,
   }) = _GenerateRequest;
   factory GenerateRequest.fromJson(Map<String, dynamic> json) =>
       _$GenerateRequestFromJson(json);

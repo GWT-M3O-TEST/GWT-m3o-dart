@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'analytics.freezed.dart';
 part 'analytics.g.dart';
 
 class AnalyticsService {
-  final Options opts;
   var _client;
+  final String token;
 
-  AnalyticsService(this.opts) {
-    _client = Client(opts);
+  AnalyticsService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Delete an event
@@ -28,8 +27,7 @@ class AnalyticsService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class AnalyticsService {
         return ListResponse.Merr(body: err.b);
       }
       return ListResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +67,7 @@ class AnalyticsService {
         return ReadResponse.Merr(body: err.b);
       }
       return ReadResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -91,8 +87,7 @@ class AnalyticsService {
         return TrackResponse.Merr(body: err.b);
       }
       return TrackResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -128,6 +123,7 @@ class Event with _$Event {
     String? name,
 
     /// the amount of times the event was triggered
+
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
   }) = _Event;
   factory Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'movie.freezed.dart';
 part 'movie.g.dart';
 
 class MovieService {
-  final Options opts;
   var _client;
+  final String token;
 
-  MovieService(this.opts) {
-    _client = Client(opts);
+  MovieService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Search for movies by simple text search
@@ -28,8 +27,7 @@ class MovieService {
         return SearchResponse.Merr(body: err.b);
       }
       return SearchResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -38,20 +36,20 @@ class MovieService {
 @Freezed()
 class MovieInfo with _$MovieInfo {
   const factory MovieInfo({
-    double? vote_average,
+    int? genre_ids,
+    bool? adult,
+    String? backdrop_path,
+    String? title,
+    int? id,
+    String? overview,
+    String? release_date,
     int? vote_count,
     String? original_language,
-    String? release_date,
-    bool? video,
-    int? genre_ids,
-    String? overview,
-    double? popularity,
-    bool? adult,
-    int? id,
-    String? original_title,
-    String? backdrop_path,
     String? poster_path,
-    String? title,
+    bool? video,
+    double? vote_average,
+    String? original_title,
+    double? popularity,
   }) = _MovieInfo;
   factory MovieInfo.fromJson(Map<String, dynamic> json) =>
       _$MovieInfoFromJson(json);
@@ -85,10 +83,10 @@ class SearchRequest with _$SearchRequest {
 @Freezed()
 class SearchResponse with _$SearchResponse {
   const factory SearchResponse({
+    int? total_results,
     int? page,
     List<MovieInfo>? results,
     int? total_pages,
-    int? total_results,
   }) = SearchResponseData;
   const factory SearchResponse.Merr({Map<String, dynamic>? body}) =
       SearchResponseMerr;

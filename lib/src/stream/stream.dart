@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'stream.freezed.dart';
 part 'stream.g.dart';
 
 class StreamService {
-  final Options opts;
   var _client;
+  final String token;
 
-  StreamService(this.opts) {
-    _client = Client(opts);
+  StreamService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Create a channel with a given name and description. Channels are created automatically but
@@ -29,8 +28,7 @@ class StreamService {
         return CreateChannelResponse.Merr(body: err.b);
       }
       return CreateChannelResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -50,8 +48,7 @@ class StreamService {
         return ListChannelsResponse.Merr(body: err.b);
       }
       return ListChannelsResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -71,8 +68,7 @@ class StreamService {
         return ListMessagesResponse.Merr(body: err.b);
       }
       return ListMessagesResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -92,8 +88,7 @@ class StreamService {
         return SendMessageResponse.Merr(body: err.b);
       }
       return SendMessageResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -102,14 +97,14 @@ class StreamService {
 @Freezed()
 class Channel with _$Channel {
   const factory Channel({
-    /// name of the channel
-    String? name,
-
     /// description for the channel
     String? description,
 
     /// last activity time
     String? last_active,
+
+    /// name of the channel
+    String? name,
   }) = _Channel;
   factory Channel.fromJson(Map<String, dynamic> json) =>
       _$ChannelFromJson(json);
@@ -186,9 +181,6 @@ class ListMessagesResponse with _$ListMessagesResponse {
 @Freezed()
 class Message with _$Message {
   const factory Message({
-    /// time of message creation
-    String? timestamp,
-
     /// the channel name
     String? channel,
 
@@ -200,6 +192,9 @@ class Message with _$Message {
 
     /// text of the message
     String? text,
+
+    /// time of message creation
+    String? timestamp,
   }) = _Message;
   factory Message.fromJson(Map<String, dynamic> json) =>
       _$MessageFromJson(json);

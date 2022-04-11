@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'holidays.freezed.dart';
 part 'holidays.g.dart';
 
 class HolidaysService {
-  final Options opts;
   var _client;
+  final String token;
 
-  HolidaysService(this.opts) {
-    _client = Client(opts);
+  HolidaysService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Get the list of countries that are supported by this API
@@ -28,8 +27,7 @@ class HolidaysService {
         return CountriesResponse.Merr(body: err.b);
       }
       return CountriesResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class HolidaysService {
         return ListResponse.Merr(body: err.b);
       }
       return ListResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -90,12 +87,6 @@ class Country with _$Country {
 @Freezed()
 class Holiday with _$Holiday {
   const factory Holiday({
-    /// the local name of the holiday
-    String? local_name,
-
-    /// the name of the holiday in English
-    String? name,
-
     /// the regions within the country that observe this holiday (if not all of them)
     List<String>? regions,
 
@@ -107,6 +98,12 @@ class Holiday with _$Holiday {
 
     /// date of the holiday in yyyy-mm-dd format
     String? date,
+
+    /// the local name of the holiday
+    String? local_name,
+
+    /// the name of the holiday in English
+    String? name,
   }) = _Holiday;
   factory Holiday.fromJson(Map<String, dynamic> json) =>
       _$HolidayFromJson(json);
@@ -119,6 +116,7 @@ class ListRequest with _$ListRequest {
     String? country_code,
 
     /// The year to list holidays for
+
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? year,
   }) = _ListRequest;
   factory ListRequest.fromJson(Map<String, dynamic> json) =>

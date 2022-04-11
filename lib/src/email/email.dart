@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'email.freezed.dart';
 part 'email.g.dart';
 
 class EmailService {
-  final Options opts;
   var _client;
+  final String token;
 
-  EmailService(this.opts) {
-    _client = Client(opts);
+  EmailService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Parse an RFC5322 address e.g "Joe Blogs <joe@example.com>"
@@ -28,8 +27,7 @@ class EmailService {
         return ParseResponse.Merr(body: err.b);
       }
       return ParseResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class EmailService {
         return SendResponse.Merr(body: err.b);
       }
       return SendResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +67,7 @@ class EmailService {
         return ValidateResponse.Merr(body: err.b);
       }
       return ValidateResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -105,9 +101,6 @@ class ParseResponse with _$ParseResponse {
 @Freezed()
 class SendRequest with _$SendRequest {
   const factory SendRequest({
-    /// the email address of the recipient
-    String? to,
-
     /// the display name of the sender
     String? from,
 
@@ -122,6 +115,9 @@ class SendRequest with _$SendRequest {
 
     /// the text body
     String? text_body,
+
+    /// the email address of the recipient
+    String? to,
   }) = _SendRequest;
   factory SendRequest.fromJson(Map<String, dynamic> json) =>
       _$SendRequestFromJson(json);

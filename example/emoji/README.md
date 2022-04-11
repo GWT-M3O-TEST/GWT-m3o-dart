@@ -14,17 +14,10 @@ Find an emoji by its alias e.g :beer:
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/emoji/emoji.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = EmojiService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = EmojiService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "alias": ":beer:"
@@ -40,9 +33,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (FindResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -58,17 +50,10 @@ Get the flag for a country. Requires country code e.g GB for great britain
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/emoji/emoji.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = EmojiService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = EmojiService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "code": "GB"
@@ -84,9 +69,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (FlagResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -103,17 +87,10 @@ let's grab a :beer: becomes let's grab a 🍺
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/emoji/emoji.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = EmojiService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = EmojiService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "text": "let's grab a :beer:"
@@ -129,9 +106,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (PrintResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'ping.freezed.dart';
 part 'ping.g.dart';
 
 class PingService {
-  final Options opts;
   var _client;
+  final String token;
 
-  PingService(this.opts) {
-    _client = Client(opts);
+  PingService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Ping an IP address
@@ -28,8 +27,7 @@ class PingService {
         return IpResponse.Merr(body: err.b);
       }
       return IpResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class PingService {
         return TcpResponse.Merr(body: err.b);
       }
       return TcpResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +67,7 @@ class PingService {
         return UrlResponse.Merr(body: err.b);
       }
       return UrlResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -117,11 +113,11 @@ class TcpRequest with _$TcpRequest {
 @Freezed()
 class TcpResponse with _$TcpResponse {
   const factory TcpResponse({
-    /// response status
-    String? status,
-
     /// response data if any
     String? data,
+
+    /// response status
+    String? status,
   }) = TcpResponseData;
   const factory TcpResponse.Merr({Map<String, dynamic>? body}) =
       TcpResponseMerr;
@@ -145,11 +141,11 @@ class UrlRequest with _$UrlRequest {
 @Freezed()
 class UrlResponse with _$UrlResponse {
   const factory UrlResponse({
-    /// the response code
-    int? code,
-
     /// the response status
     String? status,
+
+    /// the response code
+    int? code,
   }) = UrlResponseData;
   const factory UrlResponse.Merr({Map<String, dynamic>? body}) =
       UrlResponseMerr;

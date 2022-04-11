@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'sms.freezed.dart';
 part 'sms.g.dart';
 
 class SmsService {
-  final Options opts;
   var _client;
+  final String token;
 
-  SmsService(this.opts) {
-    _client = Client(opts);
+  SmsService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Send an SMS.
@@ -28,8 +27,7 @@ class SmsService {
         return SendResponse.Merr(body: err.b);
       }
       return SendResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }

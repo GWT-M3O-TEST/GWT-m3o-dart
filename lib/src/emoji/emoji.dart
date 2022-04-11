@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'emoji.freezed.dart';
 part 'emoji.g.dart';
 
 class EmojiService {
-  final Options opts;
   var _client;
+  final String token;
 
-  EmojiService(this.opts) {
-    _client = Client(opts);
+  EmojiService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Find an emoji by its alias e.g :beer:
@@ -28,8 +27,7 @@ class EmojiService {
         return FindResponse.Merr(body: err.b);
       }
       return FindResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class EmojiService {
         return FlagResponse.Merr(body: err.b);
       }
       return FlagResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -71,8 +68,7 @@ class EmojiService {
         return PrintResponse.Merr(body: err.b);
       }
       return PrintResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }

@@ -14,17 +14,10 @@ List all the notes
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/notes/notes.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = NotesService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = NotesService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{};
 
@@ -38,9 +31,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (ListResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -56,17 +48,10 @@ Update a note
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/notes/notes.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = NotesService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = NotesService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "note": {
@@ -86,9 +71,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (UpdateResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -104,17 +88,10 @@ Delete a note
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/notes/notes.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = NotesService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = NotesService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "id": "63c0cdf8-2121-11ec-a881-0242e36f037a"
@@ -130,9 +107,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (DeleteResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -148,17 +124,10 @@ Subscribe to notes events
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/notes/notes.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = NotesService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = NotesService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "id": "63c0cdf8-2121-11ec-a881-0242e36f037a"
@@ -176,9 +145,8 @@ void main() async {
 	  sr.map((value) => print(value),
 		Merr: (EventsResponseMerr err) => print(err.body));
 	  }
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -194,17 +162,10 @@ Create a new note
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/notes/notes.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = NotesService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = NotesService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "text": "This is my note",
@@ -221,9 +182,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (CreateResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -239,17 +199,10 @@ Read a note
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/notes/notes.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = NotesService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = NotesService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "id": "63c0cdf8-2121-11ec-a881-0242e36f037a"
@@ -265,9 +218,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (ReadResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }

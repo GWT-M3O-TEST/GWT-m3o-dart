@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'joke.freezed.dart';
 part 'joke.g.dart';
 
 class JokeService {
-  final Options opts;
   var _client;
+  final String token;
 
-  JokeService(this.opts) {
-    _client = Client(opts);
+  JokeService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Get a random joke
@@ -28,8 +27,7 @@ class JokeService {
         return RandomResponse.Merr(body: err.b);
       }
       return RandomResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }

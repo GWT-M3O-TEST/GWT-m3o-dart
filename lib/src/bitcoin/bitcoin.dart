@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'bitcoin.freezed.dart';
 part 'bitcoin.g.dart';
 
 class BitcoinService {
-  final Options opts;
   var _client;
+  final String token;
 
-  BitcoinService(this.opts) {
-    _client = Client(opts);
+  BitcoinService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Get the price of bitcoin
@@ -28,8 +27,7 @@ class BitcoinService {
         return PriceResponse.Merr(body: err.b);
       }
       return PriceResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }

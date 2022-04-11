@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'answer.freezed.dart';
 part 'answer.g.dart';
 
 class AnswerService {
-  final Options opts;
   var _client;
+  final String token;
 
-  AnswerService(this.opts) {
-    _client = Client(opts);
+  AnswerService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Ask a question and receive an instant answer
@@ -28,8 +27,7 @@ class AnswerService {
         return QuestionResponse.Merr(body: err.b);
       }
       return QuestionResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }

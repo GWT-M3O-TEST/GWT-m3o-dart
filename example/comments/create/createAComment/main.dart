@@ -1,20 +1,13 @@
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/comments/comments.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = CommentsService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = CommentsService(Platform.environment['M3O_API_TOKEN']!);
 
   final payload = <String, dynamic>{
+    "subject": "New Comment",
     "text": "This is my comment",
-    "title": "New Comment",
   };
 
   CreateRequest req = CreateRequest.fromJson(payload);
@@ -24,9 +17,8 @@ void main() async {
 
     res.map((value) => print(value),
         Merr: (CreateResponseMerr err) => print(err.body!['body']));
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-    print(stack);
   } finally {
     exit(0);
   }

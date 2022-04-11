@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'contact.freezed.dart';
 part 'contact.g.dart';
 
 class ContactService {
-  final Options opts;
   var _client;
+  final String token;
 
-  ContactService(this.opts) {
-    _client = Client(opts);
+  ContactService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Create a contact
@@ -28,8 +27,7 @@ class ContactService {
         return CreateResponse.Merr(body: err.b);
       }
       return CreateResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class ContactService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +67,7 @@ class ContactService {
         return ListResponse.Merr(body: err.b);
       }
       return ListResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -91,8 +87,7 @@ class ContactService {
         return ReadResponse.Merr(body: err.b);
       }
       return ReadResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -112,8 +107,7 @@ class ContactService {
         return UpdateResponse.Merr(body: err.b);
       }
       return UpdateResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -135,14 +129,23 @@ class Address with _$Address {
 @Freezed()
 class ContactInfo with _$ContactInfo {
   const factory ContactInfo({
-    /// the contact name
-    String? name,
+    /// the emails
+    List<Email>? emails,
+
+    /// contact id
+    String? id,
+
+    /// note of the contact
+    String? note,
 
     /// the phone numbers
     List<Phone>? phones,
 
     /// the social media username
     SocialMedia? social_medias,
+
+    /// update date string in RFC3339
+    String? updated_at,
 
     /// the address
     List<Address>? addresses,
@@ -153,20 +156,11 @@ class ContactInfo with _$ContactInfo {
     /// create date string in RFC3339
     String? created_at,
 
-    /// contact id
-    String? id,
-
     /// the contact links
     List<Link>? links,
 
-    /// the emails
-    List<Email>? emails,
-
-    /// note of the contact
-    String? note,
-
-    /// update date string in RFC3339
-    String? updated_at,
+    /// the contact name
+    String? name,
   }) = _ContactInfo;
   factory ContactInfo.fromJson(Map<String, dynamic> json) =>
       _$ContactInfoFromJson(json);
@@ -175,9 +169,6 @@ class ContactInfo with _$ContactInfo {
 @Freezed()
 class CreateRequest with _$CreateRequest {
   const factory CreateRequest({
-    /// optional, birthday
-    String? birthday,
-
     /// optional, emails
     List<Email>? emails,
 
@@ -198,6 +189,9 @@ class CreateRequest with _$CreateRequest {
 
     /// optional, location
     List<Address>? addresses,
+
+    /// optional, birthday
+    String? birthday,
   }) = _CreateRequest;
   factory CreateRequest.fromJson(Map<String, dynamic> json) =>
       _$CreateRequestFromJson(json);
@@ -248,11 +242,11 @@ class Email with _$Email {
 @Freezed()
 class Link with _$Link {
   const factory Link({
-    /// the label of the link
-    String? label,
-
     /// the url of the contact
     String? url,
+
+    /// the label of the link
+    String? label,
   }) = _Link;
   factory Link.fromJson(Map<String, dynamic> json) => _$LinkFromJson(json);
 }
@@ -260,11 +254,11 @@ class Link with _$Link {
 @Freezed()
 class ListRequest with _$ListRequest {
   const factory ListRequest({
-    /// optional, default is 30
-    int? limit,
-
     /// optional
     int? offset,
+
+    /// optional, default is 30
+    int? limit,
   }) = _ListRequest;
   factory ListRequest.fromJson(Map<String, dynamic> json) =>
       _$ListRequestFromJson(json);
@@ -316,11 +310,11 @@ class ReadResponse with _$ReadResponse {
 @Freezed()
 class SocialMedia with _$SocialMedia {
   const factory SocialMedia({
-    /// the username of social media
-    String? username,
-
     /// the label of the social
     String? label,
+
+    /// the username of social media
+    String? username,
   }) = _SocialMedia;
   factory SocialMedia.fromJson(Map<String, dynamic> json) =>
       _$SocialMediaFromJson(json);
@@ -329,32 +323,32 @@ class SocialMedia with _$SocialMedia {
 @Freezed()
 class UpdateRequest with _$UpdateRequest {
   const factory UpdateRequest({
-    /// required, the name
-    String? name,
-
-    /// optional, addresses
-    List<Address>? addresses,
-
-    /// optional, birthday
-    String? birthday,
-
-    /// optional, emails
-    List<Email>? emails,
-
     /// required, the contact id
     String? id,
 
     /// optional, links
     List<Link>? links,
 
+    /// required, the name
+    String? name,
+
     /// optional, note
     String? note,
 
-    /// optional, phone number
-    List<Phone>? phones,
+    /// optional, addresses
+    List<Address>? addresses,
+
+    /// optional, emails
+    List<Email>? emails,
 
     /// optional, social media
     SocialMedia? social_medias,
+
+    /// optional, birthday
+    String? birthday,
+
+    /// optional, phone number
+    List<Phone>? phones,
   }) = _UpdateRequest;
   factory UpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$UpdateRequestFromJson(json);

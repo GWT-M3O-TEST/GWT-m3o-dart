@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'url.freezed.dart';
 part 'url.g.dart';
 
 class UrlService {
-  final Options opts;
   var _client;
+  final String token;
 
-  UrlService(this.opts) {
-    _client = Client(opts);
+  UrlService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// List all the shortened URLs
@@ -28,8 +27,7 @@ class UrlService {
         return ListResponse.Merr(body: err.b);
       }
       return ListResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class UrlService {
         return ProxyResponse.Merr(body: err.b);
       }
       return ProxyResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +67,7 @@ class UrlService {
         return ShortenResponse.Merr(body: err.b);
       }
       return ShortenResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -145,17 +141,18 @@ class ShortenResponse with _$ShortenResponse {
 @Freezed()
 class URLPair with _$URLPair {
   const factory URLPair({
-    /// time of creation
-    String? created,
-
     /// destination url
     String? destinationURL,
 
     /// The number of times the short URL has been resolved
+
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? hitCount,
 
     /// shortened url
     String? shortURL,
+
+    /// time of creation
+    String? created,
   }) = _URLPair;
   factory URLPair.fromJson(Map<String, dynamic> json) =>
       _$URLPairFromJson(json);

@@ -4,56 +4,6 @@ An [m3o.com](https://m3o.com) API. For example usage see [m3o.com/location/api](
 
 Endpoints:
 
-## Search
-
-Search for entities in a given radius
-
-
-[https://m3o.com/location/api#Search](https://m3o.com/location/api#Search)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/location/location.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = LocationService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{
-  "center": {
-    "latitude": 51.511061,
-    "longitude": -0.120022
-  ,},
-  "numEntities": 10,
-  "radius": 100,
-  "type": "bike"
-};
-
-  SearchRequest req = SearchRequest.fromJson(payload);
-
-  
-  try {
-
-	SearchResponse res = await ser.search(req);
-
-    res.map((value) => print(value),
-	  Merr: (SearchResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e, stack) {
-    print(e);
-	print(stack);
-  } finally {
-    exit(0);
-  }
-}
-```
 ## Save
 
 Save an entity's current position
@@ -64,17 +14,10 @@ Save an entity's current position
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/location/location.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = LocationService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = LocationService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "entity": {
@@ -98,9 +41,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (SaveResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -116,17 +58,10 @@ Read an entity by its ID
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/location/location.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = LocationService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = LocationService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "id": "1"
@@ -142,9 +77,50 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (ReadResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
+  } finally {
+    exit(0);
+  }
+}
+```
+## Search
+
+Search for entities in a given radius
+
+
+[https://m3o.com/location/api#Search](https://m3o.com/location/api#Search)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/location/location.dart';
+
+void main() async {
+  final ser = LocationService(Platform.environment['M3O_API_TOKEN']!);
+ 
+  final payload = <String, dynamic>{
+  "center": {
+    "latitude": 51.511061,
+    "longitude": -0.120022
+  ,},
+  "numEntities": 10,
+  "radius": 100,
+  "type": "bike"
+};
+
+  SearchRequest req = SearchRequest.fromJson(payload);
+
+  
+  try {
+
+	SearchResponse res = await ser.search(req);
+
+    res.map((value) => print(value),
+	  Merr: (SearchResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
   } finally {
     exit(0);
   }

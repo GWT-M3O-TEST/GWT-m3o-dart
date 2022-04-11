@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'forex.freezed.dart';
 part 'forex.g.dart';
 
 class ForexService {
-  final Options opts;
   var _client;
+  final String token;
 
-  ForexService(this.opts) {
-    _client = Client(opts);
+  ForexService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Returns the data for the previous close
@@ -28,8 +27,7 @@ class ForexService {
         return HistoryResponse.Merr(body: err.b);
       }
       return HistoryResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class ForexService {
         return PriceResponse.Merr(body: err.b);
       }
       return PriceResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +67,7 @@ class ForexService {
         return QuoteResponse.Merr(body: err.b);
       }
       return QuoteResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }

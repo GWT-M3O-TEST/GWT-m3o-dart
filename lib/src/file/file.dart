@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'file.freezed.dart';
 part 'file.g.dart';
 
 class FileService {
-  final Options opts;
   var _client;
+  final String token;
 
-  FileService(this.opts) {
-    _client = Client(opts);
+  FileService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Delete a file by project name/path
@@ -28,8 +27,7 @@ class FileService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class FileService {
         return ListResponse.Merr(body: err.b);
       }
       return ListResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +67,7 @@ class FileService {
         return ReadResponse.Merr(body: err.b);
       }
       return ReadResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -91,8 +87,7 @@ class FileService {
         return SaveResponse.Merr(body: err.b);
       }
       return SaveResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -175,13 +170,6 @@ class ReadResponse with _$ReadResponse {
 @Freezed()
 class Record with _$Record {
   const factory Record({
-    /// A custom project to group files
-    /// eg. file-of-mywebsite.com
-    String? project,
-
-    /// Time the file was updated e.g 2021-05-20T13:37:21Z
-    String? updated,
-
     /// File contents
     String? content,
 
@@ -193,6 +181,13 @@ class Record with _$Record {
 
     /// Path to file or folder eg. '/documents/text-files/file.txt'.
     String? path,
+
+    /// A custom project to group files
+    /// eg. file-of-mywebsite.com
+    String? project,
+
+    /// Time the file was updated e.g 2021-05-20T13:37:21Z
+    String? updated,
   }) = _Record;
   factory Record.fromJson(Map<String, dynamic> json) => _$RecordFromJson(json);
 }

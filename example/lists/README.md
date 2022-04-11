@@ -4,6 +4,42 @@ An [m3o.com](https://m3o.com) API. For example usage see [m3o.com/lists/api](htt
 
 Endpoints:
 
+## Read
+
+Read a list
+
+
+[https://m3o.com/lists/api#Read](https://m3o.com/lists/api#Read)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/lists/lists.dart';
+
+void main() async {
+  final ser = ListsService(Platform.environment['M3O_API_TOKEN']!);
+ 
+  final payload = <String, dynamic>{
+  "id": "63c0cdf8-2121-11ec-a881-0242e36f037a"
+,};
+
+  ReadRequest req = ReadRequest.fromJson(payload);
+
+  
+  try {
+
+	ReadResponse res = await ser.read(req);
+
+    res.map((value) => print(value),
+	  Merr: (ReadResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
 ## List
 
 List all the lists
@@ -14,17 +50,10 @@ List all the lists
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/lists/lists.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = ListsService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = ListsService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{};
 
@@ -38,9 +67,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (ListResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -56,17 +84,10 @@ Update a list
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/lists/lists.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = ListsService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = ListsService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "list": {
@@ -86,9 +107,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (UpdateResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -104,17 +124,10 @@ Delete a list
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/lists/lists.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = ListsService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = ListsService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "id": "63c0cdf8-2121-11ec-a881-0242e36f037a"
@@ -130,9 +143,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (DeleteResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -148,17 +160,10 @@ Subscribe to lists events
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/lists/lists.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = ListsService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = ListsService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "id": "63c0cdf8-2121-11ec-a881-0242e36f037a"
@@ -176,9 +181,8 @@ void main() async {
 	  sr.map((value) => print(value),
 		Merr: (EventsResponseMerr err) => print(err.body));
 	  }
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -194,17 +198,10 @@ Create a new list
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/lists/lists.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = ListsService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = ListsService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "text": "This is my list",
@@ -221,53 +218,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (CreateResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
-  } finally {
-    exit(0);
-  }
-}
-```
-## Read
-
-Read a list
-
-
-[https://m3o.com/lists/api#Read](https://m3o.com/lists/api#Read)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/lists/lists.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = ListsService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{
-  "id": "63c0cdf8-2121-11ec-a881-0242e36f037a"
-,};
-
-  ReadRequest req = ReadRequest.fromJson(payload);
-
-  
-  try {
-
-	ReadResponse res = await ser.read(req);
-
-    res.map((value) => print(value),
-	  Merr: (ReadResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e, stack) {
-    print(e);
-	print(stack);
   } finally {
     exit(0);
   }

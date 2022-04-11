@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'minecraft.freezed.dart';
 part 'minecraft.g.dart';
 
 class MinecraftService {
-  final Options opts;
   var _client;
+  final String token;
 
-  MinecraftService(this.opts) {
-    _client = Client(opts);
+  MinecraftService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Ping a minecraft server
@@ -28,8 +27,7 @@ class MinecraftService {
         return PingResponse.Merr(body: err.b);
       }
       return PingResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -48,6 +46,12 @@ class PingRequest with _$PingRequest {
 @Freezed()
 class PingResponse with _$PingResponse {
   const factory PingResponse({
+    /// List of connected players
+    List<PlayerSample>? sample,
+
+    /// Version of the server
+    String? version,
+
     /// Favicon in base64
     String? favicon,
 
@@ -65,12 +69,6 @@ class PingResponse with _$PingResponse {
 
     /// Protocol number of the server
     int? protocol,
-
-    /// List of connected players
-    List<PlayerSample>? sample,
-
-    /// Version of the server
-    String? version,
   }) = PingResponseData;
   const factory PingResponse.Merr({Map<String, dynamic>? body}) =
       PingResponseMerr;

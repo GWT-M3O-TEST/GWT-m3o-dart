@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'space.freezed.dart';
 part 'space.g.dart';
 
 class SpaceService {
-  final Options opts;
   var _client;
+  final String token;
 
-  SpaceService(this.opts) {
-    _client = Client(opts);
+  SpaceService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Create an object. Returns error if object with this name already exists. Max object size of 10MB, see Upload endpoint for larger objects. If you want to update an existing object use the `Update` endpoint
@@ -28,8 +27,7 @@ class SpaceService {
         return CreateResponse.Merr(body: err.b);
       }
       return CreateResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class SpaceService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +67,7 @@ class SpaceService {
         return DownloadResponse.Merr(body: err.b);
       }
       return DownloadResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -91,8 +87,7 @@ class SpaceService {
         return HeadResponse.Merr(body: err.b);
       }
       return HeadResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -112,8 +107,7 @@ class SpaceService {
         return ListResponse.Merr(body: err.b);
       }
       return ListResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -133,8 +127,7 @@ class SpaceService {
         return ReadResponse.Merr(body: err.b);
       }
       return ReadResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -154,8 +147,7 @@ class SpaceService {
         return UpdateResponse.Merr(body: err.b);
       }
       return UpdateResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -175,8 +167,7 @@ class SpaceService {
         return UploadResponse.Merr(body: err.b);
       }
       return UploadResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -254,18 +245,18 @@ class DownloadResponse with _$DownloadResponse {
 @Freezed()
 class HeadObject with _$HeadObject {
   const factory HeadObject({
+    /// is this public or private
+    String? visibility,
+
+    /// when was this created
+    String? created,
+
     /// when was this last modified
     String? modified,
     String? name,
 
     /// URL to access the object if it is public
     String? url,
-
-    /// is this public or private
-    String? visibility,
-
-    /// when was this created
-    String? created,
   }) = _HeadObject;
   factory HeadObject.fromJson(Map<String, dynamic> json) =>
       _$HeadObjectFromJson(json);
@@ -353,12 +344,6 @@ class ReadResponse with _$ReadResponse {
 @Freezed()
 class SpaceObject with _$SpaceObject {
   const factory SpaceObject({
-    /// the data within the object
-    String? data,
-
-    /// when was this last modified
-    String? modified,
-
     /// name of object
     String? name,
 
@@ -370,6 +355,12 @@ class SpaceObject with _$SpaceObject {
 
     /// when was this created
     String? created,
+
+    /// the data within the object
+    String? data,
+
+    /// when was this last modified
+    String? modified,
   }) = _SpaceObject;
   factory SpaceObject.fromJson(Map<String, dynamic> json) =>
       _$SpaceObjectFromJson(json);

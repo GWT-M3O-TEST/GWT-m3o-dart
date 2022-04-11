@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'postcode.freezed.dart';
 part 'postcode.g.dart';
 
 class PostcodeService {
-  final Options opts;
   var _client;
+  final String token;
 
-  PostcodeService(this.opts) {
-    _client = Client(opts);
+  PostcodeService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Lookup a postcode to retrieve the related region, county, etc
@@ -28,8 +27,7 @@ class PostcodeService {
         return LookupResponse.Merr(body: err.b);
       }
       return LookupResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class PostcodeService {
         return RandomResponse.Merr(body: err.b);
       }
       return RandomResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +67,7 @@ class PostcodeService {
         return ValidateResponse.Merr(body: err.b);
       }
       return ValidateResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -90,12 +86,6 @@ class LookupRequest with _$LookupRequest {
 @Freezed()
 class LookupResponse with _$LookupResponse {
   const factory LookupResponse({
-    /// e.g Westminster
-    String? district,
-
-    /// e.g 51.50354
-    double? latitude,
-
     /// e.g -0.127695
     double? longitude,
 
@@ -110,6 +100,12 @@ class LookupResponse with _$LookupResponse {
 
     /// country e.g United Kingdom
     String? country,
+
+    /// e.g Westminster
+    String? district,
+
+    /// e.g 51.50354
+    double? latitude,
   }) = LookupResponseData;
   const factory LookupResponse.Merr({Map<String, dynamic>? body}) =
       LookupResponseMerr;
@@ -127,6 +123,9 @@ class RandomRequest with _$RandomRequest {
 @Freezed()
 class RandomResponse with _$RandomResponse {
   const factory RandomResponse({
+    /// e.g Westminster
+    String? district,
+
     /// e.g 51.50354
     double? latitude,
 
@@ -144,9 +143,6 @@ class RandomResponse with _$RandomResponse {
 
     /// country e.g United Kingdom
     String? country,
-
-    /// e.g Westminster
-    String? district,
   }) = RandomResponseData;
   const factory RandomResponse.Merr({Map<String, dynamic>? body}) =
       RandomResponseMerr;

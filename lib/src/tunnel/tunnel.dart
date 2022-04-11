@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'tunnel.freezed.dart';
 part 'tunnel.g.dart';
 
 class TunnelService {
-  final Options opts;
   var _client;
+  final String token;
 
-  TunnelService(this.opts) {
-    _client = Client(opts);
+  TunnelService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Send a request through the tunnel
@@ -28,8 +27,7 @@ class TunnelService {
         return SendResponse.Merr(body: err.b);
       }
       return SendResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -38,9 +36,6 @@ class TunnelService {
 @Freezed()
 class SendRequest with _$SendRequest {
   const factory SendRequest({
-    /// request params to include
-    Map<String, String>? params,
-
     /// path to request e.g /news
     String? path,
 
@@ -58,6 +53,9 @@ class SendRequest with _$SendRequest {
 
     /// method of the request e.g GET, POST, DELETE
     String? method,
+
+    /// request params to include
+    Map<String, String>? params,
   }) = _SendRequest;
   factory SendRequest.fromJson(Map<String, dynamic> json) =>
       _$SendRequestFromJson(json);

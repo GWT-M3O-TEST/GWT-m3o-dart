@@ -4,6 +4,40 @@ An [m3o.com](https://m3o.com) API. For example usage see [m3o.com/id/api](https:
 
 Endpoints:
 
+## Types
+
+List the types of IDs available. No query params needed.
+
+
+[https://m3o.com/id/api#Types](https://m3o.com/id/api#Types)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/id/id.dart';
+
+void main() async {
+  final ser = IdService(Platform.environment['M3O_API_TOKEN']!);
+ 
+  final payload = <String, dynamic>{};
+
+  TypesRequest req = TypesRequest.fromJson(payload);
+
+  
+  try {
+
+	TypesResponse res = await ser.types(req);
+
+    res.map((value) => print(value),
+	  Merr: (TypesResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
 ## Generate
 
 Generate a unique ID. Defaults to uuid.
@@ -14,17 +48,10 @@ Generate a unique ID. Defaults to uuid.
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/id/id.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = IdService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = IdService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "type": "uuid"
@@ -40,9 +67,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (GenerateResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -58,17 +84,10 @@ Generate a unique ID. Defaults to uuid.
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/id/id.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = IdService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = IdService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "type": "shortid"
@@ -84,9 +103,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (GenerateResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -102,17 +120,10 @@ Generate a unique ID. Defaults to uuid.
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/id/id.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = IdService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = IdService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "type": "snowflake"
@@ -128,9 +139,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (GenerateResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -146,17 +156,10 @@ Generate a unique ID. Defaults to uuid.
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/id/id.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = IdService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = IdService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "type": "bigflake"
@@ -172,51 +175,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (GenerateResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
-  } finally {
-    exit(0);
-  }
-}
-```
-## Types
-
-List the types of IDs available. No query params needed.
-
-
-[https://m3o.com/id/api#Types](https://m3o.com/id/api#Types)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/id/id.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = IdService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{};
-
-  TypesRequest req = TypesRequest.fromJson(payload);
-
-  
-  try {
-
-	TypesResponse res = await ser.types(req);
-
-    res.map((value) => print(value),
-	  Merr: (TypesResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e, stack) {
-    print(e);
-	print(stack);
   } finally {
     exit(0);
   }

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'spam.freezed.dart';
 part 'spam.g.dart';
 
 class SpamService {
-  final Options opts;
   var _client;
+  final String token;
 
-  SpamService(this.opts) {
-    _client = Client(opts);
+  SpamService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Check whether an email is likely to be spam based on its attributes
@@ -28,8 +27,7 @@ class SpamService {
         return ClassifyResponse.Merr(body: err.b);
       }
       return ClassifyResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -63,14 +61,14 @@ class ClassifyRequest with _$ClassifyRequest {
 @Freezed()
 class ClassifyResponse with _$ClassifyResponse {
   const factory ClassifyResponse({
-    /// The rules that have contributed to this score
-    List<String>? details,
-
     /// Is it spam? Returns true if its score is > 5
     bool? is_spam,
 
     /// The score evaluated for this email. A higher number means it is more likely to be spam
     double? score,
+
+    /// The rules that have contributed to this score
+    List<String>? details,
   }) = ClassifyResponseData;
   const factory ClassifyResponse.Merr({Map<String, dynamic>? body}) =
       ClassifyResponseMerr;

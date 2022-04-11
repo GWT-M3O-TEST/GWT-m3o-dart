@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'otp.freezed.dart';
 part 'otp.g.dart';
 
 class OtpService {
-  final Options opts;
   var _client;
+  final String token;
 
-  OtpService(this.opts) {
-    _client = Client(opts);
+  OtpService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Generate an OTP (one time pass) code
@@ -28,8 +27,7 @@ class OtpService {
         return GenerateResponse.Merr(body: err.b);
       }
       return GenerateResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class OtpService {
         return ValidateResponse.Merr(body: err.b);
       }
       return ValidateResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -60,12 +57,14 @@ class OtpService {
 class GenerateRequest with _$GenerateRequest {
   const factory GenerateRequest({
     /// expiration in seconds (default: 60)
+
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? expiry,
 
     /// unique id, email or user to generate an OTP for
     String? id,
 
     /// number of characters (default: 6)
+
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? size,
   }) = _GenerateRequest;
   factory GenerateRequest.fromJson(Map<String, dynamic> json) =>

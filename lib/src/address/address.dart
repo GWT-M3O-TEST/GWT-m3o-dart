@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'address.freezed.dart';
 part 'address.g.dart';
 
 class AddressService {
-  final Options opts;
   var _client;
+  final String token;
 
-  AddressService(this.opts) {
-    _client = Client(opts);
+  AddressService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Lookup a list of UK addresses by postcode
@@ -29,8 +28,7 @@ class AddressService {
         return LookupPostcodeResponse.Merr(body: err.b);
       }
       return LookupPostcodeResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -60,38 +58,38 @@ class LookupPostcodeResponse with _$LookupPostcodeResponse {
 @Freezed()
 class Record with _$Record {
   const factory Record({
-    /// the county
-    String? county,
-
-    /// the premise
-    String? premise,
-
-    /// the complete address
-    String? summary,
-
-    /// building name
-    String? building_name,
-
-    /// line one of address
-    String? line_one,
-
-    /// line two of address
-    String? line_two,
-
-    /// dependent locality
-    String? locality,
-
     /// organisation if present
     String? organisation,
 
-    /// the postcode
-    String? postcode,
+    /// the premise
+    String? premise,
 
     /// street name
     String? street,
 
     /// post town
     String? town,
+
+    /// building name
+    String? building_name,
+
+    /// the county
+    String? county,
+
+    /// line two of address
+    String? line_two,
+
+    /// the complete address
+    String? summary,
+
+    /// line one of address
+    String? line_one,
+
+    /// dependent locality
+    String? locality,
+
+    /// the postcode
+    String? postcode,
   }) = _Record;
   factory Record.fromJson(Map<String, dynamic> json) => _$RecordFromJson(json);
 }

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'google.freezed.dart';
 part 'google.g.dart';
 
 class GoogleService {
-  final Options opts;
   var _client;
+  final String token;
 
-  GoogleService(this.opts) {
-    _client = Client(opts);
+  GoogleService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Search for videos on Google
@@ -28,8 +27,7 @@ class GoogleService {
         return SearchResponse.Merr(body: err.b);
       }
       return SearchResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -60,6 +58,12 @@ class SearchResponse with _$SearchResponse {
 @Freezed()
 class SearchResult with _$SearchResult {
   const factory SearchResult({
+    /// the full url for the result
+    String? url,
+
+    /// abridged version of this search result’s URL, e.g. www.exampe.com
+    String? display_url,
+
     /// id of the result
     String? id,
 
@@ -71,12 +75,6 @@ class SearchResult with _$SearchResult {
 
     /// title of the result
     String? title,
-
-    /// the full url for the result
-    String? url,
-
-    /// abridged version of this search result’s URL, e.g. www.exampe.com
-    String? display_url,
   }) = _SearchResult;
   factory SearchResult.fromJson(Map<String, dynamic> json) =>
       _$SearchResultFromJson(json);

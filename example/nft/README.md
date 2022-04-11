@@ -4,6 +4,42 @@ An [m3o.com](https://m3o.com) API. For example usage see [m3o.com/nft/api](https
 
 Endpoints:
 
+## Collection
+
+Get a collection by its slug
+
+
+[https://m3o.com/nft/api#Collection](https://m3o.com/nft/api#Collection)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/nft/nft.dart';
+
+void main() async {
+  final ser = NftService(Platform.environment['M3O_API_TOKEN']!);
+ 
+  final payload = <String, dynamic>{
+  "slug": "doodles-official"
+,};
+
+  CollectionRequest req = CollectionRequest.fromJson(payload);
+
+  
+  try {
+
+	CollectionResponse res = await ser.collection(req);
+
+    res.map((value) => print(value),
+	  Merr: (CollectionResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
 ## Assets
 
 Return a list of assets
@@ -14,17 +50,10 @@ Return a list of assets
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/nft/nft.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = NftService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = NftService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "limit": 1,
@@ -41,9 +70,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (AssetsResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -59,17 +87,10 @@ Create your own NFT (coming soon)
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/nft/nft.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = NftService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = NftService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "description": "The epic monkey island character",
@@ -86,9 +107,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (CreateResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -104,17 +124,10 @@ Get a list of collections
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/nft/nft.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = NftService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = NftService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "limit": 1
@@ -130,9 +143,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (CollectionsResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -148,17 +160,10 @@ Get a single asset by the contract
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/nft/nft.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = NftService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = NftService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "contract_address": "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
@@ -175,53 +180,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (AssetResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
-  } finally {
-    exit(0);
-  }
-}
-```
-## Collection
-
-Get a collection by its slug
-
-
-[https://m3o.com/nft/api#Collection](https://m3o.com/nft/api#Collection)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/nft/nft.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = NftService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{
-  "slug": "doodles-official"
-,};
-
-  CollectionRequest req = CollectionRequest.fromJson(payload);
-
-  
-  try {
-
-	CollectionResponse res = await ser.collection(req);
-
-    res.map((value) => print(value),
-	  Merr: (CollectionResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e, stack) {
-    print(e);
-	print(stack);
   } finally {
     exit(0);
   }

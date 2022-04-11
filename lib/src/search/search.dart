@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'search.freezed.dart';
 part 'search.g.dart';
 
 class SearchService {
-  final Options opts;
   var _client;
+  final String token;
 
-  SearchService(this.opts) {
-    _client = Client(opts);
+  SearchService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Create an index by name
@@ -28,8 +27,7 @@ class SearchService {
         return CreateIndexResponse.Merr(body: err.b);
       }
       return CreateIndexResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class SearchService {
         return DeleteIndexResponse.Merr(body: err.b);
       }
       return DeleteIndexResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +67,7 @@ class SearchService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -91,8 +87,7 @@ class SearchService {
         return IndexResponse.Merr(body: err.b);
       }
       return IndexResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -112,8 +107,7 @@ class SearchService {
         return SearchResponse.Merr(body: err.b);
       }
       return SearchResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }

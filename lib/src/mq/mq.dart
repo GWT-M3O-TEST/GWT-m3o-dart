@@ -6,11 +6,11 @@ part 'mq.freezed.dart';
 part 'mq.g.dart';
 
 class MqService {
-  final Options opts;
   var _client;
+  final String token;
 
-  MqService(this.opts) {
-    _client = Client(opts);
+  MqService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Publish a message. Specify a topic to group messages for a specific topic.
@@ -28,8 +28,7 @@ class MqService {
         return PublishResponse.Merr(body: err.b);
       }
       return PublishResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -53,8 +52,7 @@ class MqService {
           yield SubscribeResponseData.fromJson(vo);
         }
       }
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }

@@ -6,11 +6,11 @@ part 'chat.freezed.dart';
 part 'chat.g.dart';
 
 class ChatService {
-  final Options opts;
   var _client;
+  final String token;
 
-  ChatService(this.opts) {
-    _client = Client(opts);
+  ChatService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Create a new chat room
@@ -28,8 +28,7 @@ class ChatService {
         return CreateResponse.Merr(body: err.b);
       }
       return CreateResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +48,7 @@ class ChatService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +68,7 @@ class ChatService {
         return HistoryResponse.Merr(body: err.b);
       }
       return HistoryResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -91,8 +88,7 @@ class ChatService {
         return InviteResponse.Merr(body: err.b);
       }
       return InviteResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -116,8 +112,7 @@ class ChatService {
           yield JoinResponseData.fromJson(vo);
         }
       }
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -137,8 +132,7 @@ class ChatService {
         return KickResponse.Merr(body: err.b);
       }
       return KickResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -158,8 +152,7 @@ class ChatService {
         return LeaveResponse.Merr(body: err.b);
       }
       return LeaveResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -179,8 +172,7 @@ class ChatService {
         return ListResponse.Merr(body: err.b);
       }
       return ListResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -201,8 +193,7 @@ class ChatService {
         return SendResponse.Merr(body: err.b);
       }
       return SendResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -211,6 +202,9 @@ class ChatService {
 @Freezed()
 class CreateRequest with _$CreateRequest {
   const factory CreateRequest({
+    /// chat description
+    String? description,
+
     /// name of the room
     String? name,
 
@@ -219,9 +213,6 @@ class CreateRequest with _$CreateRequest {
 
     /// optional list of user ids
     String? user_ids,
-
-    /// chat description
-    String? description,
   }) = _CreateRequest;
   factory CreateRequest.fromJson(Map<String, dynamic> json) =>
       _$CreateRequestFromJson(json);
@@ -357,11 +348,11 @@ class KickResponse with _$KickResponse {
 @Freezed()
 class LeaveRequest with _$LeaveRequest {
   const factory LeaveRequest({
-    /// the user id
-    String? user_id,
-
     /// the chat room id
     String? room_id,
+
+    /// the user id
+    String? user_id,
   }) = _LeaveRequest;
   factory LeaveRequest.fromJson(Map<String, dynamic> json) =>
       _$LeaveRequestFromJson(json);
@@ -430,15 +421,6 @@ class Message with _$Message {
 @Freezed()
 class Room with _$Room {
   const factory Room({
-    /// description of the that
-    String? description,
-
-    /// unique room id
-    String? id,
-
-    /// name of the chat
-    String? name,
-
     /// whether its a private room
     bool? private,
 
@@ -447,6 +429,15 @@ class Room with _$Room {
 
     /// time of creation
     String? created_at,
+
+    /// description of the that
+    String? description,
+
+    /// unique room id
+    String? id,
+
+    /// name of the chat
+    String? name,
   }) = _Room;
   factory Room.fromJson(Map<String, dynamic> json) => _$RoomFromJson(json);
 }
@@ -454,9 +445,6 @@ class Room with _$Room {
 @Freezed()
 class SendRequest with _$SendRequest {
   const factory SendRequest({
-    /// a client side id, should be validated by the server to make the request retry safe
-    String? client,
-
     /// id of the chat room the message is being sent to / from
     String? room_id,
 
@@ -468,6 +456,9 @@ class SendRequest with _$SendRequest {
 
     /// id of the user who sent the message
     String? user_id,
+
+    /// a client side id, should be validated by the server to make the request retry safe
+    String? client,
   }) = _SendRequest;
   factory SendRequest.fromJson(Map<String, dynamic> json) =>
       _$SendRequestFromJson(json);

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'crypto.freezed.dart';
 part 'crypto.g.dart';
 
 class CryptoService {
-  final Options opts;
   var _client;
+  final String token;
 
-  CryptoService(this.opts) {
-    _client = Client(opts);
+  CryptoService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Returns the history for the previous close
@@ -28,8 +27,7 @@ class CryptoService {
         return HistoryResponse.Merr(body: err.b);
       }
       return HistoryResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class CryptoService {
         return NewsResponse.Merr(body: err.b);
       }
       return NewsResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +67,7 @@ class CryptoService {
         return PriceResponse.Merr(body: err.b);
       }
       return PriceResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -91,8 +87,7 @@ class CryptoService {
         return QuoteResponse.Merr(body: err.b);
       }
       return QuoteResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -112,8 +107,7 @@ class CryptoService {
         return SymbolsResponse.Merr(body: err.b);
       }
       return SymbolsResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -154,6 +148,15 @@ class HistoryRequest with _$HistoryRequest {
 @Freezed()
 class HistoryResponse with _$HistoryResponse {
   const factory HistoryResponse({
+    /// the peak price
+    double? high,
+
+    /// the low price
+    double? low,
+
+    /// the open price
+    double? open,
+
     /// the crypto symbol
     String? symbol,
 
@@ -165,15 +168,6 @@ class HistoryResponse with _$HistoryResponse {
 
     /// the date
     String? date,
-
-    /// the peak price
-    double? high,
-
-    /// the low price
-    double? low,
-
-    /// the open price
-    double? open,
   }) = HistoryResponseData;
   const factory HistoryResponse.Merr({Map<String, dynamic>? body}) =
       HistoryResponseMerr;
@@ -244,6 +238,9 @@ class QuoteRequest with _$QuoteRequest {
 @Freezed()
 class QuoteResponse with _$QuoteResponse {
   const factory QuoteResponse({
+    /// the asking price
+    double? ask_price,
+
     /// the ask size
     double? ask_size,
 
@@ -258,9 +255,6 @@ class QuoteResponse with _$QuoteResponse {
 
     /// the UTC timestamp of the quote
     String? timestamp,
-
-    /// the asking price
-    double? ask_price,
   }) = QuoteResponseData;
   const factory QuoteResponse.Merr({Map<String, dynamic>? body}) =
       QuoteResponseMerr;

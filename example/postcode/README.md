@@ -14,17 +14,10 @@ Lookup a postcode to retrieve the related region, county, etc
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/postcode/postcode.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = PostcodeService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = PostcodeService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "postcode": "SW1A 2AA"
@@ -40,9 +33,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (LookupResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -58,17 +50,10 @@ Return a random postcode and its related info
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/postcode/postcode.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = PostcodeService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = PostcodeService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{};
 
@@ -82,9 +67,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (RandomResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -100,17 +84,10 @@ Validate a postcode.
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/postcode/postcode.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = PostcodeService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = PostcodeService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "postcode": "SW1A 2AA"
@@ -126,9 +103,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (ValidateResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }

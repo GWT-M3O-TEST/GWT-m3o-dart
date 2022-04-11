@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'rss.freezed.dart';
 part 'rss.g.dart';
 
 class RssService {
-  final Options opts;
   var _client;
+  final String token;
 
-  RssService(this.opts) {
-    _client = Client(opts);
+  RssService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Add a new RSS feed with a name, url, and category
@@ -28,8 +27,7 @@ class RssService {
         return AddResponse.Merr(body: err.b);
       }
       return AddResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class RssService {
         return FeedResponse.Merr(body: err.b);
       }
       return FeedResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +67,7 @@ class RssService {
         return ListResponse.Merr(body: err.b);
       }
       return ListResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -91,8 +87,7 @@ class RssService {
         return RemoveResponse.Merr(body: err.b);
       }
       return RemoveResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -128,12 +123,6 @@ class AddResponse with _$AddResponse {
 @Freezed()
 class Entry with _$Entry {
   const factory Entry({
-    /// data of the entry
-    String? date,
-
-    /// the rss feed where it came from
-    String? feed,
-
     /// unique id of the entry
     String? id,
 
@@ -148,6 +137,12 @@ class Entry with _$Entry {
 
     /// article content
     String? content,
+
+    /// data of the entry
+    String? date,
+
+    /// the rss feed where it came from
+    String? feed,
   }) = _Entry;
   factory Entry.fromJson(Map<String, dynamic> json) => _$EntryFromJson(json);
 }
@@ -155,12 +150,6 @@ class Entry with _$Entry {
 @Freezed()
 class Feed with _$Feed {
   const factory Feed({
-    /// category of the feed e.g news
-    String? category,
-
-    /// unique id
-    String? id,
-
     /// rss feed name
     /// eg. a16z
     String? name,
@@ -168,6 +157,12 @@ class Feed with _$Feed {
     /// rss feed url
     /// eg. http://a16z.com/feed/
     String? url,
+
+    /// category of the feed e.g news
+    String? category,
+
+    /// unique id
+    String? id,
   }) = _Feed;
   factory Feed.fromJson(Map<String, dynamic> json) => _$FeedFromJson(json);
 }
@@ -176,12 +171,14 @@ class Feed with _$Feed {
 class FeedRequest with _$FeedRequest {
   const factory FeedRequest({
     /// limit entries returned
+
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? limit,
 
     /// rss feed name
     String? name,
 
     /// offset entries
+
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? offset,
   }) = _FeedRequest;
   factory FeedRequest.fromJson(Map<String, dynamic> json) =>

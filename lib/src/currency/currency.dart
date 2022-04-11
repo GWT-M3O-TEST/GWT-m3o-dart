@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'currency.freezed.dart';
 part 'currency.g.dart';
 
 class CurrencyService {
-  final Options opts;
   var _client;
+  final String token;
 
-  CurrencyService(this.opts) {
-    _client = Client(opts);
+  CurrencyService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Codes returns the supported currency codes for the API
@@ -28,8 +27,7 @@ class CurrencyService {
         return CodesResponse.Merr(body: err.b);
       }
       return CodesResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class CurrencyService {
         return ConvertResponse.Merr(body: err.b);
       }
       return ConvertResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +67,7 @@ class CurrencyService {
         return HistoryResponse.Merr(body: err.b);
       }
       return HistoryResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -91,8 +87,7 @@ class CurrencyService {
         return RatesResponse.Merr(body: err.b);
       }
       return RatesResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -131,14 +126,14 @@ class CodesResponse with _$CodesResponse {
 @Freezed()
 class ConvertRequest with _$ConvertRequest {
   const factory ConvertRequest({
-    /// optional amount to convert e.g 10.0
-    double? amount,
-
     /// base code to convert from e.g USD
     String? from,
 
     /// target code to convert to e.g GBP
     String? to,
+
+    /// optional amount to convert e.g 10.0
+    double? amount,
   }) = _ConvertRequest;
   factory ConvertRequest.fromJson(Map<String, dynamic> json) =>
       _$ConvertRequestFromJson(json);
@@ -181,14 +176,14 @@ class HistoryRequest with _$HistoryRequest {
 @Freezed()
 class HistoryResponse with _$HistoryResponse {
   const factory HistoryResponse({
+    /// The code of the request
+    String? code,
+
     /// The date requested
     String? date,
 
     /// The rate for the day as code:rate
     Map<String, double>? rates,
-
-    /// The code of the request
-    String? code,
   }) = HistoryResponseData;
   const factory HistoryResponse.Merr({Map<String, dynamic>? body}) =
       HistoryResponseMerr;

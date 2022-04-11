@@ -4,6 +4,44 @@ An [m3o.com](https://m3o.com) API. For example usage see [m3o.com/event/api](htt
 
 Endpoints:
 
+## Consume
+
+Consume events from a given topic.
+
+
+[https://m3o.com/event/api#Consume](https://m3o.com/event/api#Consume)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/event/event.dart';
+
+void main() async {
+  final ser = EventService(Platform.environment['M3O_API_TOKEN']!);
+ 
+  final payload = <String, dynamic>{
+  "topic": "user"
+,};
+
+  ConsumeRequest req = ConsumeRequest.fromJson(payload);
+
+  
+  	
+  try {
+
+    final res = await ser.consume(req);
+
+	  await for (var sr in res) {
+	  sr.map((value) => print(value),
+		Merr: (ConsumeResponseMerr err) => print(err.body));
+	  }
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
 ## Read
 
 Read stored events
@@ -14,17 +52,10 @@ Read stored events
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/event/event.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = EventService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = EventService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "topic": "user"
@@ -40,9 +71,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (ReadResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
   } finally {
     exit(0);
   }
@@ -58,17 +88,10 @@ Publish a event to the event stream.
 ```dart
 import 'dart:io';
 
-import 'package:m3o/src/client/client.dart';
 import 'package:m3o/src/event/event.dart';
 
 void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = EventService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
+  final ser = EventService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
   "message": {
@@ -89,55 +112,8 @@ void main() async {
     res.map((value) => print(value),
 	  Merr: (PublishResponseMerr err) => print(err.body!['body']));	
   
-  } catch (e, stack) {
+  } catch (e) {
     print(e);
-	print(stack);
-  } finally {
-    exit(0);
-  }
-}
-```
-## Consume
-
-Consume events from a given topic.
-
-
-[https://m3o.com/event/api#Consume](https://m3o.com/event/api#Consume)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/client/client.dart';
-import 'package:m3o/src/event/event.dart';
-
-void main() async {
-  final token = Platform.environment['M3O_API_TOKEN']!;
-  final ser = EventService(
-    Options(
-      token: token,
-      address: liveAddress,
-    ),
-  );
- 
-  final payload = <String, dynamic>{
-  "topic": "user"
-,};
-
-  ConsumeRequest req = ConsumeRequest.fromJson(payload);
-
-  
-  	
-  try {
-
-    final res = await ser.consume(req);
-
-	  await for (var sr in res) {
-	  sr.map((value) => print(value),
-		Merr: (ConsumeResponseMerr err) => print(err.body));
-	  }
-  } catch (e, stack) {
-    print(e);
-	print(stack);
   } finally {
     exit(0);
   }

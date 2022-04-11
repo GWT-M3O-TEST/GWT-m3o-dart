@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'vehicle.freezed.dart';
 part 'vehicle.g.dart';
 
 class VehicleService {
-  final Options opts;
   var _client;
+  final String token;
 
-  VehicleService(this.opts) {
-    _client = Client(opts);
+  VehicleService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Lookup a UK vehicle by it's registration number
@@ -28,8 +27,7 @@ class VehicleService {
         return LookupResponse.Merr(body: err.b);
       }
       return LookupResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -48,53 +46,53 @@ class LookupRequest with _$LookupRequest {
 @Freezed()
 class LookupResponse with _$LookupResponse {
   const factory LookupResponse({
-    /// date of last v5 issue
-    String? last_v5_issued,
-
-    /// make of vehicle
-    String? make,
-
-    /// tax due data
-    String? tax_due_date,
-
-    /// month of first registration
-    String? month_of_first_registration,
-
-    /// type approvale
-    String? type_approval,
-
     /// colour of vehicle
     String? colour,
 
-    /// engine capacity
-    int? engine_capacity,
-
-    /// fuel type e.g petrol, diesel
-    String? fuel_type,
-
-    /// url of logo for the make
-    String? logo_url,
-
-    /// mot expiry
-    String? mot_expiry,
-
-    /// tax status
-    String? tax_status,
+    /// date of last v5 issue
+    String? last_v5_issued,
 
     /// year of manufacture
     int? year_of_manufacture,
 
-    /// co2 emmissions
-    double? co2_emissions,
+    /// make of vehicle
+    String? make,
 
-    /// mot status
-    String? mot_status,
+    /// mot expiry
+    String? mot_expiry,
 
     /// registration number
     String? registration,
 
+    /// fuel type e.g petrol, diesel
+    String? fuel_type,
+
+    /// tax due data
+    String? tax_due_date,
+
+    /// type approvale
+    String? type_approval,
+
+    /// mot status
+    String? mot_status,
+
+    /// tax status
+    String? tax_status,
+
     /// wheel plan
     String? wheelplan,
+
+    /// co2 emmissions
+    double? co2_emissions,
+
+    /// engine capacity
+    int? engine_capacity,
+
+    /// url of logo for the make
+    String? logo_url,
+
+    /// month of first registration
+    String? month_of_first_registration,
   }) = LookupResponseData;
   const factory LookupResponse.Merr({Map<String, dynamic>? body}) =
       LookupResponseMerr;

@@ -6,11 +6,11 @@ part 'event.freezed.dart';
 part 'event.g.dart';
 
 class EventService {
-  final Options opts;
   var _client;
+  final String token;
 
-  EventService(this.opts) {
-    _client = Client(opts);
+  EventService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Consume events from a given topic.
@@ -32,8 +32,7 @@ class EventService {
           yield ConsumeResponseData.fromJson(vo);
         }
       }
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -53,8 +52,7 @@ class EventService {
         return PublishResponse.Merr(body: err.b);
       }
       return PublishResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -74,8 +72,7 @@ class EventService {
         return ReadResponse.Merr(body: err.b);
       }
       return ReadResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -121,14 +118,14 @@ class ConsumeResponse with _$ConsumeResponse {
 @Freezed()
 class Ev with _$Ev {
   const factory Ev({
+    /// event id
+    String? id,
+
     /// event message
     Map<String, dynamic>? message,
 
     /// event timestamp
     String? timestamp,
-
-    /// event id
-    String? id,
   }) = _Ev;
   factory Ev.fromJson(Map<String, dynamic> json) => _$EvFromJson(json);
 }
@@ -136,11 +133,11 @@ class Ev with _$Ev {
 @Freezed()
 class PublishRequest with _$PublishRequest {
   const factory PublishRequest({
-    /// The topic to publish to
-    String? topic,
-
     /// The json message to publish
     Map<String, dynamic>? message,
+
+    /// The topic to publish to
+    String? topic,
   }) = _PublishRequest;
   factory PublishRequest.fromJson(Map<String, dynamic> json) =>
       _$PublishRequestFromJson(json);
@@ -158,14 +155,14 @@ class PublishResponse with _$PublishResponse {
 @Freezed()
 class ReadRequest with _$ReadRequest {
   const factory ReadRequest({
+    /// number of events to read; default 25
+    int? limit,
+
     /// offset for the events; default 0
     int? offset,
 
     /// topic to read from
     String? topic,
-
-    /// number of events to read; default 25
-    int? limit,
   }) = _ReadRequest;
   factory ReadRequest.fromJson(Map<String, dynamic> json) =>
       _$ReadRequestFromJson(json);

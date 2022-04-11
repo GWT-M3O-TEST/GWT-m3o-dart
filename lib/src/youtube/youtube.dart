@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'youtube.freezed.dart';
 part 'youtube.g.dart';
 
 class YoutubeService {
-  final Options opts;
   var _client;
+  final String token;
 
-  YoutubeService(this.opts) {
-    _client = Client(opts);
+  YoutubeService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Embed a YouTube video
@@ -28,8 +27,7 @@ class YoutubeService {
         return EmbedResponse.Merr(body: err.b);
       }
       return EmbedResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class YoutubeService {
         return SearchResponse.Merr(body: err.b);
       }
       return SearchResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -112,11 +109,20 @@ class SearchResponse with _$SearchResponse {
 @Freezed()
 class SearchResult with _$SearchResult {
   const factory SearchResult({
+    /// the associated url
+    String? url,
+
     /// the channel id
     String? channel_id,
 
-    /// the associated url
-    String? url,
+    /// the channel title
+    String? channel_title,
+
+    /// the result description
+    String? description,
+
+    /// published at time
+    String? published_at,
 
     /// title of the result
     String? title,
@@ -125,20 +131,11 @@ class SearchResult with _$SearchResult {
     /// none, upcoming, live, completed
     String? broadcasting,
 
-    /// the channel title
-    String? channel_title,
-
-    /// the result description
-    String? description,
-
     /// id of the result
     String? id,
 
     /// kind of result: "video", "channel", "playlist"
     String? kind,
-
-    /// published at time
-    String? published_at,
   }) = _SearchResult;
   factory SearchResult.fromJson(Map<String, dynamic> json) =>
       _$SearchResultFromJson(json);

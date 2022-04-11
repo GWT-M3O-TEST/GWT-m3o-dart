@@ -6,11 +6,11 @@ part 'helloworld.freezed.dart';
 part 'helloworld.g.dart';
 
 class HelloworldService {
-  final Options opts;
   var _client;
+  final String token;
 
-  HelloworldService(this.opts) {
-    _client = Client(opts);
+  HelloworldService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Return a personalised Hello message
@@ -28,8 +28,7 @@ class HelloworldService {
         return CallResponse.Merr(body: err.b);
       }
       return CallResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -53,8 +52,7 @@ class HelloworldService {
           yield StreamResponseData.fromJson(vo);
         }
       }
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -86,6 +84,7 @@ class CallResponse with _$CallResponse {
 class StreamRequest with _$StreamRequest {
   const factory StreamRequest({
     /// the number of messages to send back
+
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? messages,
 
     /// name to append to the message e.g Alice

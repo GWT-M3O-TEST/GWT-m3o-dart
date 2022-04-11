@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'memegen.freezed.dart';
 part 'memegen.g.dart';
 
 class MemegenService {
-  final Options opts;
   var _client;
+  final String token;
 
-  MemegenService(this.opts) {
-    _client = Client(opts);
+  MemegenService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Generate a meme using a template
@@ -28,8 +27,7 @@ class MemegenService {
         return GenerateResponse.Merr(body: err.b);
       }
       return GenerateResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class MemegenService {
         return TemplatesResponse.Merr(body: err.b);
       }
       return TemplatesResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -59,6 +56,12 @@ class MemegenService {
 @Freezed()
 class Box with _$Box {
   const factory Box({
+    /// outline color hex code
+    String? outline,
+
+    /// text to display
+    String? text,
+
     /// width in pixels
     int? width,
 
@@ -73,12 +76,6 @@ class Box with _$Box {
 
     /// height in pixels
     int? height,
-
-    /// outline color hex code
-    String? outline,
-
-    /// text to display
-    String? text,
   }) = _Box;
   factory Box.fromJson(Map<String, dynamic> json) => _$BoxFromJson(json);
 }
@@ -120,12 +117,6 @@ class GenerateResponse with _$GenerateResponse {
 @Freezed()
 class Template with _$Template {
   const factory Template({
-    /// number of boxes used
-    int? box_count,
-
-    /// height in pixels
-    int? height,
-
     /// id of the memegen
     String? id,
 
@@ -137,6 +128,12 @@ class Template with _$Template {
 
     /// width in pixels
     int? width,
+
+    /// number of boxes used
+    int? box_count,
+
+    /// height in pixels
+    int? height,
   }) = _Template;
   factory Template.fromJson(Map<String, dynamic> json) =>
       _$TemplateFromJson(json);

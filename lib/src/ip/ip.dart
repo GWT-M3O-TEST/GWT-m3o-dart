@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'ip.freezed.dart';
 part 'ip.g.dart';
 
 class IpService {
-  final Options opts;
   var _client;
+  final String token;
 
-  IpService(this.opts) {
-    _client = Client(opts);
+  IpService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Lookup the geolocation information for an IP address
@@ -28,8 +27,7 @@ class IpService {
         return LookupResponse.Merr(body: err.b);
       }
       return LookupResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -48,18 +46,6 @@ class LookupRequest with _$LookupRequest {
 @Freezed()
 class LookupResponse with _$LookupResponse {
   const factory LookupResponse({
-    /// Name of the country
-    String? country,
-
-    /// IP of the query
-    String? ip,
-
-    /// Latitude e.g 52.523219
-    double? latitude,
-
-    /// Longitude e.g 13.428555
-    double? longitude,
-
     /// Timezone e.g Europe/Rome
     String? timezone,
 
@@ -71,6 +57,18 @@ class LookupResponse with _$LookupResponse {
 
     /// Name of the continent
     String? continent,
+
+    /// Name of the country
+    String? country,
+
+    /// IP of the query
+    String? ip,
+
+    /// Latitude e.g 52.523219
+    double? latitude,
+
+    /// Longitude e.g 13.428555
+    double? longitude,
   }) = LookupResponseData;
   const factory LookupResponse.Merr({Map<String, dynamic>? body}) =
       LookupResponseMerr;

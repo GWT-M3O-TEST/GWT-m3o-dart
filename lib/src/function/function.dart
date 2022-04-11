@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'function.freezed.dart';
 part 'function.g.dart';
 
 class FunctionService {
-  final Options opts;
   var _client;
+  final String token;
 
-  FunctionService(this.opts) {
-    _client = Client(opts);
+  FunctionService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Call a function by name
@@ -28,8 +27,7 @@ class FunctionService {
         return CallResponse.Merr(body: err.b);
       }
       return CallResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class FunctionService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +67,7 @@ class FunctionService {
         return DeployResponse.Merr(body: err.b);
       }
       return DeployResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -91,8 +87,7 @@ class FunctionService {
         return DescribeResponse.Merr(body: err.b);
       }
       return DescribeResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -112,8 +107,7 @@ class FunctionService {
         return ListResponse.Merr(body: err.b);
       }
       return ListResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -133,8 +127,7 @@ class FunctionService {
         return LogsResponse.Merr(body: err.b);
       }
       return LogsResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -154,8 +147,7 @@ class FunctionService {
         return ProxyResponse.Merr(body: err.b);
       }
       return ProxyResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -175,8 +167,7 @@ class FunctionService {
         return RegionsResponse.Merr(body: err.b);
       }
       return RegionsResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -196,8 +187,7 @@ class FunctionService {
         return ReserveResponse.Merr(body: err.b);
       }
       return ReserveResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -217,8 +207,7 @@ class FunctionService {
         return RuntimesResponse.Merr(body: err.b);
       }
       return RuntimesResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -238,8 +227,7 @@ class FunctionService {
         return UpdateResponse.Merr(body: err.b);
       }
       return UpdateResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -248,11 +236,11 @@ class FunctionService {
 @Freezed()
 class CallRequest with _$CallRequest {
   const factory CallRequest({
-    /// Request body that will be passed to the function
-    Map<String, dynamic>? request,
-
     /// Name of the function
     String? name,
+
+    /// Request body that will be passed to the function
+    Map<String, dynamic>? request,
   }) = _CallRequest;
   factory CallRequest.fromJson(Map<String, dynamic> json) =>
       _$CallRequestFromJson(json);
@@ -292,21 +280,8 @@ class DeleteResponse with _$DeleteResponse {
 @Freezed()
 class DeployRequest with _$DeployRequest {
   const factory DeployRequest({
-    /// entry point, ie. handler name in the source code
-    /// if not provided, defaults to the name parameter
-    String? entrypoint,
-
-    /// region to deploy in. defaults to europe-west1
-    String? region,
-
-    /// github url for a repo
-    String? repo,
-
-    /// runtime/lanaguage of the function e.g php74,
-    /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
-    /// dotnet3, java11, ruby26, ruby27, go111, go113, go116,
-    /// python37, python38, python39
-    String? runtime,
+    /// optional subfolder path
+    String? subfolder,
 
     /// branch to deploy. defaults to master
     String? branch,
@@ -317,11 +292,24 @@ class DeployRequest with _$DeployRequest {
     /// function name
     String? name,
 
+    /// region to deploy in. defaults to europe-west1
+    String? region,
+
+    /// entry point, ie. handler name in the source code
+    /// if not provided, defaults to the name parameter
+    String? entrypoint,
+
+    /// github url for a repo
+    String? repo,
+
+    /// runtime/lanaguage of the function e.g php74,
+    /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
+    /// dotnet3, java11, ruby26, ruby27, go111, go113, go116,
+    /// python37, python38, python39
+    String? runtime,
+
     /// inline source code
     String? source,
-
-    /// optional subfolder path
-    String? subfolder,
   }) = _DeployRequest;
   factory DeployRequest.fromJson(Map<String, dynamic> json) =>
       _$DeployRequestFromJson(json);
@@ -366,39 +354,15 @@ class Func with _$Func {
     /// branch to deploy. defaults to master
     String? branch,
 
-    /// the source code
-    String? source,
-
-    /// time it was updated
-    String? updated,
-
-    /// time of creation
-    String? created,
-
-    /// name of handler in source code
-    String? entrypoint,
-
-    /// function name
-    /// limitation: must be unique across projects
-    String? name,
-
-    /// runtime/language of the function e.g php74,
-    /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
-    /// dotnet3, java11, ruby26, ruby27, go111, go113, go116,
-    /// python37, python38, python39
-    String? runtime,
-
     /// subfolder path to entrypoint
     String? subfolder,
-
-    /// unique url of the function
-    String? url,
 
     /// associated env vars
     Map<String, String>? env_vars,
 
-    /// id of the function
-    String? id,
+    /// function name
+    /// limitation: must be unique across projects
+    String? name,
 
     /// region to deploy in. defaults to europe-west1
     String? region,
@@ -406,8 +370,32 @@ class Func with _$Func {
     /// git repo address
     String? repo,
 
+    /// runtime/language of the function e.g php74,
+    /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
+    /// dotnet3, java11, ruby26, ruby27, go111, go113, go116,
+    /// python37, python38, python39
+    String? runtime,
+
+    /// time of creation
+    String? created,
+
+    /// name of handler in source code
+    String? entrypoint,
+
+    /// unique url of the function
+    String? url,
+
+    /// id of the function
+    String? id,
+
     /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
     String? status,
+
+    /// the source code
+    String? source,
+
+    /// time it was updated
+    String? updated,
   }) = _Func;
   factory Func.fromJson(Map<String, dynamic> json) => _$FuncFromJson(json);
 }

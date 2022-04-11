@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'geocoding.freezed.dart';
 part 'geocoding.g.dart';
 
 class GeocodingService {
-  final Options opts;
   var _client;
+  final String token;
 
-  GeocodingService(this.opts) {
-    _client = Client(opts);
+  GeocodingService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Lookup returns a geocoded address including normalized address and gps coordinates. All fields are optional, provide more to get more accurate results
@@ -28,8 +27,7 @@ class GeocodingService {
         return LookupResponse.Merr(body: err.b);
       }
       return LookupResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class GeocodingService {
         return ReverseResponse.Merr(body: err.b);
       }
       return ReverseResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -59,11 +56,11 @@ class GeocodingService {
 @Freezed()
 class Address with _$Address {
   const factory Address({
-    String? city,
-    String? country,
     String? line_one,
     String? line_two,
     String? postcode,
+    String? city,
+    String? country,
   }) = _Address;
   factory Address.fromJson(Map<String, dynamic> json) =>
       _$AddressFromJson(json);
@@ -82,10 +79,10 @@ class Location with _$Location {
 @Freezed()
 class LookupRequest with _$LookupRequest {
   const factory LookupRequest({
-    String? address,
     String? city,
     String? country,
     String? postcode,
+    String? address,
   }) = _LookupRequest;
   factory LookupRequest.fromJson(Map<String, dynamic> json) =>
       _$LookupRequestFromJson(json);
@@ -116,8 +113,8 @@ class ReverseRequest with _$ReverseRequest {
 @Freezed()
 class ReverseResponse with _$ReverseResponse {
   const factory ReverseResponse({
-    Address? address,
     Location? location,
+    Address? address,
   }) = ReverseResponseData;
   const factory ReverseResponse.Merr({Map<String, dynamic>? body}) =
       ReverseResponseMerr;

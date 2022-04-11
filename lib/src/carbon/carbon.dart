@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'carbon.freezed.dart';
 part 'carbon.g.dart';
 
 class CarbonService {
-  final Options opts;
   var _client;
+  final String token;
 
-  CarbonService(this.opts) {
-    _client = Client(opts);
+  CarbonService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Purchase 1KG (0.001 tonne) of carbon offsets in a single request
@@ -28,8 +27,7 @@ class CarbonService {
         return OffsetResponse.Merr(body: err.b);
       }
       return OffsetResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -45,9 +43,6 @@ class OffsetRequest with _$OffsetRequest {
 @Freezed()
 class OffsetResponse with _$OffsetResponse {
   const factory OffsetResponse({
-    /// projects it was allocated to
-    List<Project>? projects,
-
     /// number of tonnes
     double? tonnes,
 
@@ -56,6 +51,9 @@ class OffsetResponse with _$OffsetResponse {
 
     /// the metric used e.g KG or Tonnes
     String? metric,
+
+    /// projects it was allocated to
+    List<Project>? projects,
   }) = OffsetResponseData;
   const factory OffsetResponse.Merr({Map<String, dynamic>? body}) =
       OffsetResponseMerr;

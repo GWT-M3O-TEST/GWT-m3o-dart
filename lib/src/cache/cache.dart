@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'cache.freezed.dart';
 part 'cache.g.dart';
 
 class CacheService {
-  final Options opts;
   var _client;
+  final String token;
 
-  CacheService(this.opts) {
-    _client = Client(opts);
+  CacheService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Decrement a value (if it's a number). If key not found it is equivalent to set.
@@ -28,8 +27,7 @@ class CacheService {
         return DecrementResponse.Merr(body: err.b);
       }
       return DecrementResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -49,8 +47,7 @@ class CacheService {
         return DeleteResponse.Merr(body: err.b);
       }
       return DeleteResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -70,8 +67,7 @@ class CacheService {
         return GetResponse.Merr(body: err.b);
       }
       return GetResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -91,8 +87,7 @@ class CacheService {
         return IncrementResponse.Merr(body: err.b);
       }
       return IncrementResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -112,8 +107,7 @@ class CacheService {
         return ListKeysResponse.Merr(body: err.b);
       }
       return ListKeysResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -133,8 +127,7 @@ class CacheService {
         return SetResponse.Merr(body: err.b);
       }
       return SetResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -147,6 +140,7 @@ class DecrementRequest with _$DecrementRequest {
     String? key,
 
     /// The amount to decrement the value by
+
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
   }) = _DecrementRequest;
   factory DecrementRequest.fromJson(Map<String, dynamic> json) =>
@@ -160,6 +154,7 @@ class DecrementResponse with _$DecrementResponse {
     String? key,
 
     /// The new value
+
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
   }) = DecrementResponseData;
   const factory DecrementResponse.Merr({Map<String, dynamic>? body}) =
@@ -203,14 +198,15 @@ class GetRequest with _$GetRequest {
 @Freezed()
 class GetResponse with _$GetResponse {
   const factory GetResponse({
-    /// The key
-    String? key,
-
     /// Time to live in seconds
+
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? ttl,
 
     /// The value
     String? value,
+
+    /// The key
+    String? key,
   }) = GetResponseData;
   const factory GetResponse.Merr({Map<String, dynamic>? body}) =
       GetResponseMerr;
@@ -225,6 +221,7 @@ class IncrementRequest with _$IncrementRequest {
     String? key,
 
     /// The amount to increment the value by
+
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
   }) = _IncrementRequest;
   factory IncrementRequest.fromJson(Map<String, dynamic> json) =>
@@ -238,6 +235,7 @@ class IncrementResponse with _$IncrementResponse {
     String? key,
 
     /// The new value
+
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? value,
   }) = IncrementResponseData;
   const factory IncrementResponse.Merr({Map<String, dynamic>? body}) =
@@ -271,6 +269,7 @@ class SetRequest with _$SetRequest {
     String? key,
 
     /// Time to live in seconds
+
     @JsonKey(fromJson: int64FromString, toJson: int64ToString) int? ttl,
 
     /// The value to set

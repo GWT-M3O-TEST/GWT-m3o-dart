@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../client/client.dart';
 
@@ -6,11 +5,11 @@ part 'news.freezed.dart';
 part 'news.g.dart';
 
 class NewsService {
-  final Options opts;
   var _client;
+  final String token;
 
-  NewsService(this.opts) {
-    _client = Client(opts);
+  NewsService(String token) : token = token {
+    _client = Client(token: token);
   }
 
   /// Get the latest news headlines
@@ -28,8 +27,7 @@ class NewsService {
         return HeadlinesResponse.Merr(body: err.b);
       }
       return HeadlinesResponseData.fromJson(res.body);
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -38,23 +36,8 @@ class NewsService {
 @Freezed()
 class Article with _$Article {
   const factory Article({
-    /// url of the article
-    String? url,
-
-    /// article description
-    String? description,
-
-    /// article id
-    String? id,
-
-    /// image url
-    String? image_url,
-
-    /// related keywords
-    String? keywords,
-
-    /// the article language
-    String? language,
+    /// time it was published
+    String? published_at,
 
     /// source of news
     String? source,
@@ -62,17 +45,32 @@ class Article with _$Article {
     /// categories
     List<String>? categories,
 
+    /// article description
+    String? description,
+
+    /// article id
+    String? id,
+
+    /// related keywords
+    String? keywords,
+
     /// the locale
     String? locale,
 
-    /// time it was published
-    String? published_at,
+    /// image url
+    String? image_url,
+
+    /// the article language
+    String? language,
 
     /// first 60 characters of article body
     String? snippet,
 
     /// article title
     String? title,
+
+    /// url of the article
+    String? url,
   }) = _Article;
   factory Article.fromJson(Map<String, dynamic> json) =>
       _$ArticleFromJson(json);
@@ -81,14 +79,14 @@ class Article with _$Article {
 @Freezed()
 class HeadlinesRequest with _$HeadlinesRequest {
   const factory HeadlinesRequest({
-    /// comma separated list of countries to include e.g us,ca
-    String? locale,
-
     /// date published on in YYYY-MM-DD format
     String? date,
 
     /// comma separated list of languages to retrieve in e.g en,es
     String? language,
+
+    /// comma separated list of countries to include e.g us,ca
+    String? locale,
   }) = _HeadlinesRequest;
   factory HeadlinesRequest.fromJson(Map<String, dynamic> json) =>
       _$HeadlinesRequestFromJson(json);
