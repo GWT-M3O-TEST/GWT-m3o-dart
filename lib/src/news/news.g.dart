@@ -10,17 +10,17 @@ _$_Article _$$_ArticleFromJson(Map<String, dynamic> json) => _$_Article(
       image_url: json['image_url'] as String?,
       keywords: json['keywords'] as String?,
       language: json['language'] as String?,
+      locale: json['locale'] as String?,
+      published_at: json['published_at'] as String?,
       snippet: json['snippet'] as String?,
-      title: json['title'] as String?,
       source: json['source'] as String?,
+      description: json['description'] as String?,
+      id: json['id'] as String?,
+      title: json['title'] as String?,
       url: json['url'] as String?,
       categories: (json['categories'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      description: json['description'] as String?,
-      id: json['id'] as String?,
-      locale: json['locale'] as String?,
-      published_at: json['published_at'] as String?,
     );
 
 Map<String, dynamic> _$$_ArticleToJson(_$_Article instance) =>
@@ -28,15 +28,15 @@ Map<String, dynamic> _$$_ArticleToJson(_$_Article instance) =>
       'image_url': instance.image_url,
       'keywords': instance.keywords,
       'language': instance.language,
-      'snippet': instance.snippet,
-      'title': instance.title,
-      'source': instance.source,
-      'url': instance.url,
-      'categories': instance.categories,
-      'description': instance.description,
-      'id': instance.id,
       'locale': instance.locale,
       'published_at': instance.published_at,
+      'snippet': instance.snippet,
+      'source': instance.source,
+      'description': instance.description,
+      'id': instance.id,
+      'title': instance.title,
+      'url': instance.url,
+      'categories': instance.categories,
     };
 
 _$_HeadlinesRequest _$$_HeadlinesRequestFromJson(Map<String, dynamic> json) =>
