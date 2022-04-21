@@ -4,37 +4,14 @@ on:
     types: [build_publish_dart]
 
 jobs:
-  # reuse:
-  #   uses: GWT-M3O-TEST/m3o/.github/workflows/reusable1.yml@main
-
-  # generate:
-  #   needs: [reuse]
   generate:
     name: build dart clients and create new release
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Go 1.17
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.17
-        id: go
-      
-      - name: Enable caching
-        uses: actions/cache@v2
-        with:
-          path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
-            
-      - name: Install Protoc
-        uses: arduino/setup-protoc@master
-      
-      - name: Check m3o repo
+      - name: Check m3o-dart repo
         uses: actions/checkout@v2
         with:
-          repository: 'GWT-M3O-TEST/m3o'
-          path: m3o
+          path: m3o-dart
 
       - name: Check micro/services repo
         uses: actions/checkout@v2
@@ -42,59 +19,21 @@ jobs:
           repository: 'micro/services'
           path: services
 
-      - name: Check micro repo
-        uses: actions/checkout@v2
-        with:
-          repository: 'micro/micro'
-          path: 'micro'
-          ref: 'master'
-
-      - name: Install protoc gen micro plugin
-        working-directory: micro/cmd/protoc-gen-micro
-        run: |
-          go get -u github.com/golang/protobuf/protoc-gen-go
-          go install
-      
-      - name: Install openapi plugin
-        working-directory: m3o/cmd/protoc-gen-openapi
-        run: |
-          go install
-
       - name: Set up dart latest
         uses: dart-lang/setup-dart@v1.3
         with:
           sdk:  stable
         id: dart
-      
-      - name: Check m3o-dart repo
-        uses: actions/checkout@v2
-        with:
-          repository: 'GWT-M3O-TEST/m3o-dart'
-          path: m3o-dart
 
-      - name: Install generator
-        working-directory: m3o
-        run: |
-          # build the client generator
-          # pwd
-          cd cmd/client-gen/
-          go install
-          # cd ../../
-          # delete existing cmd directory
-          # rm -rf ../services/cmd
-          # copy our command directory in
-          # cp -r cmd ../services/
-      
-      - name: Generate Dart Clients
-        working-directory: services
-        if: github.ref == 'refs/heads/main'
-        run: |
-          rm -rf clients examples
-          client-gen dart
+      - name: Generate m3o-dart clients
+        uses: m3o/m3o-generator-action@v0.2.0
+        with:
+          target: 'dart'
+          services_path: services
 
       - name: Adjust generated things before pushing
         working-directory: services
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
+        
         run: |
           # sync the clients to m3o-dart/
           rsync -avz clients/dart/* ../m3o-dart/
@@ -138,78 +77,6 @@ jobs:
           cwd: m3o-dart
           message: Push to M3O-Dart repo
           pathspec_error_handling: exitImmediately
-
-      # https://stackoverflow.com/questions/58033366/how-to-get-current-branch-within-github-actions
-      # - name: Extract branch name
-      #   shell: bash
-      #   run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      #   id: extract_branch
-      
-      # - name: Push Dart clients
-      #   uses: dmnemec/copy_file_to_another_repo_action@main
-      #   if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
-      #   env:
-      #     API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-      #   with:
-      #     source_file: 'm3o-dart/lib/'
-      #     destination_repo: 'GWT-M3O-TEST/m3o-dart'
-      #     destination_branch: ${{ steps.extract_branch.outputs.branch }}
-      #     destination_folder: 'lib/'
-      #     git_server: 'github.com'
-      #     user_name: $API_TOKEN_GITHUB
-      #     use_rsync: true
-      #     commit_message: 'Push Dart clients'
-
-      # - name: Push Dart examples
-      #   uses: dmnemec/copy_file_to_another_repo_action@main
-      #   if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
-      #   env:
-      #     API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-      #   with:
-      #     source_file: 'm3o-dart/example/'
-      #     destination_repo: 'GWT-M3O-TEST/m3o-dart'
-      #     destination_branch: ${{ steps.extract_branch.outputs.branch }}
-      #     destination_folder: 'example/'
-      #     git_server: 'github.com'
-      #     user_name: $API_TOKEN_GITHUB
-      #     use_rsync: true
-      #     commit_message: 'Push Dart examples'
-
-      # - name: Push Dart pubspec and changelog
-      #   uses: dmnemec/copy_file_to_another_repo_action@main
-      #   if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
-      #   env:
-      #     API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-      #   with:
-      #     source_file: 'm3o-dart/'
-      #     destination_repo: 'GWT-M3O-TEST/m3o-dart'
-      #     destination_branch: ${{ steps.extract_branch.outputs.branch }}
-      #     git_server: 'github.com'
-      #     user_name: $API_TOKEN_GITHUB
-      #     use_rsync: true
-      #     commit_message: 'Push Dart pubspec and changelog'
-
-      # - name: extract current version
-      #   working-directory: m3o-dart
-      #   run: |
-      #     curver=$(cat pubspec.yaml | grep version | head -1 | awk -F: '{ print$2}' | sed 's/^ *//g')
-      #     echo "##[set-output name=curver;]$(echo "v$curver")"
-      #   id: dart_cur_version
-
-      # - name: Install minimal stable
-      #   uses: actions-rs/toolchain@v1
-      #   with:
-      #     profile: minimal
-      #     toolchain: stable
-
-      # # https://github.com/aldrin/git-changelog
-      # - name: generate latest release note from micro repo
-      #   working-directory: micro
-      #   run: |
-      #     cargo install git-changelog
-      #     note=$(git-changelog -- --since "1 day ago")
-      #     echo "##[set-output name=note;]$(echo "$note")" 
-      #   id: micro_release_note
 
       - name: generate latest release note from micro/services repo
         working-directory: m3o
