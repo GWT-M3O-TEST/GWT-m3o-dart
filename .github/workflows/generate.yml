@@ -32,7 +32,7 @@ jobs:
         id: dart
 
       - name: Generate m3o-dart clients
-        uses: m3o/m3o-generator-action@latest
+        uses: m3o/m3o-generator-action@main
         with:
           target: 'dart'
           services_path: services
@@ -89,7 +89,7 @@ jobs:
         with:
           go-version: 1.17
         id: go
-        
+
       - name: generate latest release note from micro/services repo
         working-directory: m3o
         run: |
