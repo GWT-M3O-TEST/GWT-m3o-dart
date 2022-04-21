@@ -95,11 +95,13 @@ _$_Result _$$_ResultFromJson(Map<String, dynamic> json) => _$_Result(
       types:
           (json['types'] as List<dynamic>?)?.map((e) => e as String).toList(),
       address: json['address'] as String?,
+      name: json['name'] as String?,
       open_now: json['open_now'] as bool?,
-      opening_hours: json['opening_hours'] as String?,
+      opening_hours: (json['opening_hours'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       rating: (json['rating'] as num?)?.toDouble(),
       vicinity: json['vicinity'] as String?,
-      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$$_ResultToJson(_$_Result instance) => <String, dynamic>{
@@ -108,11 +110,11 @@ Map<String, dynamic> _$$_ResultToJson(_$_Result instance) => <String, dynamic>{
       'type': instance.type,
       'types': instance.types,
       'address': instance.address,
+      'name': instance.name,
       'open_now': instance.open_now,
       'opening_hours': instance.opening_hours,
       'rating': instance.rating,
       'vicinity': instance.vicinity,
-      'name': instance.name,
     };
 
 _$_SearchRequest _$$_SearchRequestFromJson(Map<String, dynamic> json) =>

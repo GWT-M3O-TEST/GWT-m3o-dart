@@ -202,17 +202,17 @@ class ChatService {
 @Freezed()
 class CreateRequest with _$CreateRequest {
   const factory CreateRequest({
+    /// whether its a private room
+    bool? private,
+
+    /// optional list of user ids
+    List<String>? user_ids,
+
     /// chat description
     String? description,
 
     /// name of the room
     String? name,
-
-    /// whether its a private room
-    bool? private,
-
-    /// optional list of user ids
-    String? user_ids,
   }) = _CreateRequest;
   factory CreateRequest.fromJson(Map<String, dynamic> json) =>
       _$CreateRequestFromJson(json);
@@ -393,6 +393,12 @@ class ListResponse with _$ListResponse {
 @Freezed()
 class Message with _$Message {
   const factory Message({
+    /// text of the message
+    String? text,
+
+    /// id of the user who sent the message
+    String? user_id,
+
     /// a client side id, should be validated by the server to make the request retry safe
     String? client,
 
@@ -407,12 +413,6 @@ class Message with _$Message {
 
     /// subject of the message
     String? subject,
-
-    /// text of the message
-    String? text,
-
-    /// id of the user who sent the message
-    String? user_id,
   }) = _Message;
   factory Message.fromJson(Map<String, dynamic> json) =>
       _$MessageFromJson(json);
@@ -421,6 +421,9 @@ class Message with _$Message {
 @Freezed()
 class Room with _$Room {
   const factory Room({
+    /// unique room id
+    String? id,
+
     /// name of the chat
     String? name,
 
@@ -428,16 +431,13 @@ class Room with _$Room {
     bool? private,
 
     /// list of users
-    String? user_ids,
+    List<String>? user_ids,
 
     /// time of creation
     String? created_at,
 
     /// description of the that
     String? description,
-
-    /// unique room id
-    String? id,
   }) = _Room;
   factory Room.fromJson(Map<String, dynamic> json) => _$RoomFromJson(json);
 }
@@ -445,9 +445,6 @@ class Room with _$Room {
 @Freezed()
 class SendRequest with _$SendRequest {
   const factory SendRequest({
-    /// id of the user who sent the message
-    String? user_id,
-
     /// a client side id, should be validated by the server to make the request retry safe
     String? client,
 
@@ -459,6 +456,9 @@ class SendRequest with _$SendRequest {
 
     /// text of the message
     String? text,
+
+    /// id of the user who sent the message
+    String? user_id,
   }) = _SendRequest;
   factory SendRequest.fromJson(Map<String, dynamic> json) =>
       _$SendRequestFromJson(json);

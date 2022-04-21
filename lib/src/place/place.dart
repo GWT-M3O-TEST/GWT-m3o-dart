@@ -123,20 +123,20 @@ class Result with _$Result {
     /// address of place
     String? address,
 
+    /// name of the place
+    String? name,
+
     /// open now
     bool? open_now,
 
     /// opening hours
-    String? opening_hours,
+    List<String>? opening_hours,
 
     /// rating from 1.0 to 5.0
     double? rating,
 
     /// simplified address
     String? vicinity,
-
-    /// name of the place
-    String? name,
   }) = _Result;
   factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
 }

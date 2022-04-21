@@ -36,15 +36,6 @@ class TunnelService {
 @Freezed()
 class SendRequest with _$SendRequest {
   const factory SendRequest({
-    /// headers to include e.g Content-Type: application/json
-    Map<String, String>? headers,
-
-    /// host to send to e.g www.google.com
-    String? host,
-
-    /// method of the request e.g GET, POST, DELETE
-    String? method,
-
     /// request params to include
     Map<String, String>? params,
 
@@ -56,6 +47,15 @@ class SendRequest with _$SendRequest {
 
     /// body of the request
     String? body,
+
+    /// headers to include e.g Content-Type: application/json
+    Map<String, String>? headers,
+
+    /// host to send to e.g www.google.com
+    String? host,
+
+    /// method of the request e.g GET, POST, DELETE
+    String? method,
   }) = _SendRequest;
   factory SendRequest.fromJson(Map<String, dynamic> json) =>
       _$SendRequestFromJson(json);

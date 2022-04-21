@@ -64,17 +64,8 @@ class Record with _$Record {
     /// the county
     String? county,
 
-    /// the postcode
-    String? postcode,
-
-    /// the premise
-    String? premise,
-
     /// line one of address
     String? line_one,
-
-    /// line two of address
-    String? line_two,
 
     /// dependent locality
     String? locality,
@@ -82,8 +73,17 @@ class Record with _$Record {
     /// organisation if present
     String? organisation,
 
+    /// the postcode
+    String? postcode,
+
+    /// the premise
+    String? premise,
+
     /// street name
     String? street,
+
+    /// line two of address
+    String? line_two,
 
     /// the complete address
     String? summary,
