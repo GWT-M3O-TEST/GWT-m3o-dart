@@ -19,6 +19,12 @@ jobs:
           repository: 'micro/services'
           path: services
 
+      - name: Check m3o/m3o repo
+        uses: actions/checkout@v2
+        with:
+          repository: 'm3o/m3o'
+          path: m3o
+
       - name: Set up dart latest
         uses: dart-lang/setup-dart@v1.3
         with:
@@ -26,7 +32,7 @@ jobs:
         id: dart
 
       - name: Generate m3o-dart clients
-        uses: m3o/m3o-generator-action@v0.2.0
+        uses: m3o/m3o-generator-action@latest
         with:
           target: 'dart'
           services_path: services
@@ -78,6 +84,12 @@ jobs:
           message: Push to M3O-Dart repo
           pathspec_error_handling: exitImmediately
 
+      - name: Set up Go 1.17
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+        id: go
+        
       - name: generate latest release note from micro/services repo
         working-directory: m3o
         run: |
