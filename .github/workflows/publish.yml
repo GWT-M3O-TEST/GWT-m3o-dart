@@ -15,12 +15,6 @@ jobs:
           ref: ${{ github.event.release.target_commitish }}
           path: m3o-dart
 
-      - name: Set up dart latest
-        uses: dart-lang/setup-dart@v1.3
-        with:
-          sdk:  stable
-        id: dart
-
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
         with:
@@ -33,10 +27,6 @@ jobs:
           branch: ${{ github.event.release.target_commitish }}
           commit_message: Update CHANGELOG
           file_pattern: CHANGELOG.md
-          
-      - name: dry run dart publish
-        run: |
-          dart pub publish --dry-run
 
       - name: publish m3o-dart package
         uses: GWT-M3O-TEST/m3o-publish-dart-action@main
