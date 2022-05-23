@@ -36,29 +36,8 @@ class NewsService {
 @Freezed()
 class Article with _$Article {
   const factory Article({
-    /// article description
-    String? description,
-
-    /// image url
-    String? image_url,
-
     /// the article language
     String? language,
-
-    /// source of news
-    String? source,
-
-    /// url of the article
-    String? url,
-
-    /// categories
-    List<String>? categories,
-
-    /// article id
-    String? id,
-
-    /// related keywords
-    String? keywords,
 
     /// the locale
     String? locale,
@@ -71,6 +50,27 @@ class Article with _$Article {
 
     /// article title
     String? title,
+
+    /// article description
+    String? description,
+
+    /// article id
+    String? id,
+
+    /// image url
+    String? image_url,
+
+    /// url of the article
+    String? url,
+
+    /// categories
+    List<String>? categories,
+
+    /// related keywords
+    String? keywords,
+
+    /// source of news
+    String? source,
   }) = _Article;
   factory Article.fromJson(Map<String, dynamic> json) =>
       _$ArticleFromJson(json);
@@ -79,14 +79,14 @@ class Article with _$Article {
 @Freezed()
 class HeadlinesRequest with _$HeadlinesRequest {
   const factory HeadlinesRequest({
+    /// date published on in YYYY-MM-DD format
+    String? date,
+
     /// comma separated list of languages to retrieve in e.g en,es
     String? language,
 
     /// comma separated list of countries to include e.g us,ca
     String? locale,
-
-    /// date published on in YYYY-MM-DD format
-    String? date,
   }) = _HeadlinesRequest;
   factory HeadlinesRequest.fromJson(Map<String, dynamic> json) =>
       _$HeadlinesRequestFromJson(json);
