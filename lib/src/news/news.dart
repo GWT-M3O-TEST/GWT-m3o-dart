@@ -42,14 +42,17 @@ class Article with _$Article {
     /// the locale
     String? locale,
 
-    /// time it was published
-    String? published_at,
-
     /// first 60 characters of article body
     String? snippet,
 
+    /// url of the article
+    String? url,
+
     /// article title
     String? title,
+
+    /// categories
+    List<String>? categories,
 
     /// article description
     String? description,
@@ -60,14 +63,11 @@ class Article with _$Article {
     /// image url
     String? image_url,
 
-    /// url of the article
-    String? url,
-
-    /// categories
-    List<String>? categories,
-
     /// related keywords
     String? keywords,
+
+    /// time it was published
+    String? published_at,
 
     /// source of news
     String? source,
