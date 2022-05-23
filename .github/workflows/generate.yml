@@ -93,7 +93,7 @@ jobs:
       - name: generate latest release note from micro/services repo
         working-directory: m3o
         run: |
-          cd cmd/release-note
+          cd release-note
           go install .
           note=$(release-note .)
           echo $note
