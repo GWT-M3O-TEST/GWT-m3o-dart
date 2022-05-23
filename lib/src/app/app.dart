@@ -234,11 +234,11 @@ class ListResponse with _$ListResponse {
 @Freezed()
 class LogsRequest with _$LogsRequest {
   const factory LogsRequest({
-    /// type of logs to retrieve, currently supported options - "build"
-    String? logs_type,
-
     /// name of the app
     String? name,
+
+    /// type of logs to retrieve, currently supported options - "build"
+    String? logs_type,
   }) = _LogsRequest;
   factory LogsRequest.fromJson(Map<String, dynamic> json) =>
       _$LogsRequestFromJson(json);
@@ -276,12 +276,6 @@ class RegionsResponse with _$RegionsResponse {
 @Freezed()
 class Reservation with _$Reservation {
   const factory Reservation({
-    /// time of reservation
-    String? created,
-
-    /// time reservation expires
-    String? expires,
-
     /// name of the app
     String? name,
 
@@ -290,6 +284,12 @@ class Reservation with _$Reservation {
 
     /// associated token
     String? token,
+
+    /// time of reservation
+    String? created,
+
+    /// time reservation expires
+    String? expires,
   }) = _Reservation;
   factory Reservation.fromJson(Map<String, dynamic> json) =>
       _$ReservationFromJson(json);
@@ -379,11 +379,11 @@ class RunResponse with _$RunResponse {
 @Freezed()
 class Service with _$Service {
   const factory Service({
-    /// name of the app
-    String? name,
+    /// associated env vars
+    Map<String, String>? env_vars,
 
-    /// region running in
-    String? region,
+    /// unique id
+    String? id,
 
     /// source repository
     String? repo,
@@ -391,29 +391,29 @@ class Service with _$Service {
     /// status of the app
     String? status,
 
-    /// custom domains
-    List<String>? custom_domains,
-
-    /// time of creation
-    String? created,
-
-    /// associated env vars
-    Map<String, String>? env_vars,
-
-    /// unique id
-    String? id,
-
-    /// port running on
-    int? port,
-
-    /// last updated
-    String? updated,
-
     /// app url
     String? url,
 
     /// branch of code
     String? branch,
+
+    /// time of creation
+    String? created,
+
+    /// custom domains
+    List<String>? custom_domains,
+
+    /// name of the app
+    String? name,
+
+    /// port running on
+    int? port,
+
+    /// region running in
+    String? region,
+
+    /// last updated
+    String? updated,
   }) = _Service;
   factory Service.fromJson(Map<String, dynamic> json) =>
       _$ServiceFromJson(json);
@@ -444,11 +444,11 @@ class StatusResponse with _$StatusResponse {
 @Freezed()
 class UpdateRequest with _$UpdateRequest {
   const factory UpdateRequest({
-    /// name of the app
-    String? name,
-
     /// Additional env vars to update
     Map<String, String>? env_vars,
+
+    /// name of the app
+    String? name,
   }) = _UpdateRequest;
   factory UpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$UpdateRequestFromJson(json);
