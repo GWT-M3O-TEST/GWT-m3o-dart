@@ -2,7 +2,7 @@ name: Update Changelog and Publish
 
 on:
   release:
-    types: [released]
+    types: [published]
 
 jobs:
   update:
@@ -32,11 +32,6 @@ jobs:
           branch: ${{ github.event.release.target_commitish }}
           commit_message: Update CHANGELOG
           file_pattern: CHANGELOG.md
-           
-      # - name: Run the test
-      #   run:  M3O_API_TOKEN=$HW_TOKEN dart test .
-      #   env:
-      #     HW_TOKEN: ${{ secrets.HW_TOKEN }}
           
       - name: dry run dart publish
         run: |
