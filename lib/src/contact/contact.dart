@@ -116,11 +116,11 @@ class ContactService {
 @Freezed()
 class Address with _$Address {
   const factory Address({
-    /// the label of the address
-    String? label,
-
     /// the address location
     String? location,
+
+    /// the label of the address
+    String? label,
   }) = _Address;
   factory Address.fromJson(Map<String, dynamic> json) =>
       _$AddressFromJson(json);
@@ -129,14 +129,11 @@ class Address with _$Address {
 @Freezed()
 class ContactInfo with _$ContactInfo {
   const factory ContactInfo({
-    /// the contact name
-    String? name,
-
     /// the phone numbers
     List<Phone>? phones,
 
-    /// the address
-    List<Address>? addresses,
+    /// the social media username
+    List<SocialMedia>? social_medias,
 
     /// the birthday
     String? birthday,
@@ -150,14 +147,17 @@ class ContactInfo with _$ContactInfo {
     /// the contact links
     List<Link>? links,
 
-    /// create date string in RFC3339
-    String? created_at,
+    /// the contact name
+    String? name,
 
     /// note of the contact
     String? note,
 
-    /// the social media username
-    List<SocialMedia>? social_medias,
+    /// the address
+    List<Address>? addresses,
+
+    /// create date string in RFC3339
+    String? created_at,
 
     /// update date string in RFC3339
     String? updated_at,
@@ -242,11 +242,11 @@ class Email with _$Email {
 @Freezed()
 class Link with _$Link {
   const factory Link({
-    /// the label of the link
-    String? label,
-
     /// the url of the contact
     String? url,
+
+    /// the label of the link
+    String? label,
   }) = _Link;
   factory Link.fromJson(Map<String, dynamic> json) => _$LinkFromJson(json);
 }
@@ -323,8 +323,8 @@ class SocialMedia with _$SocialMedia {
 @Freezed()
 class UpdateRequest with _$UpdateRequest {
   const factory UpdateRequest({
-    /// optional, addresses
-    List<Address>? addresses,
+    /// optional, social media
+    List<SocialMedia>? social_medias,
 
     /// optional, emails
     List<Email>? emails,
@@ -335,6 +335,12 @@ class UpdateRequest with _$UpdateRequest {
     /// required, the name
     String? name,
 
+    /// optional, phone number
+    List<Phone>? phones,
+
+    /// optional, addresses
+    List<Address>? addresses,
+
     /// optional, birthday
     String? birthday,
 
@@ -343,12 +349,6 @@ class UpdateRequest with _$UpdateRequest {
 
     /// optional, note
     String? note,
-
-    /// optional, phone number
-    List<Phone>? phones,
-
-    /// optional, social media
-    List<SocialMedia>? social_medias,
   }) = _UpdateRequest;
   factory UpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$UpdateRequestFromJson(json);

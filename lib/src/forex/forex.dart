@@ -151,9 +151,6 @@ class QuoteRequest with _$QuoteRequest {
 @Freezed()
 class QuoteResponse with _$QuoteResponse {
   const factory QuoteResponse({
-    /// the UTC timestamp of the quote
-    String? timestamp,
-
     /// the asking price
     double? ask_price,
 
@@ -162,6 +159,9 @@ class QuoteResponse with _$QuoteResponse {
 
     /// the forex symbol
     String? symbol,
+
+    /// the UTC timestamp of the quote
+    String? timestamp,
   }) = QuoteResponseData;
   const factory QuoteResponse.Merr({Map<String, dynamic>? body}) =
       QuoteResponseMerr;

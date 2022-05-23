@@ -106,12 +106,6 @@ class ImageService {
 @Freezed()
 class ConvertRequest with _$ConvertRequest {
   const factory ConvertRequest({
-    /// The image file to convert
-    String? file,
-
-    /// output name of the image including extension, ie. "cat.png"
-    String? name,
-
     /// make output a URL and not a base64 response
     bool? outputURL,
 
@@ -120,6 +114,12 @@ class ConvertRequest with _$ConvertRequest {
 
     /// base64 encoded image to resize,
     String? base64,
+
+    /// The image file to convert
+    String? file,
+
+    /// output name of the image including extension, ie. "cat.png"
+    String? name,
   }) = _ConvertRequest;
   factory ConvertRequest.fromJson(Map<String, dynamic> json) =>
       _$ConvertRequestFromJson(json);
