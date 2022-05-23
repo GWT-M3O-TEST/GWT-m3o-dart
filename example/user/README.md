@@ -4,44 +4,6 @@ An [m3o.com](https://m3o.com) API. For example usage see [m3o.com/user/api](http
 
 Endpoints:
 
-## Update
-
-Update the account username or email
-
-
-[https://m3o.com/user/api#Update](https://m3o.com/user/api#Update)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/user/user.dart';
-
-void main() async {
-  final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
- 
-  final payload = <String, dynamic>{
-  "email": "joe+2@example.com",
-  "id": "user-1",
-  "username": "joe"
-,};
-
-  UpdateRequest req = UpdateRequest.fromJson(payload);
-
-  
-  try {
-
-	UpdateResponse res = await ser.update(req);
-
-    res.map((value) => print(value),
-	  Merr: (UpdateResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e) {
-    print(e);
-  } finally {
-    exit(0);
-  }
-}
-```
 ## Logout
 
 Logout a user account
@@ -155,12 +117,12 @@ void main() async {
   }
 }
 ```
-## Create
+## Update
 
-Create a new user account. The email address and username for the account must be unique.
+Update the account username or email
 
 
-[https://m3o.com/user/api#Create](https://m3o.com/user/api#Create)
+[https://m3o.com/user/api#Update](https://m3o.com/user/api#Update)
 
 ```dart
 import 'dart:io';
@@ -171,21 +133,20 @@ void main() async {
   final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
-  "email": "joe@example.com",
+  "email": "joe+2@example.com",
   "id": "user-1",
-  "password": "Password1",
   "username": "joe"
 ,};
 
-  CreateRequest req = CreateRequest.fromJson(payload);
+  UpdateRequest req = UpdateRequest.fromJson(payload);
 
   
   try {
 
-	CreateResponse res = await ser.create(req);
+	UpdateResponse res = await ser.update(req);
 
     res.map((value) => print(value),
-	  Merr: (CreateResponseMerr err) => print(err.body!['body']));	
+	  Merr: (UpdateResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -227,6 +188,124 @@ void main() async {
 
     res.map((value) => print(value),
 	  Merr: (SendVerificationEmailResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
+## VerifyToken
+
+Check whether the token attached to MagicLink is valid or not.
+Ideally, you need to call this endpoint from your http request
+handler that handles the endpoint which is specified in the
+SendMagicLink request.
+
+
+[https://m3o.com/user/api#VerifyToken](https://m3o.com/user/api#VerifyToken)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/user/user.dart';
+
+void main() async {
+  final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
+ 
+  final payload = <String, dynamic>{
+  "token": "EdsUiidouJJJLldjlloofUiorkojflsWWdld"
+,};
+
+  VerifyTokenRequest req = VerifyTokenRequest.fromJson(payload);
+
+  
+  try {
+
+	VerifyTokenResponse res = await ser.verifyToken(req);
+
+    res.map((value) => print(value),
+	  Merr: (VerifyTokenResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
+## Create
+
+Create a new user account. The email address and username for the account must be unique.
+
+
+[https://m3o.com/user/api#Create](https://m3o.com/user/api#Create)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/user/user.dart';
+
+void main() async {
+  final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
+ 
+  final payload = <String, dynamic>{
+  "email": "joe@example.com",
+  "id": "user-1",
+  "password": "Password1",
+  "username": "joe"
+,};
+
+  CreateRequest req = CreateRequest.fromJson(payload);
+
+  
+  try {
+
+	CreateResponse res = await ser.create(req);
+
+    res.map((value) => print(value),
+	  Merr: (CreateResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
+## SendPasswordResetEmail
+
+Send an email with a verification code to reset password.
+Call "ResetPassword" endpoint once user provides the code.
+
+
+[https://m3o.com/user/api#SendPasswordResetEmail](https://m3o.com/user/api#SendPasswordResetEmail)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/user/user.dart';
+
+void main() async {
+  final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
+ 
+  final payload = <String, dynamic>{
+  "email": "joe@example.com",
+  "fromName": "Awesome Dot Com",
+  "subject": "Password reset",
+  "textContent": "Hi there,\n click here to reset your password: myapp.com/reset/code?=\$code"
+,};
+
+  SendPasswordResetEmailRequest req = SendPasswordResetEmailRequest.fromJson(payload);
+
+  
+  try {
+
+	SendPasswordResetEmailResponse res = await ser.sendPasswordResetEmail(req);
+
+    res.map((value) => print(value),
+	  Merr: (SendPasswordResetEmailResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -300,85 +379,6 @@ void main() async {
 
     res.map((value) => print(value),
 	  Merr: (DeleteResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e) {
-    print(e);
-  } finally {
-    exit(0);
-  }
-}
-```
-## UpdatePassword
-
-Update the account password
-
-
-[https://m3o.com/user/api#UpdatePassword](https://m3o.com/user/api#UpdatePassword)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/user/user.dart';
-
-void main() async {
-  final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
- 
-  final payload = <String, dynamic>{
-  "confirmPassword": "Password2",
-  "newPassword": "Password2",
-  "oldPassword": "Password1",
-  "userId": "user-1"
-,};
-
-  UpdatePasswordRequest req = UpdatePasswordRequest.fromJson(payload);
-
-  
-  try {
-
-	UpdatePasswordResponse res = await ser.updatePassword(req);
-
-    res.map((value) => print(value),
-	  Merr: (UpdatePasswordResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e) {
-    print(e);
-  } finally {
-    exit(0);
-  }
-}
-```
-## SendPasswordResetEmail
-
-Send an email with a verification code to reset password.
-Call "ResetPassword" endpoint once user provides the code.
-
-
-[https://m3o.com/user/api#SendPasswordResetEmail](https://m3o.com/user/api#SendPasswordResetEmail)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/user/user.dart';
-
-void main() async {
-  final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
- 
-  final payload = <String, dynamic>{
-  "email": "joe@example.com",
-  "fromName": "Awesome Dot Com",
-  "subject": "Password reset",
-  "textContent": "Hi there,\n click here to reset your password: myapp.com/reset/code?=\$code"
-,};
-
-  SendPasswordResetEmailRequest req = SendPasswordResetEmailRequest.fromJson(payload);
-
-  
-  try {
-
-	SendPasswordResetEmailResponse res = await ser.sendPasswordResetEmail(req);
-
-    res.map((value) => print(value),
-	  Merr: (SendPasswordResetEmailResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -462,15 +462,12 @@ void main() async {
   }
 }
 ```
-## VerifyToken
+## UpdatePassword
 
-Check whether the token attached to MagicLink is valid or not.
-Ideally, you need to call this endpoint from your http request
-handler that handles the endpoint which is specified in the
-SendMagicLink request.
+Update the account password
 
 
-[https://m3o.com/user/api#VerifyToken](https://m3o.com/user/api#VerifyToken)
+[https://m3o.com/user/api#UpdatePassword](https://m3o.com/user/api#UpdatePassword)
 
 ```dart
 import 'dart:io';
@@ -481,18 +478,21 @@ void main() async {
   final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
-  "token": "EdsUiidouJJJLldjlloofUiorkojflsWWdld"
+  "confirmPassword": "Password2",
+  "newPassword": "Password2",
+  "oldPassword": "Password1",
+  "userId": "user-1"
 ,};
 
-  VerifyTokenRequest req = VerifyTokenRequest.fromJson(payload);
+  UpdatePasswordRequest req = UpdatePasswordRequest.fromJson(payload);
 
   
   try {
 
-	VerifyTokenResponse res = await ser.verifyToken(req);
+	UpdatePasswordResponse res = await ser.updatePassword(req);
 
     res.map((value) => print(value),
-	  Merr: (VerifyTokenResponseMerr err) => print(err.body!['body']));	
+	  Merr: (UpdatePasswordResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
