@@ -12,6 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
+          ref: ${{ github.event.release.target_commitish }}
           path: m3o-dart
 
       - name: Set up dart latest
