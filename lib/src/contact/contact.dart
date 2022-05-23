@@ -129,38 +129,38 @@ class Address with _$Address {
 @Freezed()
 class ContactInfo with _$ContactInfo {
   const factory ContactInfo({
-    /// the address
-    List<Address>? addresses,
-
-    /// create date string in RFC3339
-    String? created_at,
-
     /// the emails
     List<Email>? emails,
 
-    /// update date string in RFC3339
-    String? updated_at,
-
-    /// the social media username
-    List<SocialMedia>? social_medias,
-
-    /// the birthday
-    String? birthday,
-
     /// contact id
     String? id,
-
-    /// the contact links
-    List<Link>? links,
-
-    /// the contact name
-    String? name,
 
     /// note of the contact
     String? note,
 
     /// the phone numbers
     List<Phone>? phones,
+
+    /// the social media username
+    List<SocialMedia>? social_medias,
+
+    /// update date string in RFC3339
+    String? updated_at,
+
+    /// the address
+    List<Address>? addresses,
+
+    /// the birthday
+    String? birthday,
+
+    /// create date string in RFC3339
+    String? created_at,
+
+    /// the contact links
+    List<Link>? links,
+
+    /// the contact name
+    String? name,
   }) = _ContactInfo;
   factory ContactInfo.fromJson(Map<String, dynamic> json) =>
       _$ContactInfoFromJson(json);
@@ -326,11 +326,14 @@ class UpdateRequest with _$UpdateRequest {
     /// optional, addresses
     List<Address>? addresses,
 
-    /// required, the contact id
-    String? id,
+    /// optional, emails
+    List<Email>? emails,
 
     /// required, the name
     String? name,
+
+    /// optional, note
+    String? note,
 
     /// optional, phone number
     List<Phone>? phones,
@@ -341,14 +344,11 @@ class UpdateRequest with _$UpdateRequest {
     /// optional, birthday
     String? birthday,
 
-    /// optional, emails
-    List<Email>? emails,
+    /// required, the contact id
+    String? id,
 
     /// optional, links
     List<Link>? links,
-
-    /// optional, note
-    String? note,
   }) = _UpdateRequest;
   factory UpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$UpdateRequestFromJson(json);
