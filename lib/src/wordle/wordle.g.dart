@@ -88,15 +88,15 @@ Map<String, dynamic> _$$_NextRequestToJson(_$_NextRequest instance) =>
 
 _$NextResponseData _$$NextResponseDataFromJson(Map<String, dynamic> json) =>
     _$NextResponseData(
-      duration: json['duration'] as String?,
       seconds: json['seconds'] as int?,
+      duration: json['duration'] as String?,
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$NextResponseDataToJson(_$NextResponseData instance) =>
     <String, dynamic>{
-      'duration': instance.duration,
       'seconds': instance.seconds,
+      'duration': instance.duration,
       'runtimeType': instance.$type,
     };
 

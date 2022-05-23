@@ -1218,10 +1218,10 @@ NextResponse _$NextResponseFromJson(Map<String, dynamic> json) {
 class _$NextResponseTearOff {
   const _$NextResponseTearOff();
 
-  NextResponseData call({String? duration, int? seconds}) {
+  NextResponseData call({int? seconds, String? duration}) {
     return NextResponseData(
-      duration: duration,
       seconds: seconds,
+      duration: duration,
     );
   }
 
@@ -1243,19 +1243,19 @@ const $NextResponse = _$NextResponseTearOff();
 mixin _$NextResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String? duration, int? seconds) $default, {
+    TResult Function(int? seconds, String? duration) $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(String? duration, int? seconds)? $default, {
+    TResult Function(int? seconds, String? duration)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String? duration, int? seconds)? $default, {
+    TResult Function(int? seconds, String? duration)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) =>
@@ -1303,7 +1303,7 @@ abstract class $NextResponseDataCopyWith<$Res> {
   factory $NextResponseDataCopyWith(
           NextResponseData value, $Res Function(NextResponseData) then) =
       _$NextResponseDataCopyWithImpl<$Res>;
-  $Res call({String? duration, int? seconds});
+  $Res call({int? seconds, String? duration});
 }
 
 /// @nodoc
@@ -1319,18 +1319,18 @@ class _$NextResponseDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? duration = freezed,
     Object? seconds = freezed,
+    Object? duration = freezed,
   }) {
     return _then(NextResponseData(
-      duration: duration == freezed
-          ? _value.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as String?,
       seconds: seconds == freezed
           ? _value.seconds
           : seconds // ignore: cast_nullable_to_non_nullable
               as int?,
+      duration: duration == freezed
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -1338,7 +1338,7 @@ class _$NextResponseDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NextResponseData implements NextResponseData {
-  const _$NextResponseData({this.duration, this.seconds, String? $type})
+  const _$NextResponseData({this.seconds, this.duration, String? $type})
       : $type = $type ?? 'default';
 
   factory _$NextResponseData.fromJson(Map<String, dynamic> json) =>
@@ -1346,19 +1346,19 @@ class _$NextResponseData implements NextResponseData {
 
   @override
 
-  /// in hh:mm:ss
-  final String? duration;
-  @override
-
   /// number of seconds
   final int? seconds;
+  @override
+
+  /// in hh:mm:ss
+  final String? duration;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'NextResponse(duration: $duration, seconds: $seconds)';
+    return 'NextResponse(seconds: $seconds, duration: $duration)';
   }
 
   @override
@@ -1366,15 +1366,15 @@ class _$NextResponseData implements NextResponseData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is NextResponseData &&
-            const DeepCollectionEquality().equals(other.duration, duration) &&
-            const DeepCollectionEquality().equals(other.seconds, seconds));
+            const DeepCollectionEquality().equals(other.seconds, seconds) &&
+            const DeepCollectionEquality().equals(other.duration, duration));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(duration),
-      const DeepCollectionEquality().hash(seconds));
+      const DeepCollectionEquality().hash(seconds),
+      const DeepCollectionEquality().hash(duration));
 
   @JsonKey(ignore: true)
   @override
@@ -1384,30 +1384,30 @@ class _$NextResponseData implements NextResponseData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String? duration, int? seconds) $default, {
+    TResult Function(int? seconds, String? duration) $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
-    return $default(duration, seconds);
+    return $default(seconds, duration);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(String? duration, int? seconds)? $default, {
+    TResult Function(int? seconds, String? duration)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
-    return $default?.call(duration, seconds);
+    return $default?.call(seconds, duration);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String? duration, int? seconds)? $default, {
+    TResult Function(int? seconds, String? duration)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(duration, seconds);
+      return $default(seconds, duration);
     }
     return orElse();
   }
@@ -1450,17 +1450,17 @@ class _$NextResponseData implements NextResponseData {
 }
 
 abstract class NextResponseData implements NextResponse {
-  const factory NextResponseData({String? duration, int? seconds}) =
+  const factory NextResponseData({int? seconds, String? duration}) =
       _$NextResponseData;
 
   factory NextResponseData.fromJson(Map<String, dynamic> json) =
       _$NextResponseData.fromJson;
 
-  /// in hh:mm:ss
-  String? get duration;
-
   /// number of seconds
   int? get seconds;
+
+  /// in hh:mm:ss
+  String? get duration;
   @JsonKey(ignore: true)
   $NextResponseDataCopyWith<NextResponseData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1538,7 +1538,7 @@ class _$NextResponseMerr implements NextResponseMerr {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String? duration, int? seconds) $default, {
+    TResult Function(int? seconds, String? duration) $default, {
     required TResult Function(Map<String, dynamic>? body) Merr,
   }) {
     return Merr(body);
@@ -1547,7 +1547,7 @@ class _$NextResponseMerr implements NextResponseMerr {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(String? duration, int? seconds)? $default, {
+    TResult Function(int? seconds, String? duration)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
   }) {
     return Merr?.call(body);
@@ -1556,7 +1556,7 @@ class _$NextResponseMerr implements NextResponseMerr {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String? duration, int? seconds)? $default, {
+    TResult Function(int? seconds, String? duration)? $default, {
     TResult Function(Map<String, dynamic>? body)? Merr,
     required TResult orElse(),
   }) {
