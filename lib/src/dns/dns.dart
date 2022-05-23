@@ -67,15 +67,15 @@ class QueryRequest with _$QueryRequest {
 @Freezed()
 class QueryResponse with _$QueryResponse {
   const factory QueryResponse({
+    bool? CD,
+    bool? RA,
     String? provider,
-    List<Question>? question,
     int? status,
     bool? AD,
-    bool? CD,
-    bool? TC,
-    bool? RA,
     bool? RD,
+    bool? TC,
     List<Answer>? answer,
+    List<Question>? question,
   }) = QueryResponseData;
   const factory QueryResponse.Merr({Map<String, dynamic>? body}) =
       QueryResponseMerr;

@@ -36,14 +36,14 @@ Map<String, dynamic> _$$_GuessToJson(_$_Guess instance) => <String, dynamic>{
 
 _$_GuessRequest _$$_GuessRequestFromJson(Map<String, dynamic> json) =>
     _$_GuessRequest(
-      word: json['word'] as String?,
       player: json['player'] as String?,
+      word: json['word'] as String?,
     );
 
 Map<String, dynamic> _$$_GuessRequestToJson(_$_GuessRequest instance) =>
     <String, dynamic>{
-      'word': instance.word,
       'player': instance.player,
+      'word': instance.word,
     };
 
 _$GuessResponseData _$$GuessResponseDataFromJson(Map<String, dynamic> json) =>

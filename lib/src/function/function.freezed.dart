@@ -22,10 +22,10 @@ CallRequest _$CallRequestFromJson(Map<String, dynamic> json) {
 class _$CallRequestTearOff {
   const _$CallRequestTearOff();
 
-  _CallRequest call({String? name, Map<String, dynamic>? request}) {
+  _CallRequest call({Map<String, dynamic>? request, String? name}) {
     return _CallRequest(
-      name: name,
       request: request,
+      name: name,
     );
   }
 
@@ -39,11 +39,11 @@ const $CallRequest = _$CallRequestTearOff();
 
 /// @nodoc
 mixin _$CallRequest {
-  /// Name of the function
-  String? get name => throw _privateConstructorUsedError;
-
   /// Request body that will be passed to the function
   Map<String, dynamic>? get request => throw _privateConstructorUsedError;
+
+  /// Name of the function
+  String? get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +56,7 @@ abstract class $CallRequestCopyWith<$Res> {
   factory $CallRequestCopyWith(
           CallRequest value, $Res Function(CallRequest) then) =
       _$CallRequestCopyWithImpl<$Res>;
-  $Res call({String? name, Map<String, dynamic>? request});
+  $Res call({Map<String, dynamic>? request, String? name});
 }
 
 /// @nodoc
@@ -69,18 +69,18 @@ class _$CallRequestCopyWithImpl<$Res> implements $CallRequestCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? name = freezed,
     Object? request = freezed,
+    Object? name = freezed,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
       request: request == freezed
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -92,7 +92,7 @@ abstract class _$CallRequestCopyWith<$Res>
           _CallRequest value, $Res Function(_CallRequest) then) =
       __$CallRequestCopyWithImpl<$Res>;
   @override
-  $Res call({String? name, Map<String, dynamic>? request});
+  $Res call({Map<String, dynamic>? request, String? name});
 }
 
 /// @nodoc
@@ -107,18 +107,18 @@ class __$CallRequestCopyWithImpl<$Res> extends _$CallRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? name = freezed,
     Object? request = freezed,
+    Object? name = freezed,
   }) {
     return _then(_CallRequest(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
       request: request == freezed
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -126,23 +126,23 @@ class __$CallRequestCopyWithImpl<$Res> extends _$CallRequestCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CallRequest implements _CallRequest {
-  const _$_CallRequest({this.name, this.request});
+  const _$_CallRequest({this.request, this.name});
 
   factory _$_CallRequest.fromJson(Map<String, dynamic> json) =>
       _$$_CallRequestFromJson(json);
 
   @override
 
-  /// Name of the function
-  final String? name;
-  @override
-
   /// Request body that will be passed to the function
   final Map<String, dynamic>? request;
+  @override
+
+  /// Name of the function
+  final String? name;
 
   @override
   String toString() {
-    return 'CallRequest(name: $name, request: $request)';
+    return 'CallRequest(request: $request, name: $name)';
   }
 
   @override
@@ -150,15 +150,15 @@ class _$_CallRequest implements _CallRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _CallRequest &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.request, request));
+            const DeepCollectionEquality().equals(other.request, request) &&
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(request));
+      const DeepCollectionEquality().hash(request),
+      const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override
@@ -172,7 +172,7 @@ class _$_CallRequest implements _CallRequest {
 }
 
 abstract class _CallRequest implements CallRequest {
-  const factory _CallRequest({String? name, Map<String, dynamic>? request}) =
+  const factory _CallRequest({Map<String, dynamic>? request, String? name}) =
       _$_CallRequest;
 
   factory _CallRequest.fromJson(Map<String, dynamic> json) =
@@ -180,12 +180,12 @@ abstract class _CallRequest implements CallRequest {
 
   @override
 
-  /// Name of the function
-  String? get name;
-  @override
-
   /// Request body that will be passed to the function
   Map<String, dynamic>? get request;
+  @override
+
+  /// Name of the function
+  String? get name;
   @override
   @JsonKey(ignore: true)
   _$CallRequestCopyWith<_CallRequest> get copyWith =>
@@ -1118,25 +1118,25 @@ class _$DeployRequestTearOff {
   const _$DeployRequestTearOff();
 
   _DeployRequest call(
-      {String? branch,
-      String? entrypoint,
-      Map<String, String>? env_vars,
-      String? region,
+      {String? entrypoint,
       String? repo,
-      String? runtime,
+      String? source,
       String? subfolder,
+      String? branch,
       String? name,
-      String? source}) {
+      String? region,
+      String? runtime,
+      Map<String, String>? env_vars}) {
     return _DeployRequest(
-      branch: branch,
       entrypoint: entrypoint,
-      env_vars: env_vars,
-      region: region,
       repo: repo,
-      runtime: runtime,
-      subfolder: subfolder,
-      name: name,
       source: source,
+      subfolder: subfolder,
+      branch: branch,
+      name: name,
+      region: region,
+      runtime: runtime,
+      env_vars: env_vars,
     );
   }
 
@@ -1150,21 +1150,27 @@ const $DeployRequest = _$DeployRequestTearOff();
 
 /// @nodoc
 mixin _$DeployRequest {
-  /// branch to deploy. defaults to master
-  String? get branch => throw _privateConstructorUsedError;
-
   /// entry point, ie. handler name in the source code
   /// if not provided, defaults to the name parameter
   String? get entrypoint => throw _privateConstructorUsedError;
 
-  /// environment variables to pass in at runtime
-  Map<String, String>? get env_vars => throw _privateConstructorUsedError;
+  /// github url for a repo
+  String? get repo => throw _privateConstructorUsedError;
+
+  /// inline source code
+  String? get source => throw _privateConstructorUsedError;
+
+  /// optional subfolder path
+  String? get subfolder => throw _privateConstructorUsedError;
+
+  /// branch to deploy. defaults to master
+  String? get branch => throw _privateConstructorUsedError;
+
+  /// function name
+  String? get name => throw _privateConstructorUsedError;
 
   /// region to deploy in. defaults to europe-west1
   String? get region => throw _privateConstructorUsedError;
-
-  /// github url for a repo
-  String? get repo => throw _privateConstructorUsedError;
 
   /// runtime/lanaguage of the function e.g php74,
   /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
@@ -1172,14 +1178,8 @@ mixin _$DeployRequest {
   /// python37, python38, python39
   String? get runtime => throw _privateConstructorUsedError;
 
-  /// optional subfolder path
-  String? get subfolder => throw _privateConstructorUsedError;
-
-  /// function name
-  String? get name => throw _privateConstructorUsedError;
-
-  /// inline source code
-  String? get source => throw _privateConstructorUsedError;
+  /// environment variables to pass in at runtime
+  Map<String, String>? get env_vars => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1193,15 +1193,15 @@ abstract class $DeployRequestCopyWith<$Res> {
           DeployRequest value, $Res Function(DeployRequest) then) =
       _$DeployRequestCopyWithImpl<$Res>;
   $Res call(
-      {String? branch,
-      String? entrypoint,
-      Map<String, String>? env_vars,
-      String? region,
+      {String? entrypoint,
       String? repo,
-      String? runtime,
+      String? source,
       String? subfolder,
+      String? branch,
       String? name,
-      String? source});
+      String? region,
+      String? runtime,
+      Map<String, String>? env_vars});
 }
 
 /// @nodoc
@@ -1215,53 +1215,53 @@ class _$DeployRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? branch = freezed,
     Object? entrypoint = freezed,
-    Object? env_vars = freezed,
-    Object? region = freezed,
     Object? repo = freezed,
-    Object? runtime = freezed,
-    Object? subfolder = freezed,
-    Object? name = freezed,
     Object? source = freezed,
+    Object? subfolder = freezed,
+    Object? branch = freezed,
+    Object? name = freezed,
+    Object? region = freezed,
+    Object? runtime = freezed,
+    Object? env_vars = freezed,
   }) {
     return _then(_value.copyWith(
-      branch: branch == freezed
-          ? _value.branch
-          : branch // ignore: cast_nullable_to_non_nullable
-              as String?,
       entrypoint: entrypoint == freezed
           ? _value.entrypoint
           : entrypoint // ignore: cast_nullable_to_non_nullable
-              as String?,
-      env_vars: env_vars == freezed
-          ? _value.env_vars
-          : env_vars // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
-      region: region == freezed
-          ? _value.region
-          : region // ignore: cast_nullable_to_non_nullable
               as String?,
       repo: repo == freezed
           ? _value.repo
           : repo // ignore: cast_nullable_to_non_nullable
               as String?,
-      runtime: runtime == freezed
-          ? _value.runtime
-          : runtime // ignore: cast_nullable_to_non_nullable
+      source: source == freezed
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
               as String?,
       subfolder: subfolder == freezed
           ? _value.subfolder
           : subfolder // ignore: cast_nullable_to_non_nullable
               as String?,
+      branch: branch == freezed
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      source: source == freezed
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
+      region: region == freezed
+          ? _value.region
+          : region // ignore: cast_nullable_to_non_nullable
               as String?,
+      runtime: runtime == freezed
+          ? _value.runtime
+          : runtime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      env_vars: env_vars == freezed
+          ? _value.env_vars
+          : env_vars // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
     ));
   }
 }
@@ -1274,15 +1274,15 @@ abstract class _$DeployRequestCopyWith<$Res>
       __$DeployRequestCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? branch,
-      String? entrypoint,
-      Map<String, String>? env_vars,
-      String? region,
+      {String? entrypoint,
       String? repo,
-      String? runtime,
+      String? source,
       String? subfolder,
+      String? branch,
       String? name,
-      String? source});
+      String? region,
+      String? runtime,
+      Map<String, String>? env_vars});
 }
 
 /// @nodoc
@@ -1298,53 +1298,53 @@ class __$DeployRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? branch = freezed,
     Object? entrypoint = freezed,
-    Object? env_vars = freezed,
-    Object? region = freezed,
     Object? repo = freezed,
-    Object? runtime = freezed,
-    Object? subfolder = freezed,
-    Object? name = freezed,
     Object? source = freezed,
+    Object? subfolder = freezed,
+    Object? branch = freezed,
+    Object? name = freezed,
+    Object? region = freezed,
+    Object? runtime = freezed,
+    Object? env_vars = freezed,
   }) {
     return _then(_DeployRequest(
-      branch: branch == freezed
-          ? _value.branch
-          : branch // ignore: cast_nullable_to_non_nullable
-              as String?,
       entrypoint: entrypoint == freezed
           ? _value.entrypoint
           : entrypoint // ignore: cast_nullable_to_non_nullable
-              as String?,
-      env_vars: env_vars == freezed
-          ? _value.env_vars
-          : env_vars // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
-      region: region == freezed
-          ? _value.region
-          : region // ignore: cast_nullable_to_non_nullable
               as String?,
       repo: repo == freezed
           ? _value.repo
           : repo // ignore: cast_nullable_to_non_nullable
               as String?,
-      runtime: runtime == freezed
-          ? _value.runtime
-          : runtime // ignore: cast_nullable_to_non_nullable
+      source: source == freezed
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
               as String?,
       subfolder: subfolder == freezed
           ? _value.subfolder
           : subfolder // ignore: cast_nullable_to_non_nullable
               as String?,
+      branch: branch == freezed
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      source: source == freezed
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
+      region: region == freezed
+          ? _value.region
+          : region // ignore: cast_nullable_to_non_nullable
               as String?,
+      runtime: runtime == freezed
+          ? _value.runtime
+          : runtime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      env_vars: env_vars == freezed
+          ? _value.env_vars
+          : env_vars // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
     ));
   }
 }
@@ -1353,23 +1353,19 @@ class __$DeployRequestCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_DeployRequest implements _DeployRequest {
   const _$_DeployRequest(
-      {this.branch,
-      this.entrypoint,
-      this.env_vars,
-      this.region,
+      {this.entrypoint,
       this.repo,
-      this.runtime,
+      this.source,
       this.subfolder,
+      this.branch,
       this.name,
-      this.source});
+      this.region,
+      this.runtime,
+      this.env_vars});
 
   factory _$_DeployRequest.fromJson(Map<String, dynamic> json) =>
       _$$_DeployRequestFromJson(json);
 
-  @override
-
-  /// branch to deploy. defaults to master
-  final String? branch;
   @override
 
   /// entry point, ie. handler name in the source code
@@ -1377,16 +1373,28 @@ class _$_DeployRequest implements _DeployRequest {
   final String? entrypoint;
   @override
 
-  /// environment variables to pass in at runtime
-  final Map<String, String>? env_vars;
+  /// github url for a repo
+  final String? repo;
+  @override
+
+  /// inline source code
+  final String? source;
+  @override
+
+  /// optional subfolder path
+  final String? subfolder;
+  @override
+
+  /// branch to deploy. defaults to master
+  final String? branch;
+  @override
+
+  /// function name
+  final String? name;
   @override
 
   /// region to deploy in. defaults to europe-west1
   final String? region;
-  @override
-
-  /// github url for a repo
-  final String? repo;
   @override
 
   /// runtime/lanaguage of the function e.g php74,
@@ -1396,20 +1404,12 @@ class _$_DeployRequest implements _DeployRequest {
   final String? runtime;
   @override
 
-  /// optional subfolder path
-  final String? subfolder;
-  @override
-
-  /// function name
-  final String? name;
-  @override
-
-  /// inline source code
-  final String? source;
+  /// environment variables to pass in at runtime
+  final Map<String, String>? env_vars;
 
   @override
   String toString() {
-    return 'DeployRequest(branch: $branch, entrypoint: $entrypoint, env_vars: $env_vars, region: $region, repo: $repo, runtime: $runtime, subfolder: $subfolder, name: $name, source: $source)';
+    return 'DeployRequest(entrypoint: $entrypoint, repo: $repo, source: $source, subfolder: $subfolder, branch: $branch, name: $name, region: $region, runtime: $runtime, env_vars: $env_vars)';
   }
 
   @override
@@ -1417,30 +1417,30 @@ class _$_DeployRequest implements _DeployRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DeployRequest &&
-            const DeepCollectionEquality().equals(other.branch, branch) &&
             const DeepCollectionEquality()
                 .equals(other.entrypoint, entrypoint) &&
-            const DeepCollectionEquality().equals(other.env_vars, env_vars) &&
-            const DeepCollectionEquality().equals(other.region, region) &&
             const DeepCollectionEquality().equals(other.repo, repo) &&
-            const DeepCollectionEquality().equals(other.runtime, runtime) &&
+            const DeepCollectionEquality().equals(other.source, source) &&
             const DeepCollectionEquality().equals(other.subfolder, subfolder) &&
+            const DeepCollectionEquality().equals(other.branch, branch) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.source, source));
+            const DeepCollectionEquality().equals(other.region, region) &&
+            const DeepCollectionEquality().equals(other.runtime, runtime) &&
+            const DeepCollectionEquality().equals(other.env_vars, env_vars));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(branch),
       const DeepCollectionEquality().hash(entrypoint),
-      const DeepCollectionEquality().hash(env_vars),
-      const DeepCollectionEquality().hash(region),
       const DeepCollectionEquality().hash(repo),
-      const DeepCollectionEquality().hash(runtime),
+      const DeepCollectionEquality().hash(source),
       const DeepCollectionEquality().hash(subfolder),
+      const DeepCollectionEquality().hash(branch),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(source));
+      const DeepCollectionEquality().hash(region),
+      const DeepCollectionEquality().hash(runtime),
+      const DeepCollectionEquality().hash(env_vars));
 
   @JsonKey(ignore: true)
   @override
@@ -1455,23 +1455,19 @@ class _$_DeployRequest implements _DeployRequest {
 
 abstract class _DeployRequest implements DeployRequest {
   const factory _DeployRequest(
-      {String? branch,
-      String? entrypoint,
-      Map<String, String>? env_vars,
-      String? region,
+      {String? entrypoint,
       String? repo,
-      String? runtime,
+      String? source,
       String? subfolder,
+      String? branch,
       String? name,
-      String? source}) = _$_DeployRequest;
+      String? region,
+      String? runtime,
+      Map<String, String>? env_vars}) = _$_DeployRequest;
 
   factory _DeployRequest.fromJson(Map<String, dynamic> json) =
       _$_DeployRequest.fromJson;
 
-  @override
-
-  /// branch to deploy. defaults to master
-  String? get branch;
   @override
 
   /// entry point, ie. handler name in the source code
@@ -1479,16 +1475,28 @@ abstract class _DeployRequest implements DeployRequest {
   String? get entrypoint;
   @override
 
-  /// environment variables to pass in at runtime
-  Map<String, String>? get env_vars;
+  /// github url for a repo
+  String? get repo;
+  @override
+
+  /// inline source code
+  String? get source;
+  @override
+
+  /// optional subfolder path
+  String? get subfolder;
+  @override
+
+  /// branch to deploy. defaults to master
+  String? get branch;
+  @override
+
+  /// function name
+  String? get name;
   @override
 
   /// region to deploy in. defaults to europe-west1
   String? get region;
-  @override
-
-  /// github url for a repo
-  String? get repo;
   @override
 
   /// runtime/lanaguage of the function e.g php74,
@@ -1498,16 +1506,8 @@ abstract class _DeployRequest implements DeployRequest {
   String? get runtime;
   @override
 
-  /// optional subfolder path
-  String? get subfolder;
-  @override
-
-  /// function name
-  String? get name;
-  @override
-
-  /// inline source code
-  String? get source;
+  /// environment variables to pass in at runtime
+  Map<String, String>? get env_vars;
   @override
   @JsonKey(ignore: true)
   _$DeployRequestCopyWith<_DeployRequest> get copyWith =>
@@ -2500,35 +2500,35 @@ class _$FuncTearOff {
   const _$FuncTearOff();
 
   _Func call(
-      {String? subfolder,
-      String? branch,
-      String? created,
-      String? region,
+      {String? entrypoint,
       String? repo,
-      String? status,
-      String? entrypoint,
-      String? id,
-      String? url,
-      Map<String, String>? env_vars,
-      String? name,
-      String? runtime,
       String? source,
-      String? updated}) {
+      String? branch,
+      String? name,
+      String? region,
+      String? subfolder,
+      String? created,
+      Map<String, String>? env_vars,
+      String? id,
+      String? updated,
+      String? url,
+      String? runtime,
+      String? status}) {
     return _Func(
-      subfolder: subfolder,
-      branch: branch,
-      created: created,
-      region: region,
-      repo: repo,
-      status: status,
       entrypoint: entrypoint,
-      id: id,
-      url: url,
-      env_vars: env_vars,
-      name: name,
-      runtime: runtime,
+      repo: repo,
       source: source,
+      branch: branch,
+      name: name,
+      region: region,
+      subfolder: subfolder,
+      created: created,
+      env_vars: env_vars,
+      id: id,
       updated: updated,
+      url: url,
+      runtime: runtime,
+      status: status,
     );
   }
 
@@ -2542,39 +2542,42 @@ const $Func = _$FuncTearOff();
 
 /// @nodoc
 mixin _$Func {
-  /// subfolder path to entrypoint
-  String? get subfolder => throw _privateConstructorUsedError;
-
-  /// branch to deploy. defaults to master
-  String? get branch => throw _privateConstructorUsedError;
-
-  /// time of creation
-  String? get created => throw _privateConstructorUsedError;
-
-  /// region to deploy in. defaults to europe-west1
-  String? get region => throw _privateConstructorUsedError;
+  /// name of handler in source code
+  String? get entrypoint => throw _privateConstructorUsedError;
 
   /// git repo address
   String? get repo => throw _privateConstructorUsedError;
 
-  /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
-  String? get status => throw _privateConstructorUsedError;
+  /// the source code
+  String? get source => throw _privateConstructorUsedError;
 
-  /// name of handler in source code
-  String? get entrypoint => throw _privateConstructorUsedError;
-
-  /// id of the function
-  String? get id => throw _privateConstructorUsedError;
-
-  /// unique url of the function
-  String? get url => throw _privateConstructorUsedError;
-
-  /// associated env vars
-  Map<String, String>? get env_vars => throw _privateConstructorUsedError;
+  /// branch to deploy. defaults to master
+  String? get branch => throw _privateConstructorUsedError;
 
   /// function name
   /// limitation: must be unique across projects
   String? get name => throw _privateConstructorUsedError;
+
+  /// region to deploy in. defaults to europe-west1
+  String? get region => throw _privateConstructorUsedError;
+
+  /// subfolder path to entrypoint
+  String? get subfolder => throw _privateConstructorUsedError;
+
+  /// time of creation
+  String? get created => throw _privateConstructorUsedError;
+
+  /// associated env vars
+  Map<String, String>? get env_vars => throw _privateConstructorUsedError;
+
+  /// id of the function
+  String? get id => throw _privateConstructorUsedError;
+
+  /// time it was updated
+  String? get updated => throw _privateConstructorUsedError;
+
+  /// unique url of the function
+  String? get url => throw _privateConstructorUsedError;
 
   /// runtime/language of the function e.g php74,
   /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
@@ -2582,11 +2585,8 @@ mixin _$Func {
   /// python37, python38, python39
   String? get runtime => throw _privateConstructorUsedError;
 
-  /// the source code
-  String? get source => throw _privateConstructorUsedError;
-
-  /// time it was updated
-  String? get updated => throw _privateConstructorUsedError;
+  /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
+  String? get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2598,20 +2598,20 @@ abstract class $FuncCopyWith<$Res> {
   factory $FuncCopyWith(Func value, $Res Function(Func) then) =
       _$FuncCopyWithImpl<$Res>;
   $Res call(
-      {String? subfolder,
-      String? branch,
-      String? created,
-      String? region,
+      {String? entrypoint,
       String? repo,
-      String? status,
-      String? entrypoint,
-      String? id,
-      String? url,
-      Map<String, String>? env_vars,
-      String? name,
-      String? runtime,
       String? source,
-      String? updated});
+      String? branch,
+      String? name,
+      String? region,
+      String? subfolder,
+      String? created,
+      Map<String, String>? env_vars,
+      String? id,
+      String? updated,
+      String? url,
+      String? runtime,
+      String? status});
 }
 
 /// @nodoc
@@ -2624,77 +2624,77 @@ class _$FuncCopyWithImpl<$Res> implements $FuncCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? subfolder = freezed,
-    Object? branch = freezed,
-    Object? created = freezed,
-    Object? region = freezed,
-    Object? repo = freezed,
-    Object? status = freezed,
     Object? entrypoint = freezed,
-    Object? id = freezed,
-    Object? url = freezed,
-    Object? env_vars = freezed,
-    Object? name = freezed,
-    Object? runtime = freezed,
+    Object? repo = freezed,
     Object? source = freezed,
+    Object? branch = freezed,
+    Object? name = freezed,
+    Object? region = freezed,
+    Object? subfolder = freezed,
+    Object? created = freezed,
+    Object? env_vars = freezed,
+    Object? id = freezed,
     Object? updated = freezed,
+    Object? url = freezed,
+    Object? runtime = freezed,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
-      subfolder: subfolder == freezed
-          ? _value.subfolder
-          : subfolder // ignore: cast_nullable_to_non_nullable
-              as String?,
-      branch: branch == freezed
-          ? _value.branch
-          : branch // ignore: cast_nullable_to_non_nullable
-              as String?,
-      created: created == freezed
-          ? _value.created
-          : created // ignore: cast_nullable_to_non_nullable
-              as String?,
-      region: region == freezed
-          ? _value.region
-          : region // ignore: cast_nullable_to_non_nullable
+      entrypoint: entrypoint == freezed
+          ? _value.entrypoint
+          : entrypoint // ignore: cast_nullable_to_non_nullable
               as String?,
       repo: repo == freezed
           ? _value.repo
           : repo // ignore: cast_nullable_to_non_nullable
               as String?,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
+      source: source == freezed
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
               as String?,
-      entrypoint: entrypoint == freezed
-          ? _value.entrypoint
-          : entrypoint // ignore: cast_nullable_to_non_nullable
+      branch: branch == freezed
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      region: region == freezed
+          ? _value.region
+          : region // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subfolder: subfolder == freezed
+          ? _value.subfolder
+          : subfolder // ignore: cast_nullable_to_non_nullable
+              as String?,
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
               as String?,
       env_vars: env_vars == freezed
           ? _value.env_vars
           : env_vars // ignore: cast_nullable_to_non_nullable
               as Map<String, String>?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updated: updated == freezed
+          ? _value.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as String?,
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
               as String?,
       runtime: runtime == freezed
           ? _value.runtime
           : runtime // ignore: cast_nullable_to_non_nullable
               as String?,
-      source: source == freezed
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updated: updated == freezed
-          ? _value.updated
-          : updated // ignore: cast_nullable_to_non_nullable
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -2706,20 +2706,20 @@ abstract class _$FuncCopyWith<$Res> implements $FuncCopyWith<$Res> {
       __$FuncCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? subfolder,
-      String? branch,
-      String? created,
-      String? region,
+      {String? entrypoint,
       String? repo,
-      String? status,
-      String? entrypoint,
-      String? id,
-      String? url,
-      Map<String, String>? env_vars,
-      String? name,
-      String? runtime,
       String? source,
-      String? updated});
+      String? branch,
+      String? name,
+      String? region,
+      String? subfolder,
+      String? created,
+      Map<String, String>? env_vars,
+      String? id,
+      String? updated,
+      String? url,
+      String? runtime,
+      String? status});
 }
 
 /// @nodoc
@@ -2733,77 +2733,77 @@ class __$FuncCopyWithImpl<$Res> extends _$FuncCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? subfolder = freezed,
-    Object? branch = freezed,
-    Object? created = freezed,
-    Object? region = freezed,
-    Object? repo = freezed,
-    Object? status = freezed,
     Object? entrypoint = freezed,
-    Object? id = freezed,
-    Object? url = freezed,
-    Object? env_vars = freezed,
-    Object? name = freezed,
-    Object? runtime = freezed,
+    Object? repo = freezed,
     Object? source = freezed,
+    Object? branch = freezed,
+    Object? name = freezed,
+    Object? region = freezed,
+    Object? subfolder = freezed,
+    Object? created = freezed,
+    Object? env_vars = freezed,
+    Object? id = freezed,
     Object? updated = freezed,
+    Object? url = freezed,
+    Object? runtime = freezed,
+    Object? status = freezed,
   }) {
     return _then(_Func(
-      subfolder: subfolder == freezed
-          ? _value.subfolder
-          : subfolder // ignore: cast_nullable_to_non_nullable
-              as String?,
-      branch: branch == freezed
-          ? _value.branch
-          : branch // ignore: cast_nullable_to_non_nullable
-              as String?,
-      created: created == freezed
-          ? _value.created
-          : created // ignore: cast_nullable_to_non_nullable
-              as String?,
-      region: region == freezed
-          ? _value.region
-          : region // ignore: cast_nullable_to_non_nullable
+      entrypoint: entrypoint == freezed
+          ? _value.entrypoint
+          : entrypoint // ignore: cast_nullable_to_non_nullable
               as String?,
       repo: repo == freezed
           ? _value.repo
           : repo // ignore: cast_nullable_to_non_nullable
               as String?,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
+      source: source == freezed
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
               as String?,
-      entrypoint: entrypoint == freezed
-          ? _value.entrypoint
-          : entrypoint // ignore: cast_nullable_to_non_nullable
+      branch: branch == freezed
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      region: region == freezed
+          ? _value.region
+          : region // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subfolder: subfolder == freezed
+          ? _value.subfolder
+          : subfolder // ignore: cast_nullable_to_non_nullable
+              as String?,
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
               as String?,
       env_vars: env_vars == freezed
           ? _value.env_vars
           : env_vars // ignore: cast_nullable_to_non_nullable
               as Map<String, String>?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updated: updated == freezed
+          ? _value.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as String?,
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
               as String?,
       runtime: runtime == freezed
           ? _value.runtime
           : runtime // ignore: cast_nullable_to_non_nullable
               as String?,
-      source: source == freezed
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updated: updated == freezed
-          ? _value.updated
-          : updated // ignore: cast_nullable_to_non_nullable
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -2813,68 +2813,72 @@ class __$FuncCopyWithImpl<$Res> extends _$FuncCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Func implements _Func {
   const _$_Func(
-      {this.subfolder,
-      this.branch,
-      this.created,
-      this.region,
+      {this.entrypoint,
       this.repo,
-      this.status,
-      this.entrypoint,
-      this.id,
-      this.url,
-      this.env_vars,
-      this.name,
-      this.runtime,
       this.source,
-      this.updated});
+      this.branch,
+      this.name,
+      this.region,
+      this.subfolder,
+      this.created,
+      this.env_vars,
+      this.id,
+      this.updated,
+      this.url,
+      this.runtime,
+      this.status});
 
   factory _$_Func.fromJson(Map<String, dynamic> json) => _$$_FuncFromJson(json);
 
-  @override
-
-  /// subfolder path to entrypoint
-  final String? subfolder;
-  @override
-
-  /// branch to deploy. defaults to master
-  final String? branch;
-  @override
-
-  /// time of creation
-  final String? created;
-  @override
-
-  /// region to deploy in. defaults to europe-west1
-  final String? region;
-  @override
-
-  /// git repo address
-  final String? repo;
-  @override
-
-  /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
-  final String? status;
   @override
 
   /// name of handler in source code
   final String? entrypoint;
   @override
 
-  /// id of the function
-  final String? id;
+  /// git repo address
+  final String? repo;
   @override
 
-  /// unique url of the function
-  final String? url;
+  /// the source code
+  final String? source;
+  @override
+
+  /// branch to deploy. defaults to master
+  final String? branch;
+  @override
+
+  /// function name
+  /// limitation: must be unique across projects
+  final String? name;
+  @override
+
+  /// region to deploy in. defaults to europe-west1
+  final String? region;
+  @override
+
+  /// subfolder path to entrypoint
+  final String? subfolder;
+  @override
+
+  /// time of creation
+  final String? created;
   @override
 
   /// associated env vars
   final Map<String, String>? env_vars;
   @override
 
-  /// function name
-  /// limitation: must be unique across projects
-  final String? name;
+  /// id of the function
+  final String? id;
+  @override
+
+  /// time it was updated
+  final String? updated;
+  @override
+
+  /// unique url of the function
+  final String? url;
   @override
 
   /// runtime/language of the function e.g php74,
@@ -2884,16 +2888,12 @@ class _$_Func implements _Func {
   final String? runtime;
   @override
 
-  /// the source code
-  final String? source;
-  @override
-
-  /// time it was updated
-  final String? updated;
+  /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
+  final String? status;
 
   @override
   String toString() {
-    return 'Func(subfolder: $subfolder, branch: $branch, created: $created, region: $region, repo: $repo, status: $status, entrypoint: $entrypoint, id: $id, url: $url, env_vars: $env_vars, name: $name, runtime: $runtime, source: $source, updated: $updated)';
+    return 'Func(entrypoint: $entrypoint, repo: $repo, source: $source, branch: $branch, name: $name, region: $region, subfolder: $subfolder, created: $created, env_vars: $env_vars, id: $id, updated: $updated, url: $url, runtime: $runtime, status: $status)';
   }
 
   @override
@@ -2901,40 +2901,40 @@ class _$_Func implements _Func {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Func &&
-            const DeepCollectionEquality().equals(other.subfolder, subfolder) &&
-            const DeepCollectionEquality().equals(other.branch, branch) &&
-            const DeepCollectionEquality().equals(other.created, created) &&
-            const DeepCollectionEquality().equals(other.region, region) &&
-            const DeepCollectionEquality().equals(other.repo, repo) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality()
                 .equals(other.entrypoint, entrypoint) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.url, url) &&
-            const DeepCollectionEquality().equals(other.env_vars, env_vars) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.runtime, runtime) &&
+            const DeepCollectionEquality().equals(other.repo, repo) &&
             const DeepCollectionEquality().equals(other.source, source) &&
-            const DeepCollectionEquality().equals(other.updated, updated));
+            const DeepCollectionEquality().equals(other.branch, branch) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.region, region) &&
+            const DeepCollectionEquality().equals(other.subfolder, subfolder) &&
+            const DeepCollectionEquality().equals(other.created, created) &&
+            const DeepCollectionEquality().equals(other.env_vars, env_vars) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.updated, updated) &&
+            const DeepCollectionEquality().equals(other.url, url) &&
+            const DeepCollectionEquality().equals(other.runtime, runtime) &&
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(subfolder),
-      const DeepCollectionEquality().hash(branch),
-      const DeepCollectionEquality().hash(created),
-      const DeepCollectionEquality().hash(region),
-      const DeepCollectionEquality().hash(repo),
-      const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(entrypoint),
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(url),
-      const DeepCollectionEquality().hash(env_vars),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(runtime),
+      const DeepCollectionEquality().hash(repo),
       const DeepCollectionEquality().hash(source),
-      const DeepCollectionEquality().hash(updated));
+      const DeepCollectionEquality().hash(branch),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(region),
+      const DeepCollectionEquality().hash(subfolder),
+      const DeepCollectionEquality().hash(created),
+      const DeepCollectionEquality().hash(env_vars),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(updated),
+      const DeepCollectionEquality().hash(url),
+      const DeepCollectionEquality().hash(runtime),
+      const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override
@@ -2949,68 +2949,72 @@ class _$_Func implements _Func {
 
 abstract class _Func implements Func {
   const factory _Func(
-      {String? subfolder,
-      String? branch,
-      String? created,
-      String? region,
+      {String? entrypoint,
       String? repo,
-      String? status,
-      String? entrypoint,
-      String? id,
-      String? url,
-      Map<String, String>? env_vars,
-      String? name,
-      String? runtime,
       String? source,
-      String? updated}) = _$_Func;
+      String? branch,
+      String? name,
+      String? region,
+      String? subfolder,
+      String? created,
+      Map<String, String>? env_vars,
+      String? id,
+      String? updated,
+      String? url,
+      String? runtime,
+      String? status}) = _$_Func;
 
   factory _Func.fromJson(Map<String, dynamic> json) = _$_Func.fromJson;
 
-  @override
-
-  /// subfolder path to entrypoint
-  String? get subfolder;
-  @override
-
-  /// branch to deploy. defaults to master
-  String? get branch;
-  @override
-
-  /// time of creation
-  String? get created;
-  @override
-
-  /// region to deploy in. defaults to europe-west1
-  String? get region;
-  @override
-
-  /// git repo address
-  String? get repo;
-  @override
-
-  /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
-  String? get status;
   @override
 
   /// name of handler in source code
   String? get entrypoint;
   @override
 
-  /// id of the function
-  String? get id;
+  /// git repo address
+  String? get repo;
   @override
 
-  /// unique url of the function
-  String? get url;
+  /// the source code
+  String? get source;
+  @override
+
+  /// branch to deploy. defaults to master
+  String? get branch;
+  @override
+
+  /// function name
+  /// limitation: must be unique across projects
+  String? get name;
+  @override
+
+  /// region to deploy in. defaults to europe-west1
+  String? get region;
+  @override
+
+  /// subfolder path to entrypoint
+  String? get subfolder;
+  @override
+
+  /// time of creation
+  String? get created;
   @override
 
   /// associated env vars
   Map<String, String>? get env_vars;
   @override
 
-  /// function name
-  /// limitation: must be unique across projects
-  String? get name;
+  /// id of the function
+  String? get id;
+  @override
+
+  /// time it was updated
+  String? get updated;
+  @override
+
+  /// unique url of the function
+  String? get url;
   @override
 
   /// runtime/language of the function e.g php74,
@@ -3020,12 +3024,8 @@ abstract class _Func implements Func {
   String? get runtime;
   @override
 
-  /// the source code
-  String? get source;
-  @override
-
-  /// time it was updated
-  String? get updated;
+  /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
+  String? get status;
   @override
   @JsonKey(ignore: true)
   _$FuncCopyWith<_Func> get copyWith => throw _privateConstructorUsedError;
