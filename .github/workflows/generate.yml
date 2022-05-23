@@ -19,11 +19,11 @@ jobs:
           repository: 'micro/services'
           path: services
 
-      - name: Check m3o/m3o repo
+      - name: Check m3o/m3o-client-gen repo
         uses: actions/checkout@v2
         with:
-          repository: 'm3o/m3o'
-          path: m3o
+          repository: 'm3o/m3o-client-gen'
+          path: m3o-client-gen
 
       - name: Set up dart latest
         uses: dart-lang/setup-dart@v1.3
@@ -42,9 +42,9 @@ jobs:
         
         run: |
           # sync the clients to m3o-dart/
-          rsync -avz clients/dart/* ../m3o-dart/
+          rsync -avz clients/dart/ ../m3o-dart/
           # sync the examples to m3o-dart/example
-          rsync -avz examples/dart/* ../m3o-dart/example/
+          rsync -avz examples/dart/ ../m3o-dart/example/
 
       - name: Install dependencies m3o-dart
         working-directory: m3o-dart
@@ -91,7 +91,7 @@ jobs:
         id: go
 
       - name: generate latest release note from micro/services repo
-        working-directory: m3o
+        working-directory: m3o-client-gen
         run: |
           cd release-note
           go install .
