@@ -58,8 +58,23 @@ class LookupPostcodeResponse with _$LookupPostcodeResponse {
 @Freezed()
 class Record with _$Record {
   const factory Record({
+    /// building name
+    String? building_name,
+
+    /// the county
+    String? county,
+
+    /// street name
+    String? street,
+
+    /// post town
+    String? town,
+
     /// line one of address
     String? line_one,
+
+    /// line two of address
+    String? line_two,
 
     /// dependent locality
     String? locality,
@@ -72,21 +87,6 @@ class Record with _$Record {
 
     /// the premise
     String? premise,
-
-    /// street name
-    String? street,
-
-    /// post town
-    String? town,
-
-    /// building name
-    String? building_name,
-
-    /// the county
-    String? county,
-
-    /// line two of address
-    String? line_two,
 
     /// the complete address
     String? summary,

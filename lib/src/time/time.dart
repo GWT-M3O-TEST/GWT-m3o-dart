@@ -104,23 +104,23 @@ class ZoneResponse with _$ZoneResponse {
     /// the abbreviated code e.g BST
     String? abbreviation,
 
-    /// is daylight savings
-    bool? dst,
-
-    /// the local time
-    String? localtime,
-
-    /// e.g -0.37
-    double? longitude,
-
     /// country of the timezone
     String? country,
+
+    /// is daylight savings
+    bool? dst,
 
     /// e.g 51.42
     double? latitude,
 
     /// location requested
     String? location,
+
+    /// the local time
+    String? localtime,
+
+    /// e.g -0.37
+    double? longitude,
 
     /// UTC offset in hours
     int? offset,
