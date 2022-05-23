@@ -1,3 +1,9 @@
+## v1.0.44 - 2022-05-23
+
+[f6e198](https://github.com/micro/services/commit/f6e198fbdbd33cea618150fac7988bd3f84e7239) .
+
+**Full Changelog**: https://github.com/GWT-M3O-TEST/m3o-dart/compare/v1.0.42...v1.0.44
+
 ## v1.0.42 - 2022-04-11
 
 [acfca9](https://github.com/micro/services/commit/acfca9b067734d9092cd52a87fba0435b492a15c) update publicapi.json for routing
