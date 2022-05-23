@@ -238,6 +238,12 @@ class QuoteRequest with _$QuoteRequest {
 @Freezed()
 class QuoteResponse with _$QuoteResponse {
   const factory QuoteResponse({
+    /// the crypto symbol
+    String? symbol,
+
+    /// the UTC timestamp of the quote
+    String? timestamp,
+
     /// the asking price
     double? ask_price,
 
@@ -249,12 +255,6 @@ class QuoteResponse with _$QuoteResponse {
 
     /// the bid size
     double? bid_size,
-
-    /// the crypto symbol
-    String? symbol,
-
-    /// the UTC timestamp of the quote
-    String? timestamp,
   }) = QuoteResponseData;
   const factory QuoteResponse.Merr({Map<String, dynamic>? body}) =
       QuoteResponseMerr;
@@ -265,8 +265,8 @@ class QuoteResponse with _$QuoteResponse {
 @Freezed()
 class Symbol with _$Symbol {
   const factory Symbol({
-    String? symbol,
     String? name,
+    String? symbol,
   }) = _Symbol;
   factory Symbol.fromJson(Map<String, dynamic> json) => _$SymbolFromJson(json);
 }
