@@ -179,14 +179,14 @@ class GetResponse with _$GetResponse {
 @Freezed()
 class Index with _$Index {
   const factory Index({
+    /// symbol of item
+    String? symbol,
+
     /// currency of value
     String? currency,
 
     /// name of item
     String? name,
-
-    /// symbol of item
-    String? symbol,
   }) = _Index;
   factory Index.fromJson(Map<String, dynamic> json) => _$IndexFromJson(json);
 }
@@ -239,10 +239,10 @@ class ListResponse with _$ListResponse {
 @Freezed()
 class Report with _$Report {
   const factory Report({
-    String? name,
-    String? symbol,
     String? author,
     String? comment,
+    String? name,
+    String? symbol,
   }) = _Report;
   factory Report.fromJson(Map<String, dynamic> json) => _$ReportFromJson(json);
 }

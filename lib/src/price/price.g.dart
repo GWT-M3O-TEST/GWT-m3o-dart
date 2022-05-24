@@ -93,15 +93,15 @@ Map<String, dynamic> _$$GetResponseMerrToJson(_$GetResponseMerr instance) =>
     };
 
 _$_Index _$$_IndexFromJson(Map<String, dynamic> json) => _$_Index(
+      symbol: json['symbol'] as String?,
       currency: json['currency'] as String?,
       name: json['name'] as String?,
-      symbol: json['symbol'] as String?,
     );
 
 Map<String, dynamic> _$$_IndexToJson(_$_Index instance) => <String, dynamic>{
+      'symbol': instance.symbol,
       'currency': instance.currency,
       'name': instance.name,
-      'symbol': instance.symbol,
     };
 
 _$_IndexRequest _$$_IndexRequestFromJson(Map<String, dynamic> json) =>
@@ -177,17 +177,17 @@ Map<String, dynamic> _$$ListResponseMerrToJson(_$ListResponseMerr instance) =>
     };
 
 _$_Report _$$_ReportFromJson(Map<String, dynamic> json) => _$_Report(
-      name: json['name'] as String?,
-      symbol: json['symbol'] as String?,
       author: json['author'] as String?,
       comment: json['comment'] as String?,
+      name: json['name'] as String?,
+      symbol: json['symbol'] as String?,
     );
 
 Map<String, dynamic> _$$_ReportToJson(_$_Report instance) => <String, dynamic>{
-      'name': instance.name,
-      'symbol': instance.symbol,
       'author': instance.author,
       'comment': instance.comment,
+      'name': instance.name,
+      'symbol': instance.symbol,
     };
 
 _$_ReportRequest _$$_ReportRequestFromJson(Map<String, dynamic> json) =>

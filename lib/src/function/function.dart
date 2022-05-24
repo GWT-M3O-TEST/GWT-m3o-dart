@@ -236,11 +236,11 @@ class FunctionService {
 @Freezed()
 class CallRequest with _$CallRequest {
   const factory CallRequest({
-    /// Name of the function
-    String? name,
-
     /// Request body that will be passed to the function
     Map<String, dynamic>? request,
+
+    /// Name of the function
+    String? name,
   }) = _CallRequest;
   factory CallRequest.fromJson(Map<String, dynamic> json) =>
       _$CallRequestFromJson(json);
@@ -280,11 +280,24 @@ class DeleteResponse with _$DeleteResponse {
 @Freezed()
 class DeployRequest with _$DeployRequest {
   const factory DeployRequest({
+    /// runtime/lanaguage of the function e.g php74,
+    /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
+    /// dotnet3, java11, ruby26, ruby27, go111, go113, go116,
+    /// python37, python38, python39
+    String? runtime,
+
     /// inline source code
     String? source,
 
+    /// optional subfolder path
+    String? subfolder,
+
     /// branch to deploy. defaults to master
     String? branch,
+
+    /// entry point, ie. handler name in the source code
+    /// if not provided, defaults to the name parameter
+    String? entrypoint,
 
     /// environment variables to pass in at runtime
     Map<String, String>? env_vars,
@@ -295,21 +308,8 @@ class DeployRequest with _$DeployRequest {
     /// region to deploy in. defaults to europe-west1
     String? region,
 
-    /// runtime/lanaguage of the function e.g php74,
-    /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
-    /// dotnet3, java11, ruby26, ruby27, go111, go113, go116,
-    /// python37, python38, python39
-    String? runtime,
-
-    /// entry point, ie. handler name in the source code
-    /// if not provided, defaults to the name parameter
-    String? entrypoint,
-
     /// github url for a repo
     String? repo,
-
-    /// optional subfolder path
-    String? subfolder,
   }) = _DeployRequest;
   factory DeployRequest.fromJson(Map<String, dynamic> json) =>
       _$DeployRequestFromJson(json);
@@ -357,45 +357,45 @@ class Func with _$Func {
     /// region to deploy in. defaults to europe-west1
     String? region,
 
+    /// subfolder path to entrypoint
+    String? subfolder,
+
+    /// id of the function
+    String? id,
+
+    /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
+    String? status,
+
+    /// time it was updated
+    String? updated,
+
+    /// branch to deploy. defaults to master
+    String? branch,
+
+    /// time of creation
+    String? created,
+
+    /// the source code
+    String? source,
+
+    /// name of handler in source code
+    String? entrypoint,
+
+    /// function name
+    /// limitation: must be unique across projects
+    String? name,
+
+    /// git repo address
+    String? repo,
+
     /// runtime/language of the function e.g php74,
     /// nodejs6, nodejs8, nodejs10, nodejs12, nodejs14, nodejs16,
     /// dotnet3, java11, ruby26, ruby27, go111, go113, go116,
     /// python37, python38, python39
     String? runtime,
 
-    /// time it was updated
-    String? updated,
-
     /// unique url of the function
     String? url,
-
-    /// id of the function
-    String? id,
-
-    /// git repo address
-    String? repo,
-
-    /// subfolder path to entrypoint
-    String? subfolder,
-
-    /// branch to deploy. defaults to master
-    String? branch,
-
-    /// name of handler in source code
-    String? entrypoint,
-
-    /// the source code
-    String? source,
-
-    /// time of creation
-    String? created,
-
-    /// function name
-    /// limitation: must be unique across projects
-    String? name,
-
-    /// eg. ACTIVE, DEPLOY_IN_PROGRESS, OFFLINE etc
-    String? status,
   }) = _Func;
   factory Func.fromJson(Map<String, dynamic> json) => _$FuncFromJson(json);
 }
@@ -486,6 +486,12 @@ class RegionsResponse with _$RegionsResponse {
 @Freezed()
 class Reservation with _$Reservation {
   const factory Reservation({
+    /// owner id
+    String? owner,
+
+    /// associated token
+    String? token,
+
     /// time of reservation
     String? created,
 
@@ -494,12 +500,6 @@ class Reservation with _$Reservation {
 
     /// name of the app
     String? name,
-
-    /// owner id
-    String? owner,
-
-    /// associated token
-    String? token,
   }) = _Reservation;
   factory Reservation.fromJson(Map<String, dynamic> json) =>
       _$ReservationFromJson(json);
