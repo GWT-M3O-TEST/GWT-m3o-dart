@@ -213,11 +213,11 @@ class PriceRequest with _$PriceRequest {
 @Freezed()
 class PriceResponse with _$PriceResponse {
   const factory PriceResponse({
-    /// the crypto symbol e.g BTCUSD
-    String? symbol,
-
     /// the last price
     double? price,
+
+    /// the crypto symbol e.g BTCUSD
+    String? symbol,
   }) = PriceResponseData;
   const factory PriceResponse.Merr({Map<String, dynamic>? body}) =
       PriceResponseMerr;
@@ -238,9 +238,6 @@ class QuoteRequest with _$QuoteRequest {
 @Freezed()
 class QuoteResponse with _$QuoteResponse {
   const factory QuoteResponse({
-    /// the bidding price
-    double? bid_price,
-
     /// the bid size
     double? bid_size,
 
@@ -255,6 +252,9 @@ class QuoteResponse with _$QuoteResponse {
 
     /// the ask size
     double? ask_size,
+
+    /// the bidding price
+    double? bid_price,
   }) = QuoteResponseData;
   const factory QuoteResponse.Merr({Map<String, dynamic>? body}) =
       QuoteResponseMerr;
