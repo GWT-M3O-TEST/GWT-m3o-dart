@@ -1,3 +1,9 @@
+## v1.0.54 - 2022-05-24
+
+[f6e198](https://github.com/micro/services/commit/f6e198fbdbd33cea618150fac7988bd3f84e7239) .
+
+**Full Changelog**: https://github.com/GWT-M3O-TEST/m3o-dart/compare/v1.0.53...v1.0.54
+
 ## v1.0.53 - 2022-05-23
 
 [f6e198](https://github.com/micro/services/commit/f6e198fbdbd33cea618150fac7988bd3f84e7239) .
