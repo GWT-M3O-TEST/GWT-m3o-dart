@@ -1,3 +1,9 @@
+## v1.0.57 - 2022-06-20
+
+[438b08](https://github.com/micro/services/commit/438b08ce96eb258d14eb841317730322419f0fcc) update go mod
+
+**Full Changelog**: https://github.com/GWT-M3O-TEST/m3o-dart/compare/v1.0.56...v1.0.57
+
 ## v1.0.56 - 2022-05-27
 
 [89150f](https://github.com/micro/services/commit/89150feb21ce22448590ef195e946bfc1dac4ae4) Update README.md
