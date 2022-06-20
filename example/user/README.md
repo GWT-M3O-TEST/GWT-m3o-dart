@@ -4,86 +4,6 @@ An [m3o.com](https://m3o.com) API. For example usage see [m3o.com/user/api](http
 
 Endpoints:
 
-## UpdatePassword
-
-Update the account password
-
-
-[https://m3o.com/user/api#UpdatePassword](https://m3o.com/user/api#UpdatePassword)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/user/user.dart';
-
-void main() async {
-  final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
- 
-  final payload = <String, dynamic>{
-  "confirmPassword": "Password2",
-  "newPassword": "Password2",
-  "oldPassword": "Password1",
-  "userId": "user-1"
-,};
-
-  UpdatePasswordRequest req = UpdatePasswordRequest.fromJson(payload);
-
-  
-  try {
-
-	UpdatePasswordResponse res = await ser.updatePassword(req);
-
-    res.map((value) => print(value),
-	  Merr: (UpdatePasswordResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e) {
-    print(e);
-  } finally {
-    exit(0);
-  }
-}
-```
-## SendVerificationEmail
-
-Send a verification email to a user.
-
-
-[https://m3o.com/user/api#SendVerificationEmail](https://m3o.com/user/api#SendVerificationEmail)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/user/user.dart';
-
-void main() async {
-  final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
- 
-  final payload = <String, dynamic>{
-  "email": "joe@example.com",
-  "failureRedirectUrl": "https://m3o.com/verification-failed",
-  "fromName": "Awesome Dot Com",
-  "redirectUrl": "https://m3o.com",
-  "subject": "Email verification",
-  "textContent": "Hi there,\n\nPlease verify your email by clicking this link: \$micro_verification_link"
-,};
-
-  SendVerificationEmailRequest req = SendVerificationEmailRequest.fromJson(payload);
-
-  
-  try {
-
-	SendVerificationEmailResponse res = await ser.sendVerificationEmail(req);
-
-    res.map((value) => print(value),
-	  Merr: (SendVerificationEmailResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e) {
-    print(e);
-  } finally {
-    exit(0);
-  }
-}
-```
 ## Delete
 
 Delete an account by id
@@ -120,12 +40,12 @@ void main() async {
   }
 }
 ```
-## ReadSession
+## List
 
-Read a session by the session id. In the event it has expired or is not found and error is returned.
+List all users. Returns a paged list of results
 
 
-[https://m3o.com/user/api#ReadSession](https://m3o.com/user/api#ReadSession)
+[https://m3o.com/user/api#List](https://m3o.com/user/api#List)
 
 ```dart
 import 'dart:io';
@@ -136,18 +56,19 @@ void main() async {
   final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
-  "sessionId": "df91a612-5b24-4634-99ff-240220ab8f55"
+  "limit": 100,
+  "offset": 0
 ,};
 
-  ReadSessionRequest req = ReadSessionRequest.fromJson(payload);
+  ListRequest req = ListRequest.fromJson(payload);
 
   
   try {
 
-	ReadSessionResponse res = await ser.readSession(req);
+	ListResponse res = await ser.list(req);
 
     res.map((value) => print(value),
-	  Merr: (ReadSessionResponseMerr err) => print(err.body!['body']));	
+	  Merr: (ListResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -184,6 +105,119 @@ void main() async {
 
     res.map((value) => print(value),
 	  Merr: (LogoutAllResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
+## Update
+
+Update the account username or email
+
+
+[https://m3o.com/user/api#Update](https://m3o.com/user/api#Update)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/user/user.dart';
+
+void main() async {
+  final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
+ 
+  final payload = <String, dynamic>{
+  "email": "joe+2@example.com",
+  "id": "user-1",
+  "username": "joe"
+,};
+
+  UpdateRequest req = UpdateRequest.fromJson(payload);
+
+  
+  try {
+
+	UpdateResponse res = await ser.update(req);
+
+    res.map((value) => print(value),
+	  Merr: (UpdateResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
+## ResetPassword
+
+Reset password with the code sent by the "SendPasswordResetEmail" endpoint.
+
+
+[https://m3o.com/user/api#ResetPassword](https://m3o.com/user/api#ResetPassword)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/user/user.dart';
+
+void main() async {
+  final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
+ 
+  final payload = <String, dynamic>{
+  "code": "012345",
+  "confirmPassword": "NewPassword1",
+  "email": "joe@example.com",
+  "newPassword": "NewPassword1"
+,};
+
+  ResetPasswordRequest req = ResetPasswordRequest.fromJson(payload);
+
+  
+  try {
+
+	ResetPasswordResponse res = await ser.resetPassword(req);
+
+    res.map((value) => print(value),
+	  Merr: (ResetPasswordResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
+## Logout
+
+Logout a user account
+
+
+[https://m3o.com/user/api#Logout](https://m3o.com/user/api#Logout)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/user/user.dart';
+
+void main() async {
+  final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
+ 
+  final payload = <String, dynamic>{
+  "sessionId": "df91a612-5b24-4634-99ff-240220ab8f55"
+,};
+
+  LogoutRequest req = LogoutRequest.fromJson(payload);
+
+  
+  try {
+
+	LogoutResponse res = await ser.logout(req);
+
+    res.map((value) => print(value),
+	  Merr: (LogoutResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -300,13 +334,12 @@ void main() async {
   }
 }
 ```
-## SendPasswordResetEmail
+## SendVerificationEmail
 
-Send an email with a verification code to reset password.
-Call "ResetPassword" endpoint once user provides the code.
+Send a verification email to a user.
 
 
-[https://m3o.com/user/api#SendPasswordResetEmail](https://m3o.com/user/api#SendPasswordResetEmail)
+[https://m3o.com/user/api#SendVerificationEmail](https://m3o.com/user/api#SendVerificationEmail)
 
 ```dart
 import 'dart:io';
@@ -318,20 +351,22 @@ void main() async {
  
   final payload = <String, dynamic>{
   "email": "joe@example.com",
+  "failureRedirectUrl": "https://m3o.com/verification-failed",
   "fromName": "Awesome Dot Com",
-  "subject": "Password reset",
-  "textContent": "Hi there,\n click here to reset your password: myapp.com/reset/code?=\$code"
+  "redirectUrl": "https://m3o.com",
+  "subject": "Email verification",
+  "textContent": "Hi there,\n\nPlease verify your email by clicking this link: \$micro_verification_link"
 ,};
 
-  SendPasswordResetEmailRequest req = SendPasswordResetEmailRequest.fromJson(payload);
+  SendVerificationEmailRequest req = SendVerificationEmailRequest.fromJson(payload);
 
   
   try {
 
-	SendPasswordResetEmailResponse res = await ser.sendPasswordResetEmail(req);
+	SendVerificationEmailResponse res = await ser.sendVerificationEmail(req);
 
     res.map((value) => print(value),
-	  Merr: (SendPasswordResetEmailResponseMerr err) => print(err.body!['body']));	
+	  Merr: (SendVerificationEmailResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -340,12 +375,12 @@ void main() async {
   }
 }
 ```
-## List
+## ReadSession
 
-List all users. Returns a paged list of results
+Read a session by the session id. In the event it has expired or is not found and error is returned.
 
 
-[https://m3o.com/user/api#List](https://m3o.com/user/api#List)
+[https://m3o.com/user/api#ReadSession](https://m3o.com/user/api#ReadSession)
 
 ```dart
 import 'dart:io';
@@ -356,19 +391,18 @@ void main() async {
   final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
-  "limit": 100,
-  "offset": 0
+  "sessionId": "df91a612-5b24-4634-99ff-240220ab8f55"
 ,};
 
-  ListRequest req = ListRequest.fromJson(payload);
+  ReadSessionRequest req = ReadSessionRequest.fromJson(payload);
 
   
   try {
 
-	ListResponse res = await ser.list(req);
+	ReadSessionResponse res = await ser.readSession(req);
 
     res.map((value) => print(value),
-	  Merr: (ListResponseMerr err) => print(err.body!['body']));	
+	  Merr: (ReadSessionResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -447,6 +481,46 @@ void main() async {
 
     res.map((value) => print(value),
 	  Merr: (CreateResponseMerr err) => print(err.body!['body']));	
+  
+  } catch (e) {
+    print(e);
+  } finally {
+    exit(0);
+  }
+}
+```
+## SendPasswordResetEmail
+
+Send an email with a verification code to reset password.
+Call "ResetPassword" endpoint once user provides the code.
+
+
+[https://m3o.com/user/api#SendPasswordResetEmail](https://m3o.com/user/api#SendPasswordResetEmail)
+
+```dart
+import 'dart:io';
+
+import 'package:m3o/src/user/user.dart';
+
+void main() async {
+  final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
+ 
+  final payload = <String, dynamic>{
+  "email": "joe@example.com",
+  "fromName": "Awesome Dot Com",
+  "subject": "Password reset",
+  "textContent": "Hi there,\n click here to reset your password: myapp.com/reset/code?=\$code"
+,};
+
+  SendPasswordResetEmailRequest req = SendPasswordResetEmailRequest.fromJson(payload);
+
+  
+  try {
+
+	SendPasswordResetEmailResponse res = await ser.sendPasswordResetEmail(req);
+
+    res.map((value) => print(value),
+	  Merr: (SendPasswordResetEmailResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -534,50 +608,12 @@ void main() async {
   }
 }
 ```
-## Update
+## UpdatePassword
 
-Update the account username or email
-
-
-[https://m3o.com/user/api#Update](https://m3o.com/user/api#Update)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/user/user.dart';
-
-void main() async {
-  final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
- 
-  final payload = <String, dynamic>{
-  "email": "joe+2@example.com",
-  "id": "user-1",
-  "username": "joe"
-,};
-
-  UpdateRequest req = UpdateRequest.fromJson(payload);
-
-  
-  try {
-
-	UpdateResponse res = await ser.update(req);
-
-    res.map((value) => print(value),
-	  Merr: (UpdateResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e) {
-    print(e);
-  } finally {
-    exit(0);
-  }
-}
-```
-## ResetPassword
-
-Reset password with the code sent by the "SendPasswordResetEmail" endpoint.
+Update the account password
 
 
-[https://m3o.com/user/api#ResetPassword](https://m3o.com/user/api#ResetPassword)
+[https://m3o.com/user/api#UpdatePassword](https://m3o.com/user/api#UpdatePassword)
 
 ```dart
 import 'dart:io';
@@ -588,21 +624,21 @@ void main() async {
   final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
  
   final payload = <String, dynamic>{
-  "code": "012345",
-  "confirmPassword": "NewPassword1",
-  "email": "joe@example.com",
-  "newPassword": "NewPassword1"
+  "confirmPassword": "Password2",
+  "newPassword": "Password2",
+  "oldPassword": "Password1",
+  "userId": "user-1"
 ,};
 
-  ResetPasswordRequest req = ResetPasswordRequest.fromJson(payload);
+  UpdatePasswordRequest req = UpdatePasswordRequest.fromJson(payload);
 
   
   try {
 
-	ResetPasswordResponse res = await ser.resetPassword(req);
+	UpdatePasswordResponse res = await ser.updatePassword(req);
 
     res.map((value) => print(value),
-	  Merr: (ResetPasswordResponseMerr err) => print(err.body!['body']));	
+	  Merr: (UpdatePasswordResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
@@ -640,42 +676,6 @@ void main() async {
 
     res.map((value) => print(value),
 	  Merr: (VerifyEmailResponseMerr err) => print(err.body!['body']));	
-  
-  } catch (e) {
-    print(e);
-  } finally {
-    exit(0);
-  }
-}
-```
-## Logout
-
-Logout a user account
-
-
-[https://m3o.com/user/api#Logout](https://m3o.com/user/api#Logout)
-
-```dart
-import 'dart:io';
-
-import 'package:m3o/src/user/user.dart';
-
-void main() async {
-  final ser = UserService(Platform.environment['M3O_API_TOKEN']!);
- 
-  final payload = <String, dynamic>{
-  "sessionId": "df91a612-5b24-4634-99ff-240220ab8f55"
-,};
-
-  LogoutRequest req = LogoutRequest.fromJson(payload);
-
-  
-  try {
-
-	LogoutResponse res = await ser.logout(req);
-
-    res.map((value) => print(value),
-	  Merr: (LogoutResponseMerr err) => print(err.body!['body']));	
   
   } catch (e) {
     print(e);
